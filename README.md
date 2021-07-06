@@ -6,7 +6,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 
 ## Grupo {N}
 
-* **Integrante 1** - [integrante1](https://github.com/integrante1)
+* **Reil Luz Juan Ignacio** - [juanireil](https://github.com/juanireil)
 * **Sprenger Roberta** - [104239](https://github.com/robyspr)
 * **Flynn Pedro** - [LordOfThePing](https://github.com/LordOfThePing)
 * **Cristian Cañón** - [Edass](https://github.com/Cristianfca197)
