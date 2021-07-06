@@ -1,0 +1,15 @@
+@startuml
+
+Juego o-- Jugador
+Jugador *-- Ficha
+Jugador --> Objetivo
+Jugador -->TarjetaPais
+
+Juego *-- TarjetaPais
+TarjetaPais --> tipoTarjeta
+tipoTarjeta <|-- Barco
+tipoTarjeta <|-- globo
+tipoTarjeta <|-- cañon
+
+Juego *-- Objetivo
+@enduml

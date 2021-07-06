@@ -1,0 +1,11 @@
+@startuml
+
+
+Juego *-- Tablero
+Tablero *-- Continente
+Tablero *--Pais
+Continente-- Pais
+
+Pais --> Ficha
+Pais -- TarjetaPais
+@enduml
