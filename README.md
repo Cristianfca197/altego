@@ -9,7 +9,7 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Integrante 1** - [integrante1](https://github.com/integrante1)
 * **Sprenger Roberta** - [104239](https://github.com/robyspr)
 * **Flynn Pedro** - [LordOfThePing](https://github.com/LordOfThePing)
-* **Integrante 4** - [integrante4](https://github.com/integrante4)
+* **Cristian Cañón** - [Edass](https://github.com/Cristianfca197)
 
 Corrector: **{Corrector}**
 
