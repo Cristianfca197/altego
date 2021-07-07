@@ -29,7 +29,14 @@ public class Pais {
         this.ejercitos = 0;
     }
 
-    public void cambiarFicha(Ficha nuevaFicha) {
-        this.ficha = nuevaFicha;
+    public void cambiarFicha(Ficha nuevaFicha) {this.ficha = nuevaFicha;}
+
+    public int tirarDados() { return this.ejercitos; }
+
+    public void ocuparPais(Pais paisNuevo, int cantidadEjercito) {
+        paisNuevo.cambiarFicha(this.obtenerFicha());
+        paisNuevo.colocarEjercitos(cantidadEjercito, this.obtenerFicha());
     }
+
+    public int dados() { return ejercitos;}
 }

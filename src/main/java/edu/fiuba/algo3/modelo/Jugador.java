@@ -18,10 +18,6 @@ public class Jugador {
         return this.ficha;
     }
 
-    public void ocuparPais(Pais paisNuevo, int cantidadEjercito) {
-        paisNuevo.cambiarFicha(this.obtenerFicha());
-        paisNuevo.colocarEjercitos(cantidadEjercito, this.obtenerFicha());
-        this.paisesPropios.add(paisNuevo);
-    }
+
 
 }
