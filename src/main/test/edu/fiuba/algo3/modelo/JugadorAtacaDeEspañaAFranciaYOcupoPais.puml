@@ -1,0 +1,28 @@
+@startuml
+
+
+autonumber
+
+actor Jugador
+Jugador -> "españa: Pais":atacarPais(francia:Pais)
+"españa: Pais" -> "francia: Pais": esLimitrofe(españa: Pais)
+"españa: Pais" <-- "francia: Pais": true
+Jugador <-- "españa: Pais": true
+
+Jugador -> Batalla: batalla(Atacante:Pais, Defensor:Pais)
+Batalla -> "españa: Pais":tirarDados()
+"españa: Pais" -->Batalla :listaDados
+Batalla -> "francia: Pais": tirarDados()
+"francia: Pais" -->Batalla: listaDados
+
+loop
+Batalla -> Batalla: compararDados(dadoAtacante,dadoDefensor)
+Batalla ->"francia: Pais":destruirEjercitos()
+end
+Batalla --> Jugador:españa
+
+Jugador->"francia: Pais": estaVacio()
+"francia: Pais" --> Jugador: true
+
+Jugador -> "francia: Pais": ocuparPais(cantidadEjercitos)
+@enduml

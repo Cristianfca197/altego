@@ -8,4 +8,7 @@ Continente-- Pais
 
 Pais --> Ficha
 Pais -- TarjetaPais
+
+Juego --> Batalla
+Batalla ..> Pais
 @enduml

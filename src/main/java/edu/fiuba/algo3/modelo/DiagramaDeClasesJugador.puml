@@ -12,4 +12,7 @@ tipoTarjeta <|-- globo
 tipoTarjeta <|-- cañon
 
 Juego *-- Objetivo
+Juego --> Batalla
+
+
 @enduml
