@@ -31,4 +31,33 @@ public class AtacarPaisEnemigoYConquistarPais {
         batalla.combateEntre(unPais, otroPais);
         assertEquals(unPais.obtenerFicha(), otroPais.obtenerFicha());
     }
+    @Test
+    public void test03JugadorAtacaYDefensorGanaElCombateDisminuyeElEjercitoDelAtacante(){
+        Jugador equipoAzul = new Jugador();
+        Jugador equipoRojo = new Jugador();
+        Batalla batalla = new Batalla();
+
+        Pais unPais = new Pais("Argentina", equipoAzul);
+        Pais otroPais = new Pais("Brasil", equipoRojo);
+        unPais.colocarEjercitos(2, unPais.obtenerFicha());/*Un pais queda con 3 ejercitos*/
+
+        batalla.combateEntre(unPais, otroPais);
+        assertNotEquals(2, unPais.cantidadDeEjercitos());
+    }
+
+    @Test
+    public void test04JugadorAtacaYGanaElCombateDisminuyeElEjercitoDelDefensor(){
+        Jugador equipoAzul = new Jugador();
+        Jugador equipoRojo = new Jugador();
+        Batalla batalla = new Batalla();
+
+        Pais unPais = new Pais("Argentina", equipoAzul);
+        Pais otroPais = new Pais("Brasil", equipoRojo);
+        unPais.colocarEjercitos(2, unPais.obtenerFicha());/*Un pais queda con 3 ejercitos*/
+        otroPais.colocarEjercitos(1, unPais.obtenerFicha());/*Otro pais queda con 2 ejercitos*/
+
+        batalla.combateEntre(unPais, otroPais);
+        assertNotEquals(1, otroPais.cantidadDeEjercitos());
+    }
+
 }
