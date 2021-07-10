@@ -13,7 +13,12 @@ public class BatallaTest {
         Pais otroPais = new Pais("Argentina", equipoAzul);
         Batalla batalla = new Batalla();
 
-        batalla.combateEntre(unPais, otroPais);
+        try {
+            batalla.combateEntre(unPais, otroPais);
+        }
+        catch (ExcepcionAtaqueInvalido e){
+            System.out.println("Error no se puede atacar a un Pais aliado");
+        }
 
     }
 }
