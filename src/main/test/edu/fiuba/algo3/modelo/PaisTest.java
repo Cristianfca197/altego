@@ -24,4 +24,15 @@ public class PaisTest {
 
         assertFalse(unPais.esLimitrofeCon(otroPais));
     }
+    @Test
+    public void test03CreoDosPaisesConDosFichasYSonDistintas(){
+        Jugador unJugador = new Jugador();
+        Jugador otroJugador = new Jugador();
+    
+        Pais unPais = new Pais("Arg", unJugador);
+        Pais otroPais = new Pais("Bra", otroJugador);
+
+        assertNotEquals(unPais.obtenerFicha(), otroPais.obtenerFicha());
+        assertFalse(unPais.obtenerFicha().esIgualA(otroPais.obtenerFicha()));
+    }
 }

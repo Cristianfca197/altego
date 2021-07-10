@@ -6,14 +6,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BatallaTest {
 
     @Test
-
-    public void batallaConPaisesAliadosNoEsPosible()throws ExcepcionAtaqueInvalido{
+    public void test01BatallaConPaisesAliadosNoEsPosible() {
         Jugador equipoAzul = new Jugador();
         Pais unPais = new Pais("Argentina", equipoAzul);
         Pais otroPais = new Pais("Argentina", equipoAzul);
         Batalla batalla = new Batalla();
 
-        batalla.combateEntre(unPais, otroPais);
-
+        assertThrows(ExcepcionAtaqueInvalido.class, () -> {batalla.combateEntre(unPais, otroPais);});
     }
 }

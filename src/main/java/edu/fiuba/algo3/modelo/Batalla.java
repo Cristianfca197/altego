@@ -1,11 +1,12 @@
 package edu.fiuba.algo3.modelo;
 
 public class Batalla {
-    public void combateEntre(Pais atacante, Pais defensor){/*throws ExcepcionAtaqueInvalido {
-
+    public void combateEntre(Pais atacante, Pais defensor) throws ExcepcionAtaqueInvalido {
+        
         if (atacante.obtenerFicha().esIgualA(defensor.obtenerFicha())){
             throw new ExcepcionAtaqueInvalido("Ataque entre paises aliados no es posible");
-        }*/
+        }
+
         /*Validaciones de batalla
         1.Pais atacante tenga mas de 1 ejercito
         2.Paises sean limitrofes
