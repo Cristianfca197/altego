@@ -12,18 +12,11 @@ public class BatallaTest {
         Pais otroPais = new Pais("Argentina", equipoAzul);
         Batalla batalla = new Batalla();
 
-<<<<<<< HEAD
         assertThrows(ExcepcionAtaqueInvalido.class, () -> {batalla.combateEntre(unPais, otroPais);});
-=======
-        try {
-            batalla.combateEntre(unPais, otroPais);
-        }
-        catch (ExcepcionAtaqueInvalido e){
-            System.out.println("Error no se puede atacar a un Pais aliado");
-        }
     }
+    
     @Test
-    public void batallaConPaisesNoLimitrofesNoEsPosible()throws ExcepcionAtaqueInvalido{
+    public void batallaConPaisesNoLimitrofesNoEsPosible() throws ExcepcionAtaqueInvalido{
         Jugador equipoAzul = new Jugador();
         Jugador equipoRojo = new Jugador();
 
@@ -31,16 +24,12 @@ public class BatallaTest {
         Pais otroPais = new Pais("Argentina", equipoRojo);
         Batalla batalla = new Batalla();
 
-        try {
-            batalla.combateEntre(unPais, otroPais);
-        }
-        catch (ExcepcionAtaqueInvalido e){
-            System.out.println("Error no se puede atacar a un Pais que no es limitrofe");
-        }
+        assertThrows(ExcepcionAtaqueInvalido.class, () -> {batalla.combateEntre(unPais, otroPais);});
+
     }
 
     @Test
-    public void batallaConPaiseAtacanteConMenosDe2EjercitosNoEsPosible()throws ExcepcionAtaqueInvalido{
+    public void batallaConPaiseAtacanteConMenosDe2EjercitosNoEsPosible() throws ExcepcionAtaqueInvalido{
         Jugador equipoAzul = new Jugador();
         Jugador equipoRojo = new Jugador();
 
@@ -50,13 +39,6 @@ public class BatallaTest {
         otroPais.colocarEjercitos(2, otroPais.obtenerFicha());
         Batalla batalla = new Batalla();
 
-        try {
-            batalla.combateEntre(unPais, otroPais);
-        }
-        catch (ExcepcionAtaqueInvalido e){
-            System.out.println("Error no se puede atacar con un Pais con menos de 2 ejercitos");
-        }
-
->>>>>>> d0d9078d11e77976b37b4b73ac1876b4c1ece054
+        assertThrows(ExcepcionAtaqueInvalido.class, () -> {batalla.combateEntre(unPais, otroPais);});
     }
 }

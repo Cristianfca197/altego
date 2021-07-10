@@ -1,14 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
 public class Batalla {
-<<<<<<< HEAD
-    public void combateEntre(Pais atacante, Pais defensor) throws ExcepcionAtaqueInvalido {
-        
-        if (atacante.obtenerFicha().esIgualA(defensor.obtenerFicha())){
-            throw new ExcepcionAtaqueInvalido("Ataque entre paises aliados no es posible");
-        }
+    public Batalla(){
 
-=======
+    }
+
     public void combateEntre(Pais atacante, Pais defensor)throws ExcepcionAtaqueInvalido{
 
         if (atacante.obtenerFicha().esIgualA(defensor.obtenerFicha())){
@@ -20,7 +16,6 @@ public class Batalla {
         if(atacante.cantidadDeEjercitos() < 2){
             throw new ExcepcionAtaqueInvalido("Pais atacante con menos de 2 ejercitos no puede atacar");
         }
->>>>>>> d0d9078d11e77976b37b4b73ac1876b4c1ece054
         /*Validaciones de batalla
         1.Pais atacante tenga mas de 1 ejercito
         2.Paises sean limitrofes
@@ -28,9 +23,9 @@ public class Batalla {
         */
 
         Pais perdedor = this.evaluarDados(atacante, defensor);
-       if(perdedor == defensor && defensor.estaVacio()){
-           atacante.ocuparPais(defensor, atacante.cantidadDeEjercitos()-1);
-       }
+        if(perdedor == defensor && defensor.estaVacio()){
+            atacante.ocuparPais(defensor, atacante.cantidadDeEjercitos() - 1);
+        }
     }
     public Pais evaluarDados(Pais atacante, Pais defensor){
         if(atacante.dados() > defensor.dados()){
