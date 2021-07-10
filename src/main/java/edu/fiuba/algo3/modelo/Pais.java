@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Collections;
 
 public class Pais {
     private final String nombre;
@@ -40,7 +42,23 @@ public class Pais {
         paisNuevo.colocarEjercitos(cantidadEjercito, this.obtenerFicha());
     }
 
-    public int dados() { return ejercitos;}
+    public List<Integer> dados() {
+        Integer cantDados = this.ejercitos;
+        if(cantDados > 3) {
+            cantDados = 3;
+        }
+
+        List<Integer> dados = new ArrayList<>();
+        
+        for(int i = 0; i < cantDados; i++) {
+            Integer num = (int)Math.floor(Math.random()*(6)+1);
+            dados.add(num);
+        }
+
+        Collections.sort(dados,Collections.reverseOrder());
+
+        return dados;
+    }
 
     public boolean estaVacio() { return cantidadDeEjercitos() == 0;}
 
