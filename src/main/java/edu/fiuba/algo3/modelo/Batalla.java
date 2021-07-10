@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Batalla {
     public Batalla(){
 
@@ -28,9 +31,21 @@ public class Batalla {
         }
     }
     public Pais evaluarDados(Pais atacante, Pais defensor){
-        if(atacante.dados() > defensor.dados()){
-            defensor.eliminarEjercito();
-            return defensor;
+        Integer cantDados = 0;
+       
+        List<Integer> dados_atacante = atacante.dados();
+        List<Integer> dados_defensor = defensor.dados();
+
+        if(dados_atacante.size() >= dados_defensor.size()) {
+            cantDados = dados_defensor.size();
+        } else {
+            cantDados = dados_atacante.size();
+        }
+        for(int i = 0; i < cantDados ; i++) {
+            if(dados_atacante.get(i) > dados_defensor.get(i)) {
+                defensor.eliminarEjercito();
+                return defensor;
+            }
         }
         atacante.eliminarEjercito();
         return atacante;
