@@ -63,4 +63,22 @@ public class BatallaTest {
         batalla.batallasIndividuales(unPais, otroPais, dadosUnPais,dadosOtroPais);
         assertEquals(0, otroPais.cantidadDeEjercitos());
     }
+    @Test
+    public void batallasIndividualesEmpateDeDadosDisminuyeElEjercitoDelPaisAtacante(){
+        Jugador equipoAzul = new Jugador();
+        Jugador equipoRojo = new Jugador();
+        Batalla batalla = new Batalla();
+
+        Pais unPais = new Pais("Argentina", equipoAzul);
+        Pais otroPais = new Pais("Brasil", equipoRojo);
+
+        ArrayList<Integer> dadosUnPais = new ArrayList<>();
+        dadosUnPais.add(6);
+
+        ArrayList<Integer> dadosOtroPais = new ArrayList<>();
+        dadosOtroPais.add(6);
+
+        batalla.batallasIndividuales(unPais, otroPais, dadosUnPais,dadosOtroPais);
+        assertEquals(0, unPais.cantidadDeEjercitos());
+    }
 }
