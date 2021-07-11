@@ -20,9 +20,7 @@ public class Batalla {
         }
 
         this.evaluarDados(atacante, defensor);
-        if(defensor.estaVacio()){
-            atacante.ocuparPais(defensor, atacante.cantidadDeEjercitos() - 1);
-        }
+
     }
     public void evaluarDados(Pais atacante, Pais defensor){
         Dados dadosAtacante = new Dados(atacante);
@@ -40,6 +38,9 @@ public class Batalla {
             }else{
                 atacante.eliminarEjercito();
             }
+        }
+        if(defensor.estaVacio()){
+            atacante.ocuparPais(defensor, atacante.cantidadDeEjercitos() - 1);
         }
     }
 }
