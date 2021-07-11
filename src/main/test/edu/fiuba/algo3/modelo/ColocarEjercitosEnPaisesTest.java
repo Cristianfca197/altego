@@ -46,4 +46,15 @@ public class ColocarEjercitosEnPaisesTest {
         assertEquals(unJugador.obtenerFicha(), unPais.obtenerFicha());
 
     }
+    @Test
+    public void test02JugadorColocaEjercitosEnPaisPropioVariasVecesCantidadDeFichasEsLaCorrecta(){
+        Jugador unJugador = new Jugador();
+        Pais unPais = new Pais("argentina", unJugador);
+
+        unJugador.colocarEjercitosEn(3, unPais);
+        unJugador.colocarEjercitosEn(2, unPais);
+        unJugador.colocarEjercitosEn(1, unPais);
+
+        assertEquals(7, unPais.cantidadDeEjercitos());
+    }
 }
