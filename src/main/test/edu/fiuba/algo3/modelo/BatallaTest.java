@@ -97,7 +97,7 @@ public class BatallaTest {
         dadosOtroPais.add(6);
 
         batalla.batallasIndividuales(unPais, otroPais, dadosUnPais,dadosOtroPais);
-        assertEquals(0, unPais.cantidadDeEjercitos());
+        assertEquals(1, unPais.cantidadDeEjercitos());
     }
 
     @Test

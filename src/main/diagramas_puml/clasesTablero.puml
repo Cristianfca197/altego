@@ -1,0 +1,31 @@
+@startuml
+
+class Pais{
+    - nombre:String
+    -ejercitos: Integer
+    -paisesLimitrofes: ArrayList
+
+    + colocarEjercitos(cantidadDeEjercitos:Integer, unaFicha:FIcha)
+    + eliminarEjercito(): void
+    + cambiarFicha(Ficha:unaFicha)
+    + ocuparPais(unPais:Pais, cantidadDeEjercitos; Integer)
+}
+
+class Batalla{
+    + combateEntre(atacante:Pais,defensor:Pais): void
+    - evaluarDados(atacante:Pais,defensor:Pais):void
+    + batallasIndividuales(atacante:Pais,defensor:Pais, dadosAtacante:ArrayList, dadosDefensor:ArrayList):void
+}
+Juego *-- Tablero
+Tablero *-- Continente
+Tablero *--Pais
+Continente-- Pais
+
+Pais --> Ficha
+Pais -- TarjetaPais
+Pais ..> Dados
+
+Juego --> Batalla
+Batalla ..> Pais
+
+@enduml
