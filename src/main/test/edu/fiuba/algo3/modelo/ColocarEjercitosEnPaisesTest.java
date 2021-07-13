@@ -47,7 +47,7 @@ public class ColocarEjercitosEnPaisesTest {
 
     }
     @Test
-    public void test02JugadorColocaEjercitosEnPaisPropioVariasVecesCantidadDeFichasEsLaCorrecta(){
+    public void test05JugadorColocaEjercitosEnPaisPropioVariasVecesCantidadDeFichasEsLaCorrecta(){
         Jugador unJugador = new Jugador();
         Pais unPais = new Pais("argentina", unJugador);
 

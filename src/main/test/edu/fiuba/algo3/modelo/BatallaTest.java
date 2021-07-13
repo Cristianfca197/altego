@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BatallaTest {
 
     @Test
-    public void testAtaqueSeRealizaSinInconvenientes()throws ExcepcionAtaqueInvalido{
+    public void test01AtaqueSeRealizaSinInconvenientes()throws ExcepcionAtaqueInvalido{
         Jugador equipoAzul = new Jugador();
         Jugador equipoRojo = new Jugador();
         Batalla batalla = new Batalla();
@@ -25,7 +25,7 @@ public class BatallaTest {
     }
 
     @Test
-    public void test01BatallaConPaisesAliadosNoEsPosible() {
+    public void test02BatallaConPaisesAliadosNoEsPosible() {
         Jugador equipoAzul = new Jugador();
         Pais unPais = new Pais("Argentina", equipoAzul);
         Pais otroPais = new Pais("Chile", equipoAzul);
@@ -35,7 +35,7 @@ public class BatallaTest {
     }
     
     @Test
-    public void batallaConPaisesNoLimitrofesNoEsPosible() throws ExcepcionAtaqueInvalido{
+    public void test03BatallaConPaisesNoLimitrofesNoEsPosible() throws ExcepcionAtaqueInvalido{
         Jugador equipoAzul = new Jugador();
         Jugador equipoRojo = new Jugador();
 
@@ -48,7 +48,7 @@ public class BatallaTest {
     }
 
     @Test
-    public void batallaConPaiseAtacanteConMenosDe2EjercitosNoEsPosible() throws ExcepcionAtaqueInvalido{
+    public void test04BatallaConPaiseAtacanteConMenosDe2EjercitosNoEsPosible() throws ExcepcionAtaqueInvalido{
         Jugador equipoAzul = new Jugador();
         Jugador equipoRojo = new Jugador();
 
@@ -62,7 +62,7 @@ public class BatallaTest {
     }
 
     @Test
-    public void batallasIndividualesDisminuyeElEjercitoDelPaisConDadosMasChicos(){
+    public void test05BatallasIndividualesDisminuyeElEjercitoDelPaisConDadosMasChicos(){
         Jugador equipoAzul = new Jugador();
         Jugador equipoRojo = new Jugador();
         Batalla batalla = new Batalla();
@@ -80,13 +80,15 @@ public class BatallaTest {
         assertEquals(0, otroPais.cantidadDeEjercitos());
     }
     @Test
-    public void batallasIndividualesEmpateDeDadosDisminuyeElEjercitoDelPaisAtacante(){
+    public void test06BatallasIndividualesEmpateDeDadosDisminuyeElEjercitoDelPaisAtacante(){
         Jugador equipoAzul = new Jugador();
         Jugador equipoRojo = new Jugador();
         Batalla batalla = new Batalla();
 
         Pais unPais = new Pais("Argentina", equipoAzul);
         Pais otroPais = new Pais("Brasil", equipoRojo);
+
+        unPais.colocarEjercitos(1, equipoAzul.obtenerFicha());
 
         ArrayList<Integer> dadosUnPais = new ArrayList<>();
         dadosUnPais.add(6);
@@ -99,7 +101,7 @@ public class BatallaTest {
     }
 
     @Test
-    public void batallasIndividualesAtacantePierde2EjercitosDefensorPierde1(){
+    public void test07BatallasIndividualesAtacantePierde2EjercitosDefensorPierde1(){
         Jugador equipoAzul = new Jugador();
         Jugador equipoRojo = new Jugador();
         Batalla batalla = new Batalla();
@@ -127,7 +129,7 @@ public class BatallaTest {
     }
 
     @Test
-    public void batallasIndividualesGanaElAtacanteYOcupaElPais(){
+    public void test08BatallasIndividualesGanaElAtacanteYOcupaElPais(){
         Jugador equipoAzul = new Jugador();
         Jugador equipoRojo = new Jugador();
         Batalla batalla = new Batalla();
@@ -146,7 +148,7 @@ public class BatallaTest {
     }
 
     @Test
-    public void batallasIndividualesGanaElAtacanteYOcupaElPaisCantidadDeFichasEsLaCorrecta(){
+    public void test09BatallasIndividualesGanaElAtacanteYOcupaElPaisCantidadDeFichasEsLaCorrecta(){
         Jugador equipoAzul = new Jugador();
         Jugador equipoRojo = new Jugador();
         Batalla batalla = new Batalla();
@@ -173,8 +175,9 @@ public class BatallaTest {
         assertEquals(3, otroPais.cantidadDeEjercitos());
 
     }
+
     @Test
-    public void batallasIndividualesGanaElAtacantePeroNoOcupaElPais(){
+    public void test10BatallasIndividualesGanaElAtacantePeroNoOcupaElPais(){
         Jugador equipoAzul = new Jugador();
         Jugador equipoRojo = new Jugador();
         Batalla batalla = new Batalla();
@@ -200,7 +203,7 @@ public class BatallaTest {
     }
 
     @Test
-    public void batallasIndividualesGanaElAtacantePeroNoOcupaElPaisFichasDefensorSonLasCorrectas(){
+    public void test11BatallasIndividualesGanaElAtacantePeroNoOcupaElPaisFichasDefensorSonLasCorrectas(){
         Jugador equipoAzul = new Jugador();
         Jugador equipoRojo = new Jugador();
         Batalla batalla = new Batalla();
@@ -226,7 +229,7 @@ public class BatallaTest {
     }
 
     @Test
-    public void batallasIndividualesGanaElAtacantePeroNoOcupaElPaisFichasAtacanteSonLasCorrectas(){
+    public void test12BatallasIndividualesGanaElAtacantePeroNoOcupaElPaisFichasAtacanteSonLasCorrectas(){
         Jugador equipoAzul = new Jugador();
         Jugador equipoRojo = new Jugador();
         Batalla batalla = new Batalla();
@@ -246,8 +249,8 @@ public class BatallaTest {
         dadosOtroPais.add(2);
         dadosOtroPais.add(2);
 
-        batalla.batallasIndividuales(unPais, otroPais, dadosUnPais,dadosOtroPais);
+        batalla.batallasIndividuales(unPais, otroPais, dadosUnPais, dadosOtroPais);
 
-        assertEquals( 4,unPais.cantidadDeEjercitos());
+        assertEquals(4, unPais.cantidadDeEjercitos());
     }
 }

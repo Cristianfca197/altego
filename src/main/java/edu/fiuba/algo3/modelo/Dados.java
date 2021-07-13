@@ -12,9 +12,7 @@ public class Dados {
       int cantDados = pais.cantidadDeEjercitos();
       this.listaDados= new ArrayList<>();
 
-      if(cantDados > 3) { cantDados = 3; }
-
-      for(int i = 0; i < cantDados; i++) {
+      for(int i = 0; i < cantDados && i < 3; i++) {
          Integer num = (int)Math.floor(Math.random()*(6)+1);
          this.listaDados.add(num);
       }
