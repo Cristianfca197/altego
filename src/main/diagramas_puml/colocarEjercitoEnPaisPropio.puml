@@ -1,0 +1,12 @@
+@startuml
+
+
+autonumber
+Actor -> Jugador: colocarEjercitosEn(cantidadDeEjercitos, unPais)
+Jugador -> Pais: colocarEjercitos(cantidadDeEjercitos, unaFicha)
+Pais-> Ficha: esIgualA(unaFicha)
+Pais <-- Ficha:True
+Pais -> Pais: ejercitos += cantidadDeEjercitos
+
+
+@enduml

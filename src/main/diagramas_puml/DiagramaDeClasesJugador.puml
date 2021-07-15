@@ -1,0 +1,25 @@
+@startuml
+
+class Jugador{
+    + colocarEjercitosEn(cantidadDeEjercitos:Integer, unPais:Pais): void
+    + obtenerFicha():Ficha
+}
+class Ficha{
+    + esIgualA(unaFicha:Ficha):boolean
+}
+Juego o-- Jugador
+Jugador *-- Ficha
+Jugador --> Objetivo
+Jugador -->TarjetaPais
+
+Juego *-- TarjetaPais
+TarjetaPais --> tipoTarjeta
+tipoTarjeta <|-- Barco
+tipoTarjeta <|-- globo
+tipoTarjeta <|-- cañon
+
+Juego *-- Objetivo
+Juego --> Batalla
+
+
+@enduml

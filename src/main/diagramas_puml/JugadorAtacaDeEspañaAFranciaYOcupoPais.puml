@@ -1,0 +1,46 @@
+@startuml
+
+
+autonumber
+
+actor Jugador
+Jugador -> Batalla: combateEntre("españa: Pais", "francia: Pais")
+Batalla -> "españa: Pais" : obtenerFicha
+"españa: Pais" --> Batalla :unaFicha:Ficha
+Batalla -> "francia: Pais": obtenerFicha
+"francia: Pais" --> Batalla: otraFicha: Ficha
+Batalla -->unaFicha : esIgualA(otraFicha)
+unaFicha --> Batalla: true
+
+Batalla -> "españa: Pais": esLimitrofeCon("francia: Pais")
+"españa: Pais" --> Batalla: true
+Batalla -> "españa: Pais": cantidadEjercitos
+"españa: Pais" --> Batalla: cantidadEjercitos
+Batalla -> Batalla :evaluarDados(españa,francia)
+
+Batalla ->Dados: Dados(españa)
+Dados --> Batalla: dadosAtacante:Dados
+Batalla ->Dados: Dados(francia)
+Dados --> Batalla: dadosDefensor:Dados
+
+Batalla -> Batalla :batallasIndividuales(españa, francia, dadoAtacante, dadoDefensor)
+
+
+
+loop
+Batalla -> Batalla: compararDados(dadoAtacante,dadoDefensor)
+Batalla ->"francia: Pais":destruirEjercitos()
+end
+
+
+Jugador->"francia: Pais": estaVacio()
+"francia: Pais" --> Jugador: true
+Jugador -> "españa: Pais": ocuparPais(francia, cantidadEjercitos)
+"españa: Pais" -> "españa: Pais": -= cantidadEjercitos
+"españa: Pais" -> "españa: Pais": obtenerFicha
+"españa: Pais" --> "españa: Pais": unaFicha
+"españa: Pais" -> "francia: Pais" : cambiarFicha(unaFicha)
+"españa: Pais" -> "francia: Pais": colocarEjercitos(cantidadEjercitos, unaFicha)
+
+
+@enduml
