@@ -14,8 +14,11 @@ public class BatallaTest {
         Jugador equipoRojo = new Jugador();
         Batalla batalla = new Batalla();
 
-        Pais unPais = new Pais("Argentina", equipoAzul);
-        Pais otroPais = new Pais("Brasil", equipoRojo);
+        Pais unPais = new Pais("Argentina");
+        Pais otroPais = new Pais("Brasil");
+
+        unPais.asignarJugador(equipoAzul);
+        otroPais.asignarJugador(equipoRojo);
 
         ArrayList<Integer> dadosUnPais = new ArrayList<>();
         dadosUnPais.add(6);
@@ -32,8 +35,11 @@ public class BatallaTest {
         Jugador equipoRojo = new Jugador();
         Batalla batalla = new Batalla();
 
-        Pais unPais = new Pais("Argentina", equipoAzul);
-        Pais otroPais = new Pais("Brasil", equipoRojo);
+        Pais unPais = new Pais("Argentina");
+        Pais otroPais = new Pais("Brasil");
+
+        unPais.asignarJugador(equipoAzul);
+        otroPais.asignarJugador(equipoRojo);
 
         unPais.colocarEjercitos(1, equipoAzul.obtenerFicha());
 
@@ -53,8 +59,11 @@ public class BatallaTest {
         Jugador equipoRojo = new Jugador();
         Batalla batalla = new Batalla();
 
-        Pais unPais = new Pais("Argentina", equipoAzul);
-        Pais otroPais = new Pais("Brasil", equipoRojo);
+        Pais unPais = new Pais("Argentina");
+        Pais otroPais = new Pais("Brasil");
+
+        unPais.asignarJugador(equipoAzul);
+        otroPais.asignarJugador(equipoRojo);
 
         unPais.colocarEjercitos(3, equipoAzul.obtenerFicha());
         otroPais.colocarEjercitos(2, equipoRojo.obtenerFicha());
@@ -81,8 +90,10 @@ public class BatallaTest {
         Jugador equipoRojo = new Jugador();
         Batalla batalla = new Batalla();
 
-        Pais unPais = new Pais("Argentina", equipoAzul);
-        Pais otroPais = new Pais("Brasil", equipoRojo);
+        Pais unPais = new Pais("Argentina");
+        Pais otroPais = new Pais("Brasil");
+        unPais.asignarJugador(equipoAzul);
+        otroPais.asignarJugador(equipoRojo);
 
         ArrayList<Integer> dadosUnPais = new ArrayList<>();
         dadosUnPais.add(6);
@@ -100,8 +111,10 @@ public class BatallaTest {
         Jugador equipoRojo = new Jugador();
         Batalla batalla = new Batalla();
 
-        Pais unPais = new Pais("Argentina", equipoAzul);
-        Pais otroPais = new Pais("Brasil", equipoRojo);
+        Pais unPais = new Pais("Argentina");
+        Pais otroPais = new Pais("Brasil");
+        unPais.asignarJugador(equipoAzul);
+        otroPais.asignarJugador(equipoRojo);
         unPais.colocarEjercitos(3, equipoAzul.obtenerFicha());
         otroPais.colocarEjercitos(2, equipoRojo.obtenerFicha());
 
@@ -129,8 +142,10 @@ public class BatallaTest {
         Jugador equipoRojo = new Jugador();
         Batalla batalla = new Batalla();
 
-        Pais unPais = new Pais("Argentina", equipoAzul);
-        Pais otroPais = new Pais("Brasil", equipoRojo);
+        Pais unPais = new Pais("Argentina");
+        Pais otroPais = new Pais("Brasil");
+        unPais.asignarJugador(equipoAzul);
+        otroPais.asignarJugador(equipoRojo);
         unPais.colocarEjercitos(3, equipoAzul.obtenerFicha());
         otroPais.colocarEjercitos(4, equipoRojo.obtenerFicha());
 
@@ -155,8 +170,10 @@ public class BatallaTest {
         Jugador equipoRojo = new Jugador();
         Batalla batalla = new Batalla();
 
-        Pais unPais = new Pais("Argentina", equipoAzul);
-        Pais otroPais = new Pais("Brasil", equipoRojo);
+        Pais unPais = new Pais("Argentina");
+        Pais otroPais = new Pais("Brasil");
+        unPais.asignarJugador(equipoAzul);
+        otroPais.asignarJugador(equipoRojo);
         unPais.colocarEjercitos(3, equipoAzul.obtenerFicha());
         otroPais.colocarEjercitos(4, equipoRojo.obtenerFicha());
 
@@ -181,8 +198,10 @@ public class BatallaTest {
         Jugador equipoRojo = new Jugador();
         Batalla batalla = new Batalla();
 
-        Pais unPais = new Pais("Argentina", equipoAzul);
-        Pais otroPais = new Pais("Brasil", equipoRojo);
+        Pais unPais = new Pais("Argentina");
+        Pais otroPais = new Pais("Brasil");
+        unPais.asignarJugador(equipoAzul);
+        otroPais.asignarJugador(equipoRojo);
         unPais.colocarEjercitos(3, equipoAzul.obtenerFicha());
         otroPais.colocarEjercitos(4, equipoRojo.obtenerFicha());
 
@@ -206,8 +225,10 @@ public class BatallaTest {
         Jugador equipoRojo = new Jugador();
         Batalla batalla = new Batalla();
 
-        Pais unPais = new Pais("Argentina", equipoAzul);
-        Pais otroPais = new Pais("Brasil", equipoRojo);
+        Pais unPais = new Pais("Argentina");
+        Pais otroPais = new Pais("Brasil");
+        unPais.asignarJugador(equipoAzul);
+        otroPais.asignarJugador(equipoRojo);
         unPais.colocarEjercitos(2, equipoAzul.obtenerFicha());
         otroPais.colocarEjercitos(3, equipoRojo.obtenerFicha());
 
@@ -233,8 +254,10 @@ public class BatallaTest {
         Jugador equipoRojo = new Jugador();
         Batalla batalla = new Batalla();
 
-        Pais unPais = new Pais("Argentina", equipoAzul);
-        Pais otroPais = new Pais("Brasil", equipoRojo);
+        Pais unPais = new Pais("Argentina");
+        Pais otroPais = new Pais("Brasil");
+        unPais.asignarJugador(equipoAzul);
+        otroPais.asignarJugador(equipoRojo);
         unPais.colocarEjercitos(1, equipoAzul.obtenerFicha());
         otroPais.colocarEjercitos(3, equipoRojo.obtenerFicha());
 
