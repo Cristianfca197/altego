@@ -10,7 +10,7 @@ public class TarjetaPaisTest {
         TarjetaPais unaTarjeta = new TarjetaPais(new Canion(), "Argentina");
         
         
-        assertEquals(unaTarjeta.obtenerTipoTarjeta, unCañon);
+
     }
 
 }
