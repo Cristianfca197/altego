@@ -17,10 +17,11 @@ public class Batalla {
     public void batallasIndividuales(Pais atacante, Pais defensor, ArrayList<Integer> dadosAtacante, ArrayList<Integer> dadosDefensor) {
         int cantDados = Math.min(dadosAtacante.size(), dadosDefensor.size());
 
-        for(int i = 0; i < cantDados && i < atacante.cantidadDeEjercitos() ; i++) {
+        for(int i = 0; i < cantDados ; i++) {
             if(dadosAtacante.get(i) > dadosDefensor.get(i)) {
                 defensor.eliminarEjercito();
             }else{
+
                 atacante.eliminarEjercito();
             }
         }

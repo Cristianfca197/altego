@@ -235,7 +235,6 @@ public class BatallaTest {
         ArrayList<Integer> dadosUnPais = new ArrayList<>();
         dadosUnPais.add(2);
         dadosUnPais.add(2);
-        dadosUnPais.add(2); // Tiro un dado más del que debería
 
         ArrayList<Integer> dadosOtroPais = new ArrayList<>();
         dadosOtroPais.add(4);
@@ -263,7 +262,6 @@ public class BatallaTest {
 
         ArrayList<Integer> dadosUnPais = new ArrayList<>();
         dadosUnPais.add(2);
-        dadosUnPais.add(2); // Tiro un dado más del que debería
 
         ArrayList<Integer> dadosOtroPais = new ArrayList<>();
         dadosOtroPais.add(4);
