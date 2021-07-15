@@ -7,40 +7,23 @@ public class Batalla {
 
     }
 
-    public void combateEntre(Pais atacante, Pais defensor)throws ExcepcionAtaqueInvalido{
-
-        if (atacante.obtenerFicha().esIgualA(defensor.obtenerFicha())){
-            throw new ExcepcionAtaqueInvalido("Ataque entre paises aliados no es posible");
-        }
-        if(!(atacante.esLimitrofeCon(defensor))){
-            throw new ExcepcionAtaqueInvalido("Ataque entre paises no limitrofes no es posible");
-        }
-        if(atacante.cantidadDeEjercitos() < 2){
-            throw new ExcepcionAtaqueInvalido("Pais atacante con menos de 2 ejercitos no puede atacar");
-        }
-
-        this.evaluarDados(atacante, defensor);
-
-    }
-    public void evaluarDados(Pais atacante, Pais defensor){
-        Dados dadosAtacante = new Dados(atacante);
-        Dados dadosDefensor = new Dados(defensor);
-
+    public void combateEntre(Pais atacante, Pais defensor){
+        Dados dadosAtacante = new Dados(atacante.cantidadDeEjercitos()-1);
+        Dados dadosDefensor = new Dados(defensor.cantidadDeEjercitos()-1);
         this.batallasIndividuales(atacante, defensor, dadosAtacante.obtenerDados(), dadosDefensor.obtenerDados());
+
     }
 
-    public void batallasIndividuales(Pais atacante, Pais defensor, ArrayList<Integer>listaDadosAtacante,  ArrayList<Integer>listaDadosDefensor) {
-        int cantDados = Math.min(listaDadosAtacante.size(), listaDadosDefensor.size());
+    public void batallasIndividuales(Pais atacante, Pais defensor, ArrayList<Integer> dadosAtacante, ArrayList<Integer> dadosDefensor) {
+        int cantDados = Math.min(dadosAtacante.size(), dadosDefensor.size());
 
         for(int i = 0; i < cantDados ; i++) {
-            if(listaDadosAtacante.get(i) > listaDadosDefensor.get(i)) {
+            if(dadosAtacante.get(i) > dadosDefensor.get(i)) {
                 defensor.eliminarEjercito();
             }else{
                 atacante.eliminarEjercito();
             }
         }
-        if(defensor.estaVacio()){
-            atacante.ocuparPais(defensor, atacante.cantidadDeEjercitos() - 1);
-        }
+        atacante.ocuparPais(defensor, atacante.cantidadDeEjercitos() - 1);
     }
 }

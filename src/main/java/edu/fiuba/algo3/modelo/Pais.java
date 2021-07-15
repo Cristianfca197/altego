@@ -36,9 +36,11 @@ public class Pais {
     public void cambiarFicha(Ficha nuevaFicha) {this.ficha = nuevaFicha;}
 
     public void ocuparPais(Pais paisNuevo, int cantidadEjercito) {
-        this.ejercitos -= cantidadEjercito;
-        paisNuevo.cambiarFicha(this.obtenerFicha());
-        paisNuevo.colocarEjercitos(cantidadEjercito, this.obtenerFicha());
+        if(paisNuevo.estaVacio()) {
+            this.ejercitos -= cantidadEjercito;
+            paisNuevo.cambiarFicha(this.obtenerFicha());
+            paisNuevo.colocarEjercitos(cantidadEjercito, this.obtenerFicha());
+        }
     }
 
     public boolean estaVacio() { return cantidadDeEjercitos() == 0;}
@@ -49,4 +51,19 @@ public class Pais {
     }
 
     public boolean esLimitrofeCon(Pais otroPais) { return otroPais.paisesLimitrofes.contains(this);}
+
+    public void atacarA(Pais paisEnemigo) throws ExcepcionAtaqueInvalido {
+
+        if (this.obtenerFicha().esIgualA(paisEnemigo.obtenerFicha())){
+            throw new ExcepcionAtaqueInvalido("Ataque entre paises aliados no es posible");
+        }
+        if(!(this.esLimitrofeCon(paisEnemigo))){
+            throw new ExcepcionAtaqueInvalido("Ataque entre paises no limitrofes no es posible");
+        }
+        if(this.cantidadDeEjercitos() < 2){
+            throw new ExcepcionAtaqueInvalido("Pais atacante con menos de 2 ejercitos no puede atacar");
+        }
+        Batalla batalla = new Batalla();
+        batalla.combateEntre(this, paisEnemigo);
+    }
 }
