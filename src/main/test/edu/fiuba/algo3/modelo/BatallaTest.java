@@ -1,10 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 public class BatallaTest {
 
@@ -200,4 +200,57 @@ public class BatallaTest {
 
         assertEquals(4, unPais.cantidadDeEjercitos());
     }
+    @Test
+    public void test09BatallasIndividualesPierdeElAtacanteCon3EjercitosPeroNoQuedaVacio(){
+        Jugador equipoAzul = new Jugador();
+        Jugador equipoRojo = new Jugador();
+        Batalla batalla = new Batalla();
+
+        Pais unPais = new Pais("Argentina", equipoAzul);
+        Pais otroPais = new Pais("Brasil", equipoRojo);
+        unPais.colocarEjercitos(2, equipoAzul.obtenerFicha());
+        otroPais.colocarEjercitos(3, equipoRojo.obtenerFicha());
+
+        ArrayList<Integer> dadosUnPais = new ArrayList<>();
+        dadosUnPais.add(2);
+        dadosUnPais.add(2);
+        dadosUnPais.add(2); // Tiro un dado más del que debería
+
+        ArrayList<Integer> dadosOtroPais = new ArrayList<>();
+        dadosOtroPais.add(4);
+        dadosOtroPais.add(4);
+        dadosOtroPais.add(4);
+
+        batalla.batallasIndividuales(unPais, otroPais, dadosUnPais, dadosOtroPais);
+
+        assertEquals(1, unPais.cantidadDeEjercitos());
+        assertFalse(unPais.estaVacio());
+    }
+
+    @Test
+    public void test10BatallasIndividualesPierdeElAtacanteCon2EjercitosPeroNoQuedaVacio(){
+        Jugador equipoAzul = new Jugador();
+        Jugador equipoRojo = new Jugador();
+        Batalla batalla = new Batalla();
+
+        Pais unPais = new Pais("Argentina", equipoAzul);
+        Pais otroPais = new Pais("Brasil", equipoRojo);
+        unPais.colocarEjercitos(1, equipoAzul.obtenerFicha());
+        otroPais.colocarEjercitos(3, equipoRojo.obtenerFicha());
+
+        ArrayList<Integer> dadosUnPais = new ArrayList<>();
+        dadosUnPais.add(2);
+        dadosUnPais.add(2); // Tiro un dado más del que debería
+
+        ArrayList<Integer> dadosOtroPais = new ArrayList<>();
+        dadosOtroPais.add(4);
+        dadosOtroPais.add(4);
+        dadosOtroPais.add(4);
+
+        batalla.batallasIndividuales(unPais, otroPais, dadosUnPais, dadosOtroPais);
+
+        assertEquals(1, unPais.cantidadDeEjercitos());
+        assertFalse(unPais.estaVacio());
+    }
+    
 }

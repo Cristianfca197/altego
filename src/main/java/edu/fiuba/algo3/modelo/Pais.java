@@ -7,14 +7,19 @@ public class Pais {
     private Integer ejercitos;
     private Ficha ficha;
     private final ArrayList<Pais> paisesLimitrofes;
+    private TarjetaPais tarjeta;
 
     //pais inicializa sin ejercitos al recibir la tarjeta un jugador le agrega uno marcandolo como suyo
-    public Pais(String nombre, Jugador unJugador){
+    public Pais(String nombre){
         this.nombre = nombre;
-        this.ejercitos = 1;
-        this.ficha = unJugador.obtenerFicha();
+        this.ejercitos = 0;
         this.paisesLimitrofes = new ArrayList<>();
     }
+    public void asignarJugador(Jugador unJugador){
+        this.ejercitos = 1;
+        this.ficha = unJugador.obtenerFicha();
+    }
+
     public void colocarEjercitos(Integer unaCantidadDeEjercitos, Ficha unaFicha){
         if(this.ficha.esIgualA(unaFicha)) {
             this.ejercitos += unaCantidadDeEjercitos;
