@@ -7,7 +7,7 @@ public class TarjetaPaisTest {
     
     @Test
     public void test01CreoTarjetaArgentinaYEsCorrecto(){
-        TarjetaPais unaTarjeta = new TarjetaPais(new Canion(), "Argentina")
+        TarjetaPais unaTarjeta = new TarjetaPais(new Canion(), "Argentina");
         
         
         assertEquals(unaTarjeta.obtenerTipoTarjeta, unCañon);

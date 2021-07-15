@@ -8,7 +8,8 @@ public class ColocarEjercitosEnPaisesTest {
     @Test
     public void test01JugadorColocaUnEjercitoEnPaisPropio(){
         Jugador unJugador = new Jugador();
-        Pais unPais = new Pais("argentina", unJugador);
+        Pais unPais = new Pais("argentina");
+        unPais.asignarJugador(unJugador);
 
         unJugador.colocarEjercitosEn(3, unPais);
 
@@ -17,7 +18,8 @@ public class ColocarEjercitosEnPaisesTest {
     @Test
     public void test02JugadorColocaUnEjercitoEnPaisPropioFichaEsLaCorrecta(){
         Jugador unJugador = new Jugador();
-        Pais unPais = new Pais("argentina", unJugador);
+        Pais unPais = new Pais("argentina");
+        unPais.asignarJugador(unJugador);
 
         unJugador.colocarEjercitosEn(3, unPais);
 
@@ -27,7 +29,8 @@ public class ColocarEjercitosEnPaisesTest {
     public void test03JugadorColocaUnEjercitoEnPaisOcupadoPorOtroJugador(){
         Jugador unJugador = new Jugador();
         Jugador otroJugador = new Jugador();
-        Pais unPais = new Pais("argentina", unJugador);
+        Pais unPais = new Pais("argentina");
+        unPais.asignarJugador(unJugador);
 
         unJugador.colocarEjercitosEn(3, unPais);
         otroJugador.colocarEjercitosEn(2, unPais);
@@ -38,7 +41,8 @@ public class ColocarEjercitosEnPaisesTest {
     public void test04JugadorColocaEjercitoEnPaisOcupadoPorOtroFichaEsLaCorrecta(){
         Jugador unJugador = new Jugador();
         Jugador otroJugador = new Jugador();
-        Pais unPais = new Pais("argentina", unJugador);
+        Pais unPais = new Pais("argentina");
+        unPais.asignarJugador(unJugador);
 
         unJugador.colocarEjercitosEn(3, unPais);
         otroJugador.colocarEjercitosEn(3, unPais);
@@ -49,7 +53,8 @@ public class ColocarEjercitosEnPaisesTest {
     @Test
     public void test05JugadorColocaEjercitosEnPaisPropioVariasVecesCantidadDeFichasEsLaCorrecta(){
         Jugador unJugador = new Jugador();
-        Pais unPais = new Pais("argentina", unJugador);
+        Pais unPais = new Pais("argentina");
+        unPais.asignarJugador(unJugador);
 
         unJugador.colocarEjercitosEn(3, unPais);
         unJugador.colocarEjercitosEn(2, unPais);
