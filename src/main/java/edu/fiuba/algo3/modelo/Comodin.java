@@ -18,7 +18,7 @@ public class Comodin implements TipoTarjeta{
     }
 
     @Override
-    public void agregarseALista(TarjetasPais listaTarjetas) {
+    public void agregarseALista(MazoTarjetasPais listaTarjetas) {
         listaTarjetas.agregarComodin();
     }
 }

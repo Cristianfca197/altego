@@ -6,7 +6,7 @@ public class Globo implements TipoTarjeta {
     }
 
     @Override
-    public void agregarseALista(TarjetasPais listaTarjetas) {
+    public void agregarseALista(MazoTarjetasPais listaTarjetas) {
         listaTarjetas.agregarGlobo();
     }
 

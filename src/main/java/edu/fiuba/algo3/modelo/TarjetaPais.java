@@ -20,9 +20,11 @@ public class TarjetaPais {
     public boolean esDelMismoTipo(TarjetaPais unaTarjeta){
         return (this.tipo == unaTarjeta.obtenerTipo());
     }
+
     public boolean paisEsDe(Jugador unJugador){
         return (this.pais.obtenerFicha().esIgualA(unJugador.obtenerFicha()));
     }
+
     public void activarTarjeta(Jugador jugador) throws ExcepcionActivacionTarjetaInvalido {
         if (this.obtenerPais().obtenerFicha().esIgualA(jugador.obtenerFicha()) && !(this.estaActivada)){
             jugador.colocarEjercitosEn(2,this.obtenerPais());

@@ -2,7 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
 
-public class TarjetasPais {
+public class MazoTarjetasPais {
 
     private final ArrayList<TarjetaPais> tarjetas;
     private int cantidadGlobos;
@@ -10,7 +10,7 @@ public class TarjetasPais {
     private int cantidadCanion;
     private int cantidadComodines;
 
-    public TarjetasPais(){
+    public MazoTarjetasPais(){
         this.tarjetas = new ArrayList<>();
         this.cantidadGlobos = 0;
         this.cantidadCanion = 0;

@@ -1,13 +1,12 @@
 package edu.fiuba.algo3.modelo;
-import java.util.ArrayList;
 
 public class Jugador {
     private final Ficha ficha;
-    private final TarjetasPais listaTarjetas;
+    private final MazoTarjetasPais listaTarjetas;
 
     public Jugador(){
         this.ficha = new Ficha();
-        this.listaTarjetas = new TarjetasPais();
+        this.listaTarjetas = new MazoTarjetasPais();
     }
 
     public void obtenerTarjeta(TarjetaPais unaTarjeta){
