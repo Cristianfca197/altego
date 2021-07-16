@@ -11,6 +11,7 @@ public class Juego {
         for (int i = 0; i < cantidadJugadores; i++) {
             this.listaJugadores.add(new Jugador());
         }
+        TarjetaPais tarjetaDePais = new TarjetaPais(new Canion(), "Argetina");
     }
 
     public void establecerTarjetas(){

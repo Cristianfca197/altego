@@ -17,12 +17,8 @@ public class Jugador {
     public void colocarEjercitosEn(Integer unaCantidadDeEjercitos, Pais unPais){
         unPais.colocarEjercitos(unaCantidadDeEjercitos, this.ficha);
     }
-
-
     public Ficha obtenerFicha(){
         return this.ficha;
     }
-
-
 
 }
