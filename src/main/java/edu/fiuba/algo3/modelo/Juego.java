@@ -6,6 +6,7 @@ public class Juego {
   
     private Dictionary<String, TipoTarjeta> tarjetasDePais;
     private ArrayList<Jugador> listaJugadores;
+    private CargarArchivo carga = new CargarArchivo();
 
     public Juego(int cantidadJugadores) {
         for (int i = 0; i < cantidadJugadores; i++) {
@@ -14,9 +15,9 @@ public class Juego {
     }
 
     public void establecerTarjetas(){
-
-        this.tarjetasDePais.put("Argentina", new Canion());
-        this.tarjetasDePais.put("Brasil", new Canion());
+        if(!carga.cargarPaises(tarjetasDePais)) {
+            //salta una exepcion
+        }
 
     }
 

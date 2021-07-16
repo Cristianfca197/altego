@@ -22,7 +22,7 @@ public class Frontera {
 
     public final ArrayList<String> getLimitrofes(){
         String[] paisesLimitrofes = this.limitrofes.split(",");
-        ArrayList list = new ArrayList(Arrays.asList(paisesLimitrofes)
+        ArrayList list = new ArrayList(Arrays.asList(paisesLimitrofes));
         return list;
     };
 }

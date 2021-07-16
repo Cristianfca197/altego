@@ -8,6 +8,9 @@ import java.io.Reader;
 import java.util.Dictionary;
 
 public class CargarArchivo {
+    public CargarArchivo() {
+        
+    }
     private Gson gson = new Gson();
     private String pathCartas = "/src/main/archivos_paises/Teg - Cartas.json";
     private String pathFronteras = "/src/main/archivos_paises/Teg - Fronteras.json";
