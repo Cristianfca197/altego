@@ -20,5 +20,7 @@ public class Juego {
 
     }
 
-
+    public Integer cantidadDeJugadores() {
+        return this.listaJugadores.size();
+    }
 }
