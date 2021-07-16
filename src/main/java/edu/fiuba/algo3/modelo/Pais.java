@@ -42,6 +42,7 @@ public class Pais {
 
     public void ocuparPais(Pais paisNuevo, int cantidadEjercito) {
         if(paisNuevo.estaVacio()) {
+
             this.ejercitos -= cantidadEjercito;
             paisNuevo.cambiarFicha(this.obtenerFicha());
             paisNuevo.colocarEjercitos(cantidadEjercito, this.obtenerFicha());
@@ -71,4 +72,6 @@ public class Pais {
         Batalla batalla = new Batalla();
         batalla.combateEntre(this, paisEnemigo);
     }
+
+    public String obtenerNombre(){return this.nombre;}
 }

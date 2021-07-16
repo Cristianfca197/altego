@@ -6,6 +6,11 @@ public class Canion implements TipoTarjeta {
     public Canion(){
     }
 
+    @Override
+    public void agregarseALista(TarjetasPais listaTarjetas) {
+        listaTarjetas.agregarCanion();
+    }
+
     public boolean esGlobo(){
         return false;
     }

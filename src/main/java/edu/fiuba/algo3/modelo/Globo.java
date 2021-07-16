@@ -5,6 +5,11 @@ public class Globo implements TipoTarjeta {
     public Globo(){
     }
 
+    @Override
+    public void agregarseALista(TarjetasPais listaTarjetas) {
+        listaTarjetas.agregarGlobo();
+    }
+
     public boolean esGlobo(){
         return true;
     }
