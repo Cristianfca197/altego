@@ -3,15 +3,15 @@ import java.util.ArrayList;
 
 public class Jugador {
     private final Ficha ficha;
-    private final ArrayList<TarjetaPais> listaTarjetas;
+    private final TarjetasPais listaTarjetas;
 
     public Jugador(){
         this.ficha = new Ficha();
-        this.listaTarjetas = new ArrayList<>();
+        this.listaTarjetas = new TarjetasPais();
     }
 
     public void obtenerTarjeta(TarjetaPais unaTarjeta){
-        listaTarjetas.add(unaTarjeta);
+        listaTarjetas.agregarTarjeta(unaTarjeta);
     }
 
     public void colocarEjercitosEn(Integer unaCantidadDeEjercitos, Pais unPais){

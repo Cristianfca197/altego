@@ -33,4 +33,15 @@ public class JugadorTest {
 
         assertThrows(ExcepcionActivacionTarjetaInvalido.class, () -> {tarjetaPais.activarTarjeta(unJugador);});
     }
+
+    @Test
+    public void test04ActivarTarjetaDePaisYaActivada()throws ExcepcionActivacionTarjetaInvalido{
+        Jugador unJugador = new Jugador();
+        TarjetaPais tarjetaPais = new TarjetaPais(new Canion(), "Brasil");
+
+        tarjetaPais.obtenerPais().asignarJugador(unJugador);
+        tarjetaPais.activarTarjeta(unJugador);
+
+        assertThrows(ExcepcionActivacionTarjetaInvalido.class, () -> {tarjetaPais.activarTarjeta(unJugador);});
+    }
 }
