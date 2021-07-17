@@ -1,17 +1,18 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class MazoTarjetasPais {
 
-    private final ArrayList<TarjetaPais> tarjetas;
+    private final HashSet<TarjetaPais> tarjetas;
     private int cantidadGlobos;
     private int cantidadBarcos;
     private int cantidadCanion;
     private int cantidadComodines;
 
     public MazoTarjetasPais(){
-        this.tarjetas = new ArrayList<>();
+        this.tarjetas = new HashSet();
         this.cantidadGlobos = 0;
         this.cantidadCanion = 0;
         this.cantidadComodines = 0;
@@ -40,7 +41,7 @@ public class MazoTarjetasPais {
     }
 
     public boolean esCanjeValido(){
-        if(this.cantidadCanion > 3 || this.cantidadGlobos > 3 || this.cantidadBarcos >3){
+        if(this.cantidadCanion >= 3 || this.cantidadGlobos >= 3 || this.cantidadBarcos >= 3){
             return true;
         }
         else if((this.cantidadCanion == 2 || this.cantidadGlobos == 2 || this.cantidadBarcos == 2) && this.cantidadComodines >= 1){
@@ -51,5 +52,12 @@ public class MazoTarjetasPais {
         }
 
         else return false;
+    }
+
+    public ArrayList<TarjetaPais> obtenerTarjetas() {
+        ArrayList<TarjetaPais> lista= new ArrayList<>();
+        for(TarjetaPais i :tarjetas){ lista.add(i); }
+        tarjetas.removeAll(lista);
+        return lista;//Pendiente que devuelva una lista que pueda hacer una canje
     }
 }
