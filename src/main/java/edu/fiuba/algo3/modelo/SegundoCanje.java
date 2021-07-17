@@ -20,4 +20,7 @@ public class SegundoCanje implements  Canje{
         return 0;
 
     }
+    public Canje actualizarCanje(){
+        return new TercerCanje();
+    }
 }

@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Jugador {
     private final Ficha ficha;
     private final MazoTarjetasPais listaTarjetas;
-    private final CuartoOMasCanjes canjes;
+    private Canje canje;
 
     public Jugador(){
         this.ficha = new Ficha();
         this.listaTarjetas = new MazoTarjetasPais();
-        this.canjes =  new CuartoOMasCanjes();
+        this.canje =  new PrimerCanje();
     }
 
     public void obtenerTarjeta(TarjetaPais unaTarjeta){
@@ -28,31 +28,12 @@ public class Jugador {
         pais.colocarEjercitos(cantidadDeEjercitos, this.obtenerFicha());
 
     }
-    public int realizarPrimerCanje(){
-        if(listaTarjetas.esCanjeValido()){
-            PrimerCanje canje = new PrimerCanje();
-            return canje.realizarCanje(listaTarjetas.obtenerTarjetas());
+    public int realizarCanje() {
+        int ejercitosAgregar = 0;
+        if (listaTarjetas.esCanjeValido()) {
+            ejercitosAgregar = canje.realizarCanje(listaTarjetas.obtenerTarjetas());
         }
-        return 0;
-    }
-    public int realizarSegundoCanje(){
-        if(listaTarjetas.esCanjeValido()){
-            SegundoCanje canje = new SegundoCanje();
-            return canje.realizarCanje(listaTarjetas.obtenerTarjetas());
-        }
-        return 0;
-    }
-    public int realizarTercerCanje(){
-        if(listaTarjetas.esCanjeValido()){
-            TercerCanje canje = new TercerCanje();
-            return canje.realizarCanje(listaTarjetas.obtenerTarjetas());
-        }
-        return 0;
-    }
-    public int realizarCuartoOMasCanje(){
-        if(listaTarjetas.esCanjeValido()){
-            return this.canjes.realizarCanje(listaTarjetas.obtenerTarjetas());
-        }
-        return 0;
+        this.canje = this.canje.actualizarCanje();
+        return ejercitosAgregar;
     }
 }

@@ -50,14 +50,14 @@ public class MazoTarjetasPais {
         else if (this.cantidadBarcos >=1 && this.cantidadGlobos >= 1 && this.cantidadCanion >= 1){
             return true;
         }
-
+        //faltan 2 distintos y comodin y ver de mejorarla xq esta fea
         else return false;
     }
 
     public ArrayList<TarjetaPais> obtenerTarjetas() {
-        ArrayList<TarjetaPais> lista= new ArrayList<>();
-        for(TarjetaPais i :tarjetas){ lista.add(i); }
-        tarjetas.removeAll(lista);
+        ArrayList<TarjetaPais> lista= new ArrayList<>(); //ver de devolver un MazoTarjetaPais EnLugarDeUnaLista
+        for(TarjetaPais i :tarjetas){ lista.add(i); }   //para rehusar codigo
+        tarjetas.removeAll(lista); // en vez de sacarlas y eliminarlas debe devolverlas al juego
         return lista;//Pendiente que devuelva una lista que pueda hacer una canje
     }
 }

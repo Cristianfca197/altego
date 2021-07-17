@@ -53,7 +53,7 @@ public class JugadorTest {
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        assertEquals(4,unJugador.realizarPrimerCanje());
+        assertEquals(4,unJugador.realizarCanje());
     }
     @Test
     public void test06JugadorHaceSegundoCanjeYRecibeSieteEjercitos(){
@@ -64,7 +64,11 @@ public class JugadorTest {
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        assertEquals(7,unJugador.realizarSegundoCanje());
+        unJugador.realizarCanje();
+        unJugador.obtenerTarjeta(tarjetaPais1);
+        unJugador.obtenerTarjeta(tarjetaPais2);
+        unJugador.obtenerTarjeta(tarjetaPais3);
+        assertEquals(7,unJugador.realizarCanje());
     }
     @Test
     public void test07JugadorHaceTercerCanjeYRecibeDiezEjercitos(){
@@ -75,7 +79,15 @@ public class JugadorTest {
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        assertEquals(10,unJugador.realizarTercerCanje());
+        unJugador.realizarCanje();
+        unJugador.obtenerTarjeta(tarjetaPais1);
+        unJugador.obtenerTarjeta(tarjetaPais2);
+        unJugador.obtenerTarjeta(tarjetaPais3);
+        unJugador.realizarCanje();
+        unJugador.obtenerTarjeta(tarjetaPais1);
+        unJugador.obtenerTarjeta(tarjetaPais2);
+        unJugador.obtenerTarjeta(tarjetaPais3);
+        assertEquals(10,unJugador.realizarCanje());
     }
     @Test
     public void test08JugadorHaceCuartoCanjeYRecibeQuinceEjercitos(){
@@ -86,7 +98,19 @@ public class JugadorTest {
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        assertEquals(15,unJugador.realizarCuartoOMasCanje());
+        unJugador.realizarCanje();
+        unJugador.obtenerTarjeta(tarjetaPais1);
+        unJugador.obtenerTarjeta(tarjetaPais2);
+        unJugador.obtenerTarjeta(tarjetaPais3);
+        unJugador.realizarCanje();
+        unJugador.obtenerTarjeta(tarjetaPais1);
+        unJugador.obtenerTarjeta(tarjetaPais2);
+        unJugador.obtenerTarjeta(tarjetaPais3);
+        unJugador.realizarCanje();
+        unJugador.obtenerTarjeta(tarjetaPais1);
+        unJugador.obtenerTarjeta(tarjetaPais2);
+        unJugador.obtenerTarjeta(tarjetaPais3);
+        assertEquals(15,unJugador.realizarCanje());
     }
     @Test
     public void test09JugadorHaceQuintoCanjeYRecibeVeinteEjercitos(){
@@ -97,11 +121,23 @@ public class JugadorTest {
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        unJugador.realizarCuartoOMasCanje();
+        unJugador.realizarCanje();
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        assertEquals(20,unJugador.realizarCuartoOMasCanje());
+        unJugador.realizarCanje();
+        unJugador.obtenerTarjeta(tarjetaPais1);
+        unJugador.obtenerTarjeta(tarjetaPais2);
+        unJugador.obtenerTarjeta(tarjetaPais3);
+        unJugador.realizarCanje();
+        unJugador.obtenerTarjeta(tarjetaPais1);
+        unJugador.obtenerTarjeta(tarjetaPais2);
+        unJugador.obtenerTarjeta(tarjetaPais3);
+        unJugador.realizarCanje();
+        unJugador.obtenerTarjeta(tarjetaPais1);
+        unJugador.obtenerTarjeta(tarjetaPais2);
+        unJugador.obtenerTarjeta(tarjetaPais3);
+        assertEquals(20,unJugador.realizarCanje());
     }
     @Test
     public void test10JugadorHacePrimerCanjeYColocaLosNuevosEjercitosCorrectamente(){
@@ -114,7 +150,7 @@ public class JugadorTest {
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        unJugador.colocarEjercitosCanje(unJugador.realizarPrimerCanje(), unPais);
+        unJugador.colocarEjercitosCanje(unJugador.realizarCanje(), unPais);
         assertEquals(5, unPais.cantidadDeEjercitos());
     }
 }
