@@ -1,7 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
+import java.util.ArrayList;
+
 public class Jugador {
     private final Ficha ficha;
+
     private final MazoTarjetasPais listaTarjetas;
 
     public Jugador(){
@@ -20,4 +23,10 @@ public class Jugador {
         return this.ficha;
     }
 
+    public void colocarEjercitosCanje(Integer cantidadDeEjercitos){
+
+    }
+    public void devolverTarjetas(ArrayList<TarjetaPais> tarjetas){
+
+    }
 }

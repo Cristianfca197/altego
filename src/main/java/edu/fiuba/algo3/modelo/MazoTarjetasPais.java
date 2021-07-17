@@ -25,6 +25,7 @@ public class MazoTarjetasPais {
     public void agregarBarco(){this.cantidadBarcos += 1;}
     public void agregarCanion(){this.cantidadCanion +=1;}
     public void agregarComodin(){this.cantidadComodines +=1;}
+
     public int cantidadGlobos(){
         return this.cantidadGlobos;
     }
@@ -36,5 +37,19 @@ public class MazoTarjetasPais {
     }
     public int cantidadComodines(){
         return this.cantidadComodines;
+    }
+
+    public boolean esCanjeValido(){
+        if(this.cantidadCanion > 3 || this.cantidadGlobos > 3 || this.cantidadBarcos >3){
+            return true;
+        }
+        else if((this.cantidadCanion == 2 || this.cantidadGlobos == 2 || this.cantidadBarcos == 2) && this.cantidadComodines >= 1){
+            return true;
+        }
+        else if (this.cantidadBarcos >=1 && this.cantidadGlobos >= 1 && this.cantidadCanion >= 1){
+            return true;
+        }
+
+        else return false;
     }
 }
