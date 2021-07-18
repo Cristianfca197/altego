@@ -13,7 +13,9 @@ public class Juego {
         for (int i = 0; i < cantidadJugadores; i++) {
             this.listaJugadores.add(new Jugador());
         }
-        this.tarjetasDePais = cargarTarjetas.leerArchivos();
+        if (cargarTarjetas.leerArchivos()){
+            this.tarjetasDePais = cargarTarjetas.getTarjetas();
+        }
     }
     public void entregarTarjetas(){
         for (TarjetaPais i: this.tarjetasDePais){

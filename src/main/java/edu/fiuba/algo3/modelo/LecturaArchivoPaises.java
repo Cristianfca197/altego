@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -10,6 +11,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class LecturaArchivoPaises {
+
     @SuppressWarnings("unchecked")
     public void leerArchivo() {
         //JSON parser object to parse read file
@@ -21,7 +23,6 @@ public class LecturaArchivoPaises {
             Object obj = jsonParser.parse(reader);
 
             JSONArray listaPaises = (JSONArray) obj;
-            System.out.println(listaPaises);
 
             //Iterate over employee array
             listaPaises.forEach( emp -> parsePaisObject( (JSONObject) emp ) );
@@ -34,32 +35,21 @@ public class LecturaArchivoPaises {
             e.printStackTrace();
         }
     }
-    private static void parsePaisObject(JSONObject pais)
-    {
-        //Get employee object within list
-        JSONObject PaisObject = (JSONObject) pais.get("");
+    private void parsePaisObject(JSONObject pais){
+        
+        pais.get("");
 
-        //Get employee first name
-        String firstName = (String) pais.get("Pais");
-        System.out.println(firstName);
+        // Obtener nombre pais
+        String nombrePais = (String) pais.get("Pais");
 
-        //Get employee last name
-        String lastName = (String) pais.get("Continente");
-        System.out.println(lastName);
+        // Obtener continente
+        String continente = (String) pais.get("Continente");
 
-
-        //Get employee last name
+        // Obtener paises limitrofe
         String limitrofe = (String) pais.get("Limita con");
         String[] paisesLimitrofes = limitrofe.split(",");
 
-        System.out.println(limitrofe);
-        for (int i = 0; i < paisesLimitrofes.length; i++) {
-            System.out.println(paisesLimitrofes[i]);
-        }
-
-
-
-
+        // CREAR PAIS
     }
 
 }

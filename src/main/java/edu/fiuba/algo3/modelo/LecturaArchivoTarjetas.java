@@ -12,52 +12,60 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class LecturaArchivoTarjetas {
+
+    private HashSet<TarjetaPais> tarjetasPais;
+
     public LecturaArchivoTarjetas(){}
-    public HashSet<TarjetaPais> leerArchivos() {
-        HashSet<TarjetaPais> tarjetasPais = new HashSet<>();
+    
+    public boolean leerArchivos() {
+
+        this.tarjetasPais = new HashSet<>();
+
         @SuppressWarnings("unchecked")
-        //JSON parser object to parse read file
         JSONParser jsonParser = new JSONParser();
 
         try (FileReader reader = new FileReader("src/main/archivos_paises/Teg - Cartas.json")) {
-            //Read JSON file
+            
+            // Lectura archivo
             Object obj = jsonParser.parse(reader);
 
             JSONArray listaCartas = (JSONArray) obj;
-            //System.out.println(listaCartas);
 
-            //Iterate over employee array
-            listaCartas.forEach(emp -> tarjetasPais.add(parseCartaObject((JSONObject) emp)));
-
+            //Iteracion por cada carta leida
+            listaCartas.forEach(carta -> parseCartaObject((JSONObject) carta));
 
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            return false;
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         } catch (ParseException e) {
             e.printStackTrace();
+            return false;
         }
-        return tarjetasPais;
+        return true;
     }
-    private static TarjetaPais parseCartaObject(JSONObject carta)
-    {
-        //Get employee object within list
-        JSONObject cartaObject = (JSONObject) carta.get("");
+    private void parseCartaObject(JSONObject carta){
+        // Obtener carta
+        carta.get("");
 
-        //Get employee first name
-        String firstName = (String) carta.get("Pais");
-        //System.out.println(firstName);
+        // Obtener nombre pais
+        String pais = (String) carta.get("Pais");
 
-        //Get employee last name
-        String lastName = (String) carta.get("Simbolo");
-        //System.out.println(lastName);
-        switch (lastName){
-            case "Globo": return new TarjetaPais(new Globo(), firstName);
-            case "Barco": return new TarjetaPais(new Barco(), firstName);
-            case "Cañon": return new TarjetaPais(new Canion(), firstName);
-            case "Comodin": return new TarjetaPais(new Comodin(), firstName);
+        // Obtener simbolo
+        String simbolo = (String) carta.get("Simbolo");
+        
+        switch (simbolo){
+            case "Globo": this.tarjetasPais.add(new TarjetaPais(new Globo(), pais));
+            case "Barco": this.tarjetasPais.add(new TarjetaPais(new Barco(), pais));
+            case "Cañon": this.tarjetasPais.add(new TarjetaPais(new Canion(), pais));
+            case "Comodin": this.tarjetasPais.add(new TarjetaPais(new Comodin(), pais));
         }
-        return new TarjetaPais(new Comodin(), "Error");
+    }
+
+    public HashSet<TarjetaPais> getTarjetas(){
+        return this.tarjetasPais;
     }
 }
