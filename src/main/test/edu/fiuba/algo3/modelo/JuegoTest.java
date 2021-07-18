@@ -9,5 +9,10 @@ public class JuegoTest {
         Juego juego = new Juego(2);
         juego.entregarTarjetas();
     }
+    @Test
+    public void test02CargaPaisesEsCorrecta(){
+        Juego juego = new Juego(2);
+        juego.entregarPaises();
+    }
 
 }

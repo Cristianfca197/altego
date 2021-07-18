@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -11,9 +11,14 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class LecturaArchivoPaises {
+    private HashMap<String, Pais> paises;
 
+    public void LecturaArchivoPaises(){
+
+    }
     @SuppressWarnings("unchecked")
-    public void leerArchivo() {
+    public boolean leerArchivo() {
+        this.paises = new HashMap<String, Pais>();
         //JSON parser object to parse read file
         JSONParser jsonParser = new JSONParser();
 
@@ -29,11 +34,15 @@ public class LecturaArchivoPaises {
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            return false;
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         } catch (ParseException e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
     private void parsePaisObject(JSONObject pais){
         
@@ -50,6 +59,11 @@ public class LecturaArchivoPaises {
         String[] paisesLimitrofes = limitrofe.split(",");
 
         // CREAR PAIS
+        Pais unPais = new Pais(nombrePais);
+        unPais.perteneceAlContinente(continente);
+        unPais.losNombresDeLosPaisesLimitrofesSon(paisesLimitrofes);
+        this.paises.put(nombrePais, unPais);
     }
 
+    public HashMap<String, Pais> getPaises() { return this.paises; }
 }
