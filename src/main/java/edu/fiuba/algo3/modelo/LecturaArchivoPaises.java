@@ -1,4 +1,5 @@
 package edu.fiuba.algo3.modelo;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -49,7 +50,16 @@ public class LecturaArchivoPaises {
 
         //Get employee last name
         String limitrofe = (String) pais.get("Limita con");
+        String[] paisesLimitrofes = limitrofe.split(",");
+
         System.out.println(limitrofe);
+        for (int i = 0; i < paisesLimitrofes.length; i++) {
+            System.out.println(paisesLimitrofes[i]);
+        }
+
+
+
 
     }
+
 }
