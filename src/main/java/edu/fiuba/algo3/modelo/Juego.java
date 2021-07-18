@@ -28,7 +28,9 @@ public class Juego {
         for (Pais unPais: this.paises.values()){
             System.out.println(unPais.obtenerNombre());
             System.out.println(unPais.continenteNombre());
-            System.out.println(unPais.listaPaisesLimitrofes());
+            for (String i: unPais.listaPaisesLimitrofes()){
+                System.out.println(i);
+            }
         }
     }
 
