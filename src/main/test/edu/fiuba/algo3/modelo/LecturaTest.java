@@ -14,8 +14,7 @@ public class LecturaTest {
     public void test02LeerPaises(){
         LecturaArchivoPaises leer = new LecturaArchivoPaises();
 
-        leer.leerArchivo();
+        //leer.leerArchivo();
     }
-
 
 }

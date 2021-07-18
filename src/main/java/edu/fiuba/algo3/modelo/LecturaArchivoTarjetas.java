@@ -4,6 +4,7 @@ package edu.fiuba.algo3.modelo;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.HashSet;
 
 import org.json.simple.JSONArray;
@@ -13,13 +14,13 @@ import org.json.simple.parser.ParseException;
 
 public class LecturaArchivoTarjetas {
 
-    private HashSet<TarjetaPais> tarjetasPais;
+    private HashMap<String, TarjetaPais> tarjetasPais;
 
     public LecturaArchivoTarjetas(){}
     
     public boolean leerArchivos() {
 
-        this.tarjetasPais = new HashSet<>();
+        this.tarjetasPais = new HashMap<>();
 
         @SuppressWarnings("unchecked")
         JSONParser jsonParser = new JSONParser();
@@ -58,14 +59,14 @@ public class LecturaArchivoTarjetas {
         String simbolo = (String) carta.get("Simbolo");
         
         switch (simbolo){
-            case "Globo": this.tarjetasPais.add(new TarjetaPais(new Globo(), pais));
-            case "Barco": this.tarjetasPais.add(new TarjetaPais(new Barco(), pais));
-            case "Cañon": this.tarjetasPais.add(new TarjetaPais(new Canion(), pais));
-            case "Comodin": this.tarjetasPais.add(new TarjetaPais(new Comodin(), pais));
+            case "Globo": this.tarjetasPais.put(pais, new TarjetaPais(new Globo(), pais));
+            case "Barco": this.tarjetasPais.put(pais, new TarjetaPais(new Barco(), pais));
+            case "Cañon": this.tarjetasPais.put(pais, new TarjetaPais(new Canion(), pais));
+            case "Comodin": this.tarjetasPais.put(pais, new TarjetaPais(new Comodin(), pais));
         }
     }
 
-    public HashSet<TarjetaPais> getTarjetas(){
+    public HashMap<String, TarjetaPais> getTarjetas(){
         return this.tarjetasPais;
     }
 }

@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -11,14 +12,12 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class LecturaArchivoPaises {
-    private HashMap<String, Pais> paises;
 
     public void LecturaArchivoPaises(){
 
     }
     @SuppressWarnings("unchecked")
-    public boolean leerArchivo() {
-        this.paises = new HashMap<String, Pais>();
+    public boolean leerArchivo(HashMap<String, TarjetaPais> tarjetasPaises) {
         //JSON parser object to parse read file
         JSONParser jsonParser = new JSONParser();
 
@@ -30,7 +29,7 @@ public class LecturaArchivoPaises {
             JSONArray listaPaises = (JSONArray) obj;
 
             //Iterate over employee array
-            listaPaises.forEach( emp -> parsePaisObject( (JSONObject) emp ) );
+            listaPaises.forEach( emp -> parsePaisObject( (JSONObject) emp, tarjetasPaises ) );
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -44,7 +43,7 @@ public class LecturaArchivoPaises {
         }
         return true;
     }
-    private void parsePaisObject(JSONObject pais){
+    private void parsePaisObject(JSONObject pais, HashMap<String, TarjetaPais> tarjetasPaises){
         
         pais.get("");
 
@@ -59,11 +58,8 @@ public class LecturaArchivoPaises {
         String[] paisesLimitrofes = limitrofe.split(",");
 
         // CREAR PAIS
-        Pais unPais = new Pais(nombrePais);
+        Pais unPais = (tarjetasPaises.get(nombrePais)).obtenerPais();
         unPais.perteneceAlContinente(continente);
-        unPais.losNombresDeLosPaisesLimitrofesSon(paisesLimitrofes);
-        this.paises.put(nombrePais, unPais);
+        for(String i : paisesLimitrofes){unPais.esLimitrofeCon(tarjetasPaises.get(i).obtenerPais());}
     }
-
-    public HashMap<String, Pais> getPaises() { return this.paises; }
 }
