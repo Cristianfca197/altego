@@ -4,6 +4,7 @@ package edu.fiuba.algo3.modelo;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -12,7 +13,8 @@ import org.json.simple.parser.ParseException;
 
 public class LecturaArchivoTarjetas {
     public LecturaArchivoTarjetas(){}
-    public void leerArchivos() {
+    public HashSet<TarjetaPais> leerArchivos() {
+        HashSet<TarjetaPais> tarjetasPais = new HashSet<>();
         @SuppressWarnings("unchecked")
         //JSON parser object to parse read file
         JSONParser jsonParser = new JSONParser();
@@ -22,10 +24,12 @@ public class LecturaArchivoTarjetas {
             Object obj = jsonParser.parse(reader);
 
             JSONArray listaCartas = (JSONArray) obj;
-            System.out.println(listaCartas);
+            //System.out.println(listaCartas);
 
             //Iterate over employee array
-            listaCartas.forEach(emp -> parseCartaObject((JSONObject) emp));
+            listaCartas.forEach(emp -> tarjetasPais.add(parseCartaObject((JSONObject) emp)));
+
+
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -34,19 +38,26 @@ public class LecturaArchivoTarjetas {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        return tarjetasPais;
     }
-    private static void parseCartaObject(JSONObject carta)
+    private static TarjetaPais parseCartaObject(JSONObject carta)
     {
         //Get employee object within list
         JSONObject cartaObject = (JSONObject) carta.get("");
 
         //Get employee first name
         String firstName = (String) carta.get("Pais");
-        System.out.println(firstName);
+        //System.out.println(firstName);
 
         //Get employee last name
         String lastName = (String) carta.get("Simbolo");
-        System.out.println(lastName);
-
+        //System.out.println(lastName);
+        switch (lastName){
+            case "Globo": return new TarjetaPais(new Globo(), firstName);
+            case "Barco": return new TarjetaPais(new Barco(), firstName);
+            case "Cañon": return new TarjetaPais(new Canion(), firstName);
+            case "Comodin": return new TarjetaPais(new Comodin(), firstName);
+        }
+        return new TarjetaPais(new Comodin(), "Error");
     }
 }

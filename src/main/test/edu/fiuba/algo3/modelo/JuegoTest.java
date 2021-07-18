@@ -4,5 +4,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class JuegoTest {
+    @Test
+    public void test01CargaDeTarjetasPaisEsCorrecta(){
+        Juego juego = new Juego(2);
+        juego.entregarTarjetas();
+    }
 
 }
