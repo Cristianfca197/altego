@@ -3,8 +3,7 @@ package edu.fiuba.algo3.modelo;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -13,11 +12,15 @@ import org.json.simple.parser.ParseException;
 
 public class LecturaArchivoPaises {
 
-    public void LecturaArchivoPaises(){
+    private Tablero tablero;
+
+    public LecturaArchivoPaises(){
 
     }
     @SuppressWarnings("unchecked")
-    public boolean leerArchivo(HashMap<String, TarjetaPais> tarjetasPaises) {
+    public boolean leerArchivo(HashMap<String, TarjetaPais> tarjetasPaises, Tablero unTablero) {
+        this.tablero = unTablero;
+
         //JSON parser object to parse read file
         JSONParser jsonParser = new JSONParser();
 
@@ -28,18 +31,15 @@ public class LecturaArchivoPaises {
 
             JSONArray listaPaises = (JSONArray) obj;
 
-            //Iterate over employee array
-            listaPaises.forEach( emp -> parsePaisObject( (JSONObject) emp, tarjetasPaises ) );
+            // Iterar sobre paises
+            listaPaises.forEach( pais -> parsePaisObject( (JSONObject) pais, tarjetasPaises) );
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            return false;
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
         } catch (ParseException e) {
             e.printStackTrace();
-            return false;
         }
         return true;
     }
@@ -59,7 +59,12 @@ public class LecturaArchivoPaises {
 
         // CREAR PAIS
         Pais unPais = (tarjetasPaises.get(nombrePais)).obtenerPais();
-        unPais.perteneceAlContinente(continente);
+        
+        if (!this.tablero.existeContinente(continente))
+            this.tablero.crearContinente(continente);
+
+        unPais.perteneceAlContinente(this.tablero.obtenerContinente(continente));
+        
         for(String i : paisesLimitrofes){
             unPais.sonLimitrofesEntre(tarjetasPaises.get(i).obtenerPais());
         }

@@ -8,14 +8,16 @@ public class Juego {
     private ArrayList<Jugador> listaJugadores;
     private LecturaArchivoTarjetas cargarTarjetas = new LecturaArchivoTarjetas();
     private LecturaArchivoPaises cargarPaises = new LecturaArchivoPaises();
+    private Tablero tablero;
 
     public Juego(int cantidadJugadores) {
         listaJugadores = new ArrayList<>();
+        tablero = new Tablero();
         for (int i = 0; i < cantidadJugadores; i++) {
             this.listaJugadores.add(new Jugador());
         }
         if (cargarTarjetas.leerArchivos()){ this.tarjetasDePais = cargarTarjetas.getTarjetas(); }
-        cargarPaises.leerArchivo(this.tarjetasDePais);
+        cargarPaises.leerArchivo(this.tarjetasDePais, this.tablero);
     }
     public void entregarTarjetas(){
         for (TarjetaPais tarjetaPais: this.tarjetasDePais.values()){
