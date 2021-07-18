@@ -60,6 +60,8 @@ public class LecturaArchivoPaises {
         // CREAR PAIS
         Pais unPais = (tarjetasPaises.get(nombrePais)).obtenerPais();
         unPais.perteneceAlContinente(continente);
-        for(String i : paisesLimitrofes){unPais.esLimitrofeCon(tarjetasPaises.get(i).obtenerPais());}
+        for(String i : paisesLimitrofes){
+            unPais.sonLimitrofesEntre(tarjetasPaises.get(i).obtenerPais());
+        }
     }
 }

@@ -53,6 +53,8 @@ public class Pais {
     public boolean estaVacio() { return cantidadDeEjercitos() == 0;}
 
     public void sonLimitrofesEntre(Pais otroPais) {
+        if(esLimitrofeCon(otroPais)) return;
+
         this.paisesLimitrofes.add(otroPais);
         otroPais.paisesLimitrofes.add(this);
     }
@@ -84,7 +86,7 @@ public class Pais {
         return this.continente;
     }
 
-    public ArrayList obtenerNombreLimitrofes() {
+    public ArrayList obtenerLimitrofes() {
         return this.paisesLimitrofes;
     }
 }

@@ -27,9 +27,14 @@ public class Juego {
         for (TarjetaPais tarjetaPais: this.tarjetasDePais.values()){
             System.out.println(tarjetaPais.obtenerPais().obtenerNombre());
             System.out.println(tarjetaPais.obtenerPais().continenteNombre());
-            for (TarjetaPais i: tarjetasDePais.values()){
-                System.out.println(tarjetaPais.obtenerPais().obtenerNombreLimitrofes());
+            
+            ArrayList<Pais> limitrofes = tarjetaPais.obtenerPais().obtenerLimitrofes();
+            System.out.printf("Limitrofes de %s:\n",tarjetaPais.obtenerPais().obtenerNombre());
+
+            for (Pais limitrofe: limitrofes){
+                System.out.println(limitrofe.obtenerNombre());
             }
+            System.out.println("-----------------");
         }
     }
 

@@ -59,10 +59,17 @@ public class LecturaArchivoTarjetas {
         String simbolo = (String) carta.get("Simbolo");
         
         switch (simbolo){
-            case "Globo": this.tarjetasPais.put(pais, new TarjetaPais(new Globo(), pais));
-            case "Barco": this.tarjetasPais.put(pais, new TarjetaPais(new Barco(), pais));
-            case "Cañon": this.tarjetasPais.put(pais, new TarjetaPais(new Canion(), pais));
-            case "Comodin": this.tarjetasPais.put(pais, new TarjetaPais(new Comodin(), pais));
+            case "Globo": 
+                this.tarjetasPais.put(pais, new TarjetaPais(new Globo(), pais));
+                break;
+            case "Barco":
+                this.tarjetasPais.put(pais, new TarjetaPais(new Barco(), pais));
+                break;
+            case "Cañon": 
+                this.tarjetasPais.put(pais, new TarjetaPais(new Canion(), pais));
+                break;
+            default:
+                this.tarjetasPais.put(pais, new TarjetaPais(new Comodin(), pais));
         }
     }
 
