@@ -6,14 +6,15 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MazoTarjetasPaisTest {
 
     @Test
-    public void test01MazoTarjetasSeCreaVacioYSeAgregaUnCañonCorrectamente(){
+    public void test01MazoTarjetasSeCreaVacioYSeAgregaUnCañonCorrectamente() {
         MazoTarjetasPais tarjetas = new MazoTarjetasPais();
         TarjetaPais tarjeta = new TarjetaPais(new Canion(), "Argentina");
 
         tarjetas.agregarTarjeta(tarjeta);
 
-        assertEquals(1, tarjetas.cantidadCaniones());
+        assertEquals(tarjeta, tarjetas.obtenerTarjetas().remove(0));
     }
+
     @Test
     public void test02MazoTarjetasSeCreaVacioYSeAgregaUnBarcoCorrectamente(){
         MazoTarjetasPais tarjetas = new MazoTarjetasPais();
@@ -21,7 +22,7 @@ public class MazoTarjetasPaisTest {
 
         tarjetas.agregarTarjeta(tarjeta);
 
-        assertEquals(1, tarjetas.cantidadBarcos());
+        assertEquals(tarjeta, tarjetas.obtenerTarjetas().remove(0));
     }
     @Test
     public void test03MazoTarjetasSeCreaVacioYSeAgregaUnGLoboCorrectamente(){
@@ -30,7 +31,7 @@ public class MazoTarjetasPaisTest {
 
         tarjetas.agregarTarjeta(tarjeta);
 
-        assertEquals(1, tarjetas.cantidadGlobos());
+        assertEquals(tarjeta, tarjetas.obtenerTarjetas().remove(0));
     }
     @Test
     public void test04MazoTarjetasSeCreaVacioYSeAgregaUnComodinCorrectamente(){
@@ -39,7 +40,7 @@ public class MazoTarjetasPaisTest {
 
         tarjetas.agregarTarjeta(tarjeta);
 
-        assertEquals(1, tarjetas.cantidadComodines());
+        assertEquals(tarjeta, tarjetas.obtenerTarjetas().remove(0));
     }
 
     @Test
@@ -94,7 +95,7 @@ public class MazoTarjetasPaisTest {
     }
 
     @Test
-    public void test07EsCanjeValidoEsTrueSiTieneUnaTarjetasYDosComodin(){
+    public void test08EsCanjeValidoEsTrueSiTieneUnaTarjetasYDosComodin(){
         Comodin comodin = new Comodin();
         MazoTarjetasPais tarjetas = new MazoTarjetasPais();
         TarjetaPais tarjeta1 = new TarjetaPais(new Canion(), "Argentina");
@@ -104,5 +105,31 @@ public class MazoTarjetasPaisTest {
         tarjetas.agregarTarjeta(tarjeta2);
         tarjetas.agregarTarjeta(tarjeta3);
         assertTrue(tarjetas.esCanjeValido());
+    }
+
+    @Test
+    public void test09EsCanjeValidoEsTrueSiTieneDosTarjetasyComodin(){
+        Canion canion = new Canion();
+        MazoTarjetasPais tarjetas = new MazoTarjetasPais();
+        TarjetaPais tarjeta1 = new TarjetaPais(canion, "Argentina");
+        TarjetaPais tarjeta2 = new TarjetaPais(canion, "Inglaterra");
+        TarjetaPais tarjeta3 = new TarjetaPais(new Comodin(), "Japon");
+        tarjetas.agregarTarjeta(tarjeta1);
+        tarjetas.agregarTarjeta(tarjeta2);
+        tarjetas.agregarTarjeta(tarjeta3);
+        assertTrue(tarjetas.esCanjeValido());
+    }
+
+    @Test
+    public void test10EsCanjeValidoEsFalseSiTieneDosTarjetasYUnaDiferente(){
+        Canion canion = new Canion();
+        MazoTarjetasPais tarjetas = new MazoTarjetasPais();
+        TarjetaPais tarjeta1 = new TarjetaPais(canion, "Argentina");
+        TarjetaPais tarjeta2 = new TarjetaPais(canion, "Inglaterra");
+        TarjetaPais tarjeta3 = new TarjetaPais(new Globo(), "Japon");
+        tarjetas.agregarTarjeta(tarjeta1);
+        tarjetas.agregarTarjeta(tarjeta2);
+        tarjetas.agregarTarjeta(tarjeta3);
+        assertFalse(tarjetas.esCanjeValido());
     }
 }

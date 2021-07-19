@@ -30,9 +30,9 @@ public class Jugador {
     }
     public int realizarCanje() {
         int ejercitosAgregar = 0;
-        //if (listaTarjetas.esCanjeValido()) {
-        ejercitosAgregar = canje.realizarCanje(listaTarjetas.obtenerTarjetas());
-        //}
+        if (listaTarjetas.esCanjeValido()) {
+            ejercitosAgregar = canje.realizarCanje(listaTarjetas.obtenerTarjetasParaCanje());
+        }
         this.canje = this.canje.actualizarCanje();
         return ejercitosAgregar;
     }

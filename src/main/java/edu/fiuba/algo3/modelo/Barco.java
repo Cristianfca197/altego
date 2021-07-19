@@ -1,15 +1,13 @@
 package edu.fiuba.algo3.modelo;
 
 public class Barco implements TipoTarjeta {
-
+    private String nombre;
     public Barco(){
+        this.nombre = "Barco";
     }
+    public String obtenerNombre(){return nombre;}
 
     @Override
-    public void agregarseALista(MazoTarjetasPais listaTarjetas) {
-        listaTarjetas.agregarBarco();
-    }
-
     public boolean esGlobo(){
         return false;
     }

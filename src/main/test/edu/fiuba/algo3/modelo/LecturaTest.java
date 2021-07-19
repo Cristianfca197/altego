@@ -69,11 +69,11 @@ public class LecturaTest {
         tarjetasDePais = leerTarjetas.getTarjetas();
 
         leer.leerArchivo(tarjetasDePais, tablero);
-        assertEquals(tablero.obtenerContinente("America del Sur").getNombre(),"America del Sur");
-        assertEquals(tablero.obtenerContinente("Asia").getNombre(), "Asia");
-        assertEquals(tablero.obtenerContinente("America del Norte").getNombre(), "America del Norte");
-        assertEquals(tablero.obtenerContinente("Oceania").getNombre(), "Oceania");
-        assertEquals(tablero.obtenerContinente("Europa").getNombre(), "Europa");
+        assertEquals(tablero.obtenerContinente("America del Sur").obtenerNombre(),"America del Sur");
+        assertEquals(tablero.obtenerContinente("Asia").obtenerNombre(), "Asia");
+        assertEquals(tablero.obtenerContinente("America del Norte").obtenerNombre(), "America del Norte");
+        assertEquals(tablero.obtenerContinente("Oceania").obtenerNombre(), "Oceania");
+        assertEquals(tablero.obtenerContinente("Europa").obtenerNombre(), "Europa");
 
     }
 

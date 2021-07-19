@@ -1,61 +1,66 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 
 public class MazoTarjetasPais {
 
-    private final HashSet<TarjetaPais> tarjetas;
-    private int cantidadGlobos;
-    private int cantidadBarcos;
-    private int cantidadCanion;
-    private int cantidadComodines;
+    private final HashMap<String, ArrayList<TarjetaPais>> tarjetas;
 
     public MazoTarjetasPais(){
-        this.tarjetas = new HashSet();
-        this.cantidadGlobos = 0;
-        this.cantidadCanion = 0;
-        this.cantidadComodines = 0;
-        this.cantidadBarcos = 0;
+        this.tarjetas = new HashMap<>();
+        this.tarjetas.put("Comodin", new ArrayList<>());
+        this.tarjetas.put("Canion", new ArrayList<>());
+        this.tarjetas.put("Barco", new ArrayList<>());
+        this.tarjetas.put("Globo", new ArrayList<>());
     }
     public void agregarTarjeta(TarjetaPais unaTarjeta){
-        this.tarjetas.add(unaTarjeta);
-        unaTarjeta.obtenerTipo().agregarseALista(this);
-    }
-    public void agregarGlobo(){this.cantidadGlobos += 1;}
-    public void agregarBarco(){this.cantidadBarcos += 1;}
-    public void agregarCanion(){this.cantidadCanion +=1;}
-    public void agregarComodin(){this.cantidadComodines +=1;}
-
-    public int cantidadGlobos(){
-        return this.cantidadGlobos;
-    }
-    public int cantidadBarcos(){
-        return this.cantidadBarcos;
-    }
-    public int cantidadCaniones(){
-        return this.cantidadCanion;
-    }
-    public int cantidadComodines(){
-        return this.cantidadComodines;
+        this.tarjetas.get(unaTarjeta.obtenerTipo().obtenerNombre()).add(unaTarjeta);
     }
 
     public boolean esCanjeValido(){
-        if(this.cantidadCanion >= 3 || this.cantidadGlobos >= 3 || this.cantidadBarcos >= 3){
+        if(this.tarjetas.get("Canion").size() >= 3 || this.tarjetas.get("Globo").size() >= 3 || this.tarjetas.get("Barco").size() >= 3){
+            return true;
+        }else if((this.tarjetas.get("Canion").size() ==2 || this.tarjetas.get("Globo").size() == 2 || this.tarjetas.get("Barco").size() ==2) && this.tarjetas.get("Comodin").size() >= 1){
             return true;
         }
-        else if((this.cantidadCanion == 2 || this.cantidadGlobos == 2 || this.cantidadBarcos == 2) && this.cantidadComodines >= 1){
+        else if (this.tarjetas.get("Barco").size() >=1 && this.tarjetas.get("Globo").size() >= 1 && this.tarjetas.get("Canion").size() >= 1){
+            return true;
+        }else if((this.tarjetas.get("Barco").size() >=1 || this.tarjetas.get("Globo").size() >= 1 || this.tarjetas.get("Canion").size() >= 1) && this.tarjetas.get("Comodin").size() >= 2){
             return true;
         }
-        else if (this.cantidadBarcos >=1 && this.cantidadGlobos >= 1 && this.cantidadCanion >= 1){
-            return true;
-        }
-        //faltan 2 distintos y comodin y ver de mejorarla xq esta fea
+        // ver de mejorarla xq esta fea
         else return false;
     }
 
     public ArrayList<TarjetaPais> obtenerTarjetas() {
-       if(tarjetas.size() == 3){return new ArrayList<TarjetaPais>(tarjetas);}
-       if(tarjetas.size() >= 3){}
+        ArrayList<TarjetaPais> tarjetaPais = new ArrayList<>();
+        for(ArrayList tipos: tarjetas.values()){
+            for(Object tarjetasPaises: tipos){
+                tarjetaPais.add((TarjetaPais) tarjetasPaises);
+            }
+        }
+       return tarjetaPais;
+    }
+
+    public ArrayList<TarjetaPais> obtenerTarjetasParaCanje() {
+        ArrayList<TarjetaPais> tarjetaPais = new ArrayList<>();
+        for(ArrayList tipos: tarjetas.values()){
+            if (tipos.size() == 3){
+                while(tipos.size() != 0){tarjetaPais.add((TarjetaPais) tipos.remove(0));}
+            }
+        }
+        if(tarjetas.get("Comodin").size() > 0){tarjetaPais = tarjetas.remove("Comodin");}
+        while (tarjetaPais.size() != 3) {
+            for(ArrayList tipos: tarjetas.values()){
+                while(tipos.size() != 0 && tarjetaPais.size() != 3) {
+                    tarjetaPais.add((TarjetaPais) tipos.remove(0));
+                }
+            }
+        }
+        for(ArrayList tipos:tarjetas.values()) {
+            if(tipos.size() != 0){tarjetaPais.add((TarjetaPais) tipos.remove(0));}
+        }
+        return tarjetaPais;
     }
 }

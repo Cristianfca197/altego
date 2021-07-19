@@ -1,14 +1,13 @@
 package edu.fiuba.algo3.modelo;
 
 public class Canion implements TipoTarjeta {
-
-
-    public Canion(){
-    }
+    private String nombre;
 
     @Override
-    public void agregarseALista(MazoTarjetasPais listaTarjetas) {
-        listaTarjetas.agregarCanion();
+    public String obtenerNombre(){return nombre;}
+
+    public Canion(){
+        this.nombre = "Canion";
     }
 
     public boolean esGlobo(){

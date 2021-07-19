@@ -1,14 +1,11 @@
 package edu.fiuba.algo3.modelo;
 
 public class Globo implements TipoTarjeta {
-
+    private String nombre;
     public Globo(){
+        this.nombre = "Globo";
     }
-
-    @Override
-    public void agregarseALista(MazoTarjetasPais listaTarjetas) {
-        listaTarjetas.agregarGlobo();
-    }
+    public String obtenerNombre(){return nombre;}
 
     public boolean esGlobo(){
         return true;

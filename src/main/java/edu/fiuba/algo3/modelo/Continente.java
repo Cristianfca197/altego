@@ -23,4 +23,7 @@ public class Continente {
     public Collection<Pais>obtenerPaises() {
         return paises.values();
     }
+
+    public Pais obtenerPais(String unPais) { return paises.get(unPais);
+    }
 }
