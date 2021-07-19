@@ -19,6 +19,25 @@ public class Juego {
         if (cargarTarjetas.leerArchivos()){ this.tarjetasDePais = cargarTarjetas.getTarjetas(); }
         cargarPaises.leerArchivo(this.tarjetasDePais, this.tablero);
     }
+    public void repartirPaises(){
+        int i = 0;
+        while(this.tarjetasDePais.size() > 0) {
+            List<TarjetaPais> tarjetas = new ArrayList<TarjetaPais>(tarjetasDePais.values());
+            int num = (int)Math.floor(Math.random()*(tarjetasDePais.size()));
+            TarjetaPais tarjeta = tarjetas.get(num);
+            this.entregarTarjeta(listaJugadores.get(i% listaJugadores.size()), tarjeta);
+            i ++;
+        }
+    }
+    public void entregarTarjeta(Jugador unJugador, TarjetaPais tarjeta){
+        unJugador.obtenerTarjeta(tarjeta);
+        this.tarjetasDePais.remove(tarjeta.obtenerPais().obtenerNombre());
+    }
+    public void ocuparTablero(){
+        for (int i = 0; i < listaJugadores.size(); i++) {
+            listaJugadores.get(i).ocuparPaises();
+        }
+    }
     public void entregarTarjetas(){
         for (TarjetaPais tarjetaPais: this.tarjetasDePais.values()){
             System.out.println(tarjetaPais.obtenerTipo());

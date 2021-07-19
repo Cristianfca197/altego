@@ -4,10 +4,11 @@ import java.util.*;
 
 public class Tablero {
 
+    private final ArrayList<Pais> paises;
     private HashMap<String, Continente> continentes = new HashMap<String, Continente>();
 
     public Tablero(){
-
+        this.paises = new ArrayList<Pais>();
     }
     
     public boolean existeContinente(String unContinente){
@@ -21,5 +22,8 @@ public class Tablero {
     public void crearContinente(String unContinente){
         this.continentes.put(unContinente, new Continente(unContinente));
     }
-    
+    public void agregarPais(Pais unPais){
+        this.paises.add(unPais);
+
+    }
 }
