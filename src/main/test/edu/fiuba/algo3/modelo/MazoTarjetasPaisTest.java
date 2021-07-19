@@ -95,7 +95,7 @@ public class MazoTarjetasPaisTest {
     }
 
     @Test
-    public void test08EsCanjeValidoEsTrueSiTieneUnaTarjetasYDosComodin(){
+    public void test08EsCanjeValidoEsTrueSiTieneUnaTarjetaYDosComodin(){
         Comodin comodin = new Comodin();
         MazoTarjetasPais tarjetas = new MazoTarjetasPais();
         TarjetaPais tarjeta1 = new TarjetaPais(new Canion(), "Argentina");
@@ -108,11 +108,10 @@ public class MazoTarjetasPaisTest {
     }
 
     @Test
-    public void test09EsCanjeValidoEsTrueSiTieneDosTarjetasyComodin(){
-        Canion canion = new Canion();
+    public void test09EsCanjeValidoEsTrueSiTieneDosTarjetasDiferentesyComodin(){
         MazoTarjetasPais tarjetas = new MazoTarjetasPais();
-        TarjetaPais tarjeta1 = new TarjetaPais(canion, "Argentina");
-        TarjetaPais tarjeta2 = new TarjetaPais(canion, "Inglaterra");
+        TarjetaPais tarjeta1 = new TarjetaPais(new Canion(), "Argentina");
+        TarjetaPais tarjeta2 = new TarjetaPais(new Globo(), "Inglaterra");
         TarjetaPais tarjeta3 = new TarjetaPais(new Comodin(), "Japon");
         tarjetas.agregarTarjeta(tarjeta1);
         tarjetas.agregarTarjeta(tarjeta2);
@@ -130,6 +129,43 @@ public class MazoTarjetasPaisTest {
         tarjetas.agregarTarjeta(tarjeta1);
         tarjetas.agregarTarjeta(tarjeta2);
         tarjetas.agregarTarjeta(tarjeta3);
+        assertFalse(tarjetas.esCanjeValido());
+    }
+    @Test
+    public void test11EsCanjeValidoEsFalseSiTieneDosTarjetasDeDosTiposDiferentes(){
+        Canion canion = new Canion();
+        Globo globo = new Globo();
+        MazoTarjetasPais tarjetas = new MazoTarjetasPais();
+        TarjetaPais tarjeta1 = new TarjetaPais(canion, "Argentina");
+        TarjetaPais tarjeta2 = new TarjetaPais(canion, "Inglaterra");
+        TarjetaPais tarjeta3 = new TarjetaPais(globo, "Japon");
+        TarjetaPais tarjeta4 = new TarjetaPais(globo, "Alemania");
+        tarjetas.agregarTarjeta(tarjeta1);
+        tarjetas.agregarTarjeta(tarjeta2);
+        tarjetas.agregarTarjeta(tarjeta3);
+        tarjetas.agregarTarjeta(tarjeta4);
+        assertFalse(tarjetas.esCanjeValido());
+    }
+    @Test
+    public void test12EsCanjeValidoEsFalseSiTieneDosTarjetas(){
+        MazoTarjetasPais tarjetas = new MazoTarjetasPais();
+        TarjetaPais tarjeta1 = new TarjetaPais(new Canion(), "Argentina");
+        TarjetaPais tarjeta2 = new TarjetaPais(new Globo(), "Inglaterra");
+
+        tarjetas.agregarTarjeta(tarjeta1);
+        tarjetas.agregarTarjeta(tarjeta2);
+
+        assertFalse(tarjetas.esCanjeValido());
+    }
+    @Test
+    public void test13EsCanjeValidoEsFalseSiTieneUnaTarjetaYComodin(){
+        MazoTarjetasPais tarjetas = new MazoTarjetasPais();
+        TarjetaPais tarjeta1 = new TarjetaPais(new Canion(), "Argentina");
+        TarjetaPais tarjeta2 = new TarjetaPais(new Comodin(), "Inglaterra");
+
+        tarjetas.agregarTarjeta(tarjeta1);
+        tarjetas.agregarTarjeta(tarjeta2);
+
         assertFalse(tarjetas.esCanjeValido());
     }
 }

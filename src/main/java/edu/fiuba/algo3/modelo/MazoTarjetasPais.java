@@ -19,18 +19,26 @@ public class MazoTarjetasPais {
     }
 
     public boolean esCanjeValido(){
-        if(this.tarjetas.get("Canion").size() >= 3 || this.tarjetas.get("Globo").size() >= 3 || this.tarjetas.get("Barco").size() >= 3){
+        if(this.cantidadCartas()<3){
+            return false;
+        } else if(this.tarjetas.get("Canion").size() >= 3 || this.tarjetas.get("Globo").size() >= 3 || this.tarjetas.get("Barco").size() >= 3){
             return true;
         }else if((this.tarjetas.get("Canion").size() ==2 || this.tarjetas.get("Globo").size() == 2 || this.tarjetas.get("Barco").size() ==2) && this.tarjetas.get("Comodin").size() >= 1){
             return true;
         }
         else if (this.tarjetas.get("Barco").size() >=1 && this.tarjetas.get("Globo").size() >= 1 && this.tarjetas.get("Canion").size() >= 1){
             return true;
-        }else if((this.tarjetas.get("Barco").size() >=1 || this.tarjetas.get("Globo").size() >= 1 || this.tarjetas.get("Canion").size() >= 1) && this.tarjetas.get("Comodin").size() >= 2){
+        }else if((this.tarjetas.get("Barco").size() >=1 || this.tarjetas.get("Globo").size() >= 1 || this.tarjetas.get("Canion").size() >= 1) && this.tarjetas.get("Comodin").size() >= 1){
             return true;
         }
         // ver de mejorarla xq esta fea
         else return false;
+    }
+
+    private int cantidadCartas() {
+        int totalCartas = 0;
+        for (ArrayList tipos: tarjetas.values()){totalCartas += tipos.size();}
+        return totalCartas;
     }
 
     public ArrayList<TarjetaPais> obtenerTarjetas() {
@@ -48,6 +56,7 @@ public class MazoTarjetasPais {
         for(ArrayList tipos: tarjetas.values()){
             if (tipos.size() == 3){
                 while(tipos.size() != 0){tarjetaPais.add((TarjetaPais) tipos.remove(0));}
+                return tarjetaPais;
             }
         }
         if(tarjetas.get("Comodin").size() > 0){tarjetaPais = tarjetas.remove("Comodin");}
