@@ -18,7 +18,7 @@ public class TarjetaPais {
     }
 
     public boolean esDelMismoTipo(TarjetaPais unaTarjeta){
-        return (this.tipo == unaTarjeta.obtenerTipo());
+        return (this.tipo.esIgual(unaTarjeta.obtenerTipo())); /*== unaTarjeta.obtenerTipo());*/
     }
 
     public boolean paisEsDe(Jugador unJugador){

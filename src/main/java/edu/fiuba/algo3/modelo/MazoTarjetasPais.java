@@ -55,9 +55,7 @@ public class MazoTarjetasPais {
     }
 
     public ArrayList<TarjetaPais> obtenerTarjetas() {
-        ArrayList<TarjetaPais> lista= new ArrayList<>(); //ver de devolver un MazoTarjetaPais EnLugarDeUnaLista
-        for(TarjetaPais i :tarjetas){ lista.add(i); }   //para rehusar codigo
-        tarjetas.removeAll(lista); // en vez de sacarlas y eliminarlas debe devolverlas al juego
-        return lista;//Pendiente que devuelva una lista que pueda hacer una canje
+       if(tarjetas.size() == 3){return new ArrayList<TarjetaPais>(tarjetas);}
+       if(tarjetas.size() >= 3){}
     }
 }

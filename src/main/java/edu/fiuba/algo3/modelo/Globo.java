@@ -19,5 +19,10 @@ public class Globo implements TipoTarjeta {
     public boolean esBarco(){
         return false;
     }
+
+    @Override
+    public boolean esIgual(TipoTarjeta unTipo) {
+        return unTipo.esGlobo();
+    }
     
 }

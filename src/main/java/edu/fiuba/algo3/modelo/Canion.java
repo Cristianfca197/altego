@@ -20,5 +20,10 @@ public class Canion implements TipoTarjeta {
     public boolean esBarco(){
         return false;
     }
+
+    @Override
+    public boolean esIgual(TipoTarjeta unTipo) {
+        return unTipo.esCanion();
+    }
     
 }

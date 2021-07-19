@@ -108,4 +108,19 @@ public class CanjeTest {
         canje.realizarCanje(listaDeTarjetas);
         assertEquals(20, canje.realizarCanje(listaDeTarjetas));
     }
+    @Test
+    public void test07PrimerCanjeDeTresPaisesConSimboloYDosComodinesEsPosible (){
+        Comodin comodin = new Comodin();
+        TarjetaPais primertarjeta = new TarjetaPais(new Globo(), "Chile");
+        TarjetaPais segundaTarjeta = new TarjetaPais(comodin, "Inglaterra");
+        TarjetaPais terceTarjeta = new TarjetaPais(comodin, "Japon");
+        ArrayList <TarjetaPais> listaDeTarjetas = new ArrayList<>();
+        listaDeTarjetas.add(primertarjeta);
+        listaDeTarjetas.add(segundaTarjeta);
+        listaDeTarjetas.add(terceTarjeta);
+        PrimerCanje canje = new PrimerCanje();
+        canje.realizarCanje(listaDeTarjetas);
+        assertEquals(4, canje.realizarCanje(listaDeTarjetas));
+    }
+
 }

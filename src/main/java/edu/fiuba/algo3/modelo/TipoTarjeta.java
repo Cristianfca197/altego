@@ -7,4 +7,5 @@ public interface TipoTarjeta {
     public boolean esBarco();
     public void agregarseALista(MazoTarjetasPais listaTarjetas);
 
+    boolean esIgual(TipoTarjeta obtenerTipo);
 }

@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Continente {
     private String nombre;
-    private HashMap<String, Pais> paises = new HashMap<String, Pais>();
+    private HashMap<String, Pais> paises = new HashMap<>();
 
     public Continente(String unNombre){
         this.nombre = unNombre;
@@ -15,8 +15,11 @@ public class Continente {
             this.paises.put(unPais.obtenerNombre(), unPais);
     }
 
-
-    public String getNombre(){
+    public String obtenerNombre(){
         return this.nombre;
+    }
+
+    public Collection<Pais>obtenerPaises(){
+        return paises.values();
     }
 }

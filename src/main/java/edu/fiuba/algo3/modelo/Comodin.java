@@ -18,7 +18,9 @@ public class Comodin implements TipoTarjeta{
     }
 
     @Override
-    public void agregarseALista(MazoTarjetasPais listaTarjetas) {
-        listaTarjetas.agregarComodin();
+    public void agregarseALista(MazoTarjetasPais listaTarjetas) { listaTarjetas.agregarComodin(); }
+    @Override
+    public boolean esIgual(TipoTarjeta unTipo) {
+        return true;
     }
 }

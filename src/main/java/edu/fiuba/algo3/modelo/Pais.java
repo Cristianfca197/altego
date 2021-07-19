@@ -84,7 +84,7 @@ public class Pais {
     }
 
     public String continenteNombre() {
-        return this.continente.getNombre();
+        return this.continente.obtenerNombre();
     }
 
     public ArrayList<Pais> obtenerLimitrofes() {
