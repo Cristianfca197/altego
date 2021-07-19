@@ -24,6 +24,25 @@ public class Tablero {
     }
     public void agregarPais(Pais unPais){
         this.paises.add(unPais);
-
+    }
+    public int obtenerPaisesJugador(Jugador unJugador){
+        int cantidadPaises = 0;
+        for (int i = 0; i < paises.size(); i++) {
+            if (paises.get(i).obtenerFicha().esIgualA(unJugador.obtenerFicha())){
+                cantidadPaises ++;
+            }
+        }
+        return cantidadPaises;
+    }
+    public ArrayList<Continente> obtenerContinentes(){
+        return  new ArrayList<Continente>(this.continentes.values());
+    }
+    public int fichasContinente(Jugador unJugador){
+        int cantidadEjercitos = 0;
+        ArrayList<Continente> listaContinentes = this.obtenerContinentes();
+        for (int i = 0; i < listaContinentes.size(); i++) {
+            cantidadEjercitos = listaContinentes.get(i).jugadorAgregaEjercitos(unJugador);
+        }
+        return cantidadEjercitos;
     }
 }

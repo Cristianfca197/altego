@@ -36,4 +36,16 @@ public class TableroTest {
         Tablero unTablero = new Tablero();
         assertNull(unTablero.obtenerContinente("America"));
     }
+
+    @Test
+    public void test06CantidadDePaisesJugadorEsCorrecta(){
+        Juego juego = new Juego(2);
+        Jugador jugador = juego.obtenerJugador(1);
+
+        juego.repartirPaises();
+        juego.ocuparTablero();
+        int cantidadPaises = juego.obtenerTablero().obtenerPaisesJugador(jugador);
+        assertEquals(25, cantidadPaises);
+
+    }
 }

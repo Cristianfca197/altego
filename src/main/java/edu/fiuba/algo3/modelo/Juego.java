@@ -35,8 +35,16 @@ public class Juego {
     }
     public void ocuparTablero(){
         for (int i = 0; i < listaJugadores.size(); i++) {
-            listaJugadores.get(i).ocuparPaises();
+            ArrayList<TarjetaPais> tarjetas = listaJugadores.get(i).ocuparPaises();
+            this.guardarTarjetas(tarjetas);
+
         }
+    }
+    public void guardarTarjetas(ArrayList<TarjetaPais> tarjetas){
+        for (int i = 0; i < tarjetas.size(); i++) {
+            this.tarjetasDePais.put(tarjetas.get(i).obtenerPais().obtenerNombre(), tarjetas.get(i));
+        }
+
     }
     public void entregarTarjetas(){
         for (TarjetaPais tarjetaPais: this.tarjetasDePais.values()){
@@ -58,9 +66,28 @@ public class Juego {
             System.out.println("-----------------");
         }
     }
+    public void turnoDeColocacion(){
 
+        for (int i = 0; i < this.cantidadDeJugadores(); i++) {
+            int cantidadEjercitos = 0;
+            Jugador jugador = this.listaJugadores.get(i);
+            cantidadEjercitos = this.obtenerEjercitos(jugador);
+            jugador.colocarEjercitos(cantidadEjercitos);
+        }
+    }
+    public int obtenerEjercitos(Jugador jugador){
+        int cantidadPaises = 0;
+        cantidadPaises = this.tablero.obtenerPaisesJugador(jugador);
 
+        return (this.tablero.fichasContinente(jugador) + cantidadPaises/2);
+    }
     public Integer cantidadDeJugadores() {
         return this.listaJugadores.size();
+    }
+    public Jugador obtenerJugador(int numeroDeJugador){
+        return this.listaJugadores.get(numeroDeJugador -1);
+    }
+    public Tablero obtenerTablero(){
+        return this.tablero;
     }
 }

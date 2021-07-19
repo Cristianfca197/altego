@@ -36,10 +36,16 @@ public class Jugador {
         this.canje = this.canje.actualizarCanje();
         return ejercitosAgregar;
     }
-    public void ocuparPaises(){
+    public ArrayList<TarjetaPais> ocuparPaises(){
         ArrayList<TarjetaPais> tarjetas = this.listaTarjetas.obtenerTarjetas();
         for (int i = 0; i < tarjetas.size() ; i++) {
             tarjetas.get(i).obtenerPais().asignarJugador(this);
         }
+        return tarjetas;
+    }
+    public void colocarEjercitos(int cantidadDeEjercitos){
+        // elegir q ejercitos pedir
+        // decidir si activar tarjeta pais
+        //decidir si hacer canje
     }
 }
