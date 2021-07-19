@@ -36,4 +36,10 @@ public class Jugador {
         this.canje = this.canje.actualizarCanje();
         return ejercitosAgregar;
     }
+    public void ocuparPaises(){
+        ArrayList<TarjetaPais> tarjetas = this.listaTarjetas.obtenerTarjetas();
+        for (int i = 0; i < tarjetas.size() ; i++) {
+            tarjetas.get(i).obtenerPais().asignarJugador(this);
+        }
+    }
 }

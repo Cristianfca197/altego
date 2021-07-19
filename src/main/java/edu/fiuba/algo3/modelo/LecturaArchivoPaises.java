@@ -64,6 +64,7 @@ public class LecturaArchivoPaises {
             this.tablero.crearContinente(continente);
 
         unPais.perteneceAlContinente(this.tablero.obtenerContinente(continente));
+        tablero.agregarPais(unPais);
         
         for(String i : paisesLimitrofes){
             unPais.sonLimitrofesEntre(tarjetasPaises.get(i).obtenerPais());

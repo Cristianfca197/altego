@@ -14,13 +14,24 @@ import org.json.simple.parser.ParseException;
 
 public class LecturaArchivoTarjetas {
 
+    private final Globo globo;
+    private final Comodin comodin;
+    private final Canion canion;
+    private final Barco barco;
+
     private HashMap<String, TarjetaPais> tarjetasPais;
 
-    public LecturaArchivoTarjetas(){}
+    public LecturaArchivoTarjetas(){
+        this.globo = new Globo();
+        this.comodin = new Comodin();
+        this.canion = new Canion();
+        this.barco = new Barco();
+    }
     
     public boolean leerArchivos() {
 
         this.tarjetasPais = new HashMap<>();
+
 
         @SuppressWarnings("unchecked")
         JSONParser jsonParser = new JSONParser();
@@ -60,16 +71,16 @@ public class LecturaArchivoTarjetas {
         
         switch (simbolo){
             case "Globo": 
-                this.tarjetasPais.put(pais, new TarjetaPais(new Globo(), pais));
+                this.tarjetasPais.put(pais, new TarjetaPais(this.globo, pais));
                 break;
             case "Barco":
-                this.tarjetasPais.put(pais, new TarjetaPais(new Barco(), pais));
+                this.tarjetasPais.put(pais, new TarjetaPais(this.barco, pais));
                 break;
             case "Cañon": 
-                this.tarjetasPais.put(pais, new TarjetaPais(new Canion(), pais));
+                this.tarjetasPais.put(pais, new TarjetaPais(this.canion, pais));
                 break;
             default:
-                this.tarjetasPais.put(pais, new TarjetaPais(new Comodin(), pais));
+                this.tarjetasPais.put(pais, new TarjetaPais(this.comodin, pais));
         }
     }
 

@@ -15,8 +15,11 @@ public class Continente {
             this.paises.put(unPais.obtenerNombre(), unPais);
     }
 
-
     public String getNombre(){
         return this.nombre;
+    }
+
+    public Pais obtenerPais(String nombrePais){
+        return this.paises.get(nombrePais);
     }
 }

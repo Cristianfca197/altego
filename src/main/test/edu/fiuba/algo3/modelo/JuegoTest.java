@@ -14,5 +14,10 @@ public class JuegoTest {
         Juego juego = new Juego(2);
         juego.entregarPaises();
     }
-
+    @Test
+    public void test03RepartirPaises(){
+        Juego juego = new Juego(2);
+        juego.repartirPaises();
+        juego.ocuparTablero();
+    }
 }
