@@ -178,4 +178,9 @@ public class JugadorTest {
         hash.put("Argentina", paisesEnemigos);
         jugador.hacerAtaques(pais, hash);
     }
+    @Test
+    public void test12(){
+        Jugador jugador = new Jugador();
+        jugador.colocarEjercitos(2);
+    }
 }
