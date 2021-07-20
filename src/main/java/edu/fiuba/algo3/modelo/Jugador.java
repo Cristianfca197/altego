@@ -52,6 +52,7 @@ public class Jugador {
 
     public void hacerAtaques(Pais paisAtacante,  ArrayList<Pais> paisesQuePuedeAtacarElJugador) {//Se quitarian las excepciones como un refactor
         Pais paisDefensor = paisesQuePuedeAtacarElJugador.get(0);//Ataca al primero por default, el jugador selecciona a cual
-        try { paisAtacante.atacarA(paisDefensor); } catch (ExcepcionAtaqueInvalido excepcionAtaqueInvalido) { excepcionAtaqueInvalido.printStackTrace(); }
+        try { paisAtacante.atacarA(paisDefensor); } catch (ExcepcionAtaqueInvalido excepcionAtaqueInvalido)
+        { excepcionAtaqueInvalido.printStackTrace(); }
     }
 }
