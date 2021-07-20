@@ -19,20 +19,27 @@ public class MazoTarjetasPais {
     }
 
     public boolean esCanjeValido(){
+        Integer cantidadCaniones = this.tarjetas.get("Canion").size();
+        Integer cantidadBarcos = this.tarjetas.get("Barco").size();
+        Integer cantidadGlobos = this.tarjetas.get("Globo").size();
+        Integer cantidadComodines = this.tarjetas.get("Comodin").size();
+
         if(this.cantidadCartas()<3){
             return false;
-        } else if(this.tarjetas.get("Canion").size() >= 3 || this.tarjetas.get("Globo").size() >= 3 || this.tarjetas.get("Barco").size() >= 3){
+        } else if(this.hayPorLoMenosTresTarjetasIguales(cantidadCaniones,cantidadGlobos, cantidadBarcos, cantidadComodines)){
             return true;
-        }else if((this.tarjetas.get("Canion").size() ==2 || this.tarjetas.get("Globo").size() == 2 || this.tarjetas.get("Barco").size() ==2) && this.tarjetas.get("Comodin").size() >= 1){
+        }else if(hayPorLoMenosDosIgualesYUnComodin(cantidadCaniones,cantidadGlobos, cantidadBarcos, cantidadComodines)){
             return true;
         }
-        else if (this.tarjetas.get("Barco").size() >=1 && this.tarjetas.get("Globo").size() >= 1 && this.tarjetas.get("Canion").size() >= 1){
+        else if (hayPorLoMenosTresTarjetasDistintas(cantidadCaniones, cantidadGlobos, cantidadBarcos, cantidadComodines)){
             return true;
-        }else if((this.tarjetas.get("Barco").size() >=1 || this.tarjetas.get("Globo").size() >= 1 || this.tarjetas.get("Canion").size() >= 1) && this.tarjetas.get("Comodin").size() >= 1){
+        }else if(hayPorLoMenosDosTarjetasDistintasYUnComodin(cantidadCaniones, cantidadGlobos, cantidadBarcos, cantidadComodines)){
+            return true;
+        } else if(hayPorLoMenosDosComodinesYOtraCarta(cantidadCaniones, cantidadGlobos, cantidadBarcos, cantidadComodines)) {
             return true;
         }
         // ver de mejorarla xq esta fea
-        else return false;
+        return false;
     }
 
     private int cantidadCartas() {
@@ -52,24 +59,50 @@ public class MazoTarjetasPais {
     }
 
     public ArrayList<TarjetaPais> obtenerTarjetasParaCanje() {
-        ArrayList<TarjetaPais> tarjetaPais = new ArrayList<>();
+        ArrayList<TarjetaPais> tarjetasParaCanje = new ArrayList<>();
+
         for(ArrayList tipos: tarjetas.values()){
             if (tipos.size() == 3){
-                while(tipos.size() != 0){tarjetaPais.add((TarjetaPais) tipos.remove(0));}
-                return tarjetaPais;
+                while(tipos.size() != 0){tarjetasParaCanje.add((TarjetaPais) tipos.remove(0));}
+                return tarjetasParaCanje;
             }
         }
-        if(tarjetas.get("Comodin").size() > 0){tarjetaPais = tarjetas.remove("Comodin");}
-        while (tarjetaPais.size() != 3) {
+        if(tarjetas.get("Comodin").size() > 0){tarjetasParaCanje = tarjetas.remove("Comodin");}
+        
+        while (tarjetasParaCanje.size() != 3) {
             for(ArrayList tipos: tarjetas.values()){
-                while(tipos.size() != 0 && tarjetaPais.size() != 3) {
-                    tarjetaPais.add((TarjetaPais) tipos.remove(0));
+                while(tipos.size() != 0 && tarjetasParaCanje.size() != 3) {
+                    tarjetasParaCanje.add((TarjetaPais) tipos.remove(0));
                 }
             }
         }
+        /*
         for(ArrayList tipos:tarjetas.values()) {
-            if(tipos.size() != 0){tarjetaPais.add((TarjetaPais) tipos.remove(0));}
+            if(tipos.size() != 0){tarjetasParaCanje.add((TarjetaPais) tipos.remove(0));}
         }
-        return tarjetaPais;
+            pisa lo de arriba
+        */
+
+        return tarjetasParaCanje;
+    }
+
+    private Boolean hayPorLoMenosTresTarjetasIguales(Integer caniones, Integer globos, Integer barcos, Integer comodines) {
+        return caniones >= 3 || globos >= 3 || barcos >= 3;
+    }
+
+    private Boolean hayPorLoMenosDosIgualesYUnComodin(Integer caniones, Integer globos, Integer barcos, Integer comodines) {
+        return ((caniones ==2 || globos == 2 || barcos ==2) && comodines >= 1);
+    }
+    
+    private Boolean hayPorLoMenosTresTarjetasDistintas(Integer caniones, Integer globos, Integer barcos, Integer comodines) {
+        return (barcos >=1 && globos >= 1 && caniones >= 1);
+    }
+
+    private Boolean hayPorLoMenosDosTarjetasDistintasYUnComodin(Integer caniones, Integer globos, Integer barcos, Integer comodines) {
+        return ((barcos >=1 || globos >= 1 || caniones >= 1) && comodines >= 1);
+    }
+
+    private Boolean hayPorLoMenosDosComodinesYOtraCarta(Integer caniones, Integer globos, Integer barcos, Integer comodines) {
+        return ((barcos >=1 || globos >= 1 || caniones >= 1) && comodines >= 2);
     }
 }

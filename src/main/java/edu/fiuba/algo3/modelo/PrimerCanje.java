@@ -6,8 +6,9 @@ public class PrimerCanje implements Canje{
 
     public PrimerCanje(){ }
 
-    public int realizarCanje(ArrayList<TarjetaPais> tarjetasPais) {
-        if(tarjetasPais.size() != 3){return 0;}//Cambiar a un execepcion CanjeInvalido
+    public int realizarCanje(ArrayList<TarjetaPais> tarjetasPais) throws ExcepcionCanjeInvalido{
+        if(tarjetasPais.size() != 3){throw new ExcepcionCanjeInvalido("El canje solo se puede realizar con tres tarjetas");}
+
         TarjetaPais primerTarjeta = tarjetasPais.get(0);
         TarjetaPais segundaTarjeta = tarjetasPais.get(1);
         TarjetaPais tercerTarjeta = tarjetasPais.get(2);
@@ -18,7 +19,7 @@ public class PrimerCanje implements Canje{
             && !segundaTarjeta.esDelMismoTipo(tercerTarjeta)) {
             return 4;
         }
-        return 0;
+        else { throw new ExcepcionCanjeInvalido("El canje es inválido");}
 
     }
     public Canje actualizarCanje(){

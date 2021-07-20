@@ -94,8 +94,8 @@ public class JuegoTest {
         assertEquals(6, pais1.cantidadDeEjercitos());
 
     }
-    /*
-    VER Q NO ANDA BIEN EL CANJE
+    
+    //VER Q NO ANDA BIEN EL CANJE
     @Test
     public void test08RondaDeColocacionDeEjercitos2JugadoresUnoRealizaMultiplesCanjes(){
         Juego juego = new Juego(2);
@@ -120,11 +120,12 @@ public class JuegoTest {
         juego.entregarTarjeta(jugador1, tarjeta1);
         juego.entregarTarjeta(jugador1, tarjeta2);
         juego.entregarTarjeta(jugador1, tarjeta3);
+        /*
         cantidadEjercitos = jugador1.realizarCanje();
         assertEquals(7, cantidadEjercitos);
 
-        VER Q NO ANDA BIEN EL CANJE
+        //VER Q NO ANDA BIEN EL CANJE*/
     }
 
-     */
+     
 }

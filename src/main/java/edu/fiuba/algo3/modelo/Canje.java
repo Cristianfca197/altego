@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface Canje {
 
-    public int realizarCanje(ArrayList<TarjetaPais> tarjetasPais);
+    public int realizarCanje(ArrayList<TarjetaPais> tarjetasPais) throws ExcepcionCanjeInvalido;
     public Canje actualizarCanje();
 
 }

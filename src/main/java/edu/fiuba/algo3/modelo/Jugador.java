@@ -34,8 +34,13 @@ public class Jugador {
     public int realizarCanje() {
         int ejercitosAgregar = 0;
         if (listaTarjetas.esCanjeValido()) {
-            ejercitosAgregar = canje.realizarCanje(listaTarjetas.obtenerTarjetasParaCanje());
-            this.canje = this.canje.actualizarCanje();
+            try {
+                ejercitosAgregar = canje.realizarCanje(listaTarjetas.obtenerTarjetasParaCanje());
+                this.canje = this.canje.actualizarCanje();
+            } catch (ExcepcionCanjeInvalido excepcionCanjeInvalido) { 
+                System.out.println("Canje invalido, cantidad de tarjetas incorrecta"); 
+            }
+            
         }
         return ejercitosAgregar;
     }
