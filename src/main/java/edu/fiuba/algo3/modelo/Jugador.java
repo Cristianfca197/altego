@@ -50,11 +50,8 @@ public class Jugador {
         //decidir si hacer canje
     }
 
-    public void hacerAtaques(Pais pais, HashMap<String, ArrayList<Pais>> paisesQuePuedeAtacarElJugador) {
-        //Decidir con cual atacar y a cual
-        //hacer el ataque, seguir atacando si se desea
-        //Depende de los respuestas del jugador
-        Pais unPais = paisesQuePuedeAtacarElJugador.get(pais.obtenerNombre()).get(0);
-        try { pais.atacarA(unPais); } catch (ExcepcionAtaqueInvalido excepcionAtaqueInvalido) { excepcionAtaqueInvalido.printStackTrace(); }
+    public void hacerAtaques(Pais paisAtacante,  ArrayList<Pais> paisesQuePuedeAtacarElJugador) {//Se quitarian las excepciones como un refactor
+        Pais paisDefensor = paisesQuePuedeAtacarElJugador.get(0);//Ataca al primero por default, el jugador selecciona a cual
+        try { paisAtacante.atacarA(paisDefensor); } catch (ExcepcionAtaqueInvalido excepcionAtaqueInvalido) { excepcionAtaqueInvalido.printStackTrace(); }
     }
 }

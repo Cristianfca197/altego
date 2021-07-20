@@ -93,9 +93,13 @@ public class Juego {
 
     public void turnoAtacar(){
         for(Jugador jugador: this.listaJugadores){
-            HashMap<String, ArrayList<Pais>> paisesQuePuedeAtacarElJugador = this.obtenerPaisesQuePuedeAtacar(jugador);
-
-            //jugador.hacerAtaques(tarjetasDePais.get(AlgunaClave).obtenerPais(), paisesQuePuedeAtacarElJugador);
+            boolean seguirAtacando = true;
+            while (seguirAtacando) {
+                HashMap<String, ArrayList<Pais>> paisesQuePuedeAtacarElJugador = this.obtenerPaisesQuePuedeAtacar(jugador);
+                String unaClave = "unPais"; //El jugador selecciona una clave de las de arriba para saber el pais atacante
+                jugador.hacerAtaques(tarjetasDePais.get(unaClave).obtenerPais(), paisesQuePuedeAtacarElJugador.get(unaClave));
+                seguirAtacando = false; //preguntar al jugador si quiere hace otro ataque
+            }
         }
     }
 

@@ -175,7 +175,7 @@ public class JugadorTest {
 
         HashMap<String, ArrayList<Pais>> hash = new HashMap<>();
 
-        hash.put("Argentina", paisesEnemigos);
-        jugador.hacerAtaques(pais, hash);
+        hash.put(pais.obtenerNombre(), paisesEnemigos);
+        jugador.hacerAtaques(pais, hash.get(pais.obtenerNombre()));
     }
 }
