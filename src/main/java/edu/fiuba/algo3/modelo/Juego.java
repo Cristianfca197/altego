@@ -79,12 +79,18 @@ public class Juego {
         }
     }
     public void turnoDeColocacion(){
-
+        ArrayList<TarjetaPais> tarjetasCanje = new ArrayList<TarjetaPais>();
         for (int i = 0; i < this.cantidadDeJugadores(); i++) {
             int cantidadEjercitos = 0;
             Jugador jugador = this.listaJugadores.get(i);
             cantidadEjercitos = this.obtenerEjercitos(jugador);
-            jugador.colocarEjercitos(cantidadEjercitos);
+            jugador.colocarEjercitos(cantidadEjercitos, tarjetasCanje);
+            this.devolverTarjetas(tarjetasCanje);
+        }
+    }
+    public void devolverTarjetas(ArrayList<TarjetaPais> tarjetasPais){
+        for (TarjetaPais tarjeta: tarjetasPais){
+            this.tarjetasDePais.put(tarjeta.obtenerPais().obtenerNombre(), tarjeta);
         }
     }
     public int obtenerEjercitos(Jugador jugador){

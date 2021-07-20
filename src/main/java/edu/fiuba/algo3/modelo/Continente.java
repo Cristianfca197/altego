@@ -2,9 +2,10 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.*;
 
-public class Continente {
+public abstract class Continente {
     private String nombre;
     private HashMap<String, Pais> paises = new HashMap<>();
+    private  int cantidadEjercitosExtra;
 
     public Continente(String unNombre){
         this.nombre = unNombre;
@@ -26,6 +27,9 @@ public class Continente {
 
     public Pais obtenerPais(String unPais) { return paises.get(unPais);
     }
+    abstract int cantidadEjercitosExtra();
+
+
     public int jugadorAgregaEjercitos(Jugador unJugador){
         for(Pais pais : this.obtenerPaises()){
             if(!(pais.obtenerFicha().esIgualA((unJugador.obtenerFicha())))){
@@ -33,6 +37,6 @@ public class Continente {
             }
         }
 
-        return 4;
+        return this.cantidadEjercitosExtra;
     }
 }

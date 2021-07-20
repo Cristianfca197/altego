@@ -14,27 +14,27 @@ public class TableroTest {
     @Test
     public void test02CrearUnContinenteLoGuardaCorrectamente(){
         Tablero unTablero = new Tablero();
-        unTablero.crearContinente("America");
-        assertTrue(unTablero.existeContinente("America"));
+        unTablero.crearContinente("America del Sur");
+        assertTrue(unTablero.existeContinente("America del Sur"));
     }
 
     @Test
     public void test03ExisteContinenteEsFalsoSiNoEstaGuardado(){
         Tablero unTablero = new Tablero();
-        assertFalse(unTablero.existeContinente("America"));
+        assertFalse(unTablero.existeContinente("America  del Sur"));
     }
 
     @Test
     public void test04ObtenerUnContinenteDevuelveElContinenteCorrecto(){
         Tablero unTablero = new Tablero();
-        unTablero.crearContinente("America");
-        assertEquals("America", unTablero.obtenerContinente("America").obtenerNombre());
+        unTablero.crearContinente("America del Sur");
+        assertEquals("America del Sur", unTablero.obtenerContinente("America del Sur").obtenerNombre());
     }
 
     @Test
     public void test05ObtenerUnContinenteDevuelveNullSiNoExisteElContinente(){
         Tablero unTablero = new Tablero();
-        assertNull(unTablero.obtenerContinente("America"));
+        assertNull(unTablero.obtenerContinente("America  del Sur"));
     }
 
     @Test

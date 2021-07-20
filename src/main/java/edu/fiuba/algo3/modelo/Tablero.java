@@ -20,7 +20,24 @@ public class Tablero {
     }
 
     public void crearContinente(String unContinente){
-        this.continentes.put(unContinente, new Continente(unContinente));
+        if(unContinente.equals("America del Norte")) {
+            this.continentes.put(unContinente, new AmericaDelNorte(unContinente));
+        }
+        if(unContinente.equals("Africa")) {
+            this.continentes.put(unContinente, new Africa(unContinente));
+        }
+        if(unContinente.equals("America del Sur")) {
+            this.continentes.put(unContinente, new AmericaDelSur(unContinente));
+        }
+        if(unContinente.equals("Asia")) {
+            this.continentes.put(unContinente, new Asia(unContinente));
+        }
+        if(unContinente.equals("Oceania")) {
+            this.continentes.put(unContinente, new Oceania(unContinente));
+        }
+        if(unContinente.equals("Europa")) {
+            this.continentes.put(unContinente, new Europa(unContinente));
+        }
     }
     public void agregarPais(Pais unPais){
         this.paises.add(unPais);

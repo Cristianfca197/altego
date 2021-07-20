@@ -31,11 +31,12 @@ public class Jugador {
         pais.colocarEjercitos(cantidadDeEjercitos, this.obtenerFicha());
 
     }
-    public int realizarCanje() {
+    public int realizarCanje(ArrayList<TarjetaPais> tarjetasCanje) {//version seleccion automatica
         int ejercitosAgregar = 0;
         if (listaTarjetas.esCanjeValido()) {
             try {
-                ejercitosAgregar = canje.realizarCanje(listaTarjetas.obtenerTarjetasParaCanje());
+                tarjetasCanje = listaTarjetas.obtenerTarjetasParaCanje();
+                ejercitosAgregar = canje.realizarCanje(tarjetasCanje);
                 this.canje = this.canje.actualizarCanje();
             } catch (ExcepcionCanjeInvalido excepcionCanjeInvalido) { 
                 System.out.println("Canje invalido, cantidad de tarjetas incorrecta"); 
@@ -44,6 +45,19 @@ public class Jugador {
         }
         return ejercitosAgregar;
     }
+    public int canjearTarjetas(ArrayList<TarjetaPais> tarjetas){//version seleccion manual
+        int ejercitosAgregar = 0;
+
+            try {
+                ejercitosAgregar = canje.realizarCanje(tarjetas);
+                this.canje = this.canje.actualizarCanje();
+            } catch (ExcepcionCanjeInvalido excepcionCanjeInvalido) {
+                System.out.println("Canje invalido, cantidad de tarjetas incorrecta");
+            }
+
+        return ejercitosAgregar;
+    }
+
     public ArrayList<TarjetaPais> ocuparPaises(){
         ArrayList<TarjetaPais> tarjetas = this.listaTarjetas.obtenerTarjetas();
         for (int i = 0; i < tarjetas.size() ; i++) {
@@ -51,11 +65,11 @@ public class Jugador {
         }
         return tarjetas;
     }
-    public void colocarEjercitos(int cantidadDeEjercitos){ //para version final automatizada
+    public void colocarEjercitos(int cantidadDeEjercitos, ArrayList<TarjetaPais> tarjetasCanje){ //para version final automatizada
        // System.out.println("Jugador:" + this.nombre);
         System.out.println("Desea activar una tarjeta de pais?");
-        cantidadDeEjercitos += this.realizarCanje();
-        //this.activarTarjetaPais();
+        cantidadDeEjercitos += this.realizarCanje(tarjetasCanje); //falta devolver al juego las tarjetas usadas en canje x eso se rompia
+        //this.activarTarjetaPais();                //si elige el jugador el metodo es canjearTarjetas
         // elegir q ejercitos pedir
     }
     public void activarTarjetaPais(TarjetaPais unaTarjetaPais) {
@@ -73,5 +87,7 @@ public class Jugador {
         { excepcionAtaqueInvalido.printStackTrace(); }
 
     }
-
+    public Canje obtenerCanje(){
+        return this.canje;
+    }
 }

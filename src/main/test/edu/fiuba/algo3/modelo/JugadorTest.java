@@ -50,6 +50,7 @@ public class JugadorTest {
     }
     @Test
     public void test05JugadorHacePrimerCanjeYRecibeCuatroEjercitos(){
+        ArrayList<TarjetaPais> tarjetasCanje = new ArrayList<TarjetaPais>();
         Jugador unJugador = new Jugador();
         TarjetaPais tarjetaPais1 = new TarjetaPais(new Canion(), "Brasil");
         TarjetaPais tarjetaPais2 = new TarjetaPais(new Canion(), "Inglaterra");
@@ -57,10 +58,11 @@ public class JugadorTest {
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        assertEquals(4,unJugador.realizarCanje());
+        assertEquals(4,unJugador.realizarCanje(tarjetasCanje));
     }
     @Test
     public void test06JugadorHaceSegundoCanjeYRecibeSieteEjercitos(){
+        ArrayList<TarjetaPais> tarjetasCanje = new ArrayList<TarjetaPais>();
         Jugador unJugador = new Jugador();
         TarjetaPais tarjetaPais1 = new TarjetaPais(new Canion(), "Brasil");
         TarjetaPais tarjetaPais2 = new TarjetaPais(new Canion(), "Inglaterra");
@@ -68,85 +70,91 @@ public class JugadorTest {
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        unJugador.realizarCanje();
+        unJugador.realizarCanje(tarjetasCanje);
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        assertEquals(7,unJugador.realizarCanje());
+        assertEquals(7,unJugador.realizarCanje(tarjetasCanje));
     }
     @Test
     public void test07JugadorHaceTercerCanjeYRecibeDiezEjercitos(){
         Jugador unJugador = new Jugador();
+        ArrayList<TarjetaPais> tarjetasCanje = new ArrayList<TarjetaPais>();
+
         TarjetaPais tarjetaPais1 = new TarjetaPais(new Canion(), "Brasil");
         TarjetaPais tarjetaPais2 = new TarjetaPais(new Canion(), "Inglaterra");
         TarjetaPais tarjetaPais3 = new TarjetaPais(new Canion(), "España");
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        unJugador.realizarCanje();
+        unJugador.realizarCanje(tarjetasCanje);
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        unJugador.realizarCanje();
+        unJugador.realizarCanje(tarjetasCanje);
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        assertEquals(10,unJugador.realizarCanje());
+        assertEquals(10,unJugador.realizarCanje(tarjetasCanje));
     }
     @Test
     public void test08JugadorHaceCuartoCanjeYRecibeQuinceEjercitos(){
         Jugador unJugador = new Jugador();
+        ArrayList<TarjetaPais> tarjetasCanje = new ArrayList<TarjetaPais>();
         TarjetaPais tarjetaPais1 = new TarjetaPais(new Canion(), "Brasil");
         TarjetaPais tarjetaPais2 = new TarjetaPais(new Canion(), "Inglaterra");
         TarjetaPais tarjetaPais3 = new TarjetaPais(new Canion(), "España");
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        unJugador.realizarCanje();
+        unJugador.realizarCanje(tarjetasCanje);
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        unJugador.realizarCanje();
+        unJugador.realizarCanje(tarjetasCanje);
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        unJugador.realizarCanje();
+        unJugador.realizarCanje(tarjetasCanje);
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        assertEquals(15,unJugador.realizarCanje());
+        assertEquals(15,unJugador.realizarCanje(tarjetasCanje));
     }
     @Test
     public void test09JugadorHaceQuintoCanjeYRecibeVeinteEjercitos(){
         Jugador unJugador = new Jugador();
+        ArrayList<TarjetaPais> tarjetasCanje = new ArrayList<TarjetaPais>();
         TarjetaPais tarjetaPais1 = new TarjetaPais(new Canion(), "Brasil");
         TarjetaPais tarjetaPais2 = new TarjetaPais(new Canion(), "Inglaterra");
         TarjetaPais tarjetaPais3 = new TarjetaPais(new Canion(), "España");
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        unJugador.realizarCanje();
+        unJugador.realizarCanje(tarjetasCanje);
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        unJugador.realizarCanje();
+        unJugador.realizarCanje(tarjetasCanje);
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        unJugador.realizarCanje();
+        unJugador.realizarCanje(tarjetasCanje);
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        unJugador.realizarCanje();
+        unJugador.realizarCanje(tarjetasCanje);
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        assertEquals(20,unJugador.realizarCanje());
+        assertEquals(20,unJugador.realizarCanje(tarjetasCanje));
     }
     @Test
     public void test10JugadorHacePrimerCanjeYColocaLosNuevosEjercitosCorrectamente(){
         Jugador unJugador = new Jugador();
         Pais unPais = new Pais("Argentina");
+        ArrayList<TarjetaPais> tarjetasCanje = new ArrayList<TarjetaPais>();
+
         unPais.asignarJugador(unJugador);
         TarjetaPais tarjetaPais1 = new TarjetaPais(new Canion(), "Brasil");
         TarjetaPais tarjetaPais2 = new TarjetaPais(new Canion(), "Inglaterra");
@@ -154,7 +162,7 @@ public class JugadorTest {
         unJugador.obtenerTarjeta(tarjetaPais1);
         unJugador.obtenerTarjeta(tarjetaPais2);
         unJugador.obtenerTarjeta(tarjetaPais3);
-        unJugador.colocarEjercitosCanje(unJugador.realizarCanje(), unPais);
+        unJugador.colocarEjercitosCanje(unJugador.realizarCanje(tarjetasCanje), unPais);
         assertEquals(5, unPais.cantidadDeEjercitos());
     }
     @Test
@@ -181,6 +189,8 @@ public class JugadorTest {
     @Test
     public void test12(){
         Jugador jugador = new Jugador();
-        jugador.colocarEjercitos(2);
+        ArrayList<TarjetaPais> tarjetasCanje = new ArrayList<TarjetaPais>();
+
+        jugador.colocarEjercitos(2, tarjetasCanje);
     }
 }

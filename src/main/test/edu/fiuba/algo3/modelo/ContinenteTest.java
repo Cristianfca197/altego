@@ -10,19 +10,19 @@ public class ContinenteTest {
 
     @Test
     public void test01ContinenteSeCreaCorrectamente(){
-        Continente unContinente = new Continente("America");
+        Continente unContinente = new AmericaDelNorte("America");
         assertNotNull(unContinente);
     }
 
     @Test
     public void test02ContinenteDevuelveElNombreCorrectamente(){
-        Continente unContinente = new Continente("America");
+        Continente unContinente = new AmericaDelSur("America");
         assertEquals("America", unContinente.obtenerNombre());
     }
 
     @Test
     public void test03ContinenteGuardaCorrectamenteUnPaisYDevuelveElPais(){
-        Continente unContinente = new Continente("America");
+        Continente unContinente = new AmericaDelNorte("America");
         Pais unPais = new Pais("Argentina");
         unContinente.aniadirPais(unPais);
         assertEquals(unPais, unContinente.obtenerPais("Argentina"));
@@ -30,7 +30,7 @@ public class ContinenteTest {
 
     @Test
     public void test04ContinenteDevulveUnaColeccionConLosPaises(){
-        Continente unContinente = new Continente("America");
+        Continente unContinente = new AmericaDelNorte("America");
         Pais unPais = new Pais("Argentina");
         Pais otroPais = new Pais("Colombia");
         unContinente.aniadirPais(unPais);

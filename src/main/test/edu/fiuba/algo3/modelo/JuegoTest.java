@@ -94,15 +94,15 @@ public class JuegoTest {
         assertEquals(6, pais1.cantidadDeEjercitos());
 
     }
-    
-    //VER Q NO ANDA BIEN EL CANJE
+
     @Test
-    public void test08RondaDeColocacionDeEjercitos2JugadoresUnoRealizaMultiplesCanjes(){
+    public void test08RondaDeColocacionDeEjercitos2JugadoresUnoRealizaMultiplesCanjes()throws ExcepcionCanjeInvalido{
         Juego juego = new Juego(2);
         juego.repartirPaisesCondicionesConocidas();
         juego.ocuparTablero();
         int cantidadEjercitos = 0;
-        ArrayList<TarjetaPais> tarjetasCanje;
+        ArrayList<TarjetaPais> tarjetas = new ArrayList<TarjetaPais>();
+
         Jugador jugador1 = juego.obtenerJugador(1);
         Jugador jugador2 = juego.obtenerJugador(2);
 
@@ -110,21 +110,16 @@ public class JuegoTest {
         TarjetaPais tarjeta2 = juego.obtenerTarjeta("Francia");
         TarjetaPais tarjeta3 = juego.obtenerTarjeta("Chile");
 
-        juego.entregarTarjeta(jugador1, tarjeta1);
-        juego.entregarTarjeta(jugador1, tarjeta2);
-        juego.entregarTarjeta(jugador1, tarjeta3);
-        cantidadEjercitos = jugador1.realizarCanje();
+        tarjetas.add(tarjeta1);
+        tarjetas.add(tarjeta2);
+        tarjetas.add(tarjeta3);
 
+        cantidadEjercitos = jugador1.canjearTarjetas(tarjetas);
         assertEquals(4, cantidadEjercitos);
 
-        juego.entregarTarjeta(jugador1, tarjeta1);
-        juego.entregarTarjeta(jugador1, tarjeta2);
-        juego.entregarTarjeta(jugador1, tarjeta3);
-        /*
-        cantidadEjercitos = jugador1.realizarCanje();
+        cantidadEjercitos = jugador1.canjearTarjetas(tarjetas);
         assertEquals(7, cantidadEjercitos);
 
-        //VER Q NO ANDA BIEN EL CANJE*/
     }
 
      
