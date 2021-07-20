@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Jugador {
     private final Ficha ficha;
@@ -9,6 +10,7 @@ public class Jugador {
     private Canje canje;
 
     public Jugador(){
+
         this.ficha = new Ficha();
         this.listaTarjetas = new MazoTarjetasPais();
         this.canje =  new PrimerCanje();
@@ -33,8 +35,8 @@ public class Jugador {
         int ejercitosAgregar = 0;
         if (listaTarjetas.esCanjeValido()) {
             ejercitosAgregar = canje.realizarCanje(listaTarjetas.obtenerTarjetasParaCanje());
+            this.canje = this.canje.actualizarCanje();
         }
-        this.canje = this.canje.actualizarCanje();
         return ejercitosAgregar;
     }
     public ArrayList<TarjetaPais> ocuparPaises(){
@@ -44,15 +46,27 @@ public class Jugador {
         }
         return tarjetas;
     }
-    public void colocarEjercitos(int cantidadDeEjercitos){
+    public void colocarEjercitos(int cantidadDeEjercitos){ //para version final automatizada
+       // System.out.println("Jugador:" + this.nombre);
+        System.out.println("Desea activar una tarjeta de pais?");
+        cantidadDeEjercitos += this.realizarCanje();
+        //this.activarTarjetaPais();
         // elegir q ejercitos pedir
-        // decidir si activar tarjeta pais
-        //decidir si hacer canje
     }
-
+    public void activarTarjetaPais(TarjetaPais unaTarjetaPais) {
+        try {
+            unaTarjetaPais.activarTarjeta(this);
+        } catch (ExcepcionActivacionTarjetaInvalido e) {
+            System.out.println("Activacion invalida vuelva a intentar");
+        }
+    }
     public void hacerAtaques(Pais paisAtacante,  ArrayList<Pais> paisesQuePuedeAtacarElJugador) {//Se quitarian las excepciones como un refactor
         Pais paisDefensor = paisesQuePuedeAtacarElJugador.get(0);//Ataca al primero por default, el jugador selecciona a cual
-        try { paisAtacante.atacarA(paisDefensor); } catch (ExcepcionAtaqueInvalido excepcionAtaqueInvalido)
+        try {
+            paisAtacante.atacarA(paisDefensor);
+        } catch (ExcepcionAtaqueInvalido excepcionAtaqueInvalido)
         { excepcionAtaqueInvalido.printStackTrace(); }
+
     }
+
 }
