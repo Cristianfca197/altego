@@ -27,12 +27,12 @@ public class Continente {
     public Pais obtenerPais(String unPais) { return paises.get(unPais);
     }
     public int jugadorAgregaEjercitos(Jugador unJugador){
-        ArrayList<Pais> paises = (ArrayList<Pais>) this.obtenerPaises();
-        for (int i = 0; i < paises.size(); i++){
-            if(! (paises.get(i).obtenerFicha().esIgualA(unJugador.obtenerFicha()))){
+        for(Pais pais : this.obtenerPaises()){
+            if(!(pais.obtenerFicha().esIgualA((unJugador.obtenerFicha())))){
                 return 0;
             }
         }
+
         return 4;
     }
 }

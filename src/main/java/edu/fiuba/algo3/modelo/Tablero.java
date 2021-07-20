@@ -47,4 +47,14 @@ public class Tablero {
         }
         return cantidadEjercitos;
     }
+
+    public Pais obtenerPais(String nombrePais){
+        for (Pais pais: this.paises) {
+            if (pais.obtenerNombre().equals(nombrePais)){
+                return pais;
+            }
+        }
+        /// sino excepcion esto es para q deje compilar x ahora
+        return paises.get(0);
+    }
 }

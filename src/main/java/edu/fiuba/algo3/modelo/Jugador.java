@@ -35,8 +35,8 @@ public class Jugador {
         int ejercitosAgregar = 0;
         if (listaTarjetas.esCanjeValido()) {
             ejercitosAgregar = canje.realizarCanje(listaTarjetas.obtenerTarjetasParaCanje());
+            this.canje = this.canje.actualizarCanje();
         }
-        this.canje = this.canje.actualizarCanje();
         return ejercitosAgregar;
     }
     public ArrayList<TarjetaPais> ocuparPaises(){
@@ -46,7 +46,7 @@ public class Jugador {
         }
         return tarjetas;
     }
-    public void colocarEjercitos(int cantidadDeEjercitos){
+    public void colocarEjercitos(int cantidadDeEjercitos){ //para version final automatizada
        // System.out.println("Jugador:" + this.nombre);
         System.out.println("Desea activar una tarjeta de pais?");
         cantidadDeEjercitos += this.realizarCanje();

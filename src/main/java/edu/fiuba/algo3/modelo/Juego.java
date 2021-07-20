@@ -19,7 +19,19 @@ public class Juego {
         if (cargarTarjetas.leerArchivos()){ this.tarjetasDePais = cargarTarjetas.getTarjetas(); }
         cargarPaises.leerArchivo(this.tarjetasDePais, this.tablero);
     }
-    public void repartirPaises(){
+    public TarjetaPais obtenerTarjeta(String nombreTarjeta){
+        return tarjetasDePais.get(nombreTarjeta);
+    }
+    public void repartirPaisesCondicionesConocidas(){ //condicionesControladasParaTesteo
+        int i = 0;
+        while(this.tarjetasDePais.size() > 0) {
+            List<TarjetaPais> tarjetas = new ArrayList<TarjetaPais>(tarjetasDePais.values());
+            TarjetaPais tarjeta = tarjetas.get(0);
+            this.entregarTarjeta(listaJugadores.get(i% listaJugadores.size()), tarjeta);
+            i ++;
+        }
+    }
+    public void repartirPaises(){ //forma aleatoria para juego final
         int i = 0;
         while(this.tarjetasDePais.size() > 0) {
             List<TarjetaPais> tarjetas = new ArrayList<TarjetaPais>(tarjetasDePais.values());
@@ -114,4 +126,5 @@ public class Juego {
         }
         return paises;
     }
+
 }
