@@ -25,7 +25,8 @@ public class Tablero {
     public void agregarPais(Pais unPais){
         this.paises.add(unPais);
     }
-    public int obtenerPaisesJugador(Jugador unJugador){
+
+    public int obtenerCantidadPaisesJugador(Jugador unJugador){
         int cantidadPaises = 0;
         for (int i = 0; i < paises.size(); i++) {
             if (paises.get(i).obtenerFicha().esIgualA(unJugador.obtenerFicha())){
@@ -37,6 +38,7 @@ public class Tablero {
     public ArrayList<Continente> obtenerContinentes(){
         return  new ArrayList<Continente>(this.continentes.values());
     }
+
     public int fichasContinente(Jugador unJugador){
         int cantidadEjercitos = 0;
         ArrayList<Continente> listaContinentes = this.obtenerContinentes();

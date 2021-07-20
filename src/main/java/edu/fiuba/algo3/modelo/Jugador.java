@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Jugador {
     private final Ficha ficha;
@@ -47,5 +48,13 @@ public class Jugador {
         // elegir q ejercitos pedir
         // decidir si activar tarjeta pais
         //decidir si hacer canje
+    }
+
+    public void hacerAtaques(Pais pais, HashMap<String, ArrayList<Pais>> paisesQuePuedeAtacarElJugador) {
+        //Decidir con cual atacar y a cual
+        //hacer el ataque, seguir atacando si se desea
+        //Depende de los respuestas del jugador
+        Pais unPais = paisesQuePuedeAtacarElJugador.get(pais.obtenerNombre()).get(0);
+        try { pais.atacarA(unPais); } catch (ExcepcionAtaqueInvalido excepcionAtaqueInvalido) { excepcionAtaqueInvalido.printStackTrace(); }
     }
 }

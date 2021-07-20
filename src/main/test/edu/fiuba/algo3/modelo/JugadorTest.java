@@ -1,6 +1,10 @@
 package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class JugadorTest {
@@ -152,5 +156,26 @@ public class JugadorTest {
         unJugador.obtenerTarjeta(tarjetaPais3);
         unJugador.colocarEjercitosCanje(unJugador.realizarCanje(), unPais);
         assertEquals(5, unPais.cantidadDeEjercitos());
+    }
+    @Test
+    public void test11JugadorHaceAtaquesDelJuego(){
+        Pais pais = new Pais("Argentina");
+        Pais unPais = new Pais("Brasil");
+        Jugador jugador = new Jugador();
+        Jugador unJugador = new Jugador();
+
+        pais.asignarJugador(jugador);
+        unPais.asignarJugador(unJugador);
+        pais.sonLimitrofesEntre(unPais);
+        pais.colocarEjercitos(5, jugador.obtenerFicha());
+
+        ArrayList<Pais> paisesEnemigos= new ArrayList<>();
+
+        paisesEnemigos.add(unPais);
+
+        HashMap<String, ArrayList<Pais>> hash = new HashMap<>();
+
+        hash.put("Argentina", paisesEnemigos);
+        jugador.hacerAtaques(pais, hash);
     }
 }

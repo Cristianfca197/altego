@@ -77,7 +77,7 @@ public class Juego {
     }
     public int obtenerEjercitos(Jugador jugador){
         int cantidadPaises = 0;
-        cantidadPaises = this.tablero.obtenerPaisesJugador(jugador);
+        cantidadPaises = this.tablero.obtenerCantidadPaisesJugador(jugador);
 
         return (this.tablero.fichasContinente(jugador) + cantidadPaises/2);
     }
@@ -89,5 +89,29 @@ public class Juego {
     }
     public Tablero obtenerTablero(){
         return this.tablero;
+    }
+
+    public void turnoAtacar(){
+        for(Jugador jugador: this.listaJugadores){
+            HashMap<String, ArrayList<Pais>> paisesQuePuedeAtacarElJugador = this.obtenerPaisesQuePuedeAtacar(jugador);
+
+            //jugador.hacerAtaques(tarjetasDePais.get(AlgunaClave).obtenerPais(), paisesQuePuedeAtacarElJugador);
+        }
+    }
+
+    private HashMap<String, ArrayList<Pais>> obtenerPaisesQuePuedeAtacar(Jugador jugador) {
+        HashMap<String, ArrayList<Pais>> paises = new HashMap<>();
+        for (TarjetaPais tarjeta: tarjetasDePais.values()){
+            Pais unPais = tarjeta.obtenerPais();
+            if(unPais.obtenerFicha() == jugador.obtenerFicha() && unPais.cantidadDeEjercitos() > 1){
+                paises.put(unPais.obtenerNombre(), new ArrayList());
+                for(Pais pais: unPais.obtenerLimitrofes()){
+                    if(pais.obtenerFicha() != unPais.obtenerFicha()){
+                        paises.get(unPais.obtenerNombre()).add(pais);
+                    }
+                }
+            }
+        }
+        return paises;
     }
 }
