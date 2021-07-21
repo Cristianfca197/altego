@@ -22,6 +22,7 @@ public class Juego {
     public TarjetaPais obtenerTarjeta(String nombreTarjeta){
         return tarjetasDePais.get(nombreTarjeta);
     }
+
     public void repartirPaisesCondicionesConocidas(){ //condicionesControladasParaTesteo
         int i = 0;
         while(this.tarjetasDePais.size() > 0) {
@@ -102,9 +103,11 @@ public class Juego {
     public Integer cantidadDeJugadores() {
         return this.listaJugadores.size();
     }
+
     public Jugador obtenerJugador(int numeroDeJugador){
         return this.listaJugadores.get(numeroDeJugador -1);
     }
+
     public Tablero obtenerTablero(){
         return this.tablero;
     }
