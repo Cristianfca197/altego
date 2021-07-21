@@ -39,4 +39,64 @@ public class ContinenteTest {
         assertNotNull(paises);
 
     }
+    @Test
+    public void test05AfricaEsOcupadoPorUnJugadorFichasExtraCorrectas(){
+        Juego juego = new Juego(1);
+        juego.repartirPaisesCondicionesConocidas();
+        juego.ocuparTablero();
+        int cantidadEjercitos = 0;
+
+        Continente continente = juego.obtenerTablero().obtenerContinente("Africa");
+        cantidadEjercitos = continente.jugadorAgregaEjercitos(juego.obtenerJugador(1));
+
+        assertEquals(3, cantidadEjercitos);
+    }
+    @Test
+    public void test06AmericaDelSurEsOcupadoPorUnJugadorFichasExtraCorrectas(){
+        Juego juego = new Juego(1);
+        juego.repartirPaisesCondicionesConocidas();
+        juego.ocuparTablero();
+        int cantidadEjercitos = 0;
+
+        Continente continente = juego.obtenerTablero().obtenerContinente("America del Sur");
+        cantidadEjercitos = continente.jugadorAgregaEjercitos(juego.obtenerJugador(1));
+
+        assertEquals(3, cantidadEjercitos);
+    }
+    @Test
+    public void test07AmericaDelNorteEsOcupadoPorUnJugadorFichasExtraCorrectas(){
+        Juego juego = new Juego(1);
+        juego.repartirPaisesCondicionesConocidas();
+        juego.ocuparTablero();
+        int cantidadEjercitos = 0;
+
+        Continente continente = juego.obtenerTablero().obtenerContinente("America del Norte");
+        cantidadEjercitos = continente.jugadorAgregaEjercitos(juego.obtenerJugador(1));
+
+        assertEquals(5, cantidadEjercitos);
+    }
+    @Test
+    public void test08EuropaEsOcupadoPorUnJugadorFichasExtraCorrectas(){
+        Juego juego = new Juego(1);
+        juego.repartirPaisesCondicionesConocidas();
+        juego.ocuparTablero();
+        int cantidadEjercitos = 0;
+
+        Continente continente = juego.obtenerTablero().obtenerContinente("Europa");
+        cantidadEjercitos = continente.jugadorAgregaEjercitos(juego.obtenerJugador(1));
+
+        assertEquals(5, cantidadEjercitos);
+    }
+    @Test
+    public void test08AsiaEsOcupadoPorUnJugadorFichasExtraCorrectas(){
+        Juego juego = new Juego(1);
+        juego.repartirPaisesCondicionesConocidas();
+        juego.ocuparTablero();
+        int cantidadEjercitos = 0;
+
+        Continente continente = juego.obtenerTablero().obtenerContinente("Asia");
+        cantidadEjercitos = continente.jugadorAgregaEjercitos(juego.obtenerJugador(1));
+
+        assertEquals(7, cantidadEjercitos);
+    }
 }

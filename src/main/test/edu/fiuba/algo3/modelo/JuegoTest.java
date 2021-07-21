@@ -121,6 +121,57 @@ public class JuegoTest {
         assertEquals(7, cantidadEjercitos);
 
     }
+    @Test
+    public void test09RondaDeColocacionDeEjercitos2Jugadores()throws ExcepcionCanjeInvalido{
+        Juego juego = new Juego(2);
+        juego.repartirPaisesCondicionesConocidas();
+        juego.ocuparTablero();
+        int cantidadEjercitos = 0;
+        ArrayList<TarjetaPais> tarjetas = new ArrayList<TarjetaPais>();
 
-     
+        Jugador jugador1 = juego.obtenerJugador(1);
+        Jugador jugador2 = juego.obtenerJugador(2);
+
+        TarjetaPais tarjeta1 = juego.obtenerTarjeta("Iran");
+        TarjetaPais tarjeta2 = juego.obtenerTarjeta("Francia");
+        TarjetaPais tarjeta3 = juego.obtenerTarjeta("Chile");
+
+        tarjetas.add(tarjeta1);
+        tarjetas.add(tarjeta2);
+        tarjetas.add(tarjeta3);
+
+        cantidadEjercitos = jugador1.canjearTarjetas(tarjetas);
+        assertEquals(4, cantidadEjercitos);
+
+        cantidadEjercitos += juego.obtenerEjercitos(jugador1);
+        assertEquals(16, cantidadEjercitos);
+
+        cantidadEjercitos = jugador2.canjearTarjetas(tarjetas);
+        cantidadEjercitos += juego.obtenerEjercitos(jugador2);
+        cantidadEjercitos += jugador2.realizarCanje(tarjetas);
+
+        assertEquals(23, cantidadEjercitos);
+
+    }
+    @Test
+    public void test10RondaDeColocacionDeEjercitos2JugadoresUnoTieneOceania()throws ExcepcionCanjeInvalido {
+        Juego juego = new Juego(2);
+        juego.repartirPaisesCondicionesConocidas();
+        juego.ocuparTablero();
+        int cantidadEjercitos = 0;
+
+        Jugador jugador1 = juego.obtenerJugador(1);
+        Jugador jugador2 = juego.obtenerJugador(2);
+        Pais unPais = juego.obtenerTablero().obtenerPais("Java");
+        unPais.asignarJugador(jugador2);
+
+
+        cantidadEjercitos += juego.obtenerEjercitos(jugador1);
+        assertEquals(12, cantidadEjercitos);
+
+        cantidadEjercitos = juego.obtenerEjercitos(jugador2);
+
+        assertEquals(15, cantidadEjercitos);
+
+    }
 }

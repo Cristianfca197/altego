@@ -5,7 +5,6 @@ import java.util.*;
 public abstract class Continente {
     private String nombre;
     private HashMap<String, Pais> paises = new HashMap<>();
-    private  int cantidadEjercitosExtra;
 
     public Continente(String unNombre){
         this.nombre = unNombre;
@@ -36,7 +35,6 @@ public abstract class Continente {
                 return 0;
             }
         }
-
-        return this.cantidadEjercitosExtra;
+        return this.cantidadEjercitosExtra();
     }
 }
