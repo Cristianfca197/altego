@@ -9,12 +9,18 @@ class Pais{
     + eliminarEjercito(): void
     + cambiarFicha(Ficha:unaFicha)
     + ocuparPais(unPais:Pais, cantidadDeEjercitos; Integer)
+    + atacarA(paisEnemigo:Pais):void
 }
 
 class Batalla{
     + combateEntre(atacante:Pais,defensor:Pais): void
     - evaluarDados(atacante:Pais,defensor:Pais):void
     + batallasIndividuales(atacante:Pais,defensor:Pais, dadosAtacante:ArrayList, dadosDefensor:ArrayList):void
+}
+class Tablero{
+    + obtenerCantidadPaisesJugador():int
+    + fichasContinente(unJugador:Jugador):int
+
 }
 Juego *-- Tablero
 Tablero *-- Continente
