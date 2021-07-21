@@ -1,0 +1,25 @@
+@startuml JuegoRondaDeColocacionDeEjercitosEntreDosJugadoresColocacion
+
+
+autonumber
+Actor Actor
+Actor -> Juego : obtenerJugador(1)
+Juego --> Actor : jugador1
+Actor -> Juego : obtenerJugador(2)
+Juego --> Actor : jugador2
+
+Actor -> Juego : obtenerTarjeta("Iran")
+Juego --> Actor: tarjetaIran
+Actor -> Jugador1 : activarTarjetaPais(tarjetaIran)
+Jugador1 -> "tarjetaIran: TarjetaPais" : activarTarjeta(jugador1)
+"tarjetaIran: TarjetaPais" -> "tarjetaIran: TarjetaPais" : obtenerPais()
+"tarjetaIran: TarjetaPais" -> "iran: Pais" : obtenerFicha()
+"iran: Pais" --> "tarjetaIran: TarjetaPais" : fichaJugador1
+"tarjetaIran: TarjetaPais" -> "fichaJugador1: Ficha" : esIgualA(fichaJugador1)
+"fichaJugador1: Ficha" -->  "tarjetaIran: TarjetaPais" : true
+"tarjetaIran: TarjetaPais" -> Jugador1 : colocarEjercitosEn(2,Iran: Pais)
+Jugador1 -> "iran: Pais": colocarEjercitos(2, fichaJugador1)
+
+"tarjetaIran: TarjetaPais" -> "tarjetaIran: TarjetaPais" : this.estaActivada = true
+
+@enduml
