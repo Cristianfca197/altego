@@ -1,8 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 public class Jugador {
     private final Ficha ficha;

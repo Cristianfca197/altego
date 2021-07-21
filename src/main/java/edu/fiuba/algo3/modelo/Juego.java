@@ -126,7 +126,7 @@ public class Juego {
         for (TarjetaPais tarjeta: tarjetasDePais.values()){
             Pais unPais = tarjeta.obtenerPais();
             if(unPais.obtenerFicha() == jugador.obtenerFicha() && unPais.cantidadDeEjercitos() > 1){
-                paises.put(unPais.obtenerNombre(), new ArrayList());
+                paises.put(unPais.obtenerNombre(), new ArrayList<>());
                 for(Pais pais: unPais.obtenerLimitrofes()){
                     if(pais.obtenerFicha() != unPais.obtenerFicha()){
                         paises.get(unPais.obtenerNombre()).add(pais);

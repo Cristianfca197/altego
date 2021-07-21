@@ -4,8 +4,7 @@ package edu.fiuba.algo3.modelo;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -32,8 +31,6 @@ public class LecturaArchivoTarjetas {
 
         this.tarjetasPais = new HashMap<>();
 
-
-        @SuppressWarnings("unchecked")
         JSONParser jsonParser = new JSONParser();
 
         try (FileReader reader = new FileReader("src/main/archivos_paises/Teg - Cartas.json")) {

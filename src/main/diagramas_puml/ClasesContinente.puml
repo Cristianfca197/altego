@@ -1,8 +1,7 @@
-@startuml
+@startuml ClasesContinente
 
 abstract class Continente{
     - nombre:String
-    - paises: HashMap
     + aniadirPais(unPais:Pais):void
     + obtenerPais(unPais:String):Pais
     +jugadorAgregaEjercitos(unJugador:Jugador):int
