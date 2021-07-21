@@ -197,9 +197,14 @@ public class JuegoTest {
         paisesEnemigos.add(chile);
         paisesEnemigos.add(brasil);
 
-        while (chile.obtenerFicha() != jugador1.obtenerFicha()){ jugador1.hacerAtaques(argentina, paisesEnemigos); }
+        while (chile.obtenerFicha() != jugador1.obtenerFicha()){ 
+            jugador1.hacerAtaques(argentina, paisesEnemigos); 
+        }
         paisesEnemigos.remove(0);
         argentina.colocarEjercitos(20,jugador1.obtenerFicha());
-        while (brasil.obtenerFicha() != jugador1.obtenerFicha()){ jugador1.hacerAtaques(argentina, paisesEnemigos);}
+        while (brasil.obtenerFicha() != jugador1.obtenerFicha()){ 
+            jugador1.hacerAtaques(argentina, paisesEnemigos);
+        }
+
     }
 }
