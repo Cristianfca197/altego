@@ -174,4 +174,32 @@ public class JuegoTest {
         assertEquals(15, cantidadEjercitos);
 
     }
+    @Test
+    public void test11RondaDeAtaqueConDosJugadoresJugador1AtacaYConquistaDosPaisesEnemigos(){
+        Juego juego = new Juego(2);
+        juego.repartirPaisesCondicionesConocidas();
+        juego.ocuparTablero();
+
+        Jugador jugador1 = juego.obtenerJugador(1);
+        Jugador jugador2 = juego.obtenerJugador(2);
+
+        Pais argentina = juego.obtenerTablero().obtenerPais("Argentina");
+        Pais chile = juego.obtenerTablero().obtenerPais("Chile");
+        Pais brasil = juego.obtenerTablero().obtenerPais("Brasil");
+
+        argentina.asignarJugador(jugador1);
+        chile.asignarJugador(jugador2);
+        brasil.asignarJugador(jugador2);
+
+        argentina.colocarEjercitos(20, jugador1.obtenerFicha());
+
+        ArrayList<Pais> paisesEnemigos = new ArrayList<>();
+        paisesEnemigos.add(chile);
+        paisesEnemigos.add(brasil);
+
+        while (chile.obtenerFicha() != jugador1.obtenerFicha()){ jugador1.hacerAtaques(argentina, paisesEnemigos); }
+        paisesEnemigos.remove(0);
+        argentina.colocarEjercitos(20,jugador1.obtenerFicha());
+        while (brasil.obtenerFicha() != jugador1.obtenerFicha()){ jugador1.hacerAtaques(argentina, paisesEnemigos);}
+    }
 }

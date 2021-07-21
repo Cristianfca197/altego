@@ -8,7 +8,7 @@ public class Tablero {
     private HashMap<String, Continente> continentes = new HashMap<String, Continente>();
 
     public Tablero(){
-        this.paises = new ArrayList<Pais>();
+        this.paises = new ArrayList<>();
     }
     
     public boolean existeContinente(String unContinente){
