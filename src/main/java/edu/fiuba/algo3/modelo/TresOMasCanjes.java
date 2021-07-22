@@ -2,11 +2,11 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.ArrayList;
 
-public class CuartoOMasCanjes implements Canje{
+public class TresOMasCanjes implements Canje{
     private Integer cantidadCanjes;
 
-    public CuartoOMasCanjes(){
-        this.cantidadCanjes = 4;
+    public TresOMasCanjes(){
+        this.cantidadCanjes = 3;
     }
 
     public int realizarCanje(ArrayList<TarjetaPais> tarjetasPais) throws ExcepcionCanjeInvalido{

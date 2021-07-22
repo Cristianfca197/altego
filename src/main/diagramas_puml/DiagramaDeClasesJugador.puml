@@ -16,11 +16,7 @@ class SegundoCanje{
     + realizarCanje(tarjetasPais:ArrayList):int
     +actualizarCanje():Canje
 }
-class TercerCanje{
-    + realizarCanje(tarjetasPais:ArrayList):int
-    +actualizarCanje():Canje
-}
-class CuartoOMasCanje{
+class TresOMasCanjes{
     + realizarCanje(tarjetasPais:ArrayList):int
     +actualizarCanje():Canje
 }
@@ -34,8 +30,7 @@ class TarjetaPais{
 Jugador --> Canje
 Canje <|--PrimerCanje
 Canje <|--SegundoCanje
-Canje <|--TercerCanje
-Canje <|--CuartoOMasCanje
+Canje <|--TresOMasCanjes
 
 Jugador --> MazoTarjetasPais
 MazoTarjetasPais --> TarjetaPais

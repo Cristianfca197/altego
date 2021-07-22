@@ -77,7 +77,7 @@ public class JugadorTest {
         assertEquals(7,unJugador.realizarCanje(tarjetasCanje));
     }
     @Test
-    public void test07JugadorHaceTercerCanjeYRecibeDiezEjercitos(){
+    public void test07JugadorHaceTresOMasCanjesYRecibeDiezEjercitos(){
         Jugador unJugador = new Jugador();
         ArrayList<TarjetaPais> tarjetasCanje = new ArrayList<TarjetaPais>();
 

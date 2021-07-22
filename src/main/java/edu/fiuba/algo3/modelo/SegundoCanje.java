@@ -22,6 +22,6 @@ public class SegundoCanje implements Canje{
 
     }
     public Canje actualizarCanje(){
-        return new TercerCanje();
+        return new TresOMasCanjes();
     }
 }
