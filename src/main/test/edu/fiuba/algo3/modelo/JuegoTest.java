@@ -207,4 +207,40 @@ public class JuegoTest {
         }
 
     }
+    @Test
+    public void testJuegoFaseInicialAgregaOchoEjercitoEnElPrimerPaisDelJugador(){
+        Juego juego = new Juego(2);
+        juego.repartirPaisesCondicionesConocidas();
+        juego.ocuparTablero();
+        juego.faseInicial();
+        ArrayList<Pais> paises = juego.obtenerPaises();
+
+        assertNotEquals(paises.get(0).obtenerFicha(), paises.get(1).obtenerFicha());
+
+        assertEquals(9, paises.get(0).cantidadDeEjercitos());//Francia
+        assertEquals(9, paises.get(1).cantidadDeEjercitos());//Gran Bretaña
+    }
+    @Test
+    public void testJuegoFaseAtacar(){
+        Juego juego = new Juego(2);
+        juego.repartirPaisesCondicionesConocidas();
+        juego.ocuparTablero();
+        juego.faseInicial();
+        juego.etapaAtacar();//Francia Ataca a España(37) y Gran Bretaña ataca a Islandia(49)
+    }
+    @Test
+    public void testJuegoPonerEjercitos(){
+        Juego juego = new Juego(2);
+        juego.repartirPaisesCondicionesConocidas();
+        juego.ocuparTablero();
+        juego.faseInicial();
+        juego.etapaAtacar();
+        juego.etapaReagrupar();//pasa de estapa por ahora
+        juego.etapaColocarEjercitos();//coloca los ejercitos en el primer pais Francia y Gran Bretaña
+        for (Pais pais: juego.obtenerPaises()){
+            System.out.println(pais.obtenerNombre());
+            System.out.println(pais.obtenerFicha());
+            System.out.println(pais.cantidadDeEjercitos());
+        }
+    }
 }

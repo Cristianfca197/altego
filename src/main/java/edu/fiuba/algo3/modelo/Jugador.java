@@ -63,7 +63,7 @@ public class Jugador {
         }
         return tarjetas;
     }
-    public void colocarEjercitos(int cantidadDeEjercitos, ArrayList<TarjetaPais> tarjetasCanje){ //para version final automatizada
+    public void colocarEjercitosDeCanje(int cantidadDeEjercitos, ArrayList<TarjetaPais> tarjetasCanje){ //para version final automatizada
         System.out.println("Desea activar una tarjeta de pais?");
         cantidadDeEjercitos += this.realizarCanje(tarjetasCanje); //falta devolver al juego las tarjetas usadas en canje x eso se rompia
         //this.activarTarjetaPais();                //si elige el jugador el metodo es canjearTarjetas
@@ -86,5 +86,22 @@ public class Jugador {
     }
     public Canje obtenerCanje(){
         return this.canje;
+    }
+
+    public Pais escogerUnPais(ArrayList<Pais> listaPaises) {//Devuelve el primer pais que encuentra del jugador
+        int i = 0;
+        while (listaPaises.get(i).obtenerFicha() != this.obtenerFicha()){ i ++;}
+        return listaPaises.get(i);
+    }
+
+    public Pais escogerUnPaisEnemigo(ArrayList<Pais> paisesLimitrofes) {//Devuelve el primer pais enemigo
+        for (Pais pais: paisesLimitrofes){
+            if (this.obtenerFicha() != pais.obtenerFicha()){ return pais; }
+        }
+        return paisesLimitrofes.get(0);
+    }
+
+    public boolean pasarTurno() {
+        return true;
     }
 }

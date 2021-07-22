@@ -29,7 +29,7 @@ public abstract class Continente {
     abstract int cantidadEjercitosExtra();
 
 
-    public int jugadorAgregaEjercitos(Jugador unJugador){
+    public int obtenerEjercitosExtra(Jugador unJugador){
         for(Pais pais : this.obtenerPaises()){
             if(!(pais.obtenerFicha().esIgualA((unJugador.obtenerFicha())))){
                 return 0;

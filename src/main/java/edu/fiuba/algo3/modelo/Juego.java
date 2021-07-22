@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+
 import java.util.*;
 
 public class Juego { 
@@ -9,6 +10,7 @@ public class Juego {
     private LecturaArchivoTarjetas cargarTarjetas = new LecturaArchivoTarjetas();
     private LecturaArchivoPaises cargarPaises = new LecturaArchivoPaises();
     private Tablero tablero;
+    private EtapasJuego etapa;
 
     public Juego(int cantidadJugadores) {
         listaJugadores = new ArrayList<>();
@@ -19,6 +21,15 @@ public class Juego {
         if (cargarTarjetas.leerArchivos()){ this.tarjetasDePais = cargarTarjetas.getTarjetas(); }
         cargarPaises.leerArchivo(this.tarjetasDePais, this.tablero);
     }
+
+    public void faseInicial() {
+        this.repartirPaisesCondicionesConocidas();
+        etapa = new EtapaColocarEjercitosFaseInicial();
+        etapa.iniciarEtapa(listaJugadores, tablero);
+        etapa = new EtapaAtacar();
+    }
+
+
     public TarjetaPais obtenerTarjeta(String nombreTarjeta){
         return tarjetasDePais.get(nombreTarjeta);
     }
@@ -85,7 +96,7 @@ public class Juego {
             int cantidadEjercitos = 0;
             Jugador jugador = this.listaJugadores.get(i);
             cantidadEjercitos = this.obtenerEjercitos(jugador);
-            jugador.colocarEjercitos(cantidadEjercitos, tarjetasCanje);
+            jugador.colocarEjercitosDeCanje(cantidadEjercitos, tarjetasCanje);
             this.devolverTarjetas(tarjetasCanje);
         }
     }
@@ -140,4 +151,21 @@ public class Juego {
         return paises;
     }
 
+    public ArrayList<Pais> obtenerPaises() {
+        return tablero.obtenerPaises();
+    }
+
+    public void etapaAtacar() {
+       etapa.iniciarEtapa(listaJugadores, tablero);
+       etapa = etapa.nuevaEtapa();
+    }
+    public void etapaColocarEjercitos(){
+        etapa.iniciarEtapa(listaJugadores, tablero);
+        etapa = etapa.nuevaEtapa();
+    }
+
+    public void etapaReagrupar() {
+        etapa.iniciarEtapa(listaJugadores, tablero);
+        etapa = etapa.nuevaEtapa();
+    }
 }

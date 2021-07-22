@@ -191,6 +191,6 @@ public class JugadorTest {
         Jugador jugador = new Jugador();
         ArrayList<TarjetaPais> tarjetasCanje = new ArrayList<TarjetaPais>();
 
-        jugador.colocarEjercitos(2, tarjetasCanje);
+        jugador.colocarEjercitosDeCanje(2, tarjetasCanje);
     }
 }

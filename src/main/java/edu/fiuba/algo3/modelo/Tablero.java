@@ -60,7 +60,7 @@ public class Tablero {
         int cantidadEjercitos = 0;
         ArrayList<Continente> listaContinentes = this.obtenerContinentes();
         for (int i = 0; i < listaContinentes.size(); i++) {
-            cantidadEjercitos = listaContinentes.get(i).jugadorAgregaEjercitos(unJugador);
+            cantidadEjercitos = listaContinentes.get(i).obtenerEjercitosExtra(unJugador);
         }
         return cantidadEjercitos;
     }
@@ -73,5 +73,9 @@ public class Tablero {
         }
         /// sino excepcion esto es para q deje compilar x ahora
         return paises.get(0);
+    }
+
+    public ArrayList<Pais> obtenerPaises() {
+        return paises;
     }
 }
