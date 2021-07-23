@@ -1,6 +1,14 @@
 package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
+
+import edu.fiuba.algo3.modelo.continente.Continente;
+import edu.fiuba.algo3.modelo.juego.Pais;
+import edu.fiuba.algo3.modelo.juego.Tablero;
+import edu.fiuba.algo3.modelo.juego.TarjetaPais;
+import edu.fiuba.algo3.modelo.lectura.LecturaArchivoPaises;
+import edu.fiuba.algo3.modelo.lectura.LecturaArchivoTarjetas;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.HashMap;

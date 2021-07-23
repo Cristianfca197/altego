@@ -1,6 +1,14 @@
 package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
+
+import edu.fiuba.algo3.modelo.juego.MazoTarjetasPais;
+import edu.fiuba.algo3.modelo.juego.TarjetaPais;
+import edu.fiuba.algo3.modelo.tipoTarjeta.Barco;
+import edu.fiuba.algo3.modelo.tipoTarjeta.Canion;
+import edu.fiuba.algo3.modelo.tipoTarjeta.Comodin;
+import edu.fiuba.algo3.modelo.tipoTarjeta.Globo;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MazoTarjetasPaisTest {

@@ -2,6 +2,11 @@ package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
 
+import edu.fiuba.algo3.modelo.exception.ExcepcionCanjeInvalido;
+import edu.fiuba.algo3.modelo.juego.Jugador;
+import edu.fiuba.algo3.modelo.juego.Pais;
+import edu.fiuba.algo3.modelo.juego.TarjetaPais;
+
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;

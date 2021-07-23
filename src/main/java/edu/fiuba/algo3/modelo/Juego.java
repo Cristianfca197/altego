@@ -3,6 +3,15 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.*;
 
+import edu.fiuba.algo3.modelo.etapa.EtapaColocarEjercitosFaseInicial;
+import edu.fiuba.algo3.modelo.etapa.EtapasJuego;
+import edu.fiuba.algo3.modelo.juego.Jugador;
+import edu.fiuba.algo3.modelo.juego.Pais;
+import edu.fiuba.algo3.modelo.juego.Tablero;
+import edu.fiuba.algo3.modelo.juego.TarjetaPais;
+import edu.fiuba.algo3.modelo.lectura.LecturaArchivoPaises;
+import edu.fiuba.algo3.modelo.lectura.LecturaArchivoTarjetas;
+
 public class Juego { 
   
     private HashMap<String, TarjetaPais> tarjetasDePais;
@@ -172,6 +181,7 @@ public class Juego {
     public void iniciarEtapa(){
         etapa.iniciarEtapa(listaJugadores, listaJugadores.get(0), tablero);
     }
+
     public void siguienteEtapa(){
         etapa = etapa.nuevaEtapa();
     }

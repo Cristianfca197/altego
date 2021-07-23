@@ -2,6 +2,11 @@ package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
 
+import edu.fiuba.algo3.modelo.continente.AmericaDelNorte;
+import edu.fiuba.algo3.modelo.continente.AmericaDelSur;
+import edu.fiuba.algo3.modelo.continente.Continente;
+import edu.fiuba.algo3.modelo.juego.Pais;
+
 import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.*;

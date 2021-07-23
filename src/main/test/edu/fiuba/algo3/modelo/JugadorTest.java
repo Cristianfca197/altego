@@ -2,6 +2,12 @@ package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
 
+import edu.fiuba.algo3.modelo.exception.ExcepcionActivacionTarjetaInvalido;
+import edu.fiuba.algo3.modelo.juego.Jugador;
+import edu.fiuba.algo3.modelo.juego.Pais;
+import edu.fiuba.algo3.modelo.juego.TarjetaPais;
+import edu.fiuba.algo3.modelo.tipoTarjeta.Canion;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
