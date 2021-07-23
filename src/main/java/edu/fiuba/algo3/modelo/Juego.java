@@ -90,15 +90,31 @@ public class Juego {
             System.out.println("-----------------");
         }
     }
+    /*
     public void turnoDeColocacion(){
         ArrayList<TarjetaPais> tarjetasCanje = new ArrayList<TarjetaPais>();
         for (int i = 0; i < this.cantidadDeJugadores(); i++) {
-            int cantidadEjercitos = 0;
-            Jugador jugador = this.listaJugadores.get(i);
+            int cantidadEjercitos = 0;                                              Se saca por la correccion y
+            Jugador jugador = this.listaJugadores.get(i);                           reemplazo por otros metodos
             cantidadEjercitos = this.obtenerEjercitos(jugador);
             jugador.colocarEjercitosDeCanje(cantidadEjercitos, tarjetasCanje);
             this.devolverTarjetas(tarjetasCanje);
         }
+    }
+    */
+
+    public void activarTarjetaPais(TarjetaPais unaTarjeta, Jugador unJugador){
+        unJugador.activarTarjetaPais(unaTarjeta);
+    }
+    public void realizarCanje(Jugador unJugador,ArrayList<TarjetaPais> cartasCanje){
+        int cantidadEjercitos = unJugador.canjearTarjetas(cartasCanje);
+        unJugador.colocarEjercitosEn(cantidadEjercitos, unJugador.escogerUnPais(tablero.obtenerPaises()));
+        this.devolverTarjetas(cartasCanje);
+    }
+    public void jugadorAtacaDeA(Jugador unJugador, Pais paisAtacante, Pais paisDefensor){
+        unJugador.atacarDeA(paisAtacante, paisDefensor);
+        //si gana
+        //entregarTarjeta(unJugador, tarjeta aleatoria);
     }
     public void devolverTarjetas(ArrayList<TarjetaPais> tarjetasPais){
         for (TarjetaPais tarjeta: tarjetasPais){
@@ -161,6 +177,12 @@ public class Juego {
     }
     public void etapaColocarEjercitos(){
         etapa.iniciarEtapa(listaJugadores, tablero);
+        etapa = etapa.nuevaEtapa();
+    }
+    public void iniciarEtapa(){
+        etapa.iniciarEtapa(listaJugadores, tablero);
+    }
+    public void actualizarEtapa(){
         etapa = etapa.nuevaEtapa();
     }
 

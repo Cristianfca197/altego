@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-public interface TipoTarjeta {
+interface TipoTarjeta {
 
     public boolean esGlobo();
     public boolean esCanion();
