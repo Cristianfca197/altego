@@ -226,7 +226,7 @@ public class JuegoTest {
         juego.repartirPaisesCondicionesConocidas();
         juego.ocuparTablero();
         juego.faseInicial();
-        juego.etapaAtacar();//Francia Ataca a España(37) y Gran Bretaña ataca a Islandia(49)
+        juego.iniciarEtapa();//Francia Ataca a España(37) y Gran Bretaña ataca a Islandia(49)
     }
     @Test
     public void testJuegoPonerEjercitos(){
@@ -234,9 +234,7 @@ public class JuegoTest {
         juego.repartirPaisesCondicionesConocidas();
         juego.ocuparTablero();
         juego.faseInicial();
-        juego.etapaAtacar();
-        juego.etapaReagrupar();//pasa de estapa por ahora
-        juego.etapaColocarEjercitos();//coloca los ejercitos en el primer pais Francia y Gran Bretaña
+        juego.iniciarEtapa();
         for (Pais pais: juego.obtenerPaises()){
             System.out.println(pais.obtenerNombre());
             System.out.println(pais.obtenerFicha());

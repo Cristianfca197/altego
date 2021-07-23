@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class EtapaReagrupar implements EtapasJuego {
     @Override
-    public void iniciarEtapa(ArrayList<Jugador> listaJugadores, Tablero tablero) {
+    public void iniciarEtapa(ArrayList<Jugador> listaJugadores, Jugador jugadorActual, Tablero tablero) {
 
     }
 

@@ -8,7 +8,7 @@ public class EtapaColocarEjercitosFaseInicial implements EtapasJuego {
     }
 
     @Override
-    public void iniciarEtapa(ArrayList<Jugador> listaJugadores, Tablero tablero) {
+    public void iniciarEtapa(ArrayList<Jugador> listaJugadores, Jugador jugadorActual, Tablero tablero) {
         ArrayList<Pais> listaPaises = tablero.obtenerPaises();
         for (Jugador jugador: listaJugadores) {
             jugador.escogerUnPais(listaPaises).colocarEjercitos(5, jugador.obtenerFicha());

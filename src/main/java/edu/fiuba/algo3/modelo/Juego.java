@@ -25,10 +25,8 @@ public class Juego {
     public void faseInicial() {
         this.repartirPaisesCondicionesConocidas();
         etapa = new EtapaColocarEjercitosFaseInicial();
-        etapa.iniciarEtapa(listaJugadores, tablero);
-        etapa = new EtapaAtacar();
+        this.iniciarEtapa();
     }
-
 
     public TarjetaPais obtenerTarjeta(String nombreTarjeta){
         return tarjetasDePais.get(nombreTarjeta);
@@ -171,23 +169,11 @@ public class Juego {
         return tablero.obtenerPaises();
     }
 
-    public void etapaAtacar() {
-       etapa.iniciarEtapa(listaJugadores, tablero);
-       etapa = etapa.nuevaEtapa();
-    }
-    public void etapaColocarEjercitos(){
-        etapa.iniciarEtapa(listaJugadores, tablero);
-        etapa = etapa.nuevaEtapa();
-    }
     public void iniciarEtapa(){
-        etapa.iniciarEtapa(listaJugadores, tablero);
+        etapa.iniciarEtapa(listaJugadores, listaJugadores.get(0), tablero);
     }
-    public void actualizarEtapa(){
+    public void siguienteEtapa(){
         etapa = etapa.nuevaEtapa();
     }
 
-    public void etapaReagrupar() {
-        etapa.iniciarEtapa(listaJugadores, tablero);
-        etapa = etapa.nuevaEtapa();
-    }
 }
