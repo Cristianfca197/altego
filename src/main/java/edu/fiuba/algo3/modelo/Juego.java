@@ -2,8 +2,6 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.*;
 
-import edu.fiuba.algo3.modelo.etapa.EtapaColocarEjercitosFaseInicial;
-import edu.fiuba.algo3.modelo.etapa.EtapasJuego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 import edu.fiuba.algo3.modelo.juego.Tablero;
@@ -16,7 +14,6 @@ public class Juego {
     private HashMap<String, TarjetaPais> tarjetasDePais;
     private final ArrayList<Jugador> listaJugadores;
     private final Tablero tablero;
-    private EtapasJuego etapa;
 
     private Jugador jugadorActual;
     private Jugador ultimoJugador;
@@ -115,7 +112,7 @@ public class Juego {
         ArrayList<String> tarjetas = new ArrayList<>(tarjetasDePais.keySet());
         int numeroRandom = new Random().nextInt(tarjetas.size());
         String claveRandom = tarjetas.get(numeroRandom);
-        jugador.obtenerTarjeta(tarjetasDePais.remove(claveRandom));
+        jugador.agregarTarjeta(tarjetasDePais.remove(claveRandom));
     }
 
     public void tranferirEjercitos(Pais aliado1, Pais aliado2, int cantidadEjercitos) {
@@ -128,52 +125,15 @@ public class Juego {
 
 
     public void entregarTarjeta(Jugador unJugador, TarjetaPais tarjeta){
-        unJugador.obtenerTarjeta(tarjeta);
+        unJugador.agregarTarjeta(tarjeta);
         this.tarjetasDePais.remove(tarjeta.obtenerPais().obtenerNombre());
     }
 
-    public void entregarTarjetas(){
-        for (TarjetaPais tarjetaPais: this.tarjetasDePais.values()){
-            System.out.println(tarjetaPais.obtenerTipo());
-            System.out.println(tarjetaPais.obtenerPais().obtenerNombre());
-        }
-    }
-    public void entregarPaises(){
-        for (TarjetaPais tarjetaPais: this.tarjetasDePais.values()){
-            System.out.println(tarjetaPais.obtenerPais().obtenerNombre());
-            System.out.println(tarjetaPais.obtenerPais().continenteNombre());
-            
-            ArrayList<Pais> limitrofes = tarjetaPais.obtenerPais().obtenerLimitrofes();
-            System.out.printf("Limitrofes de %s:\n",tarjetaPais.obtenerPais().obtenerNombre());
-
-            for (Pais limitrofe: limitrofes){
-                System.out.println(limitrofe.obtenerNombre());
-            }
-            System.out.println("-----------------");
-        }
-    }
-
-    public void activarTarjetaPais(TarjetaPais unaTarjeta, Jugador unJugador){
-        unJugador.activarTarjetaPais(unaTarjeta);
-    }
-    public int realizarCanje(Jugador unJugador,ArrayList<TarjetaPais> cartasCanje){
-        int cantidadEjercitos = unJugador.canjearTarjetas(cartasCanje);
-        this.devolverTarjetas(cartasCanje);
-        return cantidadEjercitos;
-    }
-    public void devolverTarjetas(ArrayList<TarjetaPais> tarjetasPais){
-        for (TarjetaPais tarjeta: tarjetasPais){
-            this.tarjetasDePais.put(tarjeta.obtenerPais().obtenerNombre(), tarjeta);
-        }
-    }
     public int obtenerEjercitos(Jugador jugador){
         int cantidadPaises = 0;
         cantidadPaises = this.tablero.obtenerCantidadPaisesJugador(jugador);
 
         return (this.tablero.fichasContinente(jugador) + cantidadPaises/2);
-    }
-    public Integer cantidadDeJugadores() {
-        return this.listaJugadores.size();
     }
 
     public Jugador obtenerJugador(int numeroDeJugador){
@@ -184,18 +144,11 @@ public class Juego {
         return this.tablero;
     }
 
-    public ArrayList<Pais> obtenerPaises() {
+    public Object obtenerTarjetas() {
+        return tarjetasDePais.values();
+    }
+
+    public Object obtenerPaises() {
         return tablero.obtenerPaises();
     }
-
-    public void iniciarEtapa(){
-        etapa.iniciarEtapa(listaJugadores, listaJugadores.get(0), tablero);
-    }
-
-    public void siguienteEtapa(){
-        etapa = etapa.nuevaEtapa();
-    }
-
-
-
 }

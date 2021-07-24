@@ -20,7 +20,7 @@ public class Jugador {
         this.canje = new PrimerCanje();
     }
 
-    public void obtenerTarjeta(TarjetaPais unaTarjeta) {
+    public void agregarTarjeta(TarjetaPais unaTarjeta) {
         listaTarjetas.agregarTarjeta(unaTarjeta);
     }
 
@@ -34,25 +34,12 @@ public class Jugador {
 
     public void colocarEjercitosCanje(Integer cantidadDeEjercitos, Pais pais) {
         pais.colocarEjercitos(cantidadDeEjercitos, this.obtenerFicha());
-
-    }
-
-    public int realizarCanje(ArrayList<TarjetaPais> tarjetasCanje) {//version seleccion automatica
-        int ejercitosAgregar = 0;
-        if (listaTarjetas.esCanjeValido()) {
-            tarjetasCanje = listaTarjetas.obtenerTarjetasParaCanje();
-            ejercitosAgregar = canje.realizarCanje(tarjetasCanje);
-            this.canje = this.canje.actualizarCanje();
-        }
-        return ejercitosAgregar;
     }
 
     public int canjearTarjetas(ArrayList<TarjetaPais> tarjetas) {//version seleccion manual
         int ejercitosAgregar = 0;
-
         ejercitosAgregar = canje.realizarCanje(tarjetas);
         this.canje = this.canje.actualizarCanje();
-
         return ejercitosAgregar;
     }
 
@@ -64,26 +51,15 @@ public class Jugador {
         return tarjetas;
     }
 
-    public void obtenerEjercitosDeCanje(int cantidadDeEjercitos, ArrayList<TarjetaPais> tarjetasCanje) {
-        cantidadDeEjercitos += this.realizarCanje(tarjetasCanje);
-    }
-
     public void activarTarjetaPais(TarjetaPais unaTarjetaPais) {
-
         unaTarjetaPais.activarTarjeta(this);
-
-    }
-
-    public void hacerAtaques(Pais paisAtacante, ArrayList<Pais> paisesQuePuedeAtacarElJugador) {//Se quitarian las excepciones como un refactor
-        Pais paisDefensor = paisesQuePuedeAtacarElJugador.get(0);//Ataca al primero por default, el jugador selecciona a cual
-        paisAtacante.atacarA(paisDefensor);
-    }
-
-    public Canje obtenerCanje() {
-        return this.canje;
     }
 
     public boolean tieneFicha(Ficha unaficha) {
         return this.ficha.esIgualA(unaficha);
+    }
+
+    public ArrayList<TarjetaPais> obtenerTarjetas() {
+        return listaTarjetas.obtenerTarjetas();
     }
 }
