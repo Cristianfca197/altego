@@ -34,7 +34,7 @@ public abstract class Continente {
 
     public int obtenerEjercitosExtra(Jugador unJugador){
         for(Pais pais : this.obtenerPaises()){
-            if(!(pais.obtenerFicha().esIgualA((unJugador.obtenerFicha())))){
+            if(!pais.perteneceA(unJugador)){
                 return 0;
             }
         }

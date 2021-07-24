@@ -93,4 +93,9 @@ public class Pais {
     public ArrayList<Pais> obtenerLimitrofes() {
         return this.paisesLimitrofes;
     }
+
+    public boolean perteneceA(Jugador unJugador) {
+        return unJugador.tieneFicha(this.ficha);
+    }
+
 }

@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-
 import java.util.*;
 
 import edu.fiuba.algo3.modelo.etapa.EtapaColocarEjercitosFaseInicial;
@@ -15,11 +14,15 @@ import edu.fiuba.algo3.modelo.lectura.LecturaArchivoTarjetas;
 public class Juego { 
   
     private HashMap<String, TarjetaPais> tarjetasDePais;
-    private ArrayList<Jugador> listaJugadores;
-    private LecturaArchivoTarjetas cargarTarjetas = new LecturaArchivoTarjetas();
-    private LecturaArchivoPaises cargarPaises = new LecturaArchivoPaises();
-    private Tablero tablero;
+    private final ArrayList<Jugador> listaJugadores;
+    private final Tablero tablero;
     private EtapasJuego etapa;
+
+    private Jugador jugadorActual;
+    private Jugador ultimoJugador;
+    private EtapaR etapaR;
+    private ArrayList<Jugador> turnos;
+    private int cantidadPaisesJugadorActual;
 
     public Juego(int cantidadJugadores) {
         listaJugadores = new ArrayList<>();
@@ -27,56 +30,108 @@ public class Juego {
         for (int i = 0; i < cantidadJugadores; i++) {
             this.listaJugadores.add(new Jugador());
         }
+        LecturaArchivoTarjetas cargarTarjetas = new LecturaArchivoTarjetas();
         if (cargarTarjetas.leerArchivos()){ this.tarjetasDePais = cargarTarjetas.getTarjetas(); }
+        LecturaArchivoPaises cargarPaises = new LecturaArchivoPaises();
         cargarPaises.leerArchivo(this.tarjetasDePais, this.tablero);
-    }
-
-    public void faseInicial() {
-        this.repartirPaisesCondicionesConocidas();
-        etapa = new EtapaColocarEjercitosFaseInicial();
-        this.iniciarEtapa();
-    }
-
-    public TarjetaPais obtenerTarjeta(String nombreTarjeta){
-        return tarjetasDePais.get(nombreTarjeta);
     }
 
     public void repartirPaisesCondicionesConocidas(){ //condicionesControladasParaTesteo
         int i = 0;
         while(this.tarjetasDePais.size() > 0) {
-            List<TarjetaPais> tarjetas = new ArrayList<TarjetaPais>(tarjetasDePais.values());
+            List<TarjetaPais> tarjetas = new ArrayList<>(tarjetasDePais.values());
             TarjetaPais tarjeta = tarjetas.get(0);
             this.entregarTarjeta(listaJugadores.get(i% listaJugadores.size()), tarjeta);
             i ++;
         }
     }
+
     public void repartirPaises(){ //forma aleatoria para juego final
         int i = 0;
         while(this.tarjetasDePais.size() > 0) {
-            List<TarjetaPais> tarjetas = new ArrayList<TarjetaPais>(tarjetasDePais.values());
+            List<TarjetaPais> tarjetas = new ArrayList<>(tarjetasDePais.values());
             int num = (int)Math.floor(Math.random()*(tarjetasDePais.size()));
             TarjetaPais tarjeta = tarjetas.get(num);
             this.entregarTarjeta(listaJugadores.get(i% listaJugadores.size()), tarjeta);
             i ++;
         }
     }
+
+    public void ocuparTablero(){
+        for (Jugador jugador : listaJugadores) {
+            ArrayList<TarjetaPais> tarjetas = jugador.ocuparPaises();
+            this.guardarTarjetas(tarjetas);
+        }
+    }
+
+    public void guardarTarjetas(ArrayList<TarjetaPais> tarjetas){
+        for (TarjetaPais tarjeta : tarjetas) {
+            this.tarjetasDePais.put(tarjeta.obtenerPais().obtenerNombre(), tarjeta);
+        }
+    }
+
+    public void iniciarJuego(){
+        this.repartirPaisesCondicionesConocidas();
+        this.ocuparTablero();
+        this.turnos = new ArrayList<>(listaJugadores);
+    }
+
+    public void jugar(){
+        jugadorActual = turnos.get(0);
+        this.faseInicial();
+        ultimoJugador = turnos.get(turnos.size()-1);
+    }
+
+    public void faseInicial(){ etapaR = new EtapaRinicial(); }
+
+    public Pais obtenerPais(String pais){   return tablero.obtenerPais(pais); }
+
+    public void colocarCincoEjercitosFaseInicial(Pais pais){
+        etapaR.colocarEjercitos(jugadorActual, pais, 5);
+    }
+
+    public void pasarTurno(){
+        if(jugadorActual == ultimoJugador){ etapaR = etapaR.pasarEtapa(); }
+        turnos.add( turnos.remove(0));
+        jugadorActual = turnos.get(0);
+        cantidadPaisesJugadorActual = tablero.obtenerCantidadPaisesJugador(jugadorActual);
+    }
+
+    public EtapaR obtenerEtapaR() {
+        return etapaR;
+    }
+
+    public void atacarACon(Pais atacante, Pais defensor) {
+        etapaR.AtacarCon(jugadorActual, atacante, defensor);
+    }
+
+    public void terminarAtaques(){
+        if(cantidadPaisesJugadorActual != tablero.obtenerCantidadPaisesJugador(jugadorActual)){
+            this.entregarTarjetaRandom(jugadorActual);
+        }
+        etapaR = new EtapaRReagrupar();
+    }
+    public void entregarTarjetaRandom(Jugador jugador){
+        ArrayList<String> tarjetas = new ArrayList<>(tarjetasDePais.keySet());
+        int numeroRandom = new Random().nextInt(tarjetas.size());
+        String claveRandom = tarjetas.get(numeroRandom);
+        jugador.obtenerTarjeta(tarjetasDePais.remove(claveRandom));
+    }
+
+    public void tranferirEjercitos(Pais aliado1, Pais aliado2, int cantidadEjercitos) {
+        etapaR.tranferirEjercitos(jugadorActual, aliado1, aliado2, cantidadEjercitos);
+    }
+
+    public TarjetaPais obtenerTarjeta(String nombreTarjeta){
+        return tarjetasDePais.get(nombreTarjeta);
+    }
+
+
     public void entregarTarjeta(Jugador unJugador, TarjetaPais tarjeta){
         unJugador.obtenerTarjeta(tarjeta);
         this.tarjetasDePais.remove(tarjeta.obtenerPais().obtenerNombre());
     }
-    public void ocuparTablero(){
-        for (int i = 0; i < listaJugadores.size(); i++) {
-            ArrayList<TarjetaPais> tarjetas = listaJugadores.get(i).ocuparPaises();
-            this.guardarTarjetas(tarjetas);
 
-        }
-    }
-    public void guardarTarjetas(ArrayList<TarjetaPais> tarjetas){
-        for (int i = 0; i < tarjetas.size(); i++) {
-            this.tarjetasDePais.put(tarjetas.get(i).obtenerPais().obtenerNombre(), tarjetas.get(i));
-        }
-
-    }
     public void entregarTarjetas(){
         for (TarjetaPais tarjetaPais: this.tarjetasDePais.values()){
             System.out.println(tarjetaPais.obtenerTipo());
@@ -97,31 +152,14 @@ public class Juego {
             System.out.println("-----------------");
         }
     }
-    /*
-    public void turnoDeColocacion(){
-        ArrayList<TarjetaPais> tarjetasCanje = new ArrayList<TarjetaPais>();
-        for (int i = 0; i < this.cantidadDeJugadores(); i++) {
-            int cantidadEjercitos = 0;                                              Se saca por la correccion y
-            Jugador jugador = this.listaJugadores.get(i);                           reemplazo por otros metodos
-            cantidadEjercitos = this.obtenerEjercitos(jugador);
-            jugador.colocarEjercitosDeCanje(cantidadEjercitos, tarjetasCanje);
-            this.devolverTarjetas(tarjetasCanje);
-        }
-    }
-    */
 
     public void activarTarjetaPais(TarjetaPais unaTarjeta, Jugador unJugador){
         unJugador.activarTarjetaPais(unaTarjeta);
     }
-    public void realizarCanje(Jugador unJugador,ArrayList<TarjetaPais> cartasCanje){
+    public int realizarCanje(Jugador unJugador,ArrayList<TarjetaPais> cartasCanje){
         int cantidadEjercitos = unJugador.canjearTarjetas(cartasCanje);
-        unJugador.colocarEjercitosEn(cantidadEjercitos, unJugador.escogerUnPais(tablero.obtenerPaises()));
         this.devolverTarjetas(cartasCanje);
-    }
-    public void jugadorAtacaDeA(Jugador unJugador, Pais paisAtacante, Pais paisDefensor){
-        unJugador.atacarDeA(paisAtacante, paisDefensor);
-        //si gana
-        //entregarTarjeta(unJugador, tarjeta aleatoria);
+        return cantidadEjercitos;
     }
     public void devolverTarjetas(ArrayList<TarjetaPais> tarjetasPais){
         for (TarjetaPais tarjeta: tarjetasPais){
@@ -139,39 +177,11 @@ public class Juego {
     }
 
     public Jugador obtenerJugador(int numeroDeJugador){
-        return this.listaJugadores.get(numeroDeJugador -1);
+        return this.listaJugadores.get(numeroDeJugador - 1);
     }
 
     public Tablero obtenerTablero(){
         return this.tablero;
-    }
-
-    public void turnoAtacar(){
-        for(Jugador jugador: this.listaJugadores){
-            boolean seguirAtacando = true;
-            while (seguirAtacando) {
-                HashMap<String, ArrayList<Pais>> paisesQuePuedeAtacarElJugador = this.obtenerPaisesQuePuedeAtacar(jugador);
-                String unaClave = "unPais"; //El jugador selecciona una clave de las de arriba para saber el pais atacante
-                jugador.hacerAtaques(tarjetasDePais.get(unaClave).obtenerPais(), paisesQuePuedeAtacarElJugador.get(unaClave));
-                seguirAtacando = false; //preguntar al jugador si quiere hace otro ataque
-            }
-        }
-    }
-
-    private HashMap<String, ArrayList<Pais>> obtenerPaisesQuePuedeAtacar(Jugador jugador) {
-        HashMap<String, ArrayList<Pais>> paises = new HashMap<>();
-        for (TarjetaPais tarjeta: tarjetasDePais.values()){
-            Pais unPais = tarjeta.obtenerPais();
-            if(unPais.obtenerFicha() == jugador.obtenerFicha() && unPais.cantidadDeEjercitos() > 1){
-                paises.put(unPais.obtenerNombre(), new ArrayList<>());
-                for(Pais pais: unPais.obtenerLimitrofes()){
-                    if(pais.obtenerFicha() != unPais.obtenerFicha()){
-                        paises.get(unPais.obtenerNombre()).add(pais);
-                    }
-                }
-            }
-        }
-        return paises;
     }
 
     public ArrayList<Pais> obtenerPaises() {
@@ -185,5 +195,7 @@ public class Juego {
     public void siguienteEtapa(){
         etapa = etapa.nuevaEtapa();
     }
+
+
 
 }

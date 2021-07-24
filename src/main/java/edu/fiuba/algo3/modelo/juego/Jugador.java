@@ -102,29 +102,7 @@ public class Jugador {
         return this.canje;
     }
 
-    public Pais escogerUnPais(ArrayList<Pais> listaPaises) {//Devuelve el primer pais que encuentra del jugador
-        int i = 0;
-        while (listaPaises.get(i).obtenerFicha() != this.obtenerFicha()) {
-            i++;
-        }
-        return listaPaises.get(i);
-    }
-
-    public Pais escogerUnPaisEnemigo(ArrayList<Pais> paisesLimitrofes) {//Devuelve el primer pais enemigo
-        for (Pais pais : paisesLimitrofes) {
-            if (this.obtenerFicha() != pais.obtenerFicha()) {
-                return pais;
-            }
-        }
-        return paisesLimitrofes.get(0);
-    }
-
-    public boolean pasarTurno() {
-        return true;
-    }
-
-    public void atacarDeA(Pais paisAtacante, Pais paisDefensor) {
-        paisAtacante.atacarA(paisDefensor);
-
+    public boolean tieneFicha(Ficha unaficha) {
+        return this.ficha.esIgualA(unaficha);
     }
 }

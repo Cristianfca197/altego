@@ -213,37 +213,68 @@ public class JuegoTest {
 
     }
     @Test
-    public void testJuegoFaseInicialAgregaOchoEjercitoEnElPrimerPaisDelJugador(){
+    public void testJuegoFaseInicialColocacionDeCincoEjercitos(){
         Juego juego = new Juego(2);
-        juego.repartirPaisesCondicionesConocidas();
-        juego.ocuparTablero();
-        juego.faseInicial();
-        ArrayList<Pais> paises = juego.obtenerPaises();
-
-        assertNotEquals(paises.get(0).obtenerFicha(), paises.get(1).obtenerFicha());
-
-        assertEquals(9, paises.get(0).cantidadDeEjercitos());//Francia
-        assertEquals(9, paises.get(1).cantidadDeEjercitos());//Gran Bretaña
+        juego.iniciarJuego();
+        juego.jugar();
+        Pais pais1 = juego.obtenerPais("Gran Bretaña");
+        Pais pais2 = juego.obtenerPais("Francia");
+        juego.colocarCincoEjercitosFaseInicial(pais1);
+        juego.pasarTurno();
+        juego.colocarCincoEjercitosFaseInicial(pais2);
+        juego.pasarTurno();
+        assertEquals(6, pais1.cantidadDeEjercitos());
+        assertEquals(6, pais2.cantidadDeEjercitos());
     }
+
+    @Test
+    public void testJuegoPasarTurnoPaseDeEtapa(){
+        Juego juego = new Juego(2);
+        juego.iniciarJuego();
+        juego.jugar();
+        juego.pasarTurno();
+        juego.pasarTurno();
+        EtapaR etapaActual = juego.obtenerEtapaR();
+        assertEquals( EtapaRAtacar.class, etapaActual.getClass());
+    }
+
     @Test
     public void testJuegoFaseAtacar(){
         Juego juego = new Juego(2);
-        juego.repartirPaisesCondicionesConocidas();
-        juego.ocuparTablero();
-        juego.faseInicial();
-        juego.iniciarEtapa();//Francia Ataca a España(37) y Gran Bretaña ataca a Islandia(49)
+        juego.iniciarJuego();
+        juego.jugar();
+        Pais pais1 = juego.obtenerPais("Gran Bretaña");
+        Pais pais2 = juego.obtenerPais("Francia");
+        juego.colocarCincoEjercitosFaseInicial(pais1);
+        juego.pasarTurno();
+        juego.colocarCincoEjercitosFaseInicial(pais2);
+        juego.pasarTurno();
+        Pais pais3 = juego.obtenerPais("Islandia");
+        juego.atacarACon(pais1, pais3);
+        juego.terminarAtaques();
+        assertEquals(pais1.obtenerFicha(), pais3.obtenerFicha());
+        assertEquals(EtapaRReagrupar.class, juego.obtenerEtapaR().getClass());
     }
     @Test
-    public void testJuegoPonerEjercitos(){
+    public void testJuegoFaseReagrupar(){
         Juego juego = new Juego(2);
-        juego.repartirPaisesCondicionesConocidas();
-        juego.ocuparTablero();
-        juego.faseInicial();
-        juego.iniciarEtapa();
-        for (Pais pais: juego.obtenerPaises()){
-            System.out.println(pais.obtenerNombre());
-            System.out.println(pais.obtenerFicha());
-            System.out.println(pais.cantidadDeEjercitos());
-        }
+        juego.iniciarJuego();
+        juego.jugar();
+        Pais pais1 = juego.obtenerPais("Gran Bretaña");
+        Pais pais2 = juego.obtenerPais("Francia");
+        juego.colocarCincoEjercitosFaseInicial(pais1);
+        juego.pasarTurno();
+        juego.colocarCincoEjercitosFaseInicial(pais2);
+        juego.pasarTurno();
+        //ataques jugador1
+        juego.terminarAtaques();
+        //reagrupar jugador1
+        juego.pasarTurno();
+        //atques jugador2
+        juego.terminarAtaques();
+        //reagrupar jugador2
+        Pais pais3 = juego.obtenerPais("Alemania");
+        juego.tranferirEjercitos(pais2, pais3, 3);
+        assertEquals(4, pais3.cantidadDeEjercitos());
     }
 }
