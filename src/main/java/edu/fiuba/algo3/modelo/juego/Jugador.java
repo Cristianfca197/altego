@@ -40,14 +40,9 @@ public class Jugador {
     public int realizarCanje(ArrayList<TarjetaPais> tarjetasCanje) {//version seleccion automatica
         int ejercitosAgregar = 0;
         if (listaTarjetas.esCanjeValido()) {
-            try {
-                tarjetasCanje = listaTarjetas.obtenerTarjetasParaCanje();
-                ejercitosAgregar = canje.realizarCanje(tarjetasCanje);
-                this.canje = this.canje.actualizarCanje();
-            } catch (ExcepcionCanjeInvalido excepcionCanjeInvalido) {
-                System.out.println("Canje invalido, cantidad de tarjetas incorrecta");
-            }
-
+            tarjetasCanje = listaTarjetas.obtenerTarjetasParaCanje();
+            ejercitosAgregar = canje.realizarCanje(tarjetasCanje);
+            this.canje = this.canje.actualizarCanje();
         }
         return ejercitosAgregar;
     }
@@ -55,12 +50,8 @@ public class Jugador {
     public int canjearTarjetas(ArrayList<TarjetaPais> tarjetas) {//version seleccion manual
         int ejercitosAgregar = 0;
 
-        try {
-            ejercitosAgregar = canje.realizarCanje(tarjetas);
-            this.canje = this.canje.actualizarCanje();
-        } catch (ExcepcionCanjeInvalido excepcionCanjeInvalido) {
-            System.out.println("Canje invalido, cantidad de tarjetas incorrecta");
-        }
+        ejercitosAgregar = canje.realizarCanje(tarjetas);
+        this.canje = this.canje.actualizarCanje();
 
         return ejercitosAgregar;
     }
@@ -78,21 +69,14 @@ public class Jugador {
     }
 
     public void activarTarjetaPais(TarjetaPais unaTarjetaPais) {
-        try {
-            unaTarjetaPais.activarTarjeta(this);
-        } catch (ExcepcionActivacionTarjetaInvalido e) {
-            System.out.println("Activacion invalida vuelva a intentar");
-        }
+
+        unaTarjetaPais.activarTarjeta(this);
+
     }
 
     public void hacerAtaques(Pais paisAtacante, ArrayList<Pais> paisesQuePuedeAtacarElJugador) {//Se quitarian las excepciones como un refactor
         Pais paisDefensor = paisesQuePuedeAtacarElJugador.get(0);//Ataca al primero por default, el jugador selecciona a cual
-        try {
-            paisAtacante.atacarA(paisDefensor);
-        } catch (ExcepcionAtaqueInvalido excepcionAtaqueInvalido) {
-            excepcionAtaqueInvalido.printStackTrace();
-        }
-
+        paisAtacante.atacarA(paisDefensor);
     }
 
     public Canje obtenerCanje() {
