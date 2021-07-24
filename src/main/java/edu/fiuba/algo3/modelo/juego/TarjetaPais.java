@@ -5,8 +5,8 @@ import edu.fiuba.algo3.modelo.tipoTarjeta.TipoTarjeta;
 
 public class TarjetaPais {
 
-    private TipoTarjeta tipo;
-    private Pais pais;
+    private final TipoTarjeta tipo;
+    private final Pais pais;
     private boolean estaActivada;
 
     public TarjetaPais(TipoTarjeta unTipo, String unPais) {

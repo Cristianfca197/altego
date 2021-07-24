@@ -4,9 +4,6 @@ import java.util.*;
 
 import edu.fiuba.algo3.modelo.canje.Canje;
 import edu.fiuba.algo3.modelo.canje.PrimerCanje;
-import edu.fiuba.algo3.modelo.exception.ExcepcionActivacionTarjetaInvalido;
-import edu.fiuba.algo3.modelo.exception.ExcepcionAtaqueInvalido;
-import edu.fiuba.algo3.modelo.exception.ExcepcionCanjeInvalido;
 
 public class Jugador {
     private final Ficha ficha;
@@ -36,8 +33,8 @@ public class Jugador {
         pais.colocarEjercitos(cantidadDeEjercitos, this.obtenerFicha());
     }
 
-    public int canjearTarjetas(ArrayList<TarjetaPais> tarjetas) {//version seleccion manual
-        int ejercitosAgregar = 0;
+    public int canjearTarjetas(ArrayList<TarjetaPais> tarjetas) {
+        int ejercitosAgregar;
         ejercitosAgregar = canje.realizarCanje(tarjetas);
         this.canje = this.canje.actualizarCanje();
         return ejercitosAgregar;
@@ -45,8 +42,8 @@ public class Jugador {
 
     public ArrayList<TarjetaPais> ocuparPaises() {
         ArrayList<TarjetaPais> tarjetas = this.listaTarjetas.obtenerTarjetas();
-        for (int i = 0; i < tarjetas.size(); i++) {
-            tarjetas.get(i).obtenerPais().asignarJugador(this);
+        for (TarjetaPais tarjeta : tarjetas) {
+            tarjeta.obtenerPais().asignarJugador(this);
         }
         return tarjetas;
     }

@@ -10,7 +10,6 @@ public class Pais {
     private Integer ejercitos;
     private Ficha ficha;
     private final ArrayList<Pais> paisesLimitrofes;
-    private TarjetaPais tarjeta;
     private Continente continente;
 
     //pais inicializa sin ejercitos al recibir la tarjeta un jugador le agrega uno marcandolo como suyo
@@ -88,10 +87,6 @@ public class Pais {
 
     public String continenteNombre() {
         return this.continente.obtenerNombre();
-    }
-
-    public ArrayList<Pais> obtenerLimitrofes() {
-        return this.paisesLimitrofes;
     }
 
     public boolean perteneceA(Jugador unJugador) {

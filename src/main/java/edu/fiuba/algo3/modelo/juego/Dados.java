@@ -14,7 +14,7 @@ public class Dados {
          Integer num = (int)Math.floor(Math.random()*(6)+1);
          this.listaDados.add(num);
       }
-      Collections.sort(this.listaDados,Collections.reverseOrder());
+      this.listaDados.sort(Collections.reverseOrder());
    }
 
    public ArrayList<Integer> obtenerDados() { return this.listaDados; }

@@ -13,7 +13,7 @@ import edu.fiuba.algo3.modelo.continente.Oceania;
 public class Tablero {
 
     private final ArrayList<Pais> paises;
-    private HashMap<String, Continente> continentes = new HashMap<String, Continente>();
+    private final HashMap<String, Continente> continentes = new HashMap<>();
 
     public Tablero(){
         this.paises = new ArrayList<>();
@@ -53,22 +53,22 @@ public class Tablero {
 
     public int obtenerCantidadPaisesJugador(Jugador unJugador){
         int cantidadPaises = 0;
-        for (int i = 0; i < paises.size(); i++) {
-            if (paises.get(i).obtenerFicha().esIgualA(unJugador.obtenerFicha())){
-                cantidadPaises ++;
+        for (Pais paise : paises) {
+            if (paise.obtenerFicha().esIgualA(unJugador.obtenerFicha())) {
+                cantidadPaises++;
             }
         }
         return cantidadPaises;
     }
     public ArrayList<Continente> obtenerContinentes(){
-        return  new ArrayList<Continente>(this.continentes.values());
+        return  new ArrayList<>(this.continentes.values());
     }
 
     public int fichasContinente(Jugador unJugador){
         int cantidadEjercitos = 0;
         ArrayList<Continente> listaContinentes = this.obtenerContinentes();
-        for (int i = 0; i < listaContinentes.size(); i++) {
-            cantidadEjercitos = listaContinentes.get(i).obtenerEjercitosExtra(unJugador);
+        for (Continente listaContinente : listaContinentes) {
+            cantidadEjercitos = listaContinente.obtenerEjercitosExtra(unJugador);
         }
         return cantidadEjercitos;
     }

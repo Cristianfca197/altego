@@ -6,8 +6,8 @@ import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 
 public abstract class Continente {
-    private String nombre;
-    private HashMap<String, Pais> paises = new HashMap<>();
+    private final String nombre;
+    private final HashMap<String, Pais> paises = new HashMap<>();
 
     public Continente(String unNombre){
         this.nombre = unNombre;
