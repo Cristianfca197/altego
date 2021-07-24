@@ -73,11 +73,8 @@ public class Jugador {
         return tarjetas;
     }
 
-    public void colocarEjercitosDeCanje(int cantidadDeEjercitos, ArrayList<TarjetaPais> tarjetasCanje) { //para version final automatizada
-        System.out.println("Desea activar una tarjeta de pais?");
-        cantidadDeEjercitos += this.realizarCanje(tarjetasCanje); //falta devolver al juego las tarjetas usadas en canje x eso se rompia
-        //si elige el jugador el metodo es canjearTarjetas
-        // elegir q ejercitos pedir
+    public void obtenerEjercitosDeCanje(int cantidadDeEjercitos, ArrayList<TarjetaPais> tarjetasCanje) {
+        cantidadDeEjercitos += this.realizarCanje(tarjetasCanje);
     }
 
     public void activarTarjetaPais(TarjetaPais unaTarjetaPais) {
