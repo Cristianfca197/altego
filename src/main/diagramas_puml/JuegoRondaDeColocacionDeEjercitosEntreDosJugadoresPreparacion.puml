@@ -1,0 +1,30 @@
+@startuml JuegoRondaDeColocacionDeEjercitosEntreDosJugadoresPreparacion
+
+
+autonumber
+activate "Juego"
+activate "unJugador: Jugador"
+activate "tarjetas: MazoTarjetaPais"
+activate "unaTarjeta: TarjetaPais"
+activate "unPais: Pais"
+Juego -> Juego: repartirPaises()
+loop
+Juego -> Juego: entregarTarjeta(unJugador,unaTarjeta)
+Juego ->"unJugador: Jugador":obtenerTarjeta(unaTarjeta)
+end
+Juego -> Juego: ocuparTablero()
+
+loop
+Juego -> "unJugador: Jugador": ocuparPaises()
+"unJugador: Jugador" -> "tarjetas: MazoTarjetaPais":obtenertarjetas()
+"tarjetas: MazoTarjetaPais" --> "unJugador: Jugador" : tarjetas
+loop
+"unJugador: Jugador" -> "unaTarjeta: TarjetaPais":obtenerPais()
+"unaTarjeta: TarjetaPais" --> "unJugador: Jugador" : unPais
+"unJugador: Jugador" -> "unPais: Pais" : asignarJugador(this)
+end
+"unJugador: Jugador" -> Juego: tarjetasPais
+Juego -> Juego: guardarTarjetas(tarjetasPais)
+end
+
+@enduml

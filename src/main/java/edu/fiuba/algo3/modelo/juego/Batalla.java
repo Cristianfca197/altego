@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.juego;
 
 import java.util.ArrayList;
 
@@ -8,8 +8,8 @@ public class Batalla {
     }
 
     public void combateEntre(Pais atacante, Pais defensor){
-        Dados dadosAtacante = new Dados(atacante.cantidadDeEjercitos()-1);
-        Dados dadosDefensor = new Dados(defensor.cantidadDeEjercitos()-1);
+        Dados dadosAtacante = new Dados(atacante.cantidadDeEjercitos() - 1);
+        Dados dadosDefensor = new Dados(defensor.cantidadDeEjercitos());
         this.batallasIndividuales(atacante, defensor, dadosAtacante.obtenerDados(), dadosDefensor.obtenerDados());
 
     }
@@ -21,6 +21,7 @@ public class Batalla {
             if(dadosAtacante.get(i) > dadosDefensor.get(i)) {
                 defensor.eliminarEjercito();
             }else{
+
                 atacante.eliminarEjercito();
             }
         }

@@ -1,8 +1,8 @@
-@startuml
+@startuml colocarEjercitoEnPaisPropio
 
 
 autonumber
-Actor -> Jugador: colocarEjercitosEn(cantidadDeEjercitos, unPais)
+Juego -> Jugador: colocarEjercitosEn(cantidadDeEjercitos, unPais)
 Jugador -> Pais: colocarEjercitos(cantidadDeEjercitos, unaFicha)
 Pais-> Ficha: esIgualA(unaFicha)
 Pais <-- Ficha:True

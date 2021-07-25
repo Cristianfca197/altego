@@ -1,0 +1,44 @@
+@startuml ClasesContinente
+
+abstract class Continente{
+    - nombre:String
+    + aniadirPais(unPais:Pais):void
+    + obtenerPais(unPais:String):Pais
+    +jugadorAgregaEjercitos(unJugador:Jugador):int
+    +{abstract} cantidadEjercitosExtra():int
+
+}
+class AmericaDelSur{
+    + cantidadEjercitosExtra():int
+}
+class AmericaDelNorte{
+    + cantidadEjercitosExtra():int
+}
+class Europa{
+    + cantidadEjercitosExtra():int
+}
+class Asia{
+    + cantidadEjercitosExtra():int
+}
+class Oceania{
+    + cantidadEjercitosExtra():int
+}
+class Africa{
+    + cantidadEjercitosExtra():int
+}
+
+
+
+Continente <|-- AmericaDelSur
+Continente <|-- AmericaDelNorte
+Continente <|-- Asia
+Continente <|-- Europa
+Continente <|-- Oceania
+Continente <|-- Africa
+
+Continente --> Pais
+Pais --> Ficha
+Pais <-- TarjetaPais
+Pais ..> Dados
+
+@enduml

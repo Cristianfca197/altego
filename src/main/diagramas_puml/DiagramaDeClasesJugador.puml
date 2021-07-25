@@ -1,25 +1,39 @@
 @startuml
 
 class Jugador{
-    + colocarEjercitosEn(cantidadDeEjercitos:Integer, unPais:Pais): void
-    + obtenerFicha():Ficha
-}
-class Ficha{
-    + esIgualA(unaFicha:Ficha):boolean
-}
-Juego o-- Jugador
-Jugador *-- Ficha
-Jugador --> Objetivo
-Jugador -->TarjetaPais
+    + colocarEjercitosEn(unaCantidadEjercitos:Integer, unPais:Pais): void
+    +canjearTarjetas(tarjetas:ArrayList):int
+    +activarTarjetaPais(unaTarjetaPais:TarjetaPais):void
 
-Juego *-- TarjetaPais
-TarjetaPais --> tipoTarjeta
-tipoTarjeta <|-- Barco
-tipoTarjeta <|-- globo
-tipoTarjeta <|-- cañon
+}
+interface Canje{
+}
+class PrimerCanje{
+    + realizarCanje(tarjetasPais:ArrayList):int
+    +actualizarCanje():Canje
+}
+class SegundoCanje{
+    + realizarCanje(tarjetasPais:ArrayList):int
+    +actualizarCanje():Canje
+}
+class TresOMasCanjes{
+    + realizarCanje(tarjetasPais:ArrayList):int
+    +actualizarCanje():Canje
+}
+class TarjetaPais{
+    - estaACtivaada:boolean
+    + activarTarjet():void
+    + paisEsDe(unJugoador:Jugador):boolean
+    + esDelMismoTipo(unaTarjeta:TarjetaPais):boolean
+}
 
-Juego *-- Objetivo
-Juego --> Batalla
+Jugador --> Canje
+Canje <|--PrimerCanje
+Canje <|--SegundoCanje
+Canje <|--TresOMasCanjes
+
+Jugador --> MazoTarjetasPais
+MazoTarjetasPais --> TarjetaPais
 
 
 @enduml

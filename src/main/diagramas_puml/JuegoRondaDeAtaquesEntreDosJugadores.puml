@@ -1,0 +1,49 @@
+@startuml JuegoRondaDeAtaquesEntreDosJugadores
+
+
+autonumber
+Actor TestCase
+loop
+TestCase -> Juego : obtenerJugador(i)
+Juego --> TestCase : jugador i
+end
+
+TestCase -> Argentina : asignarJugador(jugador1)
+TestCase -> Argentina : colocarEjercitos(20, jugador1)
+TestCase -> Brasil : asignarJugador(jugador2)
+TestCase -> Chile : asignarJugador(jugador2)
+
+
+TestCase -> "jugador1 : Jugador" : hacerAtaques(Argentina, chile)
+
+"jugador1 : Jugador" -> Argentina : atacarA(chile)
+Argentina -> Batalla : combateEntre(argentina, chile)
+
+loop
+Batalla -> "dadosAtacante : Dados" : get(numeroDado)
+Batalla <-- "dadosAtacante : Dados" : dado
+Batalla -> "dadosDefensor : Dados" : get(numeroDado)
+Batalla <-- "dadosDefensor : Dados" : dado
+Batalla -> Chile : eliminarEjercito()
+end
+
+Batalla -> Argentina : ocuparPais(chile, cantEjercitos)
+
+TestCase -> "jugador1 : Jugador" : hacerAtaques(Argentina, brasil)
+
+"jugador1 : Jugador" -> Argentina : atacarA(brasil)
+Argentina -> Batalla : combateEntre(argentina, brasil)
+
+loop
+Batalla -> "dadosAtacante : Dados" : get(numeroDado)
+Batalla <-- "dadosAtacante : Dados" : dado
+Batalla -> "dadosDefensor : Dados" : get(numeroDado)
+Batalla <-- "dadosDefensor : Dados" : dado
+Batalla -> Brasil : eliminarEjercito()
+end
+
+Batalla -> Argentina : ocuparPais(chile, cantEjercitos)
+
+
+
+@enduml

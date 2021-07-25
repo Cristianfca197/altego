@@ -1,6 +1,11 @@
 package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
+
+import edu.fiuba.algo3.modelo.exception.ExcepcionAtaqueInvalido;
+import edu.fiuba.algo3.modelo.juego.Jugador;
+import edu.fiuba.algo3.modelo.juego.Pais;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PaisTest {
@@ -8,7 +13,8 @@ public class PaisTest {
     public void test01PaisSeCreaCon1FichaDelJugadorCorrecto(){
         Jugador equipoAzul = new Jugador();
 
-        Pais unPais = new Pais("Argentina", equipoAzul);
+        Pais unPais = new Pais("Argentina");
+        unPais.asignarJugador(equipoAzul);
 
         assertEquals(equipoAzul.obtenerFicha(),unPais.obtenerFicha());
     }
@@ -16,7 +22,8 @@ public class PaisTest {
     public void test02PaisSeCreaCon1Ejercito(){
         Jugador equipoAzul = new Jugador();
 
-        Pais unPais = new Pais("Argentina", equipoAzul);
+        Pais unPais = new Pais("Argentina");
+        unPais.asignarJugador(equipoAzul);
 
        assertEquals(1, unPais.cantidadDeEjercitos());
     }
@@ -24,8 +31,10 @@ public class PaisTest {
     public void test03PaisEsLimitrofeEsTrueConPaisesLimitrofes(){
         Jugador equipoAzul = new Jugador();
 
-        Pais unPais = new Pais("Argentina", equipoAzul);
-        Pais otroPais = new Pais("Brasil", equipoAzul);
+        Pais unPais = new Pais("Argentina");
+        Pais otroPais = new Pais("Brasil");
+        unPais.asignarJugador(equipoAzul);
+        otroPais.asignarJugador(equipoAzul);
 
         unPais.sonLimitrofesEntre(otroPais);
         assertTrue(unPais.esLimitrofeCon(otroPais));
@@ -35,8 +44,10 @@ public class PaisTest {
     public void test04PaisEsLimitrofeEsFalseConPaisesNoLimitrofes(){
         Jugador equipoAzul = new Jugador();
 
-        Pais unPais = new Pais("Argentina", equipoAzul);
-        Pais otroPais = new Pais("Colombia", equipoAzul);
+        Pais unPais = new Pais("Argentina");
+        Pais otroPais = new Pais("Colombia");
+        unPais.asignarJugador(equipoAzul);
+        otroPais.asignarJugador(equipoAzul);
 
         assertFalse(unPais.esLimitrofeCon(otroPais));
     }
@@ -45,8 +56,10 @@ public class PaisTest {
         Jugador unJugador = new Jugador();
         Jugador otroJugador = new Jugador();
     
-        Pais unPais = new Pais("Arg", unJugador);
-        Pais otroPais = new Pais("Bra", otroJugador);
+        Pais unPais = new Pais("Arg");
+        Pais otroPais = new Pais("Bra");
+        unPais.asignarJugador(unJugador);
+        otroPais.asignarJugador(otroJugador);
 
         assertNotEquals(unPais.obtenerFicha(), otroPais.obtenerFicha());
         assertFalse(unPais.obtenerFicha().esIgualA(otroPais.obtenerFicha()));
@@ -56,12 +69,14 @@ public class PaisTest {
         Jugador equipoAzul = new Jugador();
         Jugador equipoRojo = new Jugador();
 
-        Pais unPais = new Pais("Argentina", equipoAzul);
-        Pais otroPais = new Pais("Brasil", equipoRojo);
+        Pais unPais = new Pais("Argentina");
+        Pais otroPais = new Pais("Brasil");
+        unPais.asignarJugador(equipoAzul);
+        otroPais.asignarJugador(equipoRojo);
+
         unPais.colocarEjercitos(2, equipoAzul.obtenerFicha());/*Un pais queda con 3 ejercitos*/
         otroPais.colocarEjercitos(1, equipoRojo.obtenerFicha());/*Otro pais queda con 2 ejercitos*/
         unPais.sonLimitrofesEntre(otroPais);
-
 
         assertDoesNotThrow(() -> {unPais.atacarA(otroPais);});
     }
@@ -69,8 +84,10 @@ public class PaisTest {
     @Test
     public void test07AtacarAPaiseAliadoNoEsPosible() {
         Jugador equipoAzul = new Jugador();
-        Pais unPais = new Pais("Argentina", equipoAzul);
-        Pais otroPais = new Pais("Chile", equipoAzul);
+        Pais unPais = new Pais("Argentina");
+        Pais otroPais = new Pais("Chile");
+        unPais.asignarJugador(equipoAzul);
+        otroPais.asignarJugador(equipoAzul);
 
         assertThrows(ExcepcionAtaqueInvalido.class, () -> {unPais.atacarA(otroPais);});
     }
@@ -80,8 +97,10 @@ public class PaisTest {
         Jugador equipoAzul = new Jugador();
         Jugador equipoRojo = new Jugador();
 
-        Pais unPais = new Pais("Argentina", equipoAzul);
-        Pais otroPais = new Pais("Colombia", equipoRojo);
+        Pais unPais = new Pais("Argentina");
+        Pais otroPais = new Pais("Colombia");
+        unPais.asignarJugador(equipoAzul);
+        unPais.asignarJugador(equipoRojo);
 
         assertThrows(ExcepcionAtaqueInvalido.class, () -> {unPais.atacarA(otroPais);});
 
@@ -92,8 +111,11 @@ public class PaisTest {
         Jugador equipoAzul = new Jugador();
         Jugador equipoRojo = new Jugador();
 
-        Pais unPais = new Pais("Argentina", equipoAzul);
-        Pais otroPais = new Pais("Brasil", equipoRojo);
+        Pais unPais = new Pais("Argentina");
+        Pais otroPais = new Pais("Brasil");
+        unPais.asignarJugador(equipoAzul);
+        otroPais.asignarJugador(equipoRojo);
+
         otroPais.colocarEjercitos(2, equipoRojo.obtenerFicha());
 
         assertThrows(ExcepcionAtaqueInvalido.class, () -> {unPais.atacarA(otroPais);});
