@@ -17,4 +17,6 @@ public class MazoTarjetasPais {
     public ArrayList<TarjetaPais> obtenerTarjetas() {
         return new ArrayList<>(tarjetas.values());
     }
+
+
 }

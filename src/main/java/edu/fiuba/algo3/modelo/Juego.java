@@ -99,6 +99,7 @@ public class Juego {
     }
 
     public void atacarACon(Pais atacante, Pais defensor) {
+
         etapaR.AtacarCon(jugadorActual, atacante, defensor);
     }
 
