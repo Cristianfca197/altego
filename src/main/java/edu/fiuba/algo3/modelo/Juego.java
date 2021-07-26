@@ -2,6 +2,9 @@ package edu.fiuba.algo3.modelo;
 
 import java.util.*;
 
+import edu.fiuba.algo3.modelo.Etapa.EtapaR;
+import edu.fiuba.algo3.modelo.Etapa.EtapaRReagrupar;
+import edu.fiuba.algo3.modelo.Etapa.EtapaRinicial;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 import edu.fiuba.algo3.modelo.juego.Tablero;
@@ -149,7 +152,7 @@ public class Juego {
         return tarjetasDePais.values();
     }
 
-    public Object obtenerPaises() {
+    public ArrayList<Pais> obtenerPaises() {
         return tablero.obtenerPaises();
     }
 }

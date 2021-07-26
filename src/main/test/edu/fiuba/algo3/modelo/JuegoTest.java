@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.modelo.Etapa.EtapaR;
+import edu.fiuba.algo3.modelo.Etapa.EtapaRAtacar;
+import edu.fiuba.algo3.modelo.Etapa.EtapaRReagrupar;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.exception.ExcepcionCanjeInvalido;
