@@ -1,14 +1,18 @@
 package edu.fiuba.algo3;
 
-import edu.fiuba.algo3.vista.Mapa;
-import edu.fiuba.algo3.vista.VistaEtapaAtaque;
-import edu.fiuba.algo3.vista.VistaEtapaColocacion;
-import edu.fiuba.algo3.vista.VistaInicial;
+import edu.fiuba.algo3.modelo.juego.TarjetaPais;
+import edu.fiuba.algo3.modelo.tipoTarjeta.Barco;
+import edu.fiuba.algo3.modelo.tipoTarjeta.Canion;
+import edu.fiuba.algo3.modelo.tipoTarjeta.Comodin;
+import edu.fiuba.algo3.modelo.tipoTarjeta.Globo;
+import edu.fiuba.algo3.vista.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 /**
  * JavaFX App
@@ -33,16 +37,33 @@ public class App extends Application {
 
 
         Mapa mapaJuego = new Mapa();
+        Mapa mapa = new Mapa();
+        TarjetaPais tarjetaPais = new TarjetaPais(new Canion(), "Argentina");
+        TarjetaPais tarjetaPais2 = new TarjetaPais(new Comodin(), "Chile");
+        TarjetaPais tarjetaPais3 = new TarjetaPais(new Barco(), "Brasil");
+        TarjetaPais tarjetaPais4 = new TarjetaPais(new Globo(), "Urugauy");
+
+        ArrayList<TarjetaPais> tarjetas = new ArrayList<>();
+        tarjetas.add(tarjetaPais);
+        tarjetas.add(tarjetaPais2);
+        tarjetas.add(tarjetaPais3);
+        tarjetas.add(tarjetaPais4);
+
+        VistaTarjetaPais vistaTarjeta = new VistaTarjetaPais(tarjetas);
+
         VistaInicial vistaInicial = new VistaInicial();
         VistaEtapaColocacion vistaColocacion = new VistaEtapaColocacion(mapaJuego);
-        VistaEtapaAtaque vistaAtaque = new VistaEtapaAtaque(mapaJuego);
-        Scene escenaBienvenidos = new Scene (vistaInicial);
-        Scene escenaColocacion = new Scene(vistaColocacion);
-        Scene escenaAtaque = new Scene(vistaAtaque);
+        VistaEtapaAtaque vistaAtaque = new VistaEtapaAtaque(mapa);
 
-      //  stage.setScene(escenaBienvenidos);
-       //stage.setScene(escenaColocacion);
+        Scene escenaBienvenidos = new Scene (vistaInicial,1000,800);
+        Scene escenaColocacion = new Scene(vistaColocacion,1000,800);
+        Scene escenaAtaque = new Scene(vistaAtaque,1000,800);
+        Scene escenaTarjeta = new Scene(vistaTarjeta, 1000,800);
+
+        stage.setScene(escenaBienvenidos);
+        stage.setScene(escenaColocacion);
         stage.setScene(escenaAtaque);
+        stage.setScene(escenaTarjeta);
         stage.setResizable(false);
 
     }

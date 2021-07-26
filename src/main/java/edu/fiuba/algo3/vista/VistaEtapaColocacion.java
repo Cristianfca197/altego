@@ -10,11 +10,19 @@ import javafx.scene.paint.Color;
 
 public class VistaEtapaColocacion extends VBox {
     public VistaEtapaColocacion(Mapa mapa){
-        /*
-        Image mapa = new Image("file:" + "multimedia/tableroTEG.png", 900 ,1000, true, true);
-        ImageView imagenMapa = new ImageView(mapa);
-        imagenMapa.fitWidthProperty();
-        */
+        Label datoJugador = new Label();
+        datoJugador.setText("Jugador:");
+        datoJugador.setTextFill(Color.BLUE);
+        Label proximoJugador = new Label();
+        proximoJugador.setText("Siguiente jugador:");
+        proximoJugador.setTextFill(Color.BLUE);
+        HBox datosTurno = new HBox(datoJugador, proximoJugador);
+        datosTurno.setSpacing(20);
+        datoJugador.setLayoutX(0);
+        datosTurno.setLayoutY(0);
+
+        mapa.setLayoutY(20);
+
         Label etiqueta = new Label();
         etiqueta.setText("Cantidad de ejercitos disponibles:");
         etiqueta.setTextFill(Color.BLUE);
@@ -32,13 +40,13 @@ public class VistaEtapaColocacion extends VBox {
         HBox contenedorBotones1 = new HBox(etiqueta,botonCanje, botonObjetivo);
         contenedorBotones1.setSpacing(20);
         contenedorBotones1.setLayoutX(0);
-        contenedorBotones1.setLayoutY(700);
+        contenedorBotones1.setLayoutY(670);
         HBox contenedorBotones2 = new HBox(botonColocarEjercitos, botonFinTurno, botonTarjetaPais);
         contenedorBotones2.setSpacing(20);
         contenedorBotones2.setLayoutX(0);
-        contenedorBotones2.setLayoutY(650);
+        contenedorBotones2.setLayoutY(700);
 
-        Pane panePrinciapal = new Pane(mapa,contenedorBotones1, contenedorBotones2);
+        Pane panePrinciapal = new Pane(datosTurno,mapa,contenedorBotones1, contenedorBotones2);
         panePrinciapal.setPadding(new Insets(20));
 
 
