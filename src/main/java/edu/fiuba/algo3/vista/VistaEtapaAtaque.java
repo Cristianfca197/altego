@@ -2,17 +2,12 @@ package edu.fiuba.algo3.vista;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 public class VistaEtapaAtaque extends VBox {
-    public VistaEtapaAtaque(){
-        Image mapa = new Image("file:" + "multimedia/tableroTEG.png", 900 ,1000, true, true);
-        ImageView imagenMapa = new ImageView(mapa);
-        imagenMapa.fitWidthProperty();
+    public VistaEtapaAtaque(Mapa mapa){
 
         Button botonAtaque = new Button();
         botonAtaque.setText("Atacar");
@@ -31,7 +26,7 @@ public class VistaEtapaAtaque extends VBox {
         contenedorBotones1.setAlignment(Pos.CENTER);
 
 
-        this.getChildren().addAll(imagenMapa,contenedorBotones1);
+        this.getChildren().addAll(mapa,contenedorBotones1);
 
 
     }

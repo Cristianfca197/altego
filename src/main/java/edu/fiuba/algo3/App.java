@@ -1,5 +1,6 @@
 package edu.fiuba.algo3;
 
+import edu.fiuba.algo3.vista.Mapa;
 import edu.fiuba.algo3.vista.VistaEtapaAtaque;
 import edu.fiuba.algo3.vista.VistaEtapaColocacion;
 import edu.fiuba.algo3.vista.VistaInicial;
@@ -31,17 +32,17 @@ public class App extends Application {
         stage.setTitle("ALTEGO");
 
 
-
+        Mapa mapaJuego = new Mapa();
         VistaInicial vistaInicial = new VistaInicial();
-        VistaEtapaColocacion vistaColocacion = new VistaEtapaColocacion();
-        VistaEtapaAtaque vistaAtaque = new VistaEtapaAtaque();
+        VistaEtapaColocacion vistaColocacion = new VistaEtapaColocacion(mapaJuego);
+        VistaEtapaAtaque vistaAtaque = new VistaEtapaAtaque(mapaJuego);
         Scene escenaBienvenidos = new Scene (vistaInicial);
         Scene escenaColocacion = new Scene(vistaColocacion);
         Scene escenaAtaque = new Scene(vistaAtaque);
 
       //  stage.setScene(escenaBienvenidos);
-       stage.setScene(escenaColocacion);
-        //stage.setScene(escenaAtaque);
+       //stage.setScene(escenaColocacion);
+        stage.setScene(escenaAtaque);
         stage.setResizable(false);
 
     }
