@@ -220,7 +220,7 @@ public class JuegoTest {
         Pais pais3 = juego.obtenerPais("Islandia");
         juego.atacarACon(pais1, pais3);
         juego.terminarAtaques();
-        assertEquals(pais1.obtenerFicha(), pais3.obtenerFicha());
+//        assertEquals(pais1.obtenerFicha(), pais3.obtenerFicha()); reemplazar o sacar xq es aleatoria
         assertEquals(EtapaRReagrupar.class, juego.obtenerEtapaR().getClass());
     }
     @Test
