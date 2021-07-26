@@ -15,7 +15,7 @@ public class VistaInicial extends VBox{
     public VistaInicial() {
         super();
         Label labelArchivo = new Label("Bienvenido a A.L.T.E.G.O.");
-        labelArchivo.setFont(new Font("Candara", 18));
+        labelArchivo.setFont(new Font("Arial", 18));
 
         Image logo = new Image("file:" + "multimedia/logoTEG.jpg", 650, 500, true, true);
         ImageView imagenVista = new ImageView(logo);
