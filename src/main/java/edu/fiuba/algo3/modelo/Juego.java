@@ -4,6 +4,7 @@ import edu.fiuba.algo3.modelo.Etapa.EtapaR;
 import edu.fiuba.algo3.modelo.Etapa.EtapaRAtacar;
 import edu.fiuba.algo3.modelo.Etapa.EtapaRReagrupar;
 import edu.fiuba.algo3.modelo.Etapa.EtapaRinicial;
+import edu.fiuba.algo3.modelo.exception.ExcepcionFinDeJuego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 import edu.fiuba.algo3.modelo.juego.Tablero;
@@ -28,14 +29,13 @@ public class Juego {
     private EtapaR etapaR;
     private ArrayList<Jugador> turnos;
     private int cantidadPaisesJugadorActual;
-    private final int cantidadMaximaDeJugadores = 6;
     private ArrayList<Color> coloresFichas;
 
     public Juego(int cantidadJugadores) {
         listaJugadores = new ArrayList<>();
         tablero = new Tablero();
         cargarColores();
-        for (int i = 0; i < cantidadJugadores && i < cantidadMaximaDeJugadores; i++) {
+        for (int i = 0; i < cantidadJugadores; i++) {
             this.listaJugadores.add(new Jugador());
         }
         LecturaArchivoTarjetas cargarTarjetas = new LecturaArchivoTarjetas();
@@ -79,7 +79,6 @@ public class Juego {
     }
 
     public void iniciarJuego(){
-        this.configurarJugadoresDePrueba();
         this.repartirPaisesCondicionesConocidas();
         this.ocuparTablero();
         this.turnos = new ArrayList<>(listaJugadores);
@@ -115,8 +114,14 @@ public class Juego {
     }
 
     public void atacarACon(Pais atacante, Pais defensor) {
-
         etapaR.AtacarCon(jugadorActual, atacante, defensor);
+        if(tablero.obtenerCantidadPaisesJugador(jugadorActual) >= 30) {
+            this.finalizar(jugadorActual.obtenerNombre());
+        }
+    }
+
+    public void finalizar(String nombre) {
+      throw new ExcepcionFinDeJuego("Fin del juego. Felicidades: " + nombre);
     }
 
     public void terminarAtaques(){
@@ -205,4 +210,5 @@ public class Juego {
             i++;
         }
     }
+
 }

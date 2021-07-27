@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.modelo.Etapa.EtapaR;
 import edu.fiuba.algo3.modelo.Etapa.EtapaRAtacar;
 import edu.fiuba.algo3.modelo.Etapa.EtapaRReagrupar;
+import edu.fiuba.algo3.modelo.exception.ExcepcionFinDeJuego;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.modelo.exception.ExcepcionCanjeInvalido;
@@ -241,8 +242,8 @@ public class JuegoTest {
         //reagrupar jugador2
         Pais pais3 = juego.obtenerPais("Alemania");
         juego.transferirEjercitos(pais2, pais3, 3);
-        assertEquals(4, pais3.cantidadDeEjercitos());
         juego.pasarTurno();
+        assertEquals(4, pais3.cantidadDeEjercitos());
     }
 
     @Test
@@ -254,13 +255,20 @@ public class JuegoTest {
         juego.establecerNombreJugador(unJugador,"Juani");
         juego.establecerNombreJugador(otroJugador,"Cris");
 
-        assertEquals("Juani", unJugador.nombre());
-        assertEquals("Cris", otroJugador.nombre());
+        assertEquals("Juani", unJugador.obtenerNombre());
+        assertEquals("Cris", otroJugador.obtenerNombre());
 
         juego.establecerColorAJugador(unJugador, Color.BLUE);
         juego.establecerColorAJugador(otroJugador, Color.BLACK);
         
         assertEquals(Color.BLUE, unJugador.obtenerFicha().color());
         assertEquals(Color.BLACK, otroJugador.obtenerFicha().color());
+    }
+
+    @Test
+    public void test16JuegoFinalizarLanzaLaExcepcionFinDeJuego(){
+        Juego juego = new Juego(1);
+        Jugador jugador = juego.obtenerJugador(1);
+        assertThrows(ExcepcionFinDeJuego.class, () -> juego.finalizar(jugador.obtenerNombre()));
     }
 }

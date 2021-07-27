@@ -71,7 +71,7 @@ public class Jugador {
         this.ficha.establecerColor(unColor);
     }
 
-    public String nombre() {
+    public String obtenerNombre() {
         return this.nombre;
     }
 }
