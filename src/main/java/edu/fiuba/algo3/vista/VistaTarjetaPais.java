@@ -38,7 +38,7 @@ public class VistaTarjetaPais extends Pane {
     }
     public Pane crearTarjetaGlobo(Label nombreTarjeta){
 
-        Image tipoTarjeta = new Image("file:" + "multimedia/globo.jpeg", 300 ,150, true, true);
+        Image tipoTarjeta = new Image("file:" + "multimedia/globo.jpg", 300 ,150, true, true);
         ImageView imagenTarjeta = new ImageView(tipoTarjeta);
         Pane pane = new Pane(imagenTarjeta , nombreTarjeta);
         pane.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
@@ -46,7 +46,7 @@ public class VistaTarjetaPais extends Pane {
         return pane;
     }
     public Pane crearTarjetaBarco(Label nombreTarjeta){
-        Image tipoTarjeta = new Image("file:" + "multimedia/barco.jpeg", 300 ,150, true, true);
+        Image tipoTarjeta = new Image("file:" + "multimedia/barco.jpg", 300 ,150, true, true);
         ImageView imagenTarjeta = new ImageView(tipoTarjeta);
         Pane pane = new Pane(imagenTarjeta , nombreTarjeta);
         pane.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
@@ -63,7 +63,7 @@ public class VistaTarjetaPais extends Pane {
     }
     public Pane crearTarjetaCanion(Label nombreTarjeta){
 
-        Image tipoTarjeta = new Image("file:" + "multimedia/canion.jpeg", 300 ,150, true, true);
+        Image tipoTarjeta = new Image("file:" + "multimedia/canion.jpg", 300 ,150, true, true);
         ImageView imagenTarjeta = new ImageView(tipoTarjeta);
         Pane pane = new Pane(imagenTarjeta , nombreTarjeta);
         pane.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));

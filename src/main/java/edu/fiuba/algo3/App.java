@@ -1,6 +1,7 @@
 package edu.fiuba.algo3;
 
 
+import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.juego.TarjetaPais;
 import edu.fiuba.algo3.modelo.tipoTarjeta.Barco;
 import edu.fiuba.algo3.modelo.tipoTarjeta.Canion;
@@ -28,10 +29,11 @@ public class App extends Application {
         var scene = new Scene(new StackPane(label), 640, 480);
         stage.setScene(scene);
         stage.show();
-        //this.mostrarInterfazInicial(stage);
-        this.mostrarInterfazColocacion(stage);
+
+        this.mostrarInterfazInicial(stage);
+       // this.mostrarInterfazColocacion(stage);
         //this.mostrarInterfazAtaque(stage);
-        //this.mostrarInterfazTarjetas(stage);
+       // this.mostrarInterfazTarjetas(stage);
     }
 
     public void mostrarInterfazInicial(Stage stage){
@@ -42,8 +44,11 @@ public class App extends Application {
         stage.setResizable(false);
     }
     public void mostrarInterfazColocacion(Stage stage){
+        Juego juego = new Juego(3);
+        juego.iniciarJuego();
+
         stage.setTitle("Interfaz Colocacion");
-        Mapa mapaJuego = new Mapa();
+        Mapa mapaJuego = new Mapa(juego.obtenerPaises());
         VistaEtapaColocacion vistaColocacion = new VistaEtapaColocacion(mapaJuego);
         Scene escenaColocacion = new Scene(vistaColocacion);
         stage.setScene(escenaColocacion);
@@ -51,8 +56,11 @@ public class App extends Application {
 
     }
     public void mostrarInterfazAtaque(Stage stage){
+        Juego juego = new Juego(3);
+        juego.iniciarJuego();
+
         stage.setTitle("Interfaz ataque");
-        Mapa mapaJuego = new Mapa();
+        Mapa mapaJuego = new Mapa(juego.obtenerPaises());
         VistaEtapaAtaque vistaAtaque = new VistaEtapaAtaque(mapaJuego);
         Scene escenaAtaque = new Scene(vistaAtaque, 1000, 800);
         stage.setScene(escenaAtaque);
