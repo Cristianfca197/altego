@@ -5,8 +5,8 @@ import javafx.scene.paint.Color;
 public class Ficha {
     private final Color color;
 
-    public Ficha(Color unColor){
-        this.color = unColor;
+    public Ficha(){
+        this.color = Color.BLUE;
     }
     public boolean esIgualA(Ficha unaFicha){
         return (unaFicha == this);

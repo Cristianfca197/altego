@@ -186,7 +186,7 @@ public class Juego {
     }
 
     public void establecerColorAJugador(Jugador unJugador, Color unColor) {
-        unJugador.establecerColorFicha(unColor);
+      //  unJugador.establecerColorFicha(unColor);
     }
 
     public void configurarJugadoresDePrueba() {
@@ -194,7 +194,7 @@ public class Juego {
         Integer i = 0;
         for (Jugador unJugador : listaJugadores) {
             this.establecerNombreJugador(unJugador, nombres[i]);
-            this.establecerColorAJugador(unJugador, this.coloresFichas.get(i));
+          //  this.establecerColorAJugador(unJugador, this.coloresFichas.get(i));
             i++;
         }
     }

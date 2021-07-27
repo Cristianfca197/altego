@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
+import javafx.scene.paint.Color;
 
 import edu.fiuba.algo3.modelo.juego.Ficha;
 
