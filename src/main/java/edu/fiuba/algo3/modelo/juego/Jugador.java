@@ -68,6 +68,10 @@ public class Jugador {
 
     public final void establecerColorFicha(Color unColor) {
 
-      //  this.ficha = new Ficha(unColor);
+        this.ficha.establecerColor(unColor);
+    }
+
+    public String nombre() {
+        return this.nombre;
     }
 }

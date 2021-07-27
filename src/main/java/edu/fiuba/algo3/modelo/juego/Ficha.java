@@ -3,7 +3,7 @@ package edu.fiuba.algo3.modelo.juego;
 import javafx.scene.paint.Color;
 
 public class Ficha {
-    private final Color color;
+    private Color color;
 
     public Ficha(){
         this.color = Color.BLUE;
@@ -13,5 +13,9 @@ public class Ficha {
     }
     public Color color(){
         return this.color;
+    }
+
+    public void establecerColor(Color unColor) {
+        this.color = unColor;
     }
 }

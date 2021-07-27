@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.exception.ExcepcionCanjeInvalido;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 import edu.fiuba.algo3.modelo.juego.TarjetaPais;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
@@ -247,5 +248,24 @@ public class JuegoTest {
         Pais pais3 = juego.obtenerPais("Alemania");
         juego.tranferirEjercitos(pais2, pais3, 3);
         assertEquals(4, pais3.cantidadDeEjercitos());
+    }
+
+    @Test
+    public void testJuegoEstablecerNombreyColorAJugadores() {
+        Juego juego = new Juego(2);
+        Jugador unJugador = juego.obtenerJugador(1);
+        Jugador otroJugador = juego.obtenerJugador(2);
+
+        juego.establecerNombreJugador(unJugador,"Juani");
+        juego.establecerNombreJugador(otroJugador,"Cris");
+
+        assertEquals("Juani", unJugador.nombre());
+        assertEquals("Cris", otroJugador.nombre());
+
+        juego.establecerColorAJugador(unJugador, Color.BLUE);
+        juego.establecerColorAJugador(otroJugador, Color.BLACK);
+        
+        assertEquals(Color.BLUE, unJugador.obtenerFicha().color());
+        assertEquals(Color.BLACK, otroJugador.obtenerFicha().color());
     }
 }
