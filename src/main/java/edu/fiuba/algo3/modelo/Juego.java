@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.*;
+import javafx.scene.paint.Color;
 
 import edu.fiuba.algo3.modelo.Etapa.EtapaR;
 import edu.fiuba.algo3.modelo.Etapa.EtapaRReagrupar;
@@ -23,11 +24,14 @@ public class Juego {
     private EtapaR etapaR;
     private ArrayList<Jugador> turnos;
     private int cantidadPaisesJugadorActual;
+    private int cantidadMaximaDeJugadores = 6;
+    private ArrayList<Color> coloresFichas;
 
     public Juego(int cantidadJugadores) {
         listaJugadores = new ArrayList<>();
         tablero = new Tablero();
-        for (int i = 0; i < cantidadJugadores; i++) {
+        cargarColores();
+        for (int i = 0; i < cantidadJugadores && i < cantidadMaximaDeJugadores; i++) { //cantidad de jugadores max hay?
             this.listaJugadores.add(new Jugador());
         }
         LecturaArchivoTarjetas cargarTarjetas = new LecturaArchivoTarjetas();
@@ -71,6 +75,7 @@ public class Juego {
     }
 
     public void iniciarJuego(){
+        this.configurarJugadoresDePrueba();
         this.repartirPaisesCondicionesConocidas();
         this.ocuparTablero();
         this.turnos = new ArrayList<>(listaJugadores);
@@ -154,5 +159,43 @@ public class Juego {
 
     public ArrayList<Pais> obtenerPaises() {
         return tablero.obtenerPaises();
+    }
+
+    public void cargarColores(){
+        this.coloresFichas = new ArrayList<Color>();
+        
+        Color rojo,verde,azul,blanco,negro,violeta;
+        rojo    = Color.RED;
+        verde   = Color.GREEN;
+        azul    = Color.BLUE;
+        blanco  = Color.WHITE;
+        negro   = Color.BLACK;
+        violeta = Color.VIOLET;
+
+        this.coloresFichas.add(rojo);
+        this.coloresFichas.add(verde);
+        this.coloresFichas.add(azul);
+        this.coloresFichas.add(blanco);
+        this.coloresFichas.add(negro);
+        this.coloresFichas.add(violeta);
+
+    }
+
+    public void establecerNombreJugador(Jugador unJugador, String unNombre) {
+        unJugador.establecerNombre(unNombre);
+    }
+
+    public void establecerColorAJugador(Jugador unJugador, Color unColor) {
+        unJugador.establecerColorFicha(unColor);
+    }
+
+    public void configurarJugadoresDePrueba() {
+        String[] nombres = {"Juani","Cris","Pedro","Roby"};
+        Integer i = 0;
+        for (Jugador unJugador : listaJugadores) {
+            this.establecerNombreJugador(unJugador, nombres[i]);
+            this.establecerColorAJugador(unJugador, this.coloresFichas.get(i));
+            i++;
+        }
     }
 }

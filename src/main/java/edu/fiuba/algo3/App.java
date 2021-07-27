@@ -30,8 +30,8 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
 
-        this.mostrarInterfazInicial(stage);
-       // this.mostrarInterfazColocacion(stage);
+        //this.mostrarInterfazInicial(stage);
+        this.mostrarInterfazColocacion(stage);
         //this.mostrarInterfazAtaque(stage);
        // this.mostrarInterfazTarjetas(stage);
     }
