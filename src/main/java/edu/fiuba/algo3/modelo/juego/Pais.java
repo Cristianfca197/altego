@@ -26,7 +26,6 @@ public class Pais {
     public void colocarEjercitos(Integer unaCantidadDeEjercitos, Ficha unaFicha){
         if(this.ficha.esIgualA(unaFicha)) {
             this.ejercitos += unaCantidadDeEjercitos;
-            this.ficha = unaFicha;
         }
     }
     public int cantidadDeEjercitos(){

@@ -5,4 +5,5 @@ module edu.fiuba.algo3 {
     requires java.desktop;
     exports edu.fiuba.algo3;
     exports edu.fiuba.algo3.modelo;
+    exports edu.fiuba.algo3.modelo.Etapa;
 }
