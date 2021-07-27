@@ -1,11 +1,7 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.*;
-
-import edu.fiuba.algo3.modelo.Etapa.EtapaRAtacar;
-import javafx.scene.paint.Color;
-
 import edu.fiuba.algo3.modelo.Etapa.EtapaR;
+import edu.fiuba.algo3.modelo.Etapa.EtapaRAtacar;
 import edu.fiuba.algo3.modelo.Etapa.EtapaRReagrupar;
 import edu.fiuba.algo3.modelo.Etapa.EtapaRinicial;
 import edu.fiuba.algo3.modelo.juego.Jugador;
@@ -14,6 +10,12 @@ import edu.fiuba.algo3.modelo.juego.Tablero;
 import edu.fiuba.algo3.modelo.juego.TarjetaPais;
 import edu.fiuba.algo3.modelo.lectura.LecturaArchivoPaises;
 import edu.fiuba.algo3.modelo.lectura.LecturaArchivoTarjetas;
+import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 public class Juego { 
   
@@ -81,6 +83,7 @@ public class Juego {
         this.repartirPaisesCondicionesConocidas();
         this.ocuparTablero();
         this.turnos = new ArrayList<>(listaJugadores);
+
     }
 
     public void jugar(){
