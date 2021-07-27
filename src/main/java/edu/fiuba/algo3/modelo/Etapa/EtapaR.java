@@ -10,5 +10,5 @@ public interface EtapaR {
 
      void AtacarCon(Jugador jugadorActual, Pais atacante, Pais defensor);
 
-     void tranferirEjercitos(Jugador jugadorActual, Pais aliado1, Pais aliado2, int cantidadEjercitos);
+     void transferirEjercitos(Jugador jugadorActual, Pais aliado1, Pais aliado2, int cantidadEjercitos);
 }

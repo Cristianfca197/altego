@@ -20,7 +20,7 @@ public class EtapaRinicial implements EtapaR {
     }
 
     @Override
-    public void tranferirEjercitos(Jugador jugadorActual, Pais aliado1, Pais aliado2, int cantidadEjercitos) {
+    public void transferirEjercitos(Jugador jugadorActual, Pais aliado1, Pais aliado2, int cantidadEjercitos) {
 
     }
 }

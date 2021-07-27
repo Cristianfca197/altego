@@ -240,7 +240,7 @@ public class JuegoTest {
         juego.terminarAtaques();
         //reagrupar jugador2
         Pais pais3 = juego.obtenerPais("Alemania");
-        juego.tranferirEjercitos(pais2, pais3, 3);
+        juego.transferirEjercitos(pais2, pais3, 3);
         assertEquals(4, pais3.cantidadDeEjercitos());
         juego.pasarTurno();
     }

@@ -20,7 +20,7 @@ public class EtapaRReagrupar implements EtapaR {
     }
 
     @Override
-    public void tranferirEjercitos(Jugador jugadorActual, Pais aliado1, Pais aliado2, int cantidadEjercitos) {
+    public void transferirEjercitos(Jugador jugadorActual, Pais aliado1, Pais aliado2, int cantidadEjercitos) {
         if(aliado1.perteneceA(jugadorActual) && aliado2.perteneceA(jugadorActual)) {
             for (int i = 0; i < cantidadEjercitos; i++) {
                 aliado2.colocarEjercitos(i, jugadorActual.obtenerFicha());

@@ -129,8 +129,8 @@ public class Juego {
         jugador.agregarTarjeta(tarjetasDePais.remove(claveRandom));
     }
 
-    public void tranferirEjercitos(Pais aliado1, Pais aliado2, int cantidadEjercitos) {
-        etapaR.tranferirEjercitos(jugadorActual, aliado1, aliado2, cantidadEjercitos);
+    public void transferirEjercitos(Pais aliado1, Pais aliado2, int cantidadEjercitos) {
+        etapaR.transferirEjercitos(jugadorActual, aliado1, aliado2, cantidadEjercitos);
     }
 
     public TarjetaPais obtenerTarjeta(String nombreTarjeta){
