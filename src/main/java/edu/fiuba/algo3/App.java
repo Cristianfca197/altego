@@ -41,7 +41,7 @@ public class App extends Application {
         TarjetaPais tarjetaPais = new TarjetaPais(new Canion(), "Argentina");
         TarjetaPais tarjetaPais2 = new TarjetaPais(new Comodin(), "Chile");
         TarjetaPais tarjetaPais3 = new TarjetaPais(new Barco(), "Brasil");
-        TarjetaPais tarjetaPais4 = new TarjetaPais(new Globo(), "Urugauy");
+        TarjetaPais tarjetaPais4 = new TarjetaPais(new Globo(), "Uruguay");
 
         ArrayList<TarjetaPais> tarjetas = new ArrayList<>();
         tarjetas.add(tarjetaPais);
