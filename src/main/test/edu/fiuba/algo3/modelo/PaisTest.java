@@ -78,7 +78,7 @@ public class PaisTest {
         otroPais.colocarEjercitos(1, equipoRojo.obtenerFicha());/*Otro pais queda con 2 ejercitos*/
         unPais.sonLimitrofesEntre(otroPais);
 
-        assertDoesNotThrow(() -> {unPais.atacarA(otroPais);});
+        assertDoesNotThrow(() -> unPais.atacarA(otroPais));
     }
 
     @Test
@@ -89,7 +89,7 @@ public class PaisTest {
         unPais.asignarJugador(equipoAzul);
         otroPais.asignarJugador(equipoAzul);
 
-        assertThrows(ExcepcionAtaqueInvalido.class, () -> {unPais.atacarA(otroPais);});
+        assertThrows(ExcepcionAtaqueInvalido.class, () -> unPais.atacarA(otroPais));
     }
 
     @Test
@@ -102,7 +102,7 @@ public class PaisTest {
         unPais.asignarJugador(equipoAzul);
         unPais.asignarJugador(equipoRojo);
 
-        assertThrows(ExcepcionAtaqueInvalido.class, () -> {unPais.atacarA(otroPais);});
+        assertThrows(ExcepcionAtaqueInvalido.class, () -> unPais.atacarA(otroPais));
 
     }
 
@@ -118,6 +118,6 @@ public class PaisTest {
 
         otroPais.colocarEjercitos(2, equipoRojo.obtenerFicha());
 
-        assertThrows(ExcepcionAtaqueInvalido.class, () -> {unPais.atacarA(otroPais);});
+        assertThrows(ExcepcionAtaqueInvalido.class, () -> unPais.atacarA(otroPais));
     }
 }

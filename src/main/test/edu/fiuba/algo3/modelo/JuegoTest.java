@@ -19,7 +19,7 @@ public class JuegoTest {
     @Test
     public void test01CargaDeTarjetasPaisEsCorrecta(){
         Juego juego = new Juego(2);
-
+        assertNotNull(juego.obtenerTarjetas());
     }
     @Test
     public void test02CargaPaisesEsCorrecta(){
@@ -79,7 +79,6 @@ public class JuegoTest {
         juego.repartirPaisesCondicionesConocidas();
         juego.ocuparTablero();
         Jugador jugador1 = juego.obtenerJugador(1);
-        Jugador jugador2 = juego.obtenerJugador(2);
         TarjetaPais tarjeta = juego.obtenerTarjeta("Iran");
         jugador1.activarTarjetaPais(tarjeta);
 
@@ -94,7 +93,6 @@ public class JuegoTest {
         juego.repartirPaisesCondicionesConocidas();
         juego.ocuparTablero();
         Jugador jugador1 = juego.obtenerJugador(1);
-        Jugador jugador2 = juego.obtenerJugador(2);
         TarjetaPais tarjeta = juego.obtenerTarjeta("Iran");
         jugador1.activarTarjetaPais(tarjeta);
 
@@ -109,11 +107,9 @@ public class JuegoTest {
         Juego juego = new Juego(2);
         juego.repartirPaisesCondicionesConocidas();
         juego.ocuparTablero();
-        int cantidadEjercitos = 0;
-        ArrayList<TarjetaPais> tarjetas = new ArrayList<TarjetaPais>();
+        ArrayList<TarjetaPais> tarjetas = new ArrayList<>();
 
         Jugador jugador1 = juego.obtenerJugador(1);
-        Jugador jugador2 = juego.obtenerJugador(2);
 
         TarjetaPais tarjeta1 = juego.obtenerTarjeta("Iran");
         TarjetaPais tarjeta2 = juego.obtenerTarjeta("Francia");
@@ -123,7 +119,7 @@ public class JuegoTest {
         tarjetas.add(tarjeta2);
         tarjetas.add(tarjeta3);
 
-        cantidadEjercitos = jugador1.canjearTarjetas(tarjetas);
+        int cantidadEjercitos = jugador1.canjearTarjetas(tarjetas);
         assertEquals(4, cantidadEjercitos);
 
         cantidadEjercitos = jugador1.canjearTarjetas(tarjetas);
@@ -135,8 +131,7 @@ public class JuegoTest {
         Juego juego = new Juego(2);
         juego.repartirPaisesCondicionesConocidas();
         juego.ocuparTablero();
-        int cantidadEjercitos = 0;
-        ArrayList<TarjetaPais> tarjetas = new ArrayList<TarjetaPais>();
+        ArrayList<TarjetaPais> tarjetas = new ArrayList<>();
 
         Jugador jugador1 = juego.obtenerJugador(1);
         Jugador jugador2 = juego.obtenerJugador(2);
@@ -149,7 +144,7 @@ public class JuegoTest {
         tarjetas.add(tarjeta2);
         tarjetas.add(tarjeta3);
 
-        cantidadEjercitos = jugador1.canjearTarjetas(tarjetas);
+        int cantidadEjercitos = jugador1.canjearTarjetas(tarjetas);
         assertEquals(4, cantidadEjercitos);
 
         cantidadEjercitos += juego.obtenerEjercitos(jugador1);
@@ -185,22 +180,22 @@ public class JuegoTest {
     }
 
     @Test
-    public void testJuegoFaseInicialColocacionDeCincoEjercitos(){
+    public void test11JuegoFaseInicialColocacionDeCincoEjercitos(){
         Juego juego = new Juego(2);
         juego.iniciarJuego();
         juego.jugar();
         Pais pais1 = juego.obtenerPais("Gran Bretaña");
         Pais pais2 = juego.obtenerPais("Francia");
-        juego.colocarCincoEjercitosFaseInicial(pais1);
+        juego.colocarEjercitosFaseInicial(pais1, 5);
         juego.pasarTurno();
-        juego.colocarCincoEjercitosFaseInicial(pais2);
+        juego.colocarEjercitosFaseInicial(pais2, 5);
         juego.pasarTurno();
         assertEquals(6, pais1.cantidadDeEjercitos());
         assertEquals(6, pais2.cantidadDeEjercitos());
     }
 
     @Test
-    public void testJuegoPasarTurnoPaseDeEtapa(){
+    public void test12JuegoPasarTurnoPaseDeEtapa(){
         Juego juego = new Juego(2);
         juego.iniciarJuego();
         juego.jugar();
@@ -211,32 +206,31 @@ public class JuegoTest {
     }
 
     @Test
-    public void testJuegoFaseAtacar(){
+    public void test13JuegoFaseAtacar(){
         Juego juego = new Juego(2);
         juego.iniciarJuego();
         juego.jugar();
         Pais pais1 = juego.obtenerPais("Gran Bretaña");
         Pais pais2 = juego.obtenerPais("Francia");
-        juego.colocarCincoEjercitosFaseInicial(pais1);
+        juego.colocarEjercitosFaseInicial(pais1, 5);
         juego.pasarTurno();
-        juego.colocarCincoEjercitosFaseInicial(pais2);
+        juego.colocarEjercitosFaseInicial(pais2, 5);
         juego.pasarTurno();
         Pais pais3 = juego.obtenerPais("Islandia");
         juego.atacarACon(pais1, pais3);
         juego.terminarAtaques();
-//        assertEquals(pais1.obtenerFicha(), pais3.obtenerFicha()); reemplazar o sacar xq es aleatoria
         assertEquals(EtapaRReagrupar.class, juego.obtenerEtapaR().getClass());
     }
     @Test
-    public void testJuegoFaseReagrupar(){
+    public void test14JuegoFaseReagrupar(){
         Juego juego = new Juego(2);
         juego.iniciarJuego();
         juego.jugar();
         Pais pais1 = juego.obtenerPais("Gran Bretaña");
         Pais pais2 = juego.obtenerPais("Francia");
-        juego.colocarCincoEjercitosFaseInicial(pais1);
+        juego.colocarEjercitosFaseInicial(pais1, 5);
         juego.pasarTurno();
-        juego.colocarCincoEjercitosFaseInicial(pais2);
+        juego.colocarEjercitosFaseInicial(pais2, 5);
         juego.pasarTurno();
         //ataques jugador1
         juego.terminarAtaques();
@@ -248,10 +242,11 @@ public class JuegoTest {
         Pais pais3 = juego.obtenerPais("Alemania");
         juego.tranferirEjercitos(pais2, pais3, 3);
         assertEquals(4, pais3.cantidadDeEjercitos());
+        juego.pasarTurno();
     }
 
     @Test
-    public void testJuegoEstablecerNombreyColorAJugadores() {
+    public void test15JuegoEstablecerNombreyColorAJugadores() {
         Juego juego = new Juego(2);
         Jugador unJugador = juego.obtenerJugador(1);
         Jugador otroJugador = juego.obtenerJugador(2);

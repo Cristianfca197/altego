@@ -40,7 +40,7 @@ public class LecturaTest {
         assertTrue(tarjeta.obtenerTipo().esGlobo());
     }
     @Test
-    public void test03LeerTarjetasGranBretañaEsCorrecta(){
+    public void test03LeerTarjetasGranBretaniaEsCorrecta(){
         LecturaArchivoTarjetas leer = new LecturaArchivoTarjetas();
         HashMap<String, TarjetaPais> tarjetasDePais;
         TarjetaPais tarjeta;

@@ -60,7 +60,7 @@ public class CanjeTest {
         listaDeTarjetas.add(terceTarjeta);
         PrimerCanje canje = new PrimerCanje();
 
-        assertThrows(ExcepcionCanjeInvalido.class, () -> {canje.realizarCanje(listaDeTarjetas);});
+        assertThrows(ExcepcionCanjeInvalido.class, () -> canje.realizarCanje(listaDeTarjetas));
     }
     @Test
     public void test04SegundoCanjeDeTresPaisesConElMismoSimboloEsPosible () throws ExcepcionCanjeInvalido{

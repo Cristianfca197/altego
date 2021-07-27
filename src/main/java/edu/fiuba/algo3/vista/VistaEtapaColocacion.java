@@ -1,9 +1,7 @@
 package edu.fiuba.algo3.vista;
 
-import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
@@ -19,13 +17,13 @@ public class VistaEtapaColocacion extends StackPane {
         contenedor.setRight(contenedorBotones1);
         contenedor.setBottom(contenedorBotones2);
         contenedor.setLayoutY(10);
-        contenedor.setMargin(datosTurno, new Insets(0, 0, 0, 400));
-        contenedor.setMargin(contenedorBotones1, new Insets(200, 0, 0, 0));
-        contenedor.setMargin(contenedorBotones2, new Insets(0, 0, 0, 300));
+        BorderPane.setMargin(datosTurno, new Insets(0, 0, 0, 400));
+        BorderPane.setMargin(contenedorBotones1, new Insets(200, 0, 0, 0));
+        BorderPane.setMargin(contenedorBotones2, new Insets(0, 0, 0, 300));
         ObservableList lista = this.getChildren();
         lista.addAll(mapa, contenedor);
         this.setStyle("-fx-background-color: #504d4c");
-        this.setMargin(mapa, new Insets(15,50,0,50));
+        setMargin(mapa, new Insets(15,50,0,50));
     }
 
     private HBox botonesTurno() {

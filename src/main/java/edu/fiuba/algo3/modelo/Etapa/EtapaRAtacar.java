@@ -19,7 +19,6 @@ public class EtapaRAtacar implements EtapaR {
         if(jugadorActual.obtenerFicha() == atacante.obtenerFicha()) {
             atacante.atacarA(defensor);
         }
-        //Error
     }
 
     @Override

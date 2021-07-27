@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.modelo;
 
 import java.util.*;
+
+import edu.fiuba.algo3.modelo.Etapa.EtapaRAtacar;
 import javafx.scene.paint.Color;
 
 import edu.fiuba.algo3.modelo.Etapa.EtapaR;
@@ -24,14 +26,14 @@ public class Juego {
     private EtapaR etapaR;
     private ArrayList<Jugador> turnos;
     private int cantidadPaisesJugadorActual;
-    private int cantidadMaximaDeJugadores = 6;
+    private final int cantidadMaximaDeJugadores = 6;
     private ArrayList<Color> coloresFichas;
 
     public Juego(int cantidadJugadores) {
         listaJugadores = new ArrayList<>();
         tablero = new Tablero();
         cargarColores();
-        for (int i = 0; i < cantidadJugadores && i < cantidadMaximaDeJugadores; i++) { //cantidad de jugadores max hay?
+        for (int i = 0; i < cantidadJugadores && i < cantidadMaximaDeJugadores; i++) {
             this.listaJugadores.add(new Jugador());
         }
         LecturaArchivoTarjetas cargarTarjetas = new LecturaArchivoTarjetas();
@@ -91,12 +93,15 @@ public class Juego {
 
     public Pais obtenerPais(String pais){   return tablero.obtenerPais(pais); }
 
-    public void colocarCincoEjercitosFaseInicial(Pais pais){
-        etapaR.colocarEjercitos(jugadorActual, pais, 5);
+    public void colocarEjercitosFaseInicial(Pais pais, int cantidad){
+        etapaR.colocarEjercitos(jugadorActual, pais, cantidad);
     }
 
     public void pasarTurno(){
         if(jugadorActual == ultimoJugador){ etapaR = etapaR.pasarEtapa(); }
+        if(jugadorActual != ultimoJugador && etapaR.getClass() == EtapaRReagrupar.class) {
+            etapaR = new EtapaRAtacar();
+        }
         turnos.add( turnos.remove(0));
         jugadorActual = turnos.get(0);
         cantidadPaisesJugadorActual = tablero.obtenerCantidadPaisesJugador(jugadorActual);
@@ -139,8 +144,7 @@ public class Juego {
     }
 
     public int obtenerEjercitos(Jugador jugador){
-        int cantidadPaises = 0;
-        cantidadPaises = this.tablero.obtenerCantidadPaisesJugador(jugador);
+        int cantidadPaises = this.tablero.obtenerCantidadPaisesJugador(jugador);
 
         return (this.tablero.fichasContinente(jugador) + cantidadPaises/2);
     }
@@ -162,7 +166,7 @@ public class Juego {
     }
 
     public void cargarColores(){
-        this.coloresFichas = new ArrayList<Color>();
+        this.coloresFichas = new ArrayList<>();
         
         Color rojo,verde,azul,blanco,negro,violeta;
         rojo    = Color.RED;
@@ -191,7 +195,7 @@ public class Juego {
 
     public void configurarJugadoresDePrueba() {
         String[] nombres = {"Juani","Cris","Pedro","Roby"};
-        Integer i = 0;
+        int i = 0;
         for (Jugador unJugador : listaJugadores) {
             this.establecerNombreJugador(unJugador, nombres[i]);
             this.establecerColorAJugador(unJugador, this.coloresFichas.get(i));
