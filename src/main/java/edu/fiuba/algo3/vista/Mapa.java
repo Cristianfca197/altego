@@ -11,7 +11,7 @@ import javafx.scene.shape.Circle;
 
 public class Mapa extends Pane {
     public Mapa(){
-        Image mapa = new Image("file:" + "multimedia/tableroTEG.png", 900 ,1000, true, true);
+        Image mapa = new Image("file:" + "multimedia/tableroTEG.png", 857 ,613, true, true);
         ImageView imagenMapa = new ImageView(mapa);
 
         Label cantidadEjercitos = new Label();

@@ -28,8 +28,8 @@ public class App extends Application {
         var scene = new Scene(new StackPane(label), 640, 480);
         stage.setScene(scene);
         stage.show();
-        this.mostrarInterfazInicial(stage);
-        //this.mostrarInterfazColocacion(stage);
+        //this.mostrarInterfazInicial(stage);
+        this.mostrarInterfazColocacion(stage);
         //this.mostrarInterfazAtaque(stage);
         //this.mostrarInterfazTarjetas(stage);
     }
@@ -37,7 +37,7 @@ public class App extends Application {
     public void mostrarInterfazInicial(Stage stage){
         stage.setTitle("Interfaz inicial");
         VistaInicial vistaInicial = new VistaInicial();
-        Scene escenaBienvenidos = new Scene (vistaInicial, 1000, 800);
+        Scene escenaBienvenidos = new Scene (vistaInicial);
         stage.setScene(escenaBienvenidos);
         stage.setResizable(false);
     }
@@ -45,7 +45,7 @@ public class App extends Application {
         stage.setTitle("Interfaz Colocacion");
         Mapa mapaJuego = new Mapa();
         VistaEtapaColocacion vistaColocacion = new VistaEtapaColocacion(mapaJuego);
-        Scene escenaColocacion = new Scene(vistaColocacion, 1000, 800);
+        Scene escenaColocacion = new Scene(vistaColocacion);
         stage.setScene(escenaColocacion);
         stage.setResizable(false);
 
