@@ -20,6 +20,8 @@ import java.util.ArrayList;
  */
 public class App extends Application {
 
+    private Stage stage;
+
     @Override
     public void start(Stage stage) {
         var javaVersion = SystemInfo.javaVersion();
@@ -29,35 +31,33 @@ public class App extends Application {
         var scene = new Scene(new StackPane(label), 640, 480);
         stage.setScene(scene);
         stage.show();
-
-        this.mostrarInterfazInicial(stage);
-        //this.mostrarInterfazColocacion(stage);
-        //this.mostrarInterfazAtaque(stage);
-       // this.mostrarInterfazTarjetas(stage);
+        this.stage = stage;
+        this.mostrarInterfazInicial();
+        //this.mostrarInterfazColocacion();
+        //this.mostrarInterfazAtaque();
+       // this.mostrarInterfazTarjetas();
     }
 
-    public void mostrarInterfazInicial(Stage stage){
+    public void mostrarInterfazInicial(){
         stage.setTitle("Interfaz inicial");
-        VistaInicial vistaInicial = new VistaInicial();
+        VistaInicial vistaInicial = new VistaInicial(this);
         Scene escenaBienvenidos = new Scene (vistaInicial);
         stage.setScene(escenaBienvenidos);
         stage.setResizable(false);
     }
-    public void mostrarInterfazColocacion(Stage stage){
-        Juego juego = new Juego(3);
-        juego.iniciarJuego();
-
+    public void mostrarInterfazColocacion(Juego juego, String nombreJugadorActual, String nombreSiguienteJugador){
         stage.setTitle("Interfaz Colocacion");
         Mapa mapaJuego = new Mapa(juego.obtenerPaises());
-        VistaEtapaColocacion vistaColocacion = new VistaEtapaColocacion(mapaJuego);
+        VistaEtapaColocacion vistaColocacion = new VistaEtapaColocacion(mapaJuego, nombreJugadorActual, nombreSiguienteJugador);
         Scene escenaColocacion = new Scene(vistaColocacion);
         stage.setScene(escenaColocacion);
         stage.setResizable(false);
 
     }
-    public void mostrarInterfazAtaque(Stage stage){
+    public void mostrarInterfazAtaque(){
         Juego juego = new Juego(4);
         juego.iniciarJuego();
+        juego.jugar();
 
         stage.setTitle("Interfaz ataque");
         Mapa mapaJuego = new Mapa(juego.obtenerPaises());
@@ -68,7 +68,7 @@ public class App extends Application {
 
     }
 
-    public void mostrarInterfazTarjetas(Stage stage){
+    public void mostrarInterfazTarjetas(){
         stage.setTitle("Interfaz Tarjetas");
         TarjetaPais tarjetaPais = new TarjetaPais(new Canion(), "Argentina");
         TarjetaPais tarjetaPais2 = new TarjetaPais(new Comodin(), "Chile");

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.controlador.CantidadDeJugadoresEventHandler;
 import edu.fiuba.algo3.controlador.JugarEventHandler;
 import javafx.geometry.Insets;
@@ -15,7 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class VistaInicial extends VBox{
-    public VistaInicial() {
+    public VistaInicial(App app) {
         super();
         Label labelArchivo = new Label("Bienvenido a A.L.T.E.G.O.");
         labelArchivo.setFont(new Font("Arial", 18));
@@ -34,7 +35,7 @@ public class VistaInicial extends VBox{
                 "-fx-font-size: 18;" +
                 "-fx-font-famiy: sans-serif;"
         );
-        JugarEventHandler botonJugarEventHandler = new JugarEventHandler(texto, etiqueta);
+        JugarEventHandler botonJugarEventHandler = new JugarEventHandler(texto, etiqueta, app);
         botonJugar.setOnAction(botonJugarEventHandler);
         CantidadDeJugadoresEventHandler cantidadDeJugadoresEventHandler = new CantidadDeJugadoresEventHandler(botonJugar);
         texto.setOnKeyPressed(cantidadDeJugadoresEventHandler);

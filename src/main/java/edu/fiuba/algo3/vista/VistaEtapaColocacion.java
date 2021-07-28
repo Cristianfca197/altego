@@ -8,8 +8,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 public class VistaEtapaColocacion extends StackPane {
-    public VistaEtapaColocacion(Mapa mapa){
-        HBox datosTurno = this.datosTurno();
+    public VistaEtapaColocacion(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador){
+        HBox datosTurno = this.datosTurno(nombreJugadorActual, nombreSiguienteJugador);
         VBox contenedorBotones1 = this.botonesJugador();
         HBox contenedorBotones2 = this.botonesTurno();
         BorderPane contenedor = new BorderPane();
@@ -48,12 +48,12 @@ public class VistaEtapaColocacion extends StackPane {
         return contenedor;
     }
 
-    private HBox datosTurno() {
+    private HBox datosTurno(String nombreJugadorActual, String nombreSiguienteJugador) {
         Label datoJugador = new Label();
-        datoJugador.setText("Jugador:");
+        datoJugador.setText("Jugador:"+ nombreJugadorActual);
         datoJugador.setTextFill(Color.WHITE);
         Label proximoJugador = new Label();
-        proximoJugador.setText("Siguiente jugador:");
+        proximoJugador.setText("Siguiente jugador:"+ nombreSiguienteJugador);
         proximoJugador.setTextFill(Color.WHITE);
         HBox datosTurno = new HBox(datoJugador, proximoJugador);
         datosTurno.setSpacing(20);

@@ -89,6 +89,7 @@ public class Juego {
         jugadorActual = turnos.get(0);
         this.faseInicial();
         ultimoJugador = turnos.get(turnos.size()-1);
+        this.configurarJugadoresDePrueba();
     }
 
     public void faseInicial(){ etapaR = new EtapaRinicial(); }

@@ -19,8 +19,6 @@ public class VistaEtapaAtaque extends VBox {
         botonObjetivo.setText("Ver Objetivo");
         botonObjetivo.setFont(new Font("Arial",18));
 
-
-
         HBox contenedorBotones1 = new HBox(botonAtaque, botonObjetivo, botonReagrupar);
         contenedorBotones1.setSpacing(20);
         contenedorBotones1.setAlignment(Pos.CENTER);

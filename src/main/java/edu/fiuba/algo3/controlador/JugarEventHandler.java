@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controlador;
 
+import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.Juego;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,12 +11,14 @@ import javafx.scene.text.Font;
 
 
 public class JugarEventHandler implements EventHandler<ActionEvent> {
+    private final App app;
     private Label label;
     private TextField texto;
 
-    public JugarEventHandler(TextField textField, Label label) {
+    public JugarEventHandler(TextField textField, Label label, App app) {
         this.texto = textField;
         this.label = label;
+        this.app = app;
     }
     @Override
     public void handle(ActionEvent actionEvent) {
@@ -26,9 +29,11 @@ public class JugarEventHandler implements EventHandler<ActionEvent> {
         }
         int cantidadIngresada = Integer.parseInt(texto.getText());
         if( (cantidadIngresada > 1) && (cantidadIngresada < 7)){
+            System.out.println(cantidadIngresada);
             Juego juego = new Juego(cantidadIngresada);
             juego.iniciarJuego();
-            System.out.println(juego.obtenerPaises());
+            juego.jugar();
+            app.mostrarInterfazColocacion(juego, juego.obtenerJugador(1).obtenerNombre(), juego.obtenerJugador(2).obtenerNombre());
 
         }
         else {

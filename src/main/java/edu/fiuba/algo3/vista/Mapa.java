@@ -2,12 +2,10 @@ package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.juego.Pais;
 import javafx.geometry.Insets;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Circle;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,23 +18,12 @@ public class Mapa extends Pane {
         ImageView imagenMapa = new ImageView(mapa);
         HashMap<String,StackPane> ejercitos = new HashMap<String, StackPane>();
         for(Pais unPais: paises){
-            Label cantidadEjercitos = new Label();
-            cantidadEjercitos.setText(String.valueOf((unPais.cantidadDeEjercitos())));
-            Circle ficha = new Circle();
-            ficha.setRadius(10);
-            ficha.setFill(unPais.obtenerFicha().color());
-            StackPane ejercito = new StackPane(ficha, cantidadEjercitos);
-            ejercitos.put(unPais.obtenerNombre(), ejercito);
+            VistaPais vistaPais = new VistaPais(unPais.cantidadDeEjercitos(), unPais.obtenerFicha().color());
+            ejercitos.put(unPais.obtenerNombre(), vistaPais);
+
         }
         cargarPosiciones(ejercitos);
 
-        /*
-        Circle otraFicha = new Circle();
-        otraFicha.setRadius(10);
-        otraFicha.setFill(Color.BLUE);
-        otraFicha.setCenterX(80);
-        otraFicha.setCenterY(200);
-        */
         Pane panePrinciapal = new Pane(imagenMapa);
         panePrinciapal.setPadding(new Insets(20));
 
@@ -205,6 +192,7 @@ public class Mapa extends Pane {
         ejercito = ejercitos.get("Japon");
         ejercito.setLayoutX(800);
         ejercito.setLayoutY(160);
+
     }
 
 
