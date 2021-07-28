@@ -1,22 +1,21 @@
 @startuml DiagramaPaquete
 
-package "tp2" {
-  [docker]
-  [docs]
-  [fiuba]
-  [multimedia]
-  [scripts]
-  [target]
-  package "src/main" {
-    [diagramas_puml]
-    [archivos_paises]
-    [test]
-    [java]
-  }
-}
 
-package "java/edu/fiuba/algo3" as jv{
-  [vista]
+package "src/main/java/edu/fiuba/algo3" as jv{
+  package "vista" as vista {
+    [Formas]
+    [Mapa]
+    [VistaEtapaAtaque]
+    [VistaEtapaColocacion]
+    [VistaInicial]
+    [VistaPais]
+    [VistaTarjetaPais]
+  }
+  package "controlador" as controlador {
+    [CantidadDeJugadores]
+    [Jugar]
+    [ModificarVista]
+  }
   package "modelo" as modelo {
     [canje]
     [continente]
@@ -28,8 +27,7 @@ package "java/edu/fiuba/algo3" as jv{
   }
 }
 
-[java] -down--> jv
-
+[VistaInicial] --> [CantidadDeJugadores]
 
 /'
 cloud {
