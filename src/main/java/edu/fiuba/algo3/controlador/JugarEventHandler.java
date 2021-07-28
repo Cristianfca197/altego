@@ -31,7 +31,6 @@ public class JugarEventHandler implements EventHandler<ActionEvent> {
         if( (cantidadIngresada > 1) && (cantidadIngresada < 7)){
             System.out.println(cantidadIngresada);
             Juego juego = new Juego(cantidadIngresada);
-            juego.iniciarJuego();
             juego.jugar();
             app.mostrarInterfazColocacion(juego, juego.obtenerJugador(1).obtenerNombre(), juego.obtenerJugador(2).obtenerNombre());
 

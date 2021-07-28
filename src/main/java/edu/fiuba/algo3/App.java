@@ -32,6 +32,7 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
         this.stage = stage;
+
         this.mostrarInterfazInicial();
         //this.mostrarInterfazColocacion();
         //this.mostrarInterfazAtaque();
@@ -56,7 +57,6 @@ public class App extends Application {
     }
     public void mostrarInterfazAtaque(){
         Juego juego = new Juego(4);
-        juego.iniciarJuego();
         juego.jugar();
 
         stage.setTitle("Interfaz ataque");

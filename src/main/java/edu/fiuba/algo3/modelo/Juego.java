@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.modelo.Etapa.EtapaR;
-import edu.fiuba.algo3.modelo.Etapa.EtapaRAtacar;
-import edu.fiuba.algo3.modelo.Etapa.EtapaRReagrupar;
-import edu.fiuba.algo3.modelo.Etapa.EtapaRinicial;
+import edu.fiuba.algo3.modelo.Etapa.*;
 import edu.fiuba.algo3.modelo.exception.ExcepcionFinDeJuego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
@@ -78,21 +75,28 @@ public class Juego {
         }
     }
 
-    public void iniciarJuego(){
+    public void iniciarJuegoPrueba(){
         this.repartirPaisesCondicionesConocidas();
         this.ocuparTablero();
         this.turnos = new ArrayList<>(listaJugadores);
+        jugadorActual = turnos.get(0);
+        this.faseInicial();
+        ultimoJugador = turnos.get(turnos.size()-1);
+        this.configurarJugadoresDePrueba();
 
     }
 
     public void jugar(){
+        this.repartirPaisesCondicionesConocidas();
+        this.ocuparTablero();
+        this.turnos = new ArrayList<>(listaJugadores);
         jugadorActual = turnos.get(0);
         this.faseInicial();
         ultimoJugador = turnos.get(turnos.size()-1);
         this.configurarJugadoresDePrueba();
     }
 
-    public void faseInicial(){ etapaR = new EtapaRinicial(); }
+    public void faseInicial(){ etapaR = new EtapaR1(this); }
 
     public Pais obtenerPais(String pais){   return tablero.obtenerPais(pais); }
 
@@ -101,13 +105,24 @@ public class Juego {
     }
 
     public void pasarTurno(){
-        if(jugadorActual == ultimoJugador){ etapaR = etapaR.pasarEtapa(); }
-        if(jugadorActual != ultimoJugador && etapaR.getClass() == EtapaRReagrupar.class) {
-            etapaR = new EtapaRAtacar();
+        if(etapaR.estaTerminada()) {
+            if(etapaR.getClass() == EtapaRAtacar.class){
+                etapaR = etapaR.pasarEtapa();
+            }
+            else {
+                if (jugadorActual == ultimoJugador) {
+                    etapaR = etapaR.pasarEtapa();
+                }
+                if (jugadorActual != ultimoJugador && etapaR.getClass() == EtapaRReagrupar.class) {
+                    etapaR = new EtapaRAtacar(this);
+                }
+
+                turnos.add(turnos.remove(0));
+                jugadorActual = turnos.get(0);
+                cantidadPaisesJugadorActual = tablero.obtenerCantidadPaisesJugador(jugadorActual);
+                etapaR.establecerCantidadEjercitos(cantidadPaisesJugadorActual / 2);
+            }
         }
-        turnos.add( turnos.remove(0));
-        jugadorActual = turnos.get(0);
-        cantidadPaisesJugadorActual = tablero.obtenerCantidadPaisesJugador(jugadorActual);
     }
 
     public EtapaR obtenerEtapaR() {
@@ -129,8 +144,8 @@ public class Juego {
         if(cantidadPaisesJugadorActual != tablero.obtenerCantidadPaisesJugador(jugadorActual)){
             this.entregarTarjetaRandom(jugadorActual);
         }
-        etapaR = new EtapaRReagrupar();
     }
+
     public void entregarTarjetaRandom(Jugador jugador){
         ArrayList<String> tarjetas = new ArrayList<>(tarjetasDePais.keySet());
         int numeroRandom = new Random().nextInt(tarjetas.size());

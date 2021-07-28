@@ -4,29 +4,35 @@ import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 
-public class EtapaRAtacar implements EtapaR {
+public class EtapaR1 implements EtapaR{
 
+    private final int cantidadEjercitos;
     private final Juego juego;
+    private int ejercitosColocados;
 
-    public EtapaRAtacar(Juego juego) {
+    public EtapaR1(Juego juego){
         this.juego = juego;
+        this.cantidadEjercitos = 5;
+        this.ejercitosColocados = 0;
     }
+
 
     @Override
     public void colocarEjercitos(Jugador jugadorActual, Pais pais, int cantidad) {
-
+        if((ejercitosColocados + cantidad ) <= cantidadEjercitos) {
+            jugadorActual.colocarEjercitosEn(cantidad, pais);
+            ejercitosColocados += cantidad;
+        }
     }
 
-    public EtapaR pasarEtapa(){
-        this.juego.terminarAtaques();
-        return new EtapaRReagrupar(this.juego);
+    @Override
+    public EtapaR pasarEtapa() {
+        return new EtapaR2(this.juego);
     }
 
     @Override
     public void AtacarCon(Jugador jugadorActual, Pais atacante, Pais defensor) {
-        if(jugadorActual.obtenerFicha() == atacante.obtenerFicha()) {
-            atacante.atacarA(defensor);
-        }
+
     }
 
     @Override
@@ -36,11 +42,14 @@ public class EtapaRAtacar implements EtapaR {
 
     @Override
     public boolean estaTerminada() {
-        return true;
+        if(this.ejercitosColocados == this.cantidadEjercitos){
+            ejercitosColocados = 0;
+            return true;
+        }
+        return false;
     }
 
     @Override
     public void establecerCantidadEjercitos(int cantidadEjercitos) {
-
     }
 }
