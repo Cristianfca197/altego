@@ -100,6 +100,11 @@ public class Juego {
 
     public Pais obtenerPais(String pais){   return tablero.obtenerPais(pais); }
 
+    public void colocarEjercitosPaisNombre(String nombrePais, int cantidad){
+        Pais pais = this.obtenerTablero().obtenerPais(nombrePais);
+        colocarEjercitosFaseInicial(pais, cantidad);
+
+    }
     public void colocarEjercitosFaseInicial(Pais pais, int cantidad){
         etapaR.colocarEjercitos(jugadorActual, pais, cantidad);
     }
