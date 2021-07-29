@@ -49,20 +49,17 @@ public class App extends Application {
     public void mostrarInterfazColocacion(Juego juego, String nombreJugadorActual, String nombreSiguienteJugador){
         stage.setTitle("Interfaz Colocacion");
         Mapa mapaJuego = new Mapa(juego.obtenerPaises());
-        VistaEtapaColocacion vistaColocacion = new VistaEtapaColocacion(mapaJuego, nombreJugadorActual, nombreSiguienteJugador);
+        VistaEtapaColocacion vistaColocacion = new VistaEtapaColocacion(mapaJuego, nombreJugadorActual, nombreSiguienteJugador, juego, this);
         Scene escenaColocacion = new Scene(vistaColocacion);
         stage.setScene(escenaColocacion);
         stage.setResizable(false);
 
     }
-    public void mostrarInterfazAtaque(){
-        Juego juego = new Juego(4);
-        juego.jugar();
-
+    public void mostrarInterfazAtaque(Juego juego, String nombreJugadorActual, String nombreSiguienteJugador){
+        Mapa mapaJuego =  new Mapa(juego.obtenerPaises());
         stage.setTitle("Interfaz ataque");
-        Mapa mapaJuego = new Mapa(juego.obtenerPaises());
-        VistaEtapaAtaque vistaAtaque = new VistaEtapaAtaque(mapaJuego);
-        Scene escenaAtaque = new Scene(vistaAtaque, 1000, 800);
+        VistaEtapaAtaque vistaAtaque = new VistaEtapaAtaque(mapaJuego, nombreJugadorActual, nombreSiguienteJugador, juego, this);
+        Scene escenaAtaque = new Scene(vistaAtaque);
         stage.setScene(escenaAtaque);
         stage.setResizable(false);
 

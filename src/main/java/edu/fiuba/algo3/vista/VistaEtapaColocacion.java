@@ -1,18 +1,28 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.App;
+import edu.fiuba.algo3.controlador.ColocarEjercitosEventHandler;
+import edu.fiuba.algo3.controlador.FinalizarTurnoEventHandler;
+import edu.fiuba.algo3.modelo.Juego;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 public class VistaEtapaColocacion extends StackPane {
-    public VistaEtapaColocacion(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador){
+    private final BorderPane contenedor;
+
+    public VistaEtapaColocacion(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador, Juego juego, App app){
         HBox datosTurno = this.datosTurno(nombreJugadorActual, nombreSiguienteJugador);
         VBox contenedorBotones1 = this.botonesJugador();
-        HBox contenedorBotones2 = this.botonesTurno();
+        HBox contenedorBotones2 = this.botonesTurno(juego, app);
         BorderPane contenedor = new BorderPane();
+        this.contenedor = contenedor;
         contenedor.setTop(datosTurno);
         contenedor.setRight(contenedorBotones1);
         contenedor.setBottom(contenedorBotones2);
@@ -26,11 +36,13 @@ public class VistaEtapaColocacion extends StackPane {
         setMargin(mapa, new Insets(15,50,0,50));
     }
 
-    private HBox botonesTurno() {
+    private HBox botonesTurno(Juego juego, App app) {
         Button botonFinTurno = new Button();
         botonFinTurno.setText("Finalizar Turno");
+        FinalizarTurnoEventHandler finalizarTurnoEventHandler = new FinalizarTurnoEventHandler(juego, app);
+        botonFinTurno.setOnAction(finalizarTurnoEventHandler);
         Button botonObjetivo = new Button();
-        botonObjetivo.setText("Ver Objetivo");
+        botonObjetivo.setText("Ver Objetivo"); //hacer objetivos
         Button botonTarjetaPais = new Button();
         botonTarjetaPais.setText("Activar Tarjeta");
         HBox contenedor = new HBox(botonFinTurno, botonObjetivo, botonTarjetaPais);
@@ -43,11 +55,18 @@ public class VistaEtapaColocacion extends StackPane {
         botonCanje.setText("Realizar Canje");
         Button botonColocarEjercitos = new Button();
         botonColocarEjercitos.setText("Colocar ejercitos");
+        ColocarEjercitosEventHandler colocarEjercitosEventHandler = new ColocarEjercitosEventHandler(this);
+        botonColocarEjercitos.setOnAction(colocarEjercitosEventHandler);
         VBox contenedor = new VBox( botonCanje, botonColocarEjercitos);
         contenedor.setSpacing(20);
         return contenedor;
     }
-
+    public void mostrarAgregarEjercitos(){
+        Label etiqueta = new Label();
+        etiqueta.setText("Haga click sobre la ficha del pais en el que desea agregar ejercitos, luego introduzca la cantidad");
+        etiqueta.setTextFill(Color.WHITE);
+        contenedor.setTop(etiqueta);
+    }
     private HBox datosTurno(String nombreJugadorActual, String nombreSiguienteJugador) {
         Label datoJugador = new Label();
         datoJugador.setText("Jugador:"+ nombreJugadorActual);
