@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.controlador;
 
-import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.Juego;
+import edu.fiuba.algo3.vista.SeleccionarVista;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
@@ -11,14 +11,14 @@ import javafx.scene.text.Font;
 
 
 public class JugarEventHandler implements EventHandler<ActionEvent> {
-    private final App app;
+    private final SeleccionarVista vista;
     private Label label;
     private TextField texto;
 
-    public JugarEventHandler(TextField textField, Label label, App app) {
+    public JugarEventHandler(TextField textField, Label label, SeleccionarVista seleccionarVista) {
         this.texto = textField;
         this.label = label;
-        this.app = app;
+        this.vista = seleccionarVista;
     }
     @Override
     public void handle(ActionEvent actionEvent) {
@@ -32,7 +32,7 @@ public class JugarEventHandler implements EventHandler<ActionEvent> {
             System.out.println(cantidadIngresada);
             Juego juego = new Juego(cantidadIngresada);
             juego.jugar();
-            app.mostrarInterfazColocacion(juego, juego.obtenerJugador(1).obtenerNombre(), juego.obtenerJugador(2).obtenerNombre());
+            this.vista.mostrarInterfazColocacion(juego, juego.obtenerJugador(1).obtenerNombre(), juego.obtenerJugador(2).obtenerNombre());
 
         }
         else {

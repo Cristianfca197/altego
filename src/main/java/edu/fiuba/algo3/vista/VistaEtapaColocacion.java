@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.vista;
 
-import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.controlador.ColocarEjercitosEventHandler;
 import edu.fiuba.algo3.controlador.FinalizarTurnoEventHandler;
 import edu.fiuba.algo3.modelo.Juego;
@@ -16,11 +15,13 @@ import javafx.scene.paint.Color;
 
 public class VistaEtapaColocacion extends StackPane {
     private final BorderPane contenedor;
+    private final SeleccionarVista vista;
 
-    public VistaEtapaColocacion(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador, Juego juego, App app){
+    public VistaEtapaColocacion(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador, Juego juego, SeleccionarVista seleccionarVista){
+        this.vista = seleccionarVista;
         HBox datosTurno = this.datosTurno(nombreJugadorActual, nombreSiguienteJugador);
         VBox contenedorBotones1 = this.botonesJugador();
-        HBox contenedorBotones2 = this.botonesTurno(juego, app);
+        HBox contenedorBotones2 = this.botonesTurno(juego);
         BorderPane contenedor = new BorderPane();
         this.contenedor = contenedor;
         contenedor.setTop(datosTurno);
@@ -36,10 +37,10 @@ public class VistaEtapaColocacion extends StackPane {
         setMargin(mapa, new Insets(15,50,0,50));
     }
 
-    private HBox botonesTurno(Juego juego, App app) {
+    private HBox botonesTurno(Juego juego) {
         Button botonFinTurno = new Button();
         botonFinTurno.setText("Finalizar Turno");
-        FinalizarTurnoEventHandler finalizarTurnoEventHandler = new FinalizarTurnoEventHandler(juego, app);
+        FinalizarTurnoEventHandler finalizarTurnoEventHandler = new FinalizarTurnoEventHandler(juego, vista);
         botonFinTurno.setOnAction(finalizarTurnoEventHandler);
         Button botonObjetivo = new Button();
         botonObjetivo.setText("Ver Objetivo"); //hacer objetivos

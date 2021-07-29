@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.vista;
 
-import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.modelo.Juego;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -12,9 +11,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
 public class VistaEtapaAtaque extends StackPane {
-    public VistaEtapaAtaque(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador, Juego juego, App app){
+    private final SeleccionarVista vista;
+
+    public VistaEtapaAtaque(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador, Juego juego, SeleccionarVista seleccionarVista){
+        this.vista = seleccionarVista;
         HBox datosTurno = this.datosTurno(nombreJugadorActual, nombreSiguienteJugador);
-        HBox contenedorBotones2 = this.botonesTurno(juego, app);
+        HBox contenedorBotones2 = this.botonesTurno(juego);
         BorderPane contenedor = new BorderPane();
         contenedor.setTop(datosTurno);
         contenedor.setBottom(contenedorBotones2);
@@ -27,7 +29,7 @@ public class VistaEtapaAtaque extends StackPane {
         setMargin(mapa, new Insets(15,50,0,50));
     }
 
-    private HBox botonesTurno(Juego juego, App app) {
+    private HBox botonesTurno(Juego juego) {
         Button botonReagrupar = new Button();
         botonReagrupar.setText("Reagrupar");
         Button botonObjetivo = new Button();

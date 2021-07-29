@@ -13,6 +13,7 @@ public class ColocarEjercitosEventHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
+        System.out.println("aaa");
         vista.mostrarAgregarEjercitos();
     }
 }

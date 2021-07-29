@@ -429,15 +429,5 @@ public class JuegoTest {
         Jugador jugador = juego.obtenerJugador(1);
         assertThrows(ExcepcionFinDeJuego.class, () -> juego.finalizar(jugador.obtenerNombre()));
     }
-/*
-    @Test
-    public void test25EtapaInicial(){
-        Juego juego = new Juego(2);
-        juego.iniciarJuegoPrueba();
-        juego.pasarTurno();
-        juego.pasarTurno();
-        EtapaR etapaActual = juego.obtenerEtapaR();
-        assertEquals( EtapaRAtacar.class, etapaActual.getClass());
-    }
-*/
+
 }

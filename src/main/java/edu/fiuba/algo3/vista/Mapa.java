@@ -18,7 +18,10 @@ public class Mapa extends Pane {
         ImageView imagenMapa = new ImageView(mapa);
         HashMap<String,StackPane> ejercitos = new HashMap<String, StackPane>();
         for(Pais unPais: paises){
-            VistaPais vistaPais = new VistaPais(unPais.cantidadDeEjercitos(), unPais.obtenerFicha().color());
+            VistaPais vistaPais = new VistaPais(unPais.cantidadDeEjercitos(), unPais.obtenerFicha().color(), unPais.obtenerNombre());
+            vistaPais.setOnMouseClicked(event ->  {
+                System.out.println("asfgrhehga");
+            });
             ejercitos.put(unPais.obtenerNombre(), vistaPais);
 
         }
