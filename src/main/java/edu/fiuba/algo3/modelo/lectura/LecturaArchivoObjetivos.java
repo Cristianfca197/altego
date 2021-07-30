@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
+import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -58,35 +59,39 @@ public class LecturaArchivoObjetivos {
 
         // Obtener tipo
         String tipo = (String) objetivo.get("Tipo");
-        System.out.println(tipo);
-        if (tipo.equals("Ocupar")){
+
+        if (tipo.equals("Ocupar")) {
             // Obtener continente
             String nombresContinentes = (String) objetivo.get("Ocupar Continente");
-            String[] nombreContinente = nombresContinentes.split(","); 
+            String[] continentesAOcuparJson = nombresContinentes.split(",");
+            ArrayList<String> continentesAOcupar = new ArrayList<String>();
+            
+            if (!nombresContinentes.equals("")){
+                for(int i = 0; i < continentesAOcuparJson.length; i++ ){
+                    continentesAOcupar.add(continentesAOcuparJson[i]);
+                }    
+            }
 
             // Obtener Paises
             String cont = (String) objetivo.get("Ocupar Paises");
             String[] continentesCantidadesJson = cont.split(",");
 
-            HashMap<String, Integer> continentesCantidades = new HashMap<String, Integer>();
+            HashMap<String, Integer> continentesYCantidades = new HashMap<String, Integer>();
             
             for (int i = 0; i < continentesCantidadesJson.length; i++) {
                 
                 String[] valores = continentesCantidadesJson[i].split("\\s");
                 int cantidad = Integer.parseInt(valores[0]);
-                continentesCantidades.put(this.nombreContinente(valores[1]), cantidad);
+                continentesYCantidades.put(this.nombreContinente(valores[1]), cantidad);
             }
-            for (int i = 0; i < nombreContinente.length; i++) {
-                continentesCantidades.put(nombreContinente[i], this.cantidadPaises(nombreContinente[i]));
-            }
-            obj = new ObjetivoOcupar(titulo, continentesCantidades);
+            obj = new ObjetivoOcupar(titulo, continentesAOcupar, continentesYCantidades);
 
         } else if (tipo.equals("Destruir")){
 
             // Obtener equipo a destruir
             String equipo = (String) objetivo.get("Destruir Equipo");
 
-            obj = new ObjetivoDestruir(titulo, equipo);
+            obj = new ObjetivoDestruir(titulo, this.obtenerEquipo(equipo));
         } else {
             // Obtener cantidad paises
             String stringCantidad = (String) objetivo.get("Ocupar Paises");
@@ -99,24 +104,24 @@ public class LecturaArchivoObjetivos {
 
     }
 
-    private int cantidadPaises(String string) {
-
-        switch (string) {
-            case "America del Sur":
-                return (new AmericaDelSur(string)).obtenerCantidadPaises();
-            case "America del Norte":
-                return (new AmericaDelNorte(string)).obtenerCantidadPaises();
-            case "Europa":
-                return (new Europa(string)).obtenerCantidadPaises();
-            case "Africa":
-                return (new Africa(string)).obtenerCantidadPaises();
-            case "Asia":
-                return (new Asia(string)).obtenerCantidadPaises();
+    private String obtenerEquipo(String equipo) {
+        switch (equipo){
+            case "Am": 
+                return "Amarillo";
+            case "A":
+                return "Azul";
+            case "R": 
+                return "Rojo";
+            case "N":
+                return "Negro";
+            case "V":
+                return "Verde";
+            case "M":
+                return "Magenta";
             default:
-                return (new Oceania(string)).obtenerCantidadPaises();
+                return "Amarillo"; // y en caso de error
         }
     }
-
 
     private String nombreContinente(String string) {
         switch (string){
@@ -133,7 +138,7 @@ public class LecturaArchivoObjetivos {
             case "AF":
                 return "Africa";
             default:
-                return "Limitrofes"; // en caso de error
+                return "Limitrofes"; // y en caso de error
         }
 
     }

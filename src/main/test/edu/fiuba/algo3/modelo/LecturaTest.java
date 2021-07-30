@@ -14,6 +14,7 @@ import edu.fiuba.algo3.modelo.objetivo.Objetivo;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class LecturaTest {
@@ -120,9 +121,67 @@ public class LecturaTest {
         leer.leerArchivo(objetivos);
 
         objetivo = objetivos.get(3);
-        assertEquals(objetivo.obtenerTipo(), "Ocupar");
-        assertEquals(objetivo.paisesAConquistar("Asia"), 4);
+        assertEquals("Ocupar", objetivo.obtenerTipo());
+        assertEquals(4, objetivo.paisesAConquistar("Asia"));
         assertEquals(2, objetivo.paisesAConquistar("America del Sur"));
+        assertEquals(Arrays.asList("Europa"), objetivo.continentesAOcupar());
 
     }
+
+    @Test
+    public void test08LeerObjetivosQuintoEsCorrecto(){
+        LecturaArchivoObjetivos leer = new LecturaArchivoObjetivos();
+        ArrayList<Objetivo> objetivos = new ArrayList<>();
+        Objetivo objetivo;
+        leer.leerArchivo(objetivos);
+
+        objetivo = objetivos.get(5);
+        assertEquals("Ocupar", objetivo.obtenerTipo());
+        assertEquals(4, objetivo.paisesAConquistar("America del Norte"));
+        assertEquals(2, objetivo.paisesAConquistar("Oceania"));
+        assertEquals(2, objetivo.paisesAConquistar("America del Sur"));
+        assertEquals(2, objetivo.paisesAConquistar("Africa"));
+        assertEquals(3, objetivo.paisesAConquistar("Europa"));
+        assertEquals(3, objetivo.paisesAConquistar("Asia"));
+
+        assertTrue(objetivo.continentesAOcupar().isEmpty());
+    }
+
+    @Test
+    public void test09LeerObjetivosSeptimoEsCorrecto(){
+        LecturaArchivoObjetivos leer = new LecturaArchivoObjetivos();
+        ArrayList<Objetivo> objetivos = new ArrayList<>();
+        Objetivo objetivo;
+        leer.leerArchivo(objetivos);
+
+        objetivo = objetivos.get(7);
+        assertEquals("Ocupar", objetivo.obtenerTipo());
+        assertEquals(Arrays.asList("América del Sur", "África"), objetivo.continentesAOcupar());
+    }
+
+    @Test
+    public void test10LeerObjetivosTreceEsCorrecto(){
+        LecturaArchivoObjetivos leer = new LecturaArchivoObjetivos();
+        ArrayList<Objetivo> objetivos = new ArrayList<>();
+        Objetivo objetivo;
+        leer.leerArchivo(objetivos);
+
+        objetivo = objetivos.get(13);
+        assertEquals("Destruir", objetivo.obtenerTipo());
+        assertEquals("Magenta", objetivo.equipoADestruir());
+    }
+
+    @Test
+    public void test11LeerObjetivosComunEsCorrecto(){
+        LecturaArchivoObjetivos leer = new LecturaArchivoObjetivos();
+        ArrayList<Objetivo> objetivos = new ArrayList<>();
+        Objetivo objetivo;
+        leer.leerArchivo(objetivos);
+
+        objetivo = objetivos.get(14);
+        assertEquals("Comun", objetivo.obtenerTipo());
+        assertEquals(30, objetivo.paisesAConquistar(""));
+    }
+
+    
 }

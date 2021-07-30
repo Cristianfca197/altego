@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.modelo.objetivo;
 
+import java.util.ArrayList;
+
 public class ObjetivoDestruir implements Objetivo {
 
     private String titulo;
@@ -27,5 +29,19 @@ public class ObjetivoDestruir implements Objetivo {
         return 0;
     }
 
+    @Override
+    public ArrayList<String> continentesAOcupar() {
+        return null;
+    }
+
+    @Override
+    public String equipoADestruir() {
+        return this.equipoADestruir;
+    }
+
+    @Override
+    public String titulo() {
+        return this.titulo();
+    }
 
 }
