@@ -10,6 +10,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
+import java.util.HashMap;
+
 public class VistaEtapaAtaque extends StackPane {
     private final SeleccionarVista vista;
 
@@ -23,6 +25,13 @@ public class VistaEtapaAtaque extends StackPane {
         contenedor.setLayoutY(10);
         BorderPane.setMargin(datosTurno, new Insets(0, 0, 0, 400));
         BorderPane.setMargin(contenedorBotones2, new Insets(0, 0, 0, 300));
+
+        HashMap<String, VistaPais> paises = mapa.obtenerPaises();
+        for(String nombre: paises.keySet()){
+            VistaPais pais = paises.get(nombre);
+            contenedor.getChildren().add(pais);
+        }
+
         ObservableList lista = this.getChildren();
         lista.addAll(mapa, contenedor);
         this.setStyle("-fx-background-color: #504d4c");

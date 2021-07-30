@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.modelo.juego;
 
-import java.util.ArrayList;
-
 import edu.fiuba.algo3.modelo.continente.Continente;
 import edu.fiuba.algo3.modelo.exception.ExcepcionAtaqueInvalido;
+
+import java.util.ArrayList;
 
 public class Pais {
     private final String nombre;
@@ -26,6 +26,7 @@ public class Pais {
     public void colocarEjercitos(Integer unaCantidadDeEjercitos, Ficha unaFicha){
         if(this.ficha.esIgualA(unaFicha)) {
             this.ejercitos += unaCantidadDeEjercitos;
+            System.out.println(unaCantidadDeEjercitos);
         }
     }
     public int cantidadDeEjercitos(){

@@ -108,7 +108,6 @@ public class Juego {
     public void colocarEjercitosFaseInicial(Pais pais, int cantidad){
         etapaR.colocarEjercitos(jugadorActual, pais, cantidad);
     }
-
     public void pasarTurno(){
         if(etapaR.estaTerminada()) {
             if(etapaR.getClass() == EtapaRAtacar.class){
@@ -129,7 +128,12 @@ public class Juego {
             }
         }
     }
-
+    public String obtenerJugadorActual(){
+        return turnos.get(0).obtenerNombre();
+    }
+    public String obtenerSiguienteJugador(){
+        return turnos.get(1).obtenerNombre();
+    }
     public EtapaR obtenerEtapaR() {
         return etapaR;
     }

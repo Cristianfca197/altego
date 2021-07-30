@@ -18,6 +18,8 @@ import java.util.HashMap;
 public class VistaEtapaColocacion extends StackPane {
     private final BorderPane contenedor;
     private final SeleccionarVista vista;
+    private Label jugadorActual;
+    private Label proximoJugador;
 
     public VistaEtapaColocacion(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador, Juego juego, SeleccionarVista seleccionarVista){
         this.vista = seleccionarVista;
@@ -51,7 +53,7 @@ public class VistaEtapaColocacion extends StackPane {
     private HBox botonesTurno(Juego juego) {
         Button botonFinTurno = new Button();
         botonFinTurno.setText("Finalizar Turno");
-        FinalizarTurnoEventHandler finalizarTurnoEventHandler = new FinalizarTurnoEventHandler(juego, vista);
+        FinalizarTurnoEventHandler finalizarTurnoEventHandler = new FinalizarTurnoEventHandler(juego, vista, this);
         botonFinTurno.setOnAction(finalizarTurnoEventHandler);
         Button botonObjetivo = new Button();
         botonObjetivo.setText("Ver Objetivo"); //hacer objetivos
@@ -69,12 +71,6 @@ public class VistaEtapaColocacion extends StackPane {
         contenedor.setSpacing(20);
         return contenedor;
     }
-    public void mostrarAgregarEjercitos(){
-        Label etiqueta = new Label();
-        etiqueta.setText("Haga click sobre la ficha del pais en el que desea agregar ejercitos, luego introduzca la cantidad");
-        etiqueta.setTextFill(Color.WHITE);
-        contenedor.setTop(etiqueta);
-    }
     private HBox datosTurno(String nombreJugadorActual, String nombreSiguienteJugador) {
         Label datoJugador = new Label();
         datoJugador.setText("Jugador:"+ nombreJugadorActual);
@@ -82,8 +78,14 @@ public class VistaEtapaColocacion extends StackPane {
         Label proximoJugador = new Label();
         proximoJugador.setText("Siguiente jugador:"+ nombreSiguienteJugador);
         proximoJugador.setTextFill(Color.WHITE);
+        this.jugadorActual = datoJugador;
+        this.proximoJugador = proximoJugador;
         HBox datosTurno = new HBox(datoJugador, proximoJugador);
         datosTurno.setSpacing(20);
         return datosTurno;
+    }
+    public void actualizarVista(String nombreJugadorActual, String nombreSiguienteJugador){
+        this.jugadorActual.setText("Jugador:"+ nombreJugadorActual);
+        this.proximoJugador.setText("Siguiente jugador:" + nombreSiguienteJugador);
     }
 }

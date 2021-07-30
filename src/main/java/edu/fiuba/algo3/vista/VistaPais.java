@@ -8,6 +8,8 @@ import javafx.scene.shape.Circle;
 public class VistaPais extends StackPane {
 
     private final String nombre;
+    private final Label texto;
+    private final Circle ficha;
 
     public VistaPais(int cantidadEjercitos, Paint color, String nombre){
         this.nombre = nombre;
@@ -16,12 +18,13 @@ public class VistaPais extends StackPane {
         Circle ficha = new Circle();
         ficha.setRadius(10);
         ficha.setFill(color);
+        this.texto = ejercitos;
+        this.ficha = ficha;
         this.getChildren().addAll(ficha, ejercitos);
-        /*
-        PaisSeleccionadoEventHandler paisSeleccionadoEventHandler = new PaisSeleccionadoEventHandler(this);
-        this.setOnMouseClicked(paisSeleccionadoEventHandler);
-        */
-
+    }
+    public void actualizar(int cantidadEjercitos, Paint color){
+        this.texto.setText(String.valueOf(cantidadEjercitos));
+        this.ficha.setFill(color);
     }
     public String obtenerNombre(){
         return this.nombre;
