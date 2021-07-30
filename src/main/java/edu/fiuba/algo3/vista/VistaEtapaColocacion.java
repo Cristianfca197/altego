@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.vista;
 
-import edu.fiuba.algo3.controlador.ColocarEjercitosEventHandler;
 import edu.fiuba.algo3.controlador.FinalizarTurnoEventHandler;
+import edu.fiuba.algo3.controlador.PaisSeleccionadoEventHandler;
 import edu.fiuba.algo3.modelo.Juego;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -12,6 +12,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+
+import java.util.HashMap;
 
 public class VistaEtapaColocacion extends StackPane {
     private final BorderPane contenedor;
@@ -31,6 +33,15 @@ public class VistaEtapaColocacion extends StackPane {
         BorderPane.setMargin(datosTurno, new Insets(0, 0, 0, 400));
         BorderPane.setMargin(contenedorBotones1, new Insets(200, 0, 0, 0));
         BorderPane.setMargin(contenedorBotones2, new Insets(0, 0, 0, 300));
+
+
+        HashMap<String, VistaPais> paises = mapa.obtenerPaises();
+        for(String nombre: paises.keySet()){
+            VistaPais pais = paises.get(nombre);
+            PaisSeleccionadoEventHandler paisSeleccionadoEventHandler = new PaisSeleccionadoEventHandler(pais, juego, this);
+            pais.setOnMouseClicked(paisSeleccionadoEventHandler);
+            contenedor.getChildren().add(pais);
+        }
         ObservableList lista = this.getChildren();
         lista.addAll(mapa, contenedor);
         this.setStyle("-fx-background-color: #504d4c");
@@ -54,11 +65,7 @@ public class VistaEtapaColocacion extends StackPane {
     private VBox botonesJugador() {
         Button botonCanje = new Button();
         botonCanje.setText("Realizar Canje");
-        Button botonColocarEjercitos = new Button();
-        botonColocarEjercitos.setText("Colocar ejercitos");
-        ColocarEjercitosEventHandler colocarEjercitosEventHandler = new ColocarEjercitosEventHandler(this);
-        botonColocarEjercitos.setOnAction(colocarEjercitosEventHandler);
-        VBox contenedor = new VBox( botonCanje, botonColocarEjercitos);
+        VBox contenedor = new VBox( botonCanje);
         contenedor.setSpacing(20);
         return contenedor;
     }

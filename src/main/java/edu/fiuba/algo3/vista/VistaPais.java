@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.vista;
 
-import edu.fiuba.algo3.controlador.PaisSeleccionadoEventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
@@ -18,8 +17,10 @@ public class VistaPais extends StackPane {
         ficha.setRadius(10);
         ficha.setFill(color);
         this.getChildren().addAll(ficha, ejercitos);
+        /*
         PaisSeleccionadoEventHandler paisSeleccionadoEventHandler = new PaisSeleccionadoEventHandler(this);
         this.setOnMouseClicked(paisSeleccionadoEventHandler);
+        */
 
     }
     public String obtenerNombre(){
