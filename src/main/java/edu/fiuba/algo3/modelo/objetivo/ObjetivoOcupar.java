@@ -8,6 +8,7 @@ public class ObjetivoOcupar implements Objetivo {
     private String titulo;
     private HashMap<String, Integer> continentesYCantidades;
     private ArrayList<String> continentesAOcupar;
+    private int objetivoComunCantidad;
  
     public ObjetivoOcupar(String titulo, ArrayList<String> continentesAOcupar, HashMap<String, Integer> continentesYCantidades) {
         this.titulo = titulo;
@@ -43,6 +44,16 @@ public class ObjetivoOcupar implements Objetivo {
     @Override
     public String titulo() {
         return this.titulo();
+    }
+
+    @Override
+    public void establecerObjetivoComun(int cantidad) {
+        this.objetivoComunCantidad = cantidad;
+    }
+
+    @Override
+    public int cantidadObjetivoComun() {
+        return this.objetivoComunCantidad;
     }
     
 }

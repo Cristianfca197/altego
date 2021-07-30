@@ -175,12 +175,17 @@ public class LecturaTest {
     public void test11LeerObjetivosComunEsCorrecto(){
         LecturaArchivoObjetivos leer = new LecturaArchivoObjetivos();
         ArrayList<Objetivo> objetivos = new ArrayList<>();
-        Objetivo objetivo;
         leer.leerArchivo(objetivos);
 
-        objetivo = objetivos.get(14);
-        assertEquals("Comun", objetivo.obtenerTipo());
-        assertEquals(30, objetivo.paisesAConquistar(""));
+        Objetivo objetivo1 = objetivos.get(1);
+        Objetivo objetivo4 = objetivos.get(4);
+        Objetivo objetivo6 = objetivos.get(6);
+        
+        
+        assertEquals(30, objetivo1.cantidadObjetivoComun());
+        assertEquals(30, objetivo4.cantidadObjetivoComun());
+        assertEquals(30, objetivo6.cantidadObjetivoComun());
+        
     }
 
     

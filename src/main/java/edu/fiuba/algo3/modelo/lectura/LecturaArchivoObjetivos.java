@@ -19,6 +19,8 @@ import edu.fiuba.algo3.modelo.objetivo.*;
 
 public class LecturaArchivoObjetivos {
 
+    private Integer cantidadComun;
+
     public LecturaArchivoObjetivos() {
 
     }
@@ -38,6 +40,8 @@ public class LecturaArchivoObjetivos {
 
             // Iterar sobre objetivos
             listaObjetivos.forEach( objetivo -> parseObjetivoObject( (JSONObject) objetivo, objetivos) );
+
+            objetivos.forEach( o -> o.establecerObjetivoComun(this.cantidadComun));
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -85,22 +89,23 @@ public class LecturaArchivoObjetivos {
                 continentesYCantidades.put(this.nombreContinente(valores[1]), cantidad);
             }
             obj = new ObjetivoOcupar(titulo, continentesAOcupar, continentesYCantidades);
-
+            objetivos.add(obj);
         } else if (tipo.equals("Destruir")){
 
             // Obtener equipo a destruir
             String equipo = (String) objetivo.get("Destruir Equipo");
 
             obj = new ObjetivoDestruir(titulo, this.obtenerEquipo(equipo));
+            objetivos.add(obj);
         } else {
             // Obtener cantidad paises
             String stringCantidad = (String) objetivo.get("Ocupar Paises");
             Integer cantidad = Integer.parseInt(stringCantidad);
-            obj = new ObjetivoComun(titulo, cantidad);
+            this.cantidadComun = cantidad;
         }
 
 
-        objetivos.add(obj);
+        
 
     }
 

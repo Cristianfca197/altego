@@ -6,6 +6,10 @@ public interface Objetivo {
 
     abstract Boolean estaCumplido();
 
+    abstract void establecerObjetivoComun(int cantidad);
+
+    abstract int cantidadObjetivoComun();
+
     abstract String obtenerTipo();
 
     abstract Integer paisesAConquistar(String unContinente);

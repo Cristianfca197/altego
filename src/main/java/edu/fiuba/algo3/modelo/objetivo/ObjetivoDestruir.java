@@ -6,6 +6,7 @@ public class ObjetivoDestruir implements Objetivo {
 
     private String titulo;
     private String equipoADestruir;
+    private int objetivoComunCantidad;
 
     public ObjetivoDestruir(String titulo, String equipoADestruir){
         this.titulo = titulo;
@@ -42,6 +43,17 @@ public class ObjetivoDestruir implements Objetivo {
     @Override
     public String titulo() {
         return this.titulo();
+    }
+
+    @Override
+    public void establecerObjetivoComun(int cantidad) {
+        this.objetivoComunCantidad = cantidad;
+        
+    }
+
+    @Override
+    public int cantidadObjetivoComun() {
+        return this.objetivoComunCantidad;
     }
 
 }
