@@ -5,7 +5,6 @@ import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,6 +36,13 @@ public class Mapa extends Pane {
     }
     public HashMap<String, VistaPais> obtenerPaises(){return this.paises;}
     public void cargarPosiciones(HashMap<String, VistaPais> ejercitos){
+        CoordenadasManager manager = new CoordenadasManager();
+        ejercitos.forEach((nombrePais, ejercito) ->{
+            Coordenadas coordenadas = manager.getCoordenadas(nombrePais);
+            ejercito.setLayoutX(coordenadas.getX());
+            ejercito.setLayoutY(coordenadas.getY());
+        });
+/*
         StackPane ejercito = ejercitos.get("Argentina");
         ejercito.setLayoutX(345);
         ejercito.setLayoutY(500);
@@ -194,7 +200,7 @@ public class Mapa extends Pane {
         ejercito = ejercitos.get("Japon");
         ejercito.setLayoutX(865);
         ejercito.setLayoutY(180);
-
+*/
     }
 
 
