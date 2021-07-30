@@ -6,11 +6,14 @@ import edu.fiuba.algo3.modelo.continente.Continente;
 import edu.fiuba.algo3.modelo.juego.Pais;
 import edu.fiuba.algo3.modelo.juego.Tablero;
 import edu.fiuba.algo3.modelo.juego.TarjetaPais;
+import edu.fiuba.algo3.modelo.lectura.LecturaArchivoObjetivos;
 import edu.fiuba.algo3.modelo.lectura.LecturaArchivoPaises;
 import edu.fiuba.algo3.modelo.lectura.LecturaArchivoTarjetas;
+import edu.fiuba.algo3.modelo.objetivo.Objetivo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class LecturaTest {
@@ -106,6 +109,20 @@ public class LecturaTest {
         assertEquals(uruguay.continenteNombre() , "America del Sur");
         assertTrue(uruguay.esLimitrofeCon(argentina));
         assertTrue(uruguay.esLimitrofeCon(brasil));
+
+    }
+
+    @Test
+    public void test07LeerObjetivosTerceroEsCorrecto(){
+        LecturaArchivoObjetivos leer = new LecturaArchivoObjetivos();
+        ArrayList<Objetivo> objetivos = new ArrayList<>();
+        Objetivo objetivo;
+        leer.leerArchivo(objetivos);
+
+        objetivo = objetivos.get(3);
+        assertEquals(objetivo.obtenerTipo(), "Ocupar");
+        assertEquals(objetivo.paisesAConquistar("Asia"), 4);
+        assertEquals(2, objetivo.paisesAConquistar("America del Sur"));
 
     }
 }

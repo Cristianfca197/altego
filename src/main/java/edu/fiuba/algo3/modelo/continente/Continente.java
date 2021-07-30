@@ -40,4 +40,8 @@ public abstract class Continente {
         }
         return this.cantidadEjercitosExtra();
     }
+
+    public int obtenerCantidadPaises(){
+        return this.paises.size();
+    }
 }
