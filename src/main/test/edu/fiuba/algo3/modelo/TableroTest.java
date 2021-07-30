@@ -50,6 +50,5 @@ public class TableroTest {
         juego.ocuparTablero();
         int cantidadPaises = juego.obtenerTablero().obtenerCantidadPaisesJugador(jugador);
         assertEquals(25, cantidadPaises);
-
     }
 }

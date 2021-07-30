@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MazoTarjetasPaisTest {
 
     @Test
-    public void test01MazoTarjetasSeCreaVacioYSeAgregaUnCañonCorrectamente() {
+    public void test01MazoTarjetasSeCreaVacioYSeAgregaUnCanionCorrectamente() {
         MazoTarjetasPais tarjetas = new MazoTarjetasPais();
         TarjetaPais tarjeta = new TarjetaPais(new Canion(), "Argentina");
 

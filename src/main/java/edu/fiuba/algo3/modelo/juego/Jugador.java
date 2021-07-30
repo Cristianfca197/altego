@@ -1,7 +1,8 @@
 package edu.fiuba.algo3.modelo.juego;
 
 import java.util.*;
-
+import javafx.scene.paint.Color;
+//import jdk.tools.jlink.resources.plugins;
 import edu.fiuba.algo3.modelo.canje.Canje;
 import edu.fiuba.algo3.modelo.canje.PrimerCanje;
 
@@ -9,6 +10,7 @@ public class Jugador {
     private final Ficha ficha;
     private final MazoTarjetasPais listaTarjetas;
     private Canje canje;
+    private String nombre;
 
     public Jugador() {
 
@@ -58,5 +60,18 @@ public class Jugador {
 
     public ArrayList<TarjetaPais> obtenerTarjetas() {
         return listaTarjetas.obtenerTarjetas();
+    }
+
+    public void establecerNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public final void establecerColorFicha(Color unColor) {
+
+        this.ficha.establecerColor(unColor);
+    }
+
+    public String obtenerNombre() {
+        return this.nombre;
     }
 }

@@ -1,13 +1,19 @@
 package edu.fiuba.algo3.modelo;
 
-import java.util.*;
-
+import edu.fiuba.algo3.modelo.Etapa.*;
+import edu.fiuba.algo3.modelo.exception.ExcepcionFinDeJuego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 import edu.fiuba.algo3.modelo.juego.Tablero;
 import edu.fiuba.algo3.modelo.juego.TarjetaPais;
 import edu.fiuba.algo3.modelo.lectura.LecturaArchivoPaises;
 import edu.fiuba.algo3.modelo.lectura.LecturaArchivoTarjetas;
+import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 public class Juego { 
   
@@ -20,10 +26,12 @@ public class Juego {
     private EtapaR etapaR;
     private ArrayList<Jugador> turnos;
     private int cantidadPaisesJugadorActual;
+    private ArrayList<Color> coloresFichas;
 
     public Juego(int cantidadJugadores) {
         listaJugadores = new ArrayList<>();
         tablero = new Tablero();
+        cargarColores();
         for (int i = 0; i < cantidadJugadores; i++) {
             this.listaJugadores.add(new Jugador());
         }
@@ -67,47 +75,86 @@ public class Juego {
         }
     }
 
-    public void iniciarJuego(){
+    public void iniciarJuegoPrueba(){
         this.repartirPaisesCondicionesConocidas();
         this.ocuparTablero();
         this.turnos = new ArrayList<>(listaJugadores);
-    }
-
-    public void jugar(){
         jugadorActual = turnos.get(0);
         this.faseInicial();
         ultimoJugador = turnos.get(turnos.size()-1);
+        this.configurarJugadoresDePrueba();
+
     }
 
-    public void faseInicial(){ etapaR = new EtapaRinicial(); }
+    public void jugar(){
+        this.repartirPaises();
+        this.ocuparTablero();
+        this.turnos = new ArrayList<>(listaJugadores);
+        jugadorActual = turnos.get(0);
+        this.faseInicial();
+        ultimoJugador = turnos.get(turnos.size()-1);
+        this.configurarJugadoresDePrueba();
+    }
+
+    public void faseInicial(){ etapaR = new EtapaR1(this); }
 
     public Pais obtenerPais(String pais){   return tablero.obtenerPais(pais); }
 
-    public void colocarCincoEjercitosFaseInicial(Pais pais){
-        etapaR.colocarEjercitos(jugadorActual, pais, 5);
-    }
+    public void colocarEjercitosPaisNombre(String nombrePais, int cantidad){
+        Pais pais = this.obtenerTablero().obtenerPais(nombrePais);
+        colocarEjercitosFaseInicial(pais, cantidad);
 
+    }
+    public void colocarEjercitosFaseInicial(Pais pais, int cantidad){
+        etapaR.colocarEjercitos(jugadorActual, pais, cantidad);
+    }
     public void pasarTurno(){
-        if(jugadorActual == ultimoJugador){ etapaR = etapaR.pasarEtapa(); }
-        turnos.add( turnos.remove(0));
-        jugadorActual = turnos.get(0);
-        cantidadPaisesJugadorActual = tablero.obtenerCantidadPaisesJugador(jugadorActual);
-    }
+        if(etapaR.estaTerminada()) {
+            if(etapaR.getClass() == EtapaRAtacar.class){
+                etapaR = etapaR.pasarEtapa();
+            }
+            else {
+                if (jugadorActual == ultimoJugador) {
+                    etapaR = etapaR.pasarEtapa();
+                }
+                if (jugadorActual != ultimoJugador && etapaR.getClass() == EtapaRReagrupar.class) {
+                    etapaR = new EtapaRAtacar(this);
+                }
 
+                turnos.add(turnos.remove(0));
+                jugadorActual = turnos.get(0);
+                cantidadPaisesJugadorActual = tablero.obtenerCantidadPaisesJugador(jugadorActual);
+                etapaR.establecerCantidadEjercitos(cantidadPaisesJugadorActual / 2);
+            }
+        }
+    }
+    public String obtenerJugadorActual(){
+        return turnos.get(0).obtenerNombre();
+    }
+    public String obtenerSiguienteJugador(){
+        return turnos.get(1).obtenerNombre();
+    }
     public EtapaR obtenerEtapaR() {
         return etapaR;
     }
 
     public void atacarACon(Pais atacante, Pais defensor) {
         etapaR.AtacarCon(jugadorActual, atacante, defensor);
+        if(tablero.obtenerCantidadPaisesJugador(jugadorActual) >= 30) {
+            this.finalizar(jugadorActual.obtenerNombre());
+        }
+    }
+
+    public void finalizar(String nombre) {
+      throw new ExcepcionFinDeJuego("Fin del juego. Felicidades: " + nombre);
     }
 
     public void terminarAtaques(){
         if(cantidadPaisesJugadorActual != tablero.obtenerCantidadPaisesJugador(jugadorActual)){
             this.entregarTarjetaRandom(jugadorActual);
         }
-        etapaR = new EtapaRReagrupar();
     }
+
     public void entregarTarjetaRandom(Jugador jugador){
         ArrayList<String> tarjetas = new ArrayList<>(tarjetasDePais.keySet());
         int numeroRandom = new Random().nextInt(tarjetas.size());
@@ -115,8 +162,8 @@ public class Juego {
         jugador.agregarTarjeta(tarjetasDePais.remove(claveRandom));
     }
 
-    public void tranferirEjercitos(Pais aliado1, Pais aliado2, int cantidadEjercitos) {
-        etapaR.tranferirEjercitos(jugadorActual, aliado1, aliado2, cantidadEjercitos);
+    public void transferirEjercitos(Pais aliado1, Pais aliado2, int cantidadEjercitos) {
+        etapaR.transferirEjercitos(jugadorActual, aliado1, aliado2, cantidadEjercitos);
     }
 
     public TarjetaPais obtenerTarjeta(String nombreTarjeta){
@@ -130,8 +177,7 @@ public class Juego {
     }
 
     public int obtenerEjercitos(Jugador jugador){
-        int cantidadPaises = 0;
-        cantidadPaises = this.tablero.obtenerCantidadPaisesJugador(jugador);
+        int cantidadPaises = this.tablero.obtenerCantidadPaisesJugador(jugador);
 
         return (this.tablero.fichasContinente(jugador) + cantidadPaises/2);
     }
@@ -148,7 +194,46 @@ public class Juego {
         return tarjetasDePais.values();
     }
 
-    public Object obtenerPaises() {
+    public ArrayList<Pais> obtenerPaises() {
         return tablero.obtenerPaises();
     }
+
+    public void cargarColores(){
+        this.coloresFichas = new ArrayList<>();
+        
+        Color rojo,verde,azul,blanco,negro,violeta;
+        rojo    = Color.RED;
+        verde   = Color.GREEN;
+        azul    = Color.BLUE;
+        blanco  = Color.WHITE;
+        negro   = Color.BLACK;
+        violeta = Color.VIOLET;
+
+        this.coloresFichas.add(rojo);
+        this.coloresFichas.add(verde);
+        this.coloresFichas.add(azul);
+        this.coloresFichas.add(blanco);
+        this.coloresFichas.add(negro);
+        this.coloresFichas.add(violeta);
+
+    }
+
+    public void establecerNombreJugador(Jugador unJugador, String unNombre) {
+        unJugador.establecerNombre(unNombre);
+    }
+
+    public void establecerColorAJugador(Jugador unJugador, Color unColor) {
+        unJugador.establecerColorFicha(unColor);
+    }
+
+    public void configurarJugadoresDePrueba() {
+        String[] nombres = {"Juani","Cris","Pedro","Roby"};
+        int i = 0;
+        for (Jugador unJugador : listaJugadores) {
+            this.establecerNombreJugador(unJugador, nombres[i]);
+            this.establecerColorAJugador(unJugador, this.coloresFichas.get(i));
+            i++;
+        }
+    }
+
 }

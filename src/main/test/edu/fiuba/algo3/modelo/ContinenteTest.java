@@ -40,7 +40,7 @@ public class ContinenteTest {
         Pais otroPais = new Pais("Colombia");
         unContinente.aniadirPais(unPais);
         unContinente.aniadirPais(otroPais);
-        Collection paises = unContinente.obtenerPaises();
+        Collection<Pais> paises = unContinente.obtenerPaises();
         assertNotNull(paises);
 
     }
@@ -49,10 +49,9 @@ public class ContinenteTest {
         Juego juego = new Juego(1);
         juego.repartirPaisesCondicionesConocidas();
         juego.ocuparTablero();
-        int cantidadEjercitos = 0;
 
         Continente continente = juego.obtenerTablero().obtenerContinente("Africa");
-        cantidadEjercitos = continente.obtenerEjercitosExtra(juego.obtenerJugador(1));
+        int cantidadEjercitos = continente.obtenerEjercitosExtra(juego.obtenerJugador(1));
 
         assertEquals(3, cantidadEjercitos);
     }
@@ -61,10 +60,9 @@ public class ContinenteTest {
         Juego juego = new Juego(1);
         juego.repartirPaisesCondicionesConocidas();
         juego.ocuparTablero();
-        int cantidadEjercitos = 0;
 
         Continente continente = juego.obtenerTablero().obtenerContinente("America del Sur");
-        cantidadEjercitos = continente.obtenerEjercitosExtra(juego.obtenerJugador(1));
+        int cantidadEjercitos = continente.obtenerEjercitosExtra(juego.obtenerJugador(1));
 
         assertEquals(3, cantidadEjercitos);
     }
@@ -73,10 +71,9 @@ public class ContinenteTest {
         Juego juego = new Juego(1);
         juego.repartirPaisesCondicionesConocidas();
         juego.ocuparTablero();
-        int cantidadEjercitos = 0;
 
         Continente continente = juego.obtenerTablero().obtenerContinente("America del Norte");
-        cantidadEjercitos = continente.obtenerEjercitosExtra(juego.obtenerJugador(1));
+        int cantidadEjercitos = continente.obtenerEjercitosExtra(juego.obtenerJugador(1));
 
         assertEquals(5, cantidadEjercitos);
     }
@@ -85,10 +82,9 @@ public class ContinenteTest {
         Juego juego = new Juego(1);
         juego.repartirPaisesCondicionesConocidas();
         juego.ocuparTablero();
-        int cantidadEjercitos = 0;
 
         Continente continente = juego.obtenerTablero().obtenerContinente("Europa");
-        cantidadEjercitos = continente.obtenerEjercitosExtra(juego.obtenerJugador(1));
+        int cantidadEjercitos = continente.obtenerEjercitosExtra(juego.obtenerJugador(1));
 
         assertEquals(5, cantidadEjercitos);
     }
@@ -97,10 +93,9 @@ public class ContinenteTest {
         Juego juego = new Juego(1);
         juego.repartirPaisesCondicionesConocidas();
         juego.ocuparTablero();
-        int cantidadEjercitos = 0;
 
         Continente continente = juego.obtenerTablero().obtenerContinente("Asia");
-        cantidadEjercitos = continente.obtenerEjercitosExtra(juego.obtenerJugador(1));
+        int cantidadEjercitos = continente.obtenerEjercitosExtra(juego.obtenerJugador(1));
 
         assertEquals(7, cantidadEjercitos);
     }

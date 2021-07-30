@@ -1,9 +1,17 @@
-package edu.fiuba.algo3.modelo;
+package edu.fiuba.algo3.modelo.Etapa;
 
+import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 
 public class EtapaRReagrupar implements EtapaR {
+
+
+    private final Juego juego;
+
+    public EtapaRReagrupar(Juego juego) {
+        this.juego = juego;
+    }
 
     @Override
     public void colocarEjercitos(Jugador jugadorActual, Pais pais, int cantidad) {
@@ -11,7 +19,7 @@ public class EtapaRReagrupar implements EtapaR {
     }
 
     public EtapaR pasarEtapa(){
-        return new EtapaRinicial();
+        return new EtapaRColocacion(this.juego);
     }
 
     @Override
@@ -20,12 +28,22 @@ public class EtapaRReagrupar implements EtapaR {
     }
 
     @Override
-    public void tranferirEjercitos(Jugador jugadorActual, Pais aliado1, Pais aliado2, int cantidadEjercitos) {
+    public void transferirEjercitos(Jugador jugadorActual, Pais aliado1, Pais aliado2, int cantidadEjercitos) {;
         if(aliado1.perteneceA(jugadorActual) && aliado2.perteneceA(jugadorActual)) {
             for (int i = 0; i < cantidadEjercitos; i++) {
                 aliado2.colocarEjercitos(i, jugadorActual.obtenerFicha());
                 aliado1.eliminarEjercito();
             }
         }
+    }
+
+    @Override
+    public boolean estaTerminada() {
+        return true;
+    }
+
+    @Override
+    public void establecerCantidadEjercitos(int cantidadEjercitos) {
+
     }
 }

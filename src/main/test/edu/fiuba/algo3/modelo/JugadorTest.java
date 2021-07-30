@@ -1,15 +1,11 @@
 package edu.fiuba.algo3.modelo;
 
 import org.junit.jupiter.api.Test;
-
 import edu.fiuba.algo3.modelo.exception.ExcepcionActivacionTarjetaInvalido;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 import edu.fiuba.algo3.modelo.juego.TarjetaPais;
 import edu.fiuba.algo3.modelo.tipoTarjeta.Canion;
-
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class JugadorTest {
@@ -40,7 +36,7 @@ public class JugadorTest {
 
         tarjetaPais.obtenerPais().asignarJugador(otroJugador);
 
-        assertThrows(ExcepcionActivacionTarjetaInvalido.class, () -> {tarjetaPais.activarTarjeta(unJugador);});
+        assertThrows(ExcepcionActivacionTarjetaInvalido.class, () -> tarjetaPais.activarTarjeta(unJugador));
     }
 
     @Test
@@ -51,7 +47,7 @@ public class JugadorTest {
         tarjetaPais.obtenerPais().asignarJugador(unJugador);
         tarjetaPais.activarTarjeta(unJugador);
 
-        assertThrows(ExcepcionActivacionTarjetaInvalido.class, () -> {tarjetaPais.activarTarjeta(unJugador);});
+        assertThrows(ExcepcionActivacionTarjetaInvalido.class, () -> tarjetaPais.activarTarjeta(unJugador));
     }
     @Test
     public void test05JugadorHacePrimerCanjeYRecibeCuatroEjercitos(){

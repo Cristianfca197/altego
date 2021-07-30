@@ -60,7 +60,7 @@ public class CanjeTest {
         listaDeTarjetas.add(terceTarjeta);
         PrimerCanje canje = new PrimerCanje();
 
-        assertThrows(ExcepcionCanjeInvalido.class, () -> {canje.realizarCanje(listaDeTarjetas);});
+        assertThrows(ExcepcionCanjeInvalido.class, () -> canje.realizarCanje(listaDeTarjetas));
     }
     @Test
     public void test04SegundoCanjeDeTresPaisesConElMismoSimboloEsPosible () throws ExcepcionCanjeInvalido{
@@ -140,4 +140,19 @@ public class CanjeTest {
         assertEquals(4, canje.realizarCanje(listaDeTarjetas));
     }
 
+    @Test
+    public void test09CanjeEsInvalidoSinTarjetas(){
+        ArrayList<TarjetaPais> tarjetas = new ArrayList<>();
+        PrimerCanje canje = new PrimerCanje();
+        assertThrows(ExcepcionCanjeInvalido.class, () -> canje.realizarCanje(tarjetas));
+    }
+
+    @Test
+    public void test10CanjeEsInvalidoConDosTarjetas(){
+        ArrayList<TarjetaPais> tarjetas = new ArrayList<>();
+        tarjetas.add(new TarjetaPais(new Globo(), "Argentina"));
+        tarjetas.add(new TarjetaPais(new Canion(), "Brasil"));
+        PrimerCanje canje = new PrimerCanje();
+        assertThrows(ExcepcionCanjeInvalido.class, () -> canje.realizarCanje(tarjetas));
+    }
 }
