@@ -30,6 +30,7 @@ public class Mapa extends Pane {
         this.getChildren().add(panePrinciapal);
     }
     public HashMap<String, VistaPais> obtenerPaises(){return this.paises;}
+
     public void cargarPosiciones(HashMap<String, VistaPais> ejercitos){
         CoordenadasManager manager = new CoordenadasManager();
         ejercitos.forEach((nombrePais, ejercito) ->{
