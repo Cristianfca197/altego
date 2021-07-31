@@ -43,4 +43,9 @@ public class EtapaRAtacar implements EtapaR {
     public void establecerCantidadEjercitos(int cantidadEjercitos) {
 
     }
+
+    @Override
+    public int obtenerCantidadEjercitos() {
+        return 0;
+    }
 }

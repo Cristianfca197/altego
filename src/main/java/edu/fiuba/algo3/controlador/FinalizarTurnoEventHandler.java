@@ -21,7 +21,7 @@ public class FinalizarTurnoEventHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         juego.pasarTurno();
-        vistaColocacion.actualizarVista(juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador());
+        vistaColocacion.actualizarVista(juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.cantidadEjercitosDisponibles());
         if (juego.obtenerEtapaR().getClass() == EtapaRAtacar.class) {
             vista.mostrarInterfazAtaque(juego, juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador());
         }

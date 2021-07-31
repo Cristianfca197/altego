@@ -20,10 +20,11 @@ public class VistaEtapaColocacion extends StackPane {
     private final SeleccionarVista vista;
     private Label jugadorActual;
     private Label proximoJugador;
+    private Label ejercitos;
 
-    public VistaEtapaColocacion(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador, Juego juego, SeleccionarVista seleccionarVista){
+    public VistaEtapaColocacion(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador, Juego juego, SeleccionarVista seleccionarVista, int ejercitosDisponibles){
         this.vista = seleccionarVista;
-        HBox datosTurno = this.datosTurno(nombreJugadorActual, nombreSiguienteJugador);
+        HBox datosTurno = this.datosTurno(nombreJugadorActual, nombreSiguienteJugador, ejercitosDisponibles);
         VBox contenedorBotones1 = this.botonesJugador();
         HBox contenedorBotones2 = this.botonesTurno(juego);
         BorderPane contenedor = new BorderPane();
@@ -71,7 +72,10 @@ public class VistaEtapaColocacion extends StackPane {
         contenedor.setSpacing(20);
         return contenedor;
     }
-    private HBox datosTurno(String nombreJugadorActual, String nombreSiguienteJugador) {
+    private HBox datosTurno(String nombreJugadorActual, String nombreSiguienteJugador, int ejercitosDisponibles) {
+        Label fichasDisponibles = new Label();
+        fichasDisponibles.setText("Ejercitos restantes:"+ ejercitosDisponibles);
+        fichasDisponibles.setTextFill(Color.WHITE);
         Label datoJugador = new Label();
         datoJugador.setText("Jugador:"+ nombreJugadorActual);
         datoJugador.setTextFill(Color.WHITE);
@@ -80,12 +84,14 @@ public class VistaEtapaColocacion extends StackPane {
         proximoJugador.setTextFill(Color.WHITE);
         this.jugadorActual = datoJugador;
         this.proximoJugador = proximoJugador;
-        HBox datosTurno = new HBox(datoJugador, proximoJugador);
+        this.ejercitos = fichasDisponibles;
+        HBox datosTurno = new HBox(fichasDisponibles,datoJugador, proximoJugador);
         datosTurno.setSpacing(20);
         return datosTurno;
     }
-    public void actualizarVista(String nombreJugadorActual, String nombreSiguienteJugador){
+    public void actualizarVista(String nombreJugadorActual, String nombreSiguienteJugador, int cantidadEjercitos){
         this.jugadorActual.setText("Jugador:"+ nombreJugadorActual);
         this.proximoJugador.setText("Siguiente jugador:" + nombreSiguienteJugador);
+        this.ejercitos.setText("Ejercitos restantes:" + cantidadEjercitos);
     }
 }

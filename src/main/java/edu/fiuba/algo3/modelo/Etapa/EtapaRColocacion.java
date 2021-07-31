@@ -47,4 +47,9 @@ public class EtapaRColocacion implements EtapaR {
     public void establecerCantidadEjercitos(int cantidadEjercitosDisponibles) {
         this.cantidadEjercitos = cantidadEjercitosDisponibles;
     }
+
+    @Override
+    public int obtenerCantidadEjercitos() {
+        return cantidadEjercitos - ejercitosColocados;
+    }
 }

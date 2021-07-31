@@ -50,4 +50,9 @@ public class EtapaR2 implements EtapaR{
     public void establecerCantidadEjercitos(int cantidadEjercitos) {
 
     }
+
+    @Override
+    public int obtenerCantidadEjercitos() {
+        return cantidadEjercitos - ejercitosColocados;
+    }
 }

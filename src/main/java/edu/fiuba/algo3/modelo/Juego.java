@@ -138,6 +138,9 @@ public class Juego {
         return etapaR;
     }
 
+    public int cantidadEjercitosDisponibles(){
+        return this.etapaR.obtenerCantidadEjercitos();
+    }
     public void atacarACon(Pais atacante, Pais defensor) {
         etapaR.AtacarCon(jugadorActual, atacante, defensor);
         if(tablero.obtenerCantidadPaisesJugador(jugadorActual) >= 30) {

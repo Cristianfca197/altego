@@ -43,7 +43,10 @@ public class EtapaRReagrupar implements EtapaR {
     }
 
     @Override
-    public void establecerCantidadEjercitos(int cantidadEjercitos) {
+    public void establecerCantidadEjercitos(int cantidadEjercitos) {}
 
+    @Override
+    public int obtenerCantidadEjercitos() {
+        return 0;
     }
 }

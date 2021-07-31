@@ -32,7 +32,7 @@ public class JugarEventHandler implements EventHandler<ActionEvent> {
             System.out.println(cantidadIngresada);
             Juego juego = new Juego(cantidadIngresada);
             juego.jugar();
-            this.vista.mostrarInterfazColocacion(juego, juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador());
+            this.vista.mostrarInterfazColocacion(juego, juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.cantidadEjercitosDisponibles());
 
         }
         else {

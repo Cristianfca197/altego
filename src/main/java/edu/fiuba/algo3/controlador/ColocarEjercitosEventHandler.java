@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.modelo.Juego;
+import edu.fiuba.algo3.vista.VistaEtapaColocacion;
 import edu.fiuba.algo3.vista.VistaPais;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,15 +19,17 @@ public class ColocarEjercitosEventHandler implements EventHandler<ActionEvent> {
     private final Juego juego;
     private final String nombre;
     private final VistaPais pais;
+    private final VistaEtapaColocacion vista;
 
 
-    public ColocarEjercitosEventHandler(TextField textField, Label etiqueta, Stage stage, String nombre, Juego juego, VistaPais pais) {
+    public ColocarEjercitosEventHandler(TextField textField, Label etiqueta, Stage stage, String nombre, Juego juego, VistaPais pais, VistaEtapaColocacion vista) {
         this.texto = textField;
         this.etiqueta = etiqueta;
         this.stage = stage;
         this.juego = juego;
         this.nombre = nombre;
         this.pais = pais;
+        this.vista = vista;
     }
 
     @Override
@@ -39,5 +42,6 @@ public class ColocarEjercitosEventHandler implements EventHandler<ActionEvent> {
         this.stage.close();
         juego.colocarEjercitosPaisNombre(nombre, Integer.parseInt(this.texto.getText()));
         pais.actualizar(juego.obtenerPais(nombre).cantidadDeEjercitos(), juego.obtenerPais(nombre).obtenerFicha().color());
+        vista.actualizarVista(juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.cantidadEjercitosDisponibles());
     }
 }

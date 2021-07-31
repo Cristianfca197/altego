@@ -26,10 +26,10 @@ public class SeleccionarVista {
         stage.setScene(escenaBienvenidos);
         stage.setResizable(false);
     }
-    public void mostrarInterfazColocacion(Juego juego, String nombreJugadorActual, String nombreSiguienteJugador){
+    public void mostrarInterfazColocacion(Juego juego, String nombreJugadorActual, String nombreSiguienteJugador, int ejercitosDisponibles){
         stage.setTitle("Interfaz Colocacion");
         Mapa mapaJuego = new Mapa(juego.obtenerPaises());
-        VistaEtapaColocacion vistaColocacion = new VistaEtapaColocacion(mapaJuego, nombreJugadorActual, nombreSiguienteJugador, juego, this);
+        VistaEtapaColocacion vistaColocacion = new VistaEtapaColocacion(mapaJuego, nombreJugadorActual, nombreSiguienteJugador, juego, this, ejercitosDisponibles);
         Scene escenaColocacion = new Scene(vistaColocacion);
         stage.setScene(escenaColocacion);
         stage.setResizable(false);
