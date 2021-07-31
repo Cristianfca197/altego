@@ -172,7 +172,7 @@ public class LecturaTest {
     }
 
     @Test
-    public void test11LeerObjetivosComunEsCorrecto(){
+    public void test11LeerObjetivosComunesEsCorrecto(){
         LecturaArchivoObjetivos leer = new LecturaArchivoObjetivos();
         ArrayList<Objetivo> objetivos = new ArrayList<>();
         leer.leerArchivo(objetivos);

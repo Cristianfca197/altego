@@ -92,4 +92,8 @@ public class Pais {
         return unJugador.tieneFicha(this.ficha);
     }
 
+    public ArrayList<Pais> obtenerLimitrofes(){
+        return this.paisesLimitrofes;
+    }
+
 }
