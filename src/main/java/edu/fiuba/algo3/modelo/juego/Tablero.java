@@ -60,6 +60,17 @@ public class Tablero {
         }
         return cantidadPaises;
     }
+
+    public int obtenerCantidadPaisesJugadorEnContinente(Jugador unJugador, String unContinente){
+        int cantidadPaises = 0;
+        for (Pais pais : paises) {
+            if (pais.continenteNombre().equalsIgnoreCase(unContinente) && pais.obtenerFicha().esIgualA(unJugador.obtenerFicha())) {
+                cantidadPaises++;
+            }
+        }
+        return cantidadPaises;
+    }
+
     public ArrayList<Continente> obtenerContinentes(){
         return  new ArrayList<>(this.continentes.values());
     }
@@ -67,8 +78,8 @@ public class Tablero {
     public int fichasContinente(Jugador unJugador){
         int cantidadEjercitos = 0;
         ArrayList<Continente> listaContinentes = this.obtenerContinentes();
-        for (Continente listaContinente : listaContinentes) {
-            cantidadEjercitos = listaContinente.obtenerEjercitosExtra(unJugador);
+        for (Continente continente : listaContinentes) {
+            cantidadEjercitos = continente.obtenerEjercitosExtra(unJugador);
         }
         return cantidadEjercitos;
     }

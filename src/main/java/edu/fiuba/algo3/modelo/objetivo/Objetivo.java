@@ -2,6 +2,11 @@ package edu.fiuba.algo3.modelo.objetivo;
 
 import java.util.ArrayList;
 
+import edu.fiuba.algo3.modelo.juego.Ficha;
+import edu.fiuba.algo3.modelo.juego.Jugador;
+import edu.fiuba.algo3.modelo.juego.Pais;
+import edu.fiuba.algo3.modelo.juego.Tablero;
+
 public interface Objetivo {
 
     abstract Boolean estaCumplido();
@@ -19,4 +24,8 @@ public interface Objetivo {
     abstract String equipoADestruir();
 
     abstract String titulo();
+
+    abstract void equipoDestruido(String string);
+
+    abstract void paisesConquistados(Tablero tablero, Jugador unJugador);
 }
