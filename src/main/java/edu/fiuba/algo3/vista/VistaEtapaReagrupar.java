@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.vista;
 
-import edu.fiuba.algo3.controlador.PaisAtacanteEventHandler;
-import edu.fiuba.algo3.controlador.ReagruparEventHandler;
+import edu.fiuba.algo3.controlador.FInTurnoEventHandler;
+import edu.fiuba.algo3.controlador.PaisReagruparEventHandler;
 import edu.fiuba.algo3.modelo.Juego;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -14,14 +14,15 @@ import javafx.scene.paint.Color;
 
 import java.util.HashMap;
 
-public class VistaEtapaAtaque extends StackPane {
+public class VistaEtapaReagrupar extends StackPane {
+
     private final SeleccionarVista vista;
     private Label jugadorActual;
     private Label proximoJugador;
     private Label informacion;
-    private VistaPais paisAtacante = null;
+    private VistaPais paisOrigen = null;
 
-    public VistaEtapaAtaque(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador, Juego juego, SeleccionarVista seleccionarVista){
+    public VistaEtapaReagrupar(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador, Juego juego, SeleccionarVista seleccionarVista){
         this.vista = seleccionarVista;
         HBox datosTurno = this.datosTurno(nombreJugadorActual, nombreSiguienteJugador);
         HBox contenedorBotones2 = this.botonesTurno(juego);
@@ -35,8 +36,8 @@ public class VistaEtapaAtaque extends StackPane {
         HashMap<String, VistaPais> paises = mapa.obtenerPaises();
         for(String nombre: paises.keySet()){
             VistaPais pais = paises.get(nombre);
-            PaisAtacanteEventHandler paisAtacanteEventHandler = new PaisAtacanteEventHandler(pais, this, juego);
-            pais.setOnMouseClicked(paisAtacanteEventHandler);
+            PaisReagruparEventHandler paisReagruparEventHandler = new PaisReagruparEventHandler(pais, this, juego);
+            pais.setOnMouseClicked(paisReagruparEventHandler);
             contenedor.getChildren().add(pais);
         }
 
@@ -47,13 +48,13 @@ public class VistaEtapaAtaque extends StackPane {
     }
 
     private HBox botonesTurno(Juego juego) {
-        Button botonReagrupar = new Button();
-        botonReagrupar.setText("Reagrupar");
-        ReagruparEventHandler reagruparEventHandler = new ReagruparEventHandler(juego, this.vista);
-        botonReagrupar.setOnAction(reagruparEventHandler);
+        Button finDeTurno = new Button();
+        finDeTurno.setText("Finalizar Turno");
+        FInTurnoEventHandler fInTurnoEventHandler = new FInTurnoEventHandler(juego, vista);
+        finDeTurno.setOnAction(fInTurnoEventHandler);
         Button botonObjetivo = new Button();
         botonObjetivo.setText("Ver Objetivo");
-        HBox contenedor = new HBox(botonReagrupar, botonObjetivo);
+        HBox contenedor = new HBox(finDeTurno, botonObjetivo);
         contenedor.setSpacing(20);
         return contenedor;
     }
@@ -61,7 +62,7 @@ public class VistaEtapaAtaque extends StackPane {
 
     private HBox datosTurno(String nombreJugadorActual, String nombreSiguienteJugador) {
         Label informacion = new Label();
-        informacion.setText("Seleccione el pais con el que va a atacar");
+        informacion.setText("Seleccione el pais del que va a mover ejercitos");
         informacion.setTextFill(Color.WHITE);
         Label datoJugador = new Label();
         datoJugador.setText("Jugador:"+ nombreJugadorActual);
@@ -77,16 +78,16 @@ public class VistaEtapaAtaque extends StackPane {
         return datosTurno;
     }
 
-    public void paisAtacanteElegido(VistaPais pais){
-        this.informacion.setText("PAIS ATACANTE ELEGIDO ELIGE AL QUE QUIERE ATACAR");
-        this.paisAtacante = pais;
+    public void paisOrigenElegido(VistaPais pais){
+        this.informacion.setText("Pais de origen elegido, eliga el destino");
+        this.paisOrigen = pais;
     }
-    public VistaPais obtenerPaisAtacante(){
-        return this.paisAtacante;
-    }
-    public void ataqueRealizado(){
-        informacion.setText("Seleccione el pais con el que va a atacar");
-        paisAtacante = null;
+    public VistaPais obtenerPaisOrigen(){
+        return this.paisOrigen;
     }
 
+    public void fichasMovidas(){
+        informacion.setText("Seleccione el pais de origen");
+        paisOrigen = null;
+    }
 }

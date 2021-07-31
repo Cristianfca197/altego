@@ -44,7 +44,15 @@ public class SeleccionarVista {
         stage.setResizable(false);
 
     }
+    public void mostrarInterfazReagrupar(Juego juego, String nombreJugadorActual, String nombreSiguienteJugador){
+        Mapa mapaJuego =  new Mapa(juego.obtenerPaises());
+        stage.setTitle("Interfaz reagrupar");
+        VistaEtapaReagrupar vistaEtapaReagrupar = new VistaEtapaReagrupar(mapaJuego, nombreJugadorActual, nombreSiguienteJugador, juego, this);
+        Scene escenaAtaque = new Scene(vistaEtapaReagrupar);
+        stage.setScene(escenaAtaque);
+        stage.setResizable(false);
 
+    }
     public void mostrarInterfazTarjetas(){
         stage.setTitle("Interfaz Tarjetas");
         TarjetaPais tarjetaPais = new TarjetaPais(new Canion(), "Argentina");

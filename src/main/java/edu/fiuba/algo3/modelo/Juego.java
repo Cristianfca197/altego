@@ -141,6 +141,12 @@ public class Juego {
     public int cantidadEjercitosDisponibles(){
         return this.etapaR.obtenerCantidadEjercitos();
     }
+
+    public void atacarDesdeA(String nombreAtacante, String nombreDefensor){
+        Pais atacante = this.obtenerPais(nombreAtacante);
+        Pais defensor = this.obtenerPais(nombreDefensor);
+        this.atacarACon(atacante, defensor);
+    }
     public void atacarACon(Pais atacante, Pais defensor) {
         etapaR.AtacarCon(jugadorActual, atacante, defensor);
         if(tablero.obtenerCantidadPaisesJugador(jugadorActual) >= 30) {
@@ -164,7 +170,11 @@ public class Juego {
         String claveRandom = tarjetas.get(numeroRandom);
         jugador.agregarTarjeta(tarjetasDePais.remove(claveRandom));
     }
-
+    public void transferirEjercitosDeA(String nombrePaisOrigen, String nombrePaisDestino, int cantidadEjercitos){
+        Pais paisOrigen = this.obtenerPais(nombrePaisOrigen);
+        Pais paisDestino = this.obtenerPais(nombrePaisDestino);
+        this.transferirEjercitos(paisOrigen, paisDestino, cantidadEjercitos);
+    }
     public void transferirEjercitos(Pais aliado1, Pais aliado2, int cantidadEjercitos) {
         etapaR.transferirEjercitos(jugadorActual, aliado1, aliado2, cantidadEjercitos);
     }
