@@ -87,7 +87,8 @@ public class Juego {
     }
 
     public void jugar(){
-        this.repartirPaises();
+        this.repartirPaisesCondicionesConocidas();
+    //    this.repartirPaises();
         this.ocuparTablero();
         this.turnos = new ArrayList<>(listaJugadores);
         jugadorActual = turnos.get(0);

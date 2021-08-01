@@ -164,7 +164,7 @@ public class JuegoTest {
 
         Jugador jugador1 = juego.obtenerJugador(1);
         Jugador jugador2 = juego.obtenerJugador(2);
-        Pais unPais = juego.obtenerTablero().obtenerPais("Java");
+        Pais unPais = juego.obtenerTablero().obtenerPais("Sumatra");
         unPais.asignarJugador(jugador2);
 
 
@@ -282,7 +282,7 @@ public class JuegoTest {
     public void test18JuegoFaseReagruparReagruparCorrectamente(){
         Juego juego = new Juego(2);
         juego.iniciarJuegoPrueba();
-        Pais pais1 = juego.obtenerPais("Gran Bretaña");
+        Pais pais1 = juego.obtenerPais("Gran Bretania");
         Pais pais2 = juego.obtenerPais("Francia");
         juego.colocarEjercitosFaseInicial(pais1, 5);
         juego.pasarTurno();
@@ -299,7 +299,7 @@ public class JuegoTest {
         //ataca jugador2
         juego.pasarTurno();
         //reagrupar jugador2
-        Pais pais3 = juego.obtenerPais("Alemania");
+        Pais pais3 = juego.obtenerPais("Italia");
         juego.transferirEjercitos(pais2, pais3, 3);
         assertEquals(4, pais3.cantidadDeEjercitos());
         assertEquals(6, pais2.cantidadDeEjercitos());
@@ -332,7 +332,7 @@ public class JuegoTest {
     public void test20TurnoColocacionColocarCorrectamente() {
         Juego juego = new Juego(2);
         juego.iniciarJuegoPrueba();
-        Pais pais1 = juego.obtenerPais("Gran Bretaña");
+        Pais pais1 = juego.obtenerPais("Gran Bretania");
         Pais pais2 = juego.obtenerPais("Francia");
         juego.colocarEjercitosFaseInicial(pais1, 5);
         juego.pasarTurno();
@@ -375,8 +375,8 @@ public class JuegoTest {
         juego.pasarTurno();
         //reagrupar jugador2
         juego.pasarTurno();
-        juego.colocarEjercitosFaseInicial(pais1, 30);
-        assertEquals(9, pais1.cantidadDeEjercitos());
+        juego.colocarEjercitosFaseInicial(pais2, 30);
+        assertEquals(9, pais2.cantidadDeEjercitos());
     }
     @Test
     public void test22FaltanColocarNoPasaElTurno(){
@@ -401,7 +401,7 @@ public class JuegoTest {
         //reagrupar jugador2
         juego.pasarTurno();
         juego.pasarTurno();
-        assertEquals(pais1.obtenerFicha(), juego.obtenerJugador(1).obtenerFicha());
+        assertEquals(pais1.obtenerFicha(), juego.obtenerJugador(2).obtenerFicha());
     }
 
     @Test
