@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.juego;
 
 import edu.fiuba.algo3.modelo.continente.Continente;
 import edu.fiuba.algo3.modelo.exception.ExcepcionAtaqueInvalido;
+import edu.fiuba.algo3.modelo.exception.ExcepcionPaisInvalido;
 
 import java.util.ArrayList;
 
@@ -26,7 +27,7 @@ public class Pais {
     public void colocarEjercitos(Integer unaCantidadDeEjercitos, Ficha unaFicha){
         if(this.ficha.esIgualA(unaFicha)) {
             this.ejercitos += unaCantidadDeEjercitos;
-        }
+        }else{ throw new ExcepcionPaisInvalido("El pais seleccionado no es un pais propio");}
     }
     public int cantidadDeEjercitos(){
         return ejercitos;

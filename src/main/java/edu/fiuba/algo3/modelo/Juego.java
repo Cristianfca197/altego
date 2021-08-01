@@ -131,9 +131,11 @@ public class Juego {
     public String obtenerJugadorActual(){
         return turnos.get(0).obtenerNombre();
     }
+
     public String obtenerSiguienteJugador(){
         return turnos.get(1).obtenerNombre();
     }
+
     public EtapaR obtenerEtapaR() {
         return etapaR;
     }
@@ -212,9 +214,11 @@ public class Juego {
     public ArrayList<Pais> obtenerPaises() {
         return tablero.obtenerPaises();
     }
+
     public Jugador obtenerJugadorJugando(){
         return jugadorActual;
     }
+
     public void cargarColores(){
         this.coloresFichas = new ArrayList<>();
         

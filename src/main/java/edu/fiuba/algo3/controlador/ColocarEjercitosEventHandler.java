@@ -34,14 +34,19 @@ public class ColocarEjercitosEventHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        if (this.texto.getText().trim().equals("")){
-            etiqueta.setText("Ingrese algun numero");
-            etiqueta.setFont(new Font("Arial", 12));
-            etiqueta.setTextFill(Color.web("#ffd700"));
+        if(new ValidarTextoEsNumero().validarTexto(this.texto.getText())){
+            try{
+                juego.colocarEjercitosPaisNombre(nombre, Integer.parseInt(this.texto.getText()));
+            } catch (Exception e){
+                new Alerta(e.getMessage(), e.getMessage());
+            }
+            pais.actualizar(juego.obtenerPais(nombre).cantidadDeEjercitos(), juego.obtenerPais(nombre).obtenerFicha().color());
+            vista.actualizarVista(juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.cantidadEjercitosDisponibles());
+        }else{
+            new Alerta("No es un número.",texto.getText());
         }
+
         this.stage.close();
-        juego.colocarEjercitosPaisNombre(nombre, Integer.parseInt(this.texto.getText()));
-        pais.actualizar(juego.obtenerPais(nombre).cantidadDeEjercitos(), juego.obtenerPais(nombre).obtenerFicha().color());
-        vista.actualizarVista(juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.cantidadEjercitosDisponibles());
+
     }
 }
