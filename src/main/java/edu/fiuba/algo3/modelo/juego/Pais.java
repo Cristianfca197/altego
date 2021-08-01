@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.juego;
 
 import edu.fiuba.algo3.modelo.continente.Continente;
 import edu.fiuba.algo3.modelo.exception.ExcepcionAtaqueInvalido;
+import edu.fiuba.algo3.modelo.exception.ExcepcionCantidadInvalida;
 import edu.fiuba.algo3.modelo.exception.ExcepcionPaisInvalido;
 
 import java.util.ArrayList;
@@ -97,4 +98,13 @@ public class Pais {
         return this.paisesLimitrofes;
     }
 
+    public void eliminarEjercitos(int cantidadEjercitos) {
+        if (this.ejercitos == 1){
+            throw new ExcepcionCantidadInvalida("No es posible tranferir con 1 ejercito.");
+        }
+        if(cantidadEjercitos >= this.ejercitos){
+            throw new ExcepcionCantidadInvalida("Seleccione una cantidad entre " + (this.ejercitos - 1) + " y 0." );
+        }
+        this.ejercitos -= cantidadEjercitos;
+    }
 }

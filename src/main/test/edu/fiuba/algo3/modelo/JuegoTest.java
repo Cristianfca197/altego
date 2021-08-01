@@ -181,7 +181,7 @@ public class JuegoTest {
     public void test11JuegoFaseInicialColocacionDeCincoEjercitos(){
         Juego juego = new Juego(2);
         juego.iniciarJuegoPrueba();
-        Pais pais1 = juego.obtenerPais("Gran Bretaña");
+        Pais pais1 = juego.obtenerPais("Gran Bretania");
         Pais pais2 = juego.obtenerPais("Francia");
         juego.colocarEjercitosFaseInicial(pais1, 5);
         juego.pasarTurno();
@@ -205,7 +205,7 @@ public class JuegoTest {
     public void test13JuegoPasarTurnoCondicionesNecesariasPaseDeEtapa(){
         Juego juego = new Juego(2);
         juego.iniciarJuegoPrueba();
-        Pais pais1 = juego.obtenerPais("Gran Bretaña");
+        Pais pais1 = juego.obtenerPais("Gran Bretania");
         Pais pais2 = juego.obtenerPais("Francia");
         juego.colocarEjercitosFaseInicial(pais1, 5);
         juego.pasarTurno();

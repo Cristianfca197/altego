@@ -34,16 +34,14 @@ public class MoverEjercitosEventHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        if (this.texto.getText().trim().equals("")){
-            etiqueta.setText("Ingrese algun numero");
-            etiqueta.setFont(new Font("Arial", 12));
-            etiqueta.setTextFill(Color.web("#ffd700"));
+        if (new ValidarTextoEsNumero().validarTexto(texto.getText())) {
+            this.stage.close();
+            juego.transferirEjercitosDeA(paisOrigen, paisDestino, Integer.parseInt(texto.getText()));
+            pais.actualizar(juego.obtenerPais(pais.obtenerNombre()).cantidadDeEjercitos(), juego.obtenerPais(pais.obtenerNombre()).obtenerFicha().color());
+            vista.obtenerPaisOrigen().actualizar(juego.obtenerPais(vista.obtenerPaisOrigen().obtenerNombre()).cantidadDeEjercitos(), juego.obtenerPais(vista.obtenerPaisOrigen().obtenerNombre()).obtenerFicha().color());
+            vista.fichasMovidas();
+        }else{
+            new Alerta(texto.getText() + " No es un número.", texto.getText());
         }
-        this.stage.close();
-        juego.transferirEjercitosDeA(paisOrigen, paisDestino, Integer.parseInt(texto.getText()));
-
-        pais.actualizar(juego.obtenerPais(pais.obtenerNombre()).cantidadDeEjercitos(), juego.obtenerPais(pais.obtenerNombre()).obtenerFicha().color());
-        vista.obtenerPaisOrigen().actualizar(juego.obtenerPais(vista.obtenerPaisOrigen().obtenerNombre()).cantidadDeEjercitos(), juego.obtenerPais(vista.obtenerPaisOrigen().obtenerNombre()).obtenerFicha().color());
-        vista.fichasMovidas();
     }
 }

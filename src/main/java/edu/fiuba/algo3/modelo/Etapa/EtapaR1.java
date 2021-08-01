@@ -5,58 +5,14 @@ import edu.fiuba.algo3.modelo.exception.ExcepcionCantidadInvalida;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 
-public class EtapaR1 implements EtapaR{
-
-    private final int cantidadEjercitos;
-    private final Juego juego;
-    private int ejercitosColocados;
+public class EtapaR1 extends EtapaRReagruparA{
 
     public EtapaR1(Juego juego){
-        this.juego = juego;
+        super(juego);
         this.cantidadEjercitos = 5;
         this.ejercitosColocados = 0;
     }
-
-
     @Override
-    public void colocarEjercitos(Jugador jugadorActual, Pais pais, int cantidad) {
-        if((ejercitosColocados + cantidad ) <= cantidadEjercitos) {
-            jugadorActual.colocarEjercitosEn(cantidad, pais);
-            ejercitosColocados += cantidad;
-        }else throw new ExcepcionCantidadInvalida("Ingrese una cantidad entre " +
-                (cantidadEjercitos - ejercitosColocados) + " y 0");
-    }
+    public EtapaR pasarEtapa() { return new EtapaR2(this.juego); }
 
-    @Override
-    public EtapaR pasarEtapa() {
-        return new EtapaR2(this.juego);
-    }
-
-    @Override
-    public void AtacarCon(Jugador jugadorActual, Pais atacante, Pais defensor) {
-
-    }
-
-    @Override
-    public void transferirEjercitos(Jugador jugadorActual, Pais aliado1, Pais aliado2, int cantidadEjercitos) {
-
-    }
-
-    @Override
-    public boolean estaTerminada() {
-        if(this.ejercitosColocados == this.cantidadEjercitos){
-            ejercitosColocados = 0;
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public void establecerCantidadEjercitos(int cantidadEjercitos) {
-    }
-
-    @Override
-    public int obtenerCantidadEjercitos() {
-        return cantidadEjercitos - ejercitosColocados;
-    }
 }
