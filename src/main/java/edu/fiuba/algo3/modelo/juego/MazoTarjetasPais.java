@@ -13,7 +13,12 @@ public class MazoTarjetasPais {
     public void agregarTarjeta(TarjetaPais unaTarjeta){
         this.tarjetas.put(unaTarjeta.obtenerPais().obtenerNombre(), unaTarjeta);
     }
-
+    public void vaciar(){
+        this.tarjetas.clear();
+    }
+    public TarjetaPais obtenerTarjeta(String nombreTarjeta){
+        return tarjetas.get(nombreTarjeta);
+    }
     public ArrayList<TarjetaPais> obtenerTarjetas() {
         return new ArrayList<>(tarjetas.values());
     }

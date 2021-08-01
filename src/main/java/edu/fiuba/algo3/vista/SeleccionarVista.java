@@ -2,14 +2,11 @@ package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.juego.TarjetaPais;
-import edu.fiuba.algo3.modelo.tipoTarjeta.Barco;
-import edu.fiuba.algo3.modelo.tipoTarjeta.Canion;
-import edu.fiuba.algo3.modelo.tipoTarjeta.Comodin;
-import edu.fiuba.algo3.modelo.tipoTarjeta.Globo;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SeleccionarVista {
 
@@ -53,23 +50,15 @@ public class SeleccionarVista {
         stage.setResizable(false);
 
     }
-    public void mostrarInterfazTarjetas(){
-        stage.setTitle("Interfaz Tarjetas");
-        TarjetaPais tarjetaPais = new TarjetaPais(new Canion(), "Argentina");
-        TarjetaPais tarjetaPais2 = new TarjetaPais(new Comodin(), "Chile");
-        TarjetaPais tarjetaPais3 = new TarjetaPais(new Barco(), "Brasil");
-        TarjetaPais tarjetaPais4 = new TarjetaPais(new Globo(), "Uruguay");
+    public void mostrarInterfazTarjetas(Juego juego, Stage otroStage, HashMap<String, VistaPais> paises){
+        otroStage.setTitle("Interfaz Tarjetas");
+        ArrayList<TarjetaPais> tarjetas = juego.obtenerJugadorJugando().obtenerTarjetas();
 
-        ArrayList<TarjetaPais> tarjetas = new ArrayList<>();
-        tarjetas.add(tarjetaPais);
-        tarjetas.add(tarjetaPais2);
-        tarjetas.add(tarjetaPais3);
-        tarjetas.add(tarjetaPais4);
 
-        VistaTarjetaPais vistaTarjeta = new VistaTarjetaPais(tarjetas);
+        VistaTarjetaPais vistaTarjeta = new VistaTarjetaPais(tarjetas, juego, paises);
 
         Scene escenaTarjeta = new Scene(vistaTarjeta, 1000,800);
-        stage.setScene(escenaTarjeta);
-        stage.setResizable(false);
+        otroStage.setScene(escenaTarjeta);
+        otroStage.show();
     }
 }

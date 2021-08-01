@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.controlador.FinalizarTurnoEventHandler;
+import edu.fiuba.algo3.controlador.MostrarTarjetasEventHandler;
 import edu.fiuba.algo3.controlador.PaisSeleccionadoEventHandler;
 import edu.fiuba.algo3.modelo.Juego;
 import javafx.collections.ObservableList;
@@ -18,12 +19,14 @@ import java.util.HashMap;
 public class VistaEtapaColocacion extends StackPane {
     private final BorderPane contenedor;
     private final SeleccionarVista vista;
+    private final Mapa mapa;
     private Label jugadorActual;
     private Label proximoJugador;
     private Label ejercitos;
 
     public VistaEtapaColocacion(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador, Juego juego, SeleccionarVista seleccionarVista, int ejercitosDisponibles){
         this.vista = seleccionarVista;
+        this.mapa = mapa;
         HBox datosTurno = this.datosTurno(nombreJugadorActual, nombreSiguienteJugador, ejercitosDisponibles);
         VBox contenedorBotones1 = this.botonesJugador();
         HBox contenedorBotones2 = this.botonesTurno(juego);
@@ -60,6 +63,8 @@ public class VistaEtapaColocacion extends StackPane {
         botonObjetivo.setText("Ver Objetivo"); //hacer objetivos
         Button botonTarjetaPais = new Button();
         botonTarjetaPais.setText("Activar Tarjeta");
+        MostrarTarjetasEventHandler mostrarTarjetasEventHandler = new MostrarTarjetasEventHandler(vista, juego, mapa.obtenerPaises());
+        botonTarjetaPais.setOnAction(mostrarTarjetasEventHandler);
         HBox contenedor = new HBox(botonFinTurno, botonObjetivo, botonTarjetaPais);
         contenedor.setSpacing(20);
         return contenedor;

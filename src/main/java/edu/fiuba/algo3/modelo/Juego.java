@@ -124,8 +124,7 @@ public class Juego {
 
                 turnos.add(turnos.remove(0));
                 jugadorActual = turnos.get(0);
-                cantidadPaisesJugadorActual = tablero.obtenerCantidadPaisesJugador(jugadorActual);
-                etapaR.establecerCantidadEjercitos(cantidadPaisesJugadorActual / 2);
+                etapaR.establecerCantidadEjercitos(this.obtenerEjercitos(jugadorActual));
             }
         }
     }
@@ -154,7 +153,9 @@ public class Juego {
             this.finalizar(jugadorActual.obtenerNombre());
         }
     }
-
+    public void activarTarjetaPais(String nombrePais){
+        jugadorActual.activarTarjetaPais(jugadorActual.obtenerTarjeta(nombrePais));
+    }
     public void finalizar(String nombre) {
       throw new ExcepcionFinDeJuego("Fin del juego. Felicidades: " + nombre);
     }
@@ -211,7 +212,9 @@ public class Juego {
     public ArrayList<Pais> obtenerPaises() {
         return tablero.obtenerPaises();
     }
-
+    public Jugador obtenerJugadorJugando(){
+        return jugadorActual;
+    }
     public void cargarColores(){
         this.coloresFichas = new ArrayList<>();
         
