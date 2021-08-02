@@ -21,12 +21,28 @@ public class ObjetivoTest {
     @Test
     public void test01ObjetivoDestruirDesapareceEquipoAzulCumplido(){
     
+        System.out.println("".split(",")[0] == "");
+        System.out.println("aaaa");
+
+
         LecturaArchivoObjetivos leer = new LecturaArchivoObjetivos();
         ArrayList<Objetivo> objetivos = new ArrayList<>();
         leer.leerArchivo(objetivos);
 
-        Objetivo obj = objetivos.get(8);
-        obj.equipoDestruido("Azul");
+        Objetivo obj = objetivos.get(8); // Destruir el ejército azul de ser imposible al jugador de la derecha
+        Juego unJuego = new Juego(5);
+        unJuego.iniciarJuegoPrueba();
+        unJuego.obtenerJugador(3).establecerObjetivo(obj);
+
+        ArrayList<TarjetaPais> tarjetas = unJuego.obtenerTarjetas();
+
+        for (TarjetaPais tarjetaPais : tarjetas) {
+            Pais unPais = tarjetaPais.obtenerPais();
+            if (unPais.perteneceA(unJuego.obtenerJugador(4))){
+                unPais.cambiarFicha(unJuego.obtenerJugador(2).obtenerFicha());
+            }
+        }
+
 
         assertTrue(obj.estaCumplido());
     }
@@ -39,7 +55,6 @@ public class ObjetivoTest {
         leer.leerArchivo(objetivos);
 
         Objetivo obj = objetivos.get(8);
-        obj.equipoDestruido("Azul");
 
         assertTrue(obj.estaCumplido());
     }

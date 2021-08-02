@@ -70,7 +70,7 @@ public class LecturaArchivoObjetivos {
             String[] continentesAOcuparJson = nombresContinentes.split(",");
             ArrayList<String> continentesAOcupar = new ArrayList<String>();
             
-            if (!nombresContinentes.equals("")){
+            if (!nombresContinentes.equals("") && nombresContinentes != null){
                 for(int i = 0; i < continentesAOcuparJson.length; i++ ){
                     continentesAOcupar.add(continentesAOcuparJson[i]);
                 }    
@@ -88,8 +88,11 @@ public class LecturaArchivoObjetivos {
                 int cantidad = Integer.parseInt(valores[0]);
                 continentesYCantidades.put(this.nombreContinente(valores[1]), cantidad);
             }
+
             obj = new ObjetivoOcupar(titulo, continentesAOcupar, continentesYCantidades);
+            
             objetivos.add(obj);
+
         } else if (tipo.equals("Destruir")){
 
             // Obtener equipo a destruir

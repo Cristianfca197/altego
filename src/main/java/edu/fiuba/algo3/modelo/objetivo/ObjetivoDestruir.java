@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo.objetivo;
 
 import java.util.ArrayList;
 
+import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.juego.Ficha;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
@@ -13,11 +14,17 @@ public class ObjetivoDestruir implements Objetivo {
     private String equipoADestruir;
     private int objetivoComunCantidad;
     private Boolean estaCumplido = false;
+    private Jugador jugador;
 
     public ObjetivoDestruir(String titulo, String equipoADestruir){
         this.titulo = titulo;
         this.equipoADestruir = equipoADestruir;
 
+    }
+
+    @Override
+    public void asignarJugador(Jugador unJugador) {
+        this.jugador = unJugador;
     }
 
     @Override
@@ -63,8 +70,13 @@ public class ObjetivoDestruir implements Objetivo {
     }
 
     @Override
-    public void equipoDestruido(String string) {
-        this.estaCumplido = (string == this.equipoADestruir);
+    public void equipoDestruido(String color, Juego unJuego){
+        this.estaCumplido = (color == this.equipoADestruir);
+
+        if (!unJuego.existeColor(color)){
+            this.estaCumplido = unJuego.siguienteJugador(this.jugador).color().equalsIgnoreCase(color);
+        }
+        
     }
 
     @Override

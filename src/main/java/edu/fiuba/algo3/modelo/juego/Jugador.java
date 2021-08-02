@@ -5,12 +5,15 @@ import javafx.scene.paint.Color;
 //import jdk.tools.jlink.resources.plugins;
 import edu.fiuba.algo3.modelo.canje.Canje;
 import edu.fiuba.algo3.modelo.canje.PrimerCanje;
+import edu.fiuba.algo3.modelo.objetivo.Objetivo;
 
 public class Jugador {
     private final Ficha ficha;
     private final MazoTarjetasPais listaTarjetas;
     private Canje canje;
     private String nombre;
+    private String nombreColor;
+    private Objetivo objetivoJugador;
 
     public Jugador() {
 
@@ -25,6 +28,10 @@ public class Jugador {
 
     public void colocarEjercitosEn(Integer unaCantidadDeEjercitos, Pais unPais) {
         unPais.colocarEjercitos(unaCantidadDeEjercitos, this.ficha);
+    }
+
+    public void establecerObjetivo(Objetivo unObj){
+        this.objetivoJugador = unObj;
     }
 
     public Ficha obtenerFicha() {
@@ -73,5 +80,17 @@ public class Jugador {
 
     public String obtenerNombre() {
         return this.nombre;
+    }
+
+    public void nombreColor(String unColor) {
+        this.nombreColor = unColor;
+    }
+
+    public String color() {
+        return this.nombreColor;
+    }
+
+    public Objetivo objetivo(){
+        return this.objetivoJugador;
     }
 }

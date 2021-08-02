@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.juego.Ficha;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
@@ -17,6 +18,7 @@ public class ObjetivoOcupar implements Objetivo {
     private int objetivoComunCantidad;
     private Boolean estaCumplido;
     private Integer limitrofes;
+    private Jugador jugador;
  
     public ObjetivoOcupar(String titulo, ArrayList<String> continentesAOcupar, HashMap<String, Integer> continentesYCantidades) {
         this.titulo = titulo;
@@ -66,7 +68,7 @@ public class ObjetivoOcupar implements Objetivo {
     }
 
     @Override
-    public void equipoDestruido(String string) {
+    public void equipoDestruido(String string, Juego juego){
         
     }
 
@@ -94,6 +96,11 @@ public class ObjetivoOcupar implements Objetivo {
             }
         }
         this.estaCumplido = obj1 && obj2 && obj3;
+    }
+
+    @Override
+    public void asignarJugador(Jugador unJugador) {
+        this.jugador = unJugador;
     }
     
 }
