@@ -4,14 +4,13 @@ import edu.fiuba.algo3.controlador.Alerta;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
-import javafx.scene.control.Alert;
 
-public class EtapaRReagrupar implements EtapaR {
+public class EtapaReagrupar implements Etapa {
 
 
     private final Juego juego;
 
-    public EtapaRReagrupar(Juego juego) {
+    public EtapaReagrupar(Juego juego) {
         this.juego = juego;
     }
 
@@ -20,8 +19,8 @@ public class EtapaRReagrupar implements EtapaR {
 
     }
 
-    public EtapaR pasarEtapa(){
-        return new EtapaRColocacion(this.juego);
+    public Etapa pasarEtapa(){
+        return new EtapaColocacion(this.juego);
     }
 
     @Override
@@ -54,5 +53,10 @@ public class EtapaRReagrupar implements EtapaR {
     @Override
     public int obtenerCantidadEjercitos() {
         return 0;
+    }
+
+    @Override
+    public void agregarEjercitosCanje(int cantidadEjercitos) {
+
     }
 }

@@ -174,6 +174,7 @@ public class JuegoTest {
 
         cantidadEjercitos = juego.obtenerEjercitos(jugador2);
 
+
         assertEquals(15, cantidadEjercitos);
 
     }
@@ -198,8 +199,8 @@ public class JuegoTest {
         juego.iniciarJuegoPrueba();
         juego.pasarTurno();
         juego.pasarTurno();
-        EtapaR etapaActual = juego.obtenerEtapaR();
-        assertEquals( EtapaR1.class, etapaActual.getClass());
+        Etapa etapaActual = juego.obtenerEtapaR();
+        assertEquals( EtapaColocacionRondaUno.class, etapaActual.getClass());
     }
 
     @Test
@@ -212,8 +213,8 @@ public class JuegoTest {
         juego.pasarTurno();
         juego.colocarEjercitosFaseInicial(pais2, 5);
         juego.pasarTurno();
-        EtapaR etapaActual = juego.obtenerEtapaR();
-        assertEquals( EtapaR2.class, etapaActual.getClass());
+        Etapa etapaActual = juego.obtenerEtapaR();
+        assertEquals( EtapaColocacionRondaDos.class, etapaActual.getClass());
     }
 
     @Test
@@ -230,8 +231,8 @@ public class JuegoTest {
         juego.pasarTurno();
         juego.colocarEjercitosFaseInicial(pais2, 3);
         juego.pasarTurno();
-        EtapaR etapaActual = juego.obtenerEtapaR();
-        assertEquals( EtapaRAtacar.class, etapaActual.getClass());
+        Etapa etapaActual = juego.obtenerEtapaR();
+        assertEquals( EtapaAtacar.class, etapaActual.getClass());
     }
 
     @Test
@@ -277,7 +278,7 @@ public class JuegoTest {
         //ataca jugador1
         juego.pasarTurno();
 
-        assertEquals(EtapaRReagrupar.class, juego.obtenerEtapaR().getClass());
+        assertEquals(EtapaReagrupar.class, juego.obtenerEtapaR().getClass());
     }
     @Test
     public void test18JuegoFaseReagruparReagruparCorrectamente(){
@@ -327,7 +328,7 @@ public class JuegoTest {
         juego.pasarTurno();
         //reagrupar jugador2
         juego.pasarTurno();
-        assertEquals(EtapaRColocacion.class, juego.obtenerEtapaR().getClass());
+        assertEquals(EtapaColocacion.class, juego.obtenerEtapaR().getClass());
     }
     @Test
     public void test20TurnoColocacionColocarCorrectamente() {
@@ -400,7 +401,7 @@ public class JuegoTest {
         juego.pasarTurno();
         //ataca jugador2
         juego.pasarTurno();
-        EtapaR etapaR = juego.obtenerEtapaR();
+        Etapa etapa = juego.obtenerEtapaR();
         //reagrupar jugador2
         juego.pasarTurno();
         juego.pasarTurno();
@@ -433,4 +434,37 @@ public class JuegoTest {
         assertThrows(ExcepcionFinDeJuego.class, () -> juego.finalizar(jugador.obtenerNombre()));
     }
 
+    @Test
+    public void test25JuegoTerminaRondasAtaqueYReagruparPasaAColocacionOceaniaOcupado() {
+        Juego juego = new Juego(2);
+        juego.iniciarJuegoPrueba();
+        Pais pais1 = juego.obtenerPais("Gran Bretania");
+        Pais pais2 = juego.obtenerPais("Francia");
+        juego.colocarEjercitosFaseInicial(pais1, 5);
+        juego.pasarTurno();
+        juego.colocarEjercitosFaseInicial(pais2, 5);
+        juego.pasarTurno();
+        assertEquals(juego.obtenerJugadorJugando().obtenerFicha(), pais1.obtenerFicha());
+        juego.colocarEjercitosFaseInicial(pais1, 3);
+        juego.pasarTurno();
+        juego.colocarEjercitosFaseInicial(pais2, 3);
+        juego.pasarTurno();
+        //ataca jugador1
+        juego.pasarTurno();
+        //reagrupajugador1
+        juego.pasarTurno();
+        Pais unPais = juego.obtenerTablero().obtenerPais("Sumatra");
+        unPais.asignarJugador(juego.obtenerJugadorJugando());
+        //ataca jugador2
+        juego.pasarTurno();
+        //reagrupar jugador2
+        juego.pasarTurno();
+        juego.colocarEjercitosFaseInicial(pais1, 12);
+        juego.pasarTurno();
+        assertEquals(juego.obtenerJugadorJugando().obtenerFicha(), pais2.obtenerFicha());
+
+
+        assertEquals(15, juego.cantidadEjercitosDisponibles());
+
+    }
 }

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.modelo;
 
+import edu.fiuba.algo3.controlador.Alerta;
 import edu.fiuba.algo3.modelo.Etapa.*;
 import edu.fiuba.algo3.modelo.exception.ExcepcionFinDeJuego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
@@ -25,7 +26,7 @@ public class Juego {
 
     private Jugador jugadorActual;
     private Jugador ultimoJugador;
-    private EtapaR etapaR;
+    private Etapa etapa;
     private ArrayList<Jugador> turnos;
     private int cantidadPaisesJugadorActual;
     private ArrayList<Color> coloresFichas;
@@ -137,7 +138,7 @@ public class Juego {
      * inicializa la fase inicial con la primera etapa.
      */
     public void faseInicial() {
-        etapaR = new EtapaR1(this);
+        etapa = new EtapaColocacionRondaUno(this);
     }
 
     /**
@@ -156,23 +157,25 @@ public class Juego {
     }
 
     public void colocarEjercitosFaseInicial(Pais pais, int cantidad) {
-        etapaR.colocarEjercitos(jugadorActual, pais, cantidad);
+        etapa.colocarEjercitos(jugadorActual, pais, cantidad);
     }
     public void pasarTurno(){
-        if(etapaR.estaTerminada()) {
-            if(etapaR.getClass() == EtapaRAtacar.class){
-                etapaR = etapaR.pasarEtapa();
+        if(etapa.estaTerminada()) {
+            if(etapa.getClass() == EtapaAtacar.class){
+                etapa = etapa.pasarEtapa();
             } else {
                 if (jugadorActual == ultimoJugador) {
-                    etapaR = etapaR.pasarEtapa();
+                    etapa = etapa.pasarEtapa();
                 }
-                if (jugadorActual != ultimoJugador && etapaR.getClass() == EtapaRReagrupar.class) {
-                    etapaR = new EtapaRAtacar(this);
+                if (jugadorActual != ultimoJugador && etapa.getClass() == EtapaReagrupar.class) {
+                    etapa = new EtapaAtacar(this);
                 }
                 turnos.add(turnos.remove(0));
                 jugadorActual = turnos.get(0);
-                etapaR.establecerCantidadEjercitos(this.obtenerEjercitos(jugadorActual));
+                etapa.establecerCantidadEjercitos(obtenerEjercitos(jugadorActual));
             }
+        }else{
+            new Alerta("Tienes Ejercitos disponibles, agrega todos antes de pasar el turno", "Error");
         }
     }
     public String obtenerJugadorActual(){
@@ -183,12 +186,12 @@ public class Juego {
         return turnos.get(1).obtenerNombre();
     }
 
-    public EtapaR obtenerEtapaR() {
-        return etapaR;
+    public Etapa obtenerEtapaR() {
+        return etapa;
     }
 
     public int cantidadEjercitosDisponibles(){
-        return this.etapaR.obtenerCantidadEjercitos();
+        return this.etapa.obtenerCantidadEjercitos();
     }
 
     public void atacarDesdeA(String nombreAtacante, String nombreDefensor){
@@ -197,7 +200,7 @@ public class Juego {
         this.atacarACon(atacante, defensor);
     }
     public void atacarACon(Pais atacante, Pais defensor) {
-        etapaR.AtacarCon(jugadorActual, atacante, defensor);
+        etapa.AtacarCon(jugadorActual, atacante, defensor);
 
     }
     public void activarTarjetaPais(String nombrePais){
@@ -213,6 +216,7 @@ public class Juego {
         }
     }
 
+
     /**
     Verifica si hay ganador del juego segun objetivos.
     @return Jugador ganador, si no hay ganador devuelve null.
@@ -225,7 +229,18 @@ public class Juego {
         return null;
     }
 
-    public void entregarTarjetaRandom(Jugador jugador) {
+    public void realizarCanje(ArrayList<String> tarjetas){
+        int cantidadEjercitos = 0;
+        ArrayList<TarjetaPais> tarjetasCanje = new ArrayList<TarjetaPais>();
+        for(String tarjeta: tarjetas){
+            TarjetaPais tarjetaPais = jugadorActual.obtenerTarjeta(tarjeta);
+            tarjetasCanje.add(tarjetaPais);
+        }
+        cantidadEjercitos = jugadorActual.canjearTarjetas(tarjetasCanje);
+        etapa.agregarEjercitosCanje(cantidadEjercitos);
+    }
+    public void entregarTarjetaRandom(Jugador jugador){
+
         ArrayList<String> tarjetas = new ArrayList<>(tarjetasDePais.keySet());
         int numeroRandom = new Random().nextInt(tarjetas.size());
         String claveRandom = tarjetas.get(numeroRandom);
@@ -237,7 +252,7 @@ public class Juego {
         this.transferirEjercitos(paisOrigen, paisDestino, cantidadEjercitos);
     }
     public void transferirEjercitos(Pais aliado1, Pais aliado2, int cantidadEjercitos) {
-        etapaR.transferirEjercitos(jugadorActual, aliado1, aliado2, cantidadEjercitos);
+        etapa.transferirEjercitos(jugadorActual, aliado1, aliado2, cantidadEjercitos);
     }
 
     public TarjetaPais obtenerTarjeta(String nombreTarjeta) {
@@ -252,7 +267,9 @@ public class Juego {
     public int obtenerEjercitos(Jugador jugador) {
         int cantidadPaises = this.tablero.obtenerCantidadPaisesJugador(jugador);
 
-        return (this.tablero.fichasContinente(jugador) + cantidadPaises / 2);
+
+        return (this.tablero.fichasContinente(jugador) + (cantidadPaises/2));
+
     }
 
     /**
