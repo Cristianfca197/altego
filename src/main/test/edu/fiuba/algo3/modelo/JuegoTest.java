@@ -4,9 +4,11 @@ import edu.fiuba.algo3.modelo.Etapa.*;
 import edu.fiuba.algo3.modelo.exception.ExcepcionCanjeInvalido;
 import edu.fiuba.algo3.modelo.exception.ExcepcionCantidadInvalida;
 import edu.fiuba.algo3.modelo.exception.ExcepcionFinDeJuego;
+import edu.fiuba.algo3.modelo.exception.ExcepcionPasarTurnoNoEsPosible;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 import edu.fiuba.algo3.modelo.juego.TarjetaPais;
+import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 import org.junit.jupiter.api.Test;
 
@@ -197,10 +199,8 @@ public class JuegoTest {
     public void test12JuegoPasarTurnoNoEsPosible(){
         Juego juego = new Juego(2);
         juego.iniciarJuegoPrueba();
-        juego.pasarTurno();
-        juego.pasarTurno();
-        Etapa etapaActual = juego.obtenerEtapaR();
-        assertEquals( EtapaColocacionRondaUno.class, etapaActual.getClass());
+        assertThrows(ExcepcionPasarTurnoNoEsPosible.class, ()->juego.pasarTurno());
+
     }
 
     @Test
@@ -254,11 +254,13 @@ public class JuegoTest {
         juego.colocarEjercitosFaseInicial(pais2, 5);
         juego.pasarTurno();
         assertThrows(ExcepcionCantidadInvalida.class, () -> juego.colocarEjercitosFaseInicial(pais1, 7));
+        juego.colocarEjercitosFaseInicial(pais1, 3);
         juego.pasarTurno();
         assertThrows(ExcepcionCantidadInvalida.class, () -> juego.colocarEjercitosFaseInicial(pais2, 7));
+        juego.colocarEjercitosFaseInicial(pais2, 3);
         juego.pasarTurno();
-        assertEquals(6, pais1.cantidadDeEjercitos());
-        assertEquals(6, pais2.cantidadDeEjercitos());
+        assertEquals(9, pais1.cantidadDeEjercitos());
+        assertEquals(9, pais2.cantidadDeEjercitos());
     }
 
     @Test
@@ -394,18 +396,16 @@ public class JuegoTest {
         juego.pasarTurno();
         juego.colocarEjercitosFaseInicial(pais2, 3);
         juego.pasarTurno();
-
         //ataca jugador1
         juego.pasarTurno();
         //reagrupajugador1
         juego.pasarTurno();
         //ataca jugador2
         juego.pasarTurno();
-        Etapa etapa = juego.obtenerEtapaR();
         //reagrupar jugador2
         juego.pasarTurno();
-        juego.pasarTurno();
-        assertEquals(pais1.obtenerFicha(), juego.obtenerJugador(1).obtenerFicha());
+        //entra en etapa colocacion
+        assertThrows(ExcepcionPasarTurnoNoEsPosible.class, ()->juego.pasarTurno());
     }
 
     @Test

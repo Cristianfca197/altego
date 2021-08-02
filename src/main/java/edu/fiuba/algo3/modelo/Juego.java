@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo;
 import edu.fiuba.algo3.controlador.Alerta;
 import edu.fiuba.algo3.modelo.Etapa.*;
 import edu.fiuba.algo3.modelo.exception.ExcepcionFinDeJuego;
+import edu.fiuba.algo3.modelo.exception.ExcepcionPasarTurnoNoEsPosible;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 import edu.fiuba.algo3.modelo.juego.Tablero;
@@ -175,7 +176,7 @@ public class Juego {
                 etapa.establecerCantidadEjercitos(obtenerEjercitos(jugadorActual));
             }
         }else{
-            new Alerta("Tienes Ejercitos disponibles, agrega todos antes de pasar el turno", "Error");
+            throw new ExcepcionPasarTurnoNoEsPosible("No es posible Pasar el turno, sin haber agregado todos los ejercitos disponibles");
         }
     }
     public String obtenerJugadorActual(){
