@@ -16,6 +16,7 @@ public class ObjetivoOcupar implements Objetivo {
     private HashMap<String, Integer> continentesYCantidades;
     private ArrayList<String> continentesAOcupar;
     private int objetivoComunCantidad;
+    private int objetivoComunCantidadActual;
     private Boolean estaCumplido;
     private Integer limitrofes;
     private Jugador jugador;
@@ -114,7 +115,10 @@ public class ObjetivoOcupar implements Objetivo {
                 }
             }
         }
-        this.estaCumplido = obj1 && obj2 && obj3;
+
+        this.objetivoComunCantidadActual = juego.obtenerTablero().obtenerCantidadPaisesJugador(this.jugador);
+
+        this.estaCumplido = ( (obj1 && obj2 && obj3) || (this.objetivoComunCantidadActual >= this.objetivoComunCantidad));
         
     }
     

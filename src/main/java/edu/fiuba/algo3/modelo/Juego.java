@@ -202,7 +202,7 @@ public class Juego {
     }
     public void atacarACon(Pais atacante, Pais defensor) {
         etapa.AtacarCon(jugadorActual, atacante, defensor);
-        if(tablero.obtenerCantidadPaisesJugador(jugadorActual) >= 30){
+        if(jugadorActual.objetivo().estaCumplido()){
             throw new ExcepcionFinDeJuego(jugadorActual.obtenerNombre() + " Felicidades haz ganado el juego!");
         }
     }

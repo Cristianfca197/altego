@@ -251,6 +251,35 @@ public class ObjetivoTest {
         assertTrue(obj.estaCumplido());
     }
 
-
+    @Test
+    public void test08ObjetivoComunOcupar30PaisesCumplido() {
     
+        LecturaArchivoObjetivos leer = new LecturaArchivoObjetivos();
+        ArrayList<Objetivo> objetivos = new ArrayList<>();
+        leer.leerArchivo(objetivos);
+
+        Objetivo obj = objetivos.get(2);// Ocupar 30 paisees
+
+        Juego unJuego = new Juego(4);
+        unJuego.iniciarJuegoPrueba();
+        Jugador unJug = unJuego.obtenerJugador(3);
+        unJug.establecerObjetivo(obj);
+        obj.asignarJugador(unJug);
+
+        Tablero tablero = unJuego.obtenerTablero();
+
+        int i = 0;
+
+        for (Pais p : tablero.obtenerPaises() ) {
+            if(i==30) break;
+            if (!p.perteneceA(unJug)){
+                p.cambiarFicha(unJug.obtenerFicha());
+            }
+            i++;
+        }
+
+        obj.actualizar(unJuego);                 
+        assertTrue(obj.estaCumplido());
+    }
+
 }
