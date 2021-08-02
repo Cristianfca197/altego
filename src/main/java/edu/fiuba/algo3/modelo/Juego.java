@@ -171,7 +171,7 @@ public class Juego {
                 }
                 turnos.add(turnos.remove(0));
                 jugadorActual = turnos.get(0);
-                etapaR.establecerCantidadEjercitos(this.obtenerEjercitos(jugadorActual));
+                etapaR.establecerCantidadEjercitos(obtenerEjercitos(jugadorActual));
             }
         }
     }
@@ -213,6 +213,7 @@ public class Juego {
         }
     }
 
+
     /**
     Verifica si hay ganador del juego segun objetivos.
     @return Jugador ganador, si no hay ganador devuelve null.
@@ -225,7 +226,18 @@ public class Juego {
         return null;
     }
 
-    public void entregarTarjetaRandom(Jugador jugador) {
+    public void realizarCanje(ArrayList<String> tarjetas){
+        int cantidadEjercitos = 0;
+        ArrayList<TarjetaPais> tarjetasCanje = new ArrayList<TarjetaPais>();
+        for(String tarjeta: tarjetas){
+            TarjetaPais tarjetaPais = jugadorActual.obtenerTarjeta(tarjeta);
+            tarjetasCanje.add(tarjetaPais);
+        }
+        cantidadEjercitos = jugadorActual.canjearTarjetas(tarjetasCanje);
+        etapaR.agregarEjercitosCanje(cantidadEjercitos);
+    }
+    public void entregarTarjetaRandom(Jugador jugador){
+
         ArrayList<String> tarjetas = new ArrayList<>(tarjetasDePais.keySet());
         int numeroRandom = new Random().nextInt(tarjetas.size());
         String claveRandom = tarjetas.get(numeroRandom);
@@ -252,7 +264,9 @@ public class Juego {
     public int obtenerEjercitos(Jugador jugador) {
         int cantidadPaises = this.tablero.obtenerCantidadPaisesJugador(jugador);
 
-        return (this.tablero.fichasContinente(jugador) + cantidadPaises / 2);
+
+        return (this.tablero.fichasContinente(jugador) + (cantidadPaises/2));
+
     }
 
     public Jugador obtenerJugador(int numeroDeJugador) {

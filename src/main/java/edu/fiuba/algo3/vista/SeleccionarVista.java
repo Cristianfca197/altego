@@ -50,12 +50,12 @@ public class SeleccionarVista {
         stage.setResizable(false);
 
     }
-    public void mostrarInterfazTarjetas(Juego juego, Stage otroStage, HashMap<String, VistaPais> paises){
+    public void mostrarInterfazTarjetas(Juego juego, Stage otroStage, HashMap<String, VistaPais> paises, boolean esCanje, VistaEtapaColocacion vistaColocacion){
         otroStage.setTitle("Interfaz Tarjetas");
         ArrayList<TarjetaPais> tarjetas = juego.obtenerJugadorJugando().obtenerTarjetas();
 
 
-        VistaTarjetaPais vistaTarjeta = new VistaTarjetaPais(tarjetas, juego, paises);
+        VistaTarjetaPais vistaTarjeta = new VistaTarjetaPais(tarjetas, juego, paises, esCanje, vistaColocacion);
 
         Scene escenaTarjeta = new Scene(vistaTarjeta, 1000,800);
         otroStage.setScene(escenaTarjeta);

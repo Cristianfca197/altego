@@ -20,6 +20,7 @@ public class VistaEtapaColocacion extends StackPane {
     private final BorderPane contenedor;
     private final SeleccionarVista vista;
     private final Mapa mapa;
+    private final Juego juego;
     private Label jugadorActual;
     private Label proximoJugador;
     private Label ejercitos;
@@ -27,6 +28,7 @@ public class VistaEtapaColocacion extends StackPane {
     public VistaEtapaColocacion(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador, Juego juego, SeleccionarVista seleccionarVista, int ejercitosDisponibles){
         this.vista = seleccionarVista;
         this.mapa = mapa;
+        this.juego = juego;
         HBox datosTurno = this.datosTurno(nombreJugadorActual, nombreSiguienteJugador, ejercitosDisponibles);
         VBox contenedorBotones1 = this.botonesJugador();
         HBox contenedorBotones2 = this.botonesTurno(juego);
@@ -63,7 +65,7 @@ public class VistaEtapaColocacion extends StackPane {
         botonObjetivo.setText("Ver Objetivo"); //hacer objetivos
         Button botonTarjetaPais = new Button();
         botonTarjetaPais.setText("Activar Tarjeta");
-        MostrarTarjetasEventHandler mostrarTarjetasEventHandler = new MostrarTarjetasEventHandler(vista, juego, mapa.obtenerPaises());
+        MostrarTarjetasEventHandler mostrarTarjetasEventHandler = new MostrarTarjetasEventHandler(vista, juego, mapa.obtenerPaises(), this, false);
         botonTarjetaPais.setOnAction(mostrarTarjetasEventHandler);
         HBox contenedor = new HBox(botonFinTurno, botonObjetivo, botonTarjetaPais);
         contenedor.setSpacing(20);
@@ -73,6 +75,8 @@ public class VistaEtapaColocacion extends StackPane {
     private VBox botonesJugador() {
         Button botonCanje = new Button();
         botonCanje.setText("Realizar Canje");
+        MostrarTarjetasEventHandler mostrarTarjetasEventHandler = new MostrarTarjetasEventHandler(vista, juego, mapa.obtenerPaises(),this, true);
+        botonCanje.setOnAction(mostrarTarjetasEventHandler);
         VBox contenedor = new VBox( botonCanje);
         contenedor.setSpacing(20);
         return contenedor;

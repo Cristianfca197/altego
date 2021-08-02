@@ -21,7 +21,6 @@ abstract class EtapaRReagruparA implements EtapaR{
             }else throw new ExcepcionCantidadInvalida("Ingrese una cantidad entre " +
                     (cantidadEjercitos - ejercitosColocados) + " y 0");
         }
-
         @Override
         public void AtacarCon(Jugador jugadorActual, Pais atacante, Pais defensor) {
 
@@ -43,9 +42,6 @@ abstract class EtapaRReagruparA implements EtapaR{
 
         @Override
         public void establecerCantidadEjercitos(int cantidadEjercitosDisponibles) {
-            if(this.cantidadEjercitos == 0) {
-                this.cantidadEjercitos = cantidadEjercitosDisponibles;
-            }
         }
 
         @Override
@@ -55,4 +51,9 @@ abstract class EtapaRReagruparA implements EtapaR{
 
         @Override
         public abstract EtapaR pasarEtapa();
+
+    @Override
+    public void agregarEjercitosCanje(int cantidadEjercitos) {
+        this.cantidadEjercitos += cantidadEjercitos;
+    }
 }

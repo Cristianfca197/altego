@@ -1,20 +1,14 @@
 package edu.fiuba.algo3.modelo;
  
-import edu.fiuba.algo3.modelo.Etapa.*;
-import edu.fiuba.algo3.modelo.exception.ExcepcionCanjeInvalido;
-import edu.fiuba.algo3.modelo.exception.ExcepcionFinDeJuego;
-import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 import edu.fiuba.algo3.modelo.juego.TarjetaPais;
 import edu.fiuba.algo3.modelo.lectura.LecturaArchivoObjetivos;
 import edu.fiuba.algo3.modelo.objetivo.Objetivo;
-import edu.fiuba.algo3.modelo.objetivo.ObjetivoDestruir;
-
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ObjetivoTest {
 
@@ -26,7 +20,7 @@ public class ObjetivoTest {
         leer.leerArchivo(objetivos);
 
         Objetivo obj = objetivos.get(8); // Destruir el ejército azul de ser imposible al jugador de la derecha
-        Juego unJuego = new Juego(5);
+        Juego unJuego = new Juego(4);
         unJuego.iniciarJuegoPrueba();
         unJuego.obtenerJugador(3).establecerObjetivo(obj);
 

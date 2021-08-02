@@ -6,10 +6,14 @@ public class EtapaRColocacion extends EtapaRReagruparA {
 
     public EtapaRColocacion(Juego juego){
         super(juego);
-        this.cantidadEjercitos = 0;
     }
 
     public EtapaR pasarEtapa(){
+        this.cantidadEjercitos = 0;
         return new EtapaRAtacar(this.juego);
+    }
+
+    public void establecerCantidadEjercitos(int cantidadEjercitosDisponibles) {
+            this.cantidadEjercitos = cantidadEjercitosDisponibles;
     }
 }

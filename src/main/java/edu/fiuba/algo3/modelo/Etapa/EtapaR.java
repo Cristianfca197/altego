@@ -18,4 +18,6 @@ public interface EtapaR {
      void establecerCantidadEjercitos(int cantidadEjercitos);
 
      int obtenerCantidadEjercitos();
+
+     void agregarEjercitosCanje(int cantidadEjercitos);
 }
