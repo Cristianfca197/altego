@@ -97,4 +97,13 @@ public class Tablero {
     public ArrayList<Pais> obtenerPaises() {
         return paises;
     }
+
+    public int obtenerCantidadPaisesDeContinente(String continente) {
+        int cantidad = 0;
+        for (Pais pais : paises) {
+            if (pais.continenteNombre().equalsIgnoreCase(continente))
+                cantidad++;
+        }
+        return cantidad;
+    }
 }

@@ -16,6 +16,8 @@ public interface Objetivo {
 
     abstract int cantidadObjetivoComun();
 
+    abstract void actualizar(Juego juego);
+
     abstract String obtenerTipo();
 
     abstract Integer paisesAConquistar(String unContinente);

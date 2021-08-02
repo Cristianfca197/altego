@@ -32,6 +32,8 @@ public class ObjetivoDestruir implements Objetivo {
         return estaCumplido;
     }
 
+    
+
     @Override
     public String obtenerTipo() {
         return "Destruir";
@@ -82,6 +84,20 @@ public class ObjetivoDestruir implements Objetivo {
     @Override
     public void paisesConquistados(Tablero tablero, Jugador unJugador) {
         
+    }
+
+    @Override
+    public void actualizar(Juego juego) {
+
+        if (this.jugador == null) return;
+
+        Jugador unJugador = juego.obtenerJugadorPorColor(this.equipoADestruir);
+
+        if (unJugador == null){
+            unJugador = juego.siguienteJugador(this.jugador);
+        }
+
+        this.estaCumplido = !juego.tienePaises(unJugador);
     }
 
 }

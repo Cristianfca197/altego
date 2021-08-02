@@ -255,6 +255,11 @@ public class Juego {
         return (this.tablero.fichasContinente(jugador) + cantidadPaises / 2);
     }
 
+    /**
+     * Recibe un numero de jugador y devuelve su Objeto Jugador.
+     * @param numeroDeJugador -> numero, no indice. 
+     * @return Objeto Jugador
+     */
     public Jugador obtenerJugador(int numeroDeJugador) {
         return this.listaJugadores.get(numeroDeJugador - 1);
     }
@@ -302,11 +307,11 @@ public class Juego {
         this.coloresFichas.add(violeta);
 
         this.nombreColoresFichas.add("rojo");
+        this.nombreColoresFichas.add("amarillo");
         this.nombreColoresFichas.add("verde");
         this.nombreColoresFichas.add("azul");
         this.nombreColoresFichas.add("blanco");
         this.nombreColoresFichas.add("negro");
-        this.nombreColoresFichas.add("amarillo");
         this.nombreColoresFichas.add("magenta");
 
     }
@@ -339,6 +344,11 @@ public class Juego {
         return existeColor;
     }
 
+    /**
+     * Busca en los turnos del juego y devuelve el jugador que le sigue.
+     * @param jugador -> jugador actual
+     * @return -> jugador que le sigue
+     */
     public Jugador siguienteJugador(Jugador jugador) {
         for (int i = 0; i < turnos.size(); i++) {
             if (turnos.get(i).equals(jugador) && (i < turnos.size() - 1))
@@ -347,6 +357,26 @@ public class Juego {
                 return turnos.get(0);
         }
         return null;
+    }
+
+    public void actualizarObjetivos(){
+        for (Objetivo o : this.objetivos) {
+            o.actualizar(this);
+        }
+    }
+
+    public Jugador obtenerJugadorPorColor(String equipoADestruir) {
+        for (Jugador j : this.listaJugadores) {
+            if (j.color().equalsIgnoreCase(equipoADestruir))
+                return j;
+        }
+        return null;
+    }
+
+    public Boolean tienePaises(Jugador unJugador) {
+        if(this.tablero.obtenerCantidadPaisesJugador(unJugador) == 0)
+            return false;
+        return true;
     }
 
 }

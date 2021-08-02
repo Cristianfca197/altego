@@ -23,6 +23,8 @@ public class ObjetivoOcupar implements Objetivo {
     public ObjetivoOcupar(String titulo, ArrayList<String> continentesAOcupar, HashMap<String, Integer> continentesYCantidades) {
         this.titulo = titulo;
         this.limitrofes = continentesYCantidades.remove("Limitrofes");
+        if (this.limitrofes==null) this.limitrofes = 0;
+
         this.continentesYCantidades = continentesYCantidades;
         this.continentesAOcupar = continentesAOcupar;
     }
@@ -74,33 +76,46 @@ public class ObjetivoOcupar implements Objetivo {
 
     @Override
     public void paisesConquistados(Tablero tablero, Jugador unJugador) {
-        Boolean obj1 = true, obj2 = true, obj3 = true;
-        for (String continente : this.continentesAOcupar) {
-            obj1 = (tablero.obtenerContinente(continente).obtenerCantidadPaises() == 
-                                 tablero.obtenerCantidadPaisesJugadorEnContinente(unJugador, continente));
-        }
         
-        for (Map.Entry<String, Integer> entry : continentesYCantidades.entrySet()) {
-            String continente = entry.getKey();
-            Integer cantidad = entry.getValue();
-            obj2 = (cantidad <= tablero.obtenerCantidadPaisesJugadorEnContinente(unJugador, continente));
-        }
-
-        for (Pais unPais : tablero.obtenerPaises()) {
-            if (unPais.perteneceA(unJugador)){
-                Integer cantidadLimitrofesOcupados = 0;
-                for (Pais otroPais : unPais.obtenerLimitrofes() ) {
-                    if (otroPais.perteneceA(unJugador)) cantidadLimitrofesOcupados++;
-                }
-                if (cantidadLimitrofesOcupados >= 3) obj3 = true;
-            }
-        }
-        this.estaCumplido = obj1 && obj2 && obj3;
     }
 
     @Override
     public void asignarJugador(Jugador unJugador) {
         this.jugador = unJugador;
+    }
+
+    @Override
+    public void actualizar(Juego juego) {
+        Boolean obj1 = true, obj2 = true, obj3 = true;
+
+        if (this.jugador == null) return;
+
+        for (String c : this.continentesAOcupar) {
+            if (obj1)
+                obj1 = (juego.obtenerTablero().obtenerCantidadPaisesDeContinente(c) == 
+                        juego.obtenerTablero().obtenerCantidadPaisesJugadorEnContinente(this.jugador, c));
+        }
+        
+        for (Map.Entry<String, Integer> entry : continentesYCantidades.entrySet()) {
+            String continente = entry.getKey();
+            Integer cantidad = entry.getValue();
+            if (obj2)
+                obj2 = (cantidad <= juego.obtenerTablero().obtenerCantidadPaisesJugadorEnContinente(this.jugador, continente));
+        }
+
+        if (this.limitrofes > 0){
+            for (Pais unPais : juego.obtenerTablero().obtenerPaises()) {
+                if (unPais.perteneceA(this.jugador)){
+                    Integer cantidadLimitrofesOcupados = 0;
+                    for (Pais otroPais : unPais.obtenerLimitrofes() ) {
+                        if (otroPais.perteneceA(this.jugador)) cantidadLimitrofesOcupados++;
+                    }
+                    if (obj3) obj3 = cantidadLimitrofesOcupados >= this.limitrofes;
+                }
+            }
+        }
+        this.estaCumplido = obj1 && obj2 && obj3;
+        
     }
     
 }
