@@ -122,17 +122,9 @@ public class Juego {
 
     }
 
-<<<<<<< HEAD
-    /**
-     * Inicia el juego con condiciones normales para jugar
-     */
-    public void jugar() {
-        this.repartirPaises();
-=======
     public void jugar(){
         this.repartirPaisesCondicionesConocidas();
     //    this.repartirPaises();
->>>>>>> a5d685ad422297d612cf3182d7bdf8dc70777109
         this.ocuparTablero();
         this.turnos = new ArrayList<>(listaJugadores);
         jugadorActual = turnos.get(0);
@@ -166,16 +158,9 @@ public class Juego {
     public void colocarEjercitosFaseInicial(Pais pais, int cantidad) {
         etapaR.colocarEjercitos(jugadorActual, pais, cantidad);
     }
-<<<<<<< HEAD
-
-    public void pasarTurno() {
-        if (etapaR.estaTerminada()) {
-            if (etapaR.getClass() == EtapaRAtacar.class) {
-=======
     public void pasarTurno(){
         if(etapaR.estaTerminada()) {
             if(etapaR.getClass() == EtapaRAtacar.class){
->>>>>>> a5d685ad422297d612cf3182d7bdf8dc70777109
                 etapaR = etapaR.pasarEtapa();
             } else {
                 if (jugadorActual == ultimoJugador) {
@@ -291,15 +276,11 @@ public class Juego {
         return tablero.obtenerPaises();
     }
 
-<<<<<<< HEAD
-    public void cargarColores() {
-=======
     public Jugador obtenerJugadorJugando(){
         return jugadorActual;
     }
 
     public void cargarColores(){
->>>>>>> a5d685ad422297d612cf3182d7bdf8dc70777109
         this.coloresFichas = new ArrayList<>();
         this.nombreColoresFichas = new ArrayList<>();
 
