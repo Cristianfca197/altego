@@ -1,11 +1,16 @@
 package edu.fiuba.algo3.modelo.juego;
 
-import java.util.*;
-import javafx.scene.paint.Color;
-//import jdk.tools.jlink.resources.plugins;
 import edu.fiuba.algo3.modelo.canje.Canje;
 import edu.fiuba.algo3.modelo.canje.PrimerCanje;
+<<<<<<< HEAD
 import edu.fiuba.algo3.modelo.objetivo.Objetivo;
+=======
+import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
+
+//import jdk.tools.jlink.resources.plugins;
+>>>>>>> a5d685ad422297d612cf3182d7bdf8dc70777109
 
 public class Jugador {
     private final Ficha ficha;
@@ -51,12 +56,15 @@ public class Jugador {
 
     public ArrayList<TarjetaPais> ocuparPaises() {
         ArrayList<TarjetaPais> tarjetas = this.listaTarjetas.obtenerTarjetas();
+        this.listaTarjetas.vaciar();
         for (TarjetaPais tarjeta : tarjetas) {
             tarjeta.obtenerPais().asignarJugador(this);
         }
         return tarjetas;
     }
-
+    public TarjetaPais obtenerTarjeta(String nombreTarjeta){
+        return this.listaTarjetas.obtenerTarjeta(nombreTarjeta);
+    }
     public void activarTarjetaPais(TarjetaPais unaTarjetaPais) {
         unaTarjetaPais.activarTarjeta(this);
     }

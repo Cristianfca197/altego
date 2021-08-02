@@ -1,7 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-import org.junit.jupiter.api.Test;
-
 import edu.fiuba.algo3.modelo.continente.Continente;
 import edu.fiuba.algo3.modelo.juego.Pais;
 import edu.fiuba.algo3.modelo.juego.Tablero;
@@ -10,12 +8,14 @@ import edu.fiuba.algo3.modelo.lectura.LecturaArchivoObjetivos;
 import edu.fiuba.algo3.modelo.lectura.LecturaArchivoPaises;
 import edu.fiuba.algo3.modelo.lectura.LecturaArchivoTarjetas;
 import edu.fiuba.algo3.modelo.objetivo.Objetivo;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LecturaTest {
     @Test
@@ -51,7 +51,7 @@ public class LecturaTest {
         leer.leerArchivos();
         tarjetasDePais = leer.getTarjetas();
 
-        tarjeta = tarjetasDePais.get("Gran Bretaña");
+        tarjeta = tarjetasDePais.get("Gran Bretania");
 
         assertTrue(tarjeta.obtenerTipo().esBarco());
 

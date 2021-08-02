@@ -2,6 +2,7 @@ package edu.fiuba.algo3.modelo;
 
 import edu.fiuba.algo3.modelo.Etapa.*;
 import edu.fiuba.algo3.modelo.exception.ExcepcionCanjeInvalido;
+import edu.fiuba.algo3.modelo.exception.ExcepcionCantidadInvalida;
 import edu.fiuba.algo3.modelo.exception.ExcepcionFinDeJuego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
@@ -164,7 +165,7 @@ public class JuegoTest {
 
         Jugador jugador1 = juego.obtenerJugador(1);
         Jugador jugador2 = juego.obtenerJugador(2);
-        Pais unPais = juego.obtenerTablero().obtenerPais("Java");
+        Pais unPais = juego.obtenerTablero().obtenerPais("Sumatra");
         unPais.asignarJugador(jugador2);
 
 
@@ -181,7 +182,7 @@ public class JuegoTest {
     public void test11JuegoFaseInicialColocacionDeCincoEjercitos(){
         Juego juego = new Juego(2);
         juego.iniciarJuegoPrueba();
-        Pais pais1 = juego.obtenerPais("Gran Bretaña");
+        Pais pais1 = juego.obtenerPais("Gran Bretania");
         Pais pais2 = juego.obtenerPais("Francia");
         juego.colocarEjercitosFaseInicial(pais1, 5);
         juego.pasarTurno();
@@ -205,7 +206,7 @@ public class JuegoTest {
     public void test13JuegoPasarTurnoCondicionesNecesariasPaseDeEtapa(){
         Juego juego = new Juego(2);
         juego.iniciarJuegoPrueba();
-        Pais pais1 = juego.obtenerPais("Gran Bretaña");
+        Pais pais1 = juego.obtenerPais("Gran Bretania");
         Pais pais2 = juego.obtenerPais("Francia");
         juego.colocarEjercitosFaseInicial(pais1, 5);
         juego.pasarTurno();
@@ -219,7 +220,7 @@ public class JuegoTest {
     public void test14JuegoPasarTurnoCondicionesNecesariasPaseAAtaque(){
         Juego juego = new Juego(2);
         juego.iniciarJuegoPrueba();
-        Pais pais1 = juego.obtenerPais("Gran Bretaña");
+        Pais pais1 = juego.obtenerPais("Gran Bretania");
         Pais pais2 = juego.obtenerPais("Francia");
         juego.colocarEjercitosFaseInicial(pais1, 5);
         juego.pasarTurno();
@@ -237,23 +238,23 @@ public class JuegoTest {
     public void test15JuegoAgregarMasFichasQLoPermitidoNoEsPosible(){
         Juego juego = new Juego(2);
         juego.iniciarJuegoPrueba();
-        Pais pais1 = juego.obtenerPais("Gran Bretaña");
-        juego.colocarEjercitosFaseInicial(pais1, 7);
+        Pais pais1 = juego.obtenerPais("Gran Bretania");
+        assertThrows(ExcepcionCantidadInvalida.class, () -> juego.colocarEjercitosFaseInicial(pais1, 7));
         assertEquals(1, pais1.cantidadDeEjercitos());
     }
     @Test
     public void test16JuegoTurno2AgregarMasFichasQLoPermitidoNoEsPosible(){
         Juego juego = new Juego(2);
         juego.iniciarJuegoPrueba();
-        Pais pais1 = juego.obtenerPais("Gran Bretaña");
+        Pais pais1 = juego.obtenerPais("Gran Bretania");
         Pais pais2 = juego.obtenerPais("Francia");
         juego.colocarEjercitosFaseInicial(pais1, 5);
         juego.pasarTurno();
         juego.colocarEjercitosFaseInicial(pais2, 5);
         juego.pasarTurno();
-        juego.colocarEjercitosFaseInicial(pais1, 7);
+        assertThrows(ExcepcionCantidadInvalida.class, () -> juego.colocarEjercitosFaseInicial(pais1, 7));
         juego.pasarTurno();
-        juego.colocarEjercitosFaseInicial(pais2, 7);
+        assertThrows(ExcepcionCantidadInvalida.class, () -> juego.colocarEjercitosFaseInicial(pais2, 7));
         juego.pasarTurno();
         assertEquals(6, pais1.cantidadDeEjercitos());
         assertEquals(6, pais2.cantidadDeEjercitos());
@@ -263,7 +264,7 @@ public class JuegoTest {
     public void test17JuegoFaseAtacarPasaAreagrupar(){
         Juego juego = new Juego(2);
         juego.iniciarJuegoPrueba();
-        Pais pais1 = juego.obtenerPais("Gran Bretaña");
+        Pais pais1 = juego.obtenerPais("Gran Bretania");
         Pais pais2 = juego.obtenerPais("Francia");
         juego.colocarEjercitosFaseInicial(pais1, 5);
         juego.pasarTurno(); //R1 2
@@ -282,7 +283,7 @@ public class JuegoTest {
     public void test18JuegoFaseReagruparReagruparCorrectamente(){
         Juego juego = new Juego(2);
         juego.iniciarJuegoPrueba();
-        Pais pais1 = juego.obtenerPais("Gran Bretaña");
+        Pais pais1 = juego.obtenerPais("Gran Bretania");
         Pais pais2 = juego.obtenerPais("Francia");
         juego.colocarEjercitosFaseInicial(pais1, 5);
         juego.pasarTurno();
@@ -299,7 +300,7 @@ public class JuegoTest {
         //ataca jugador2
         juego.pasarTurno();
         //reagrupar jugador2
-        Pais pais3 = juego.obtenerPais("Alemania");
+        Pais pais3 = juego.obtenerPais("Italia");
         juego.transferirEjercitos(pais2, pais3, 3);
         assertEquals(4, pais3.cantidadDeEjercitos());
         assertEquals(6, pais2.cantidadDeEjercitos());
@@ -308,7 +309,7 @@ public class JuegoTest {
     public void test19JuegoTerminaRondasAtaqueYReagruparPasaAColocacion(){
         Juego juego = new Juego(2);
         juego.iniciarJuegoPrueba();
-        Pais pais1 = juego.obtenerPais("Gran Bretaña");
+        Pais pais1 = juego.obtenerPais("Gran Bretania");
         Pais pais2 = juego.obtenerPais("Francia");
         juego.colocarEjercitosFaseInicial(pais1, 5);
         juego.pasarTurno();
@@ -332,7 +333,7 @@ public class JuegoTest {
     public void test20TurnoColocacionColocarCorrectamente() {
         Juego juego = new Juego(2);
         juego.iniciarJuegoPrueba();
-        Pais pais1 = juego.obtenerPais("Gran Bretaña");
+        Pais pais1 = juego.obtenerPais("Gran Bretania");
         Pais pais2 = juego.obtenerPais("Francia");
         juego.colocarEjercitosFaseInicial(pais1, 5);
         juego.pasarTurno();
@@ -357,7 +358,7 @@ public class JuegoTest {
     public void test21TurnoColocacionColocarCorrectamenteNoPoneSiSePasa(){
         Juego juego = new Juego(2);
         juego.iniciarJuegoPrueba();
-        Pais pais1 = juego.obtenerPais("Gran Bretaña");
+        Pais pais1 = juego.obtenerPais("Gran Bretania");
         Pais pais2 = juego.obtenerPais("Francia");
         juego.colocarEjercitosFaseInicial(pais1, 5);
         juego.pasarTurno();
@@ -375,14 +376,14 @@ public class JuegoTest {
         juego.pasarTurno();
         //reagrupar jugador2
         juego.pasarTurno();
-        juego.colocarEjercitosFaseInicial(pais1, 30);
-        assertEquals(9, pais1.cantidadDeEjercitos());
+        assertThrows(ExcepcionCantidadInvalida.class, () -> juego.colocarEjercitosFaseInicial(pais2, 30));
+        assertEquals(9, pais2.cantidadDeEjercitos());
     }
     @Test
     public void test22FaltanColocarNoPasaElTurno(){
         Juego juego = new Juego(2);
         juego.iniciarJuegoPrueba();
-        Pais pais1 = juego.obtenerPais("Gran Bretaña");
+        Pais pais1 = juego.obtenerPais("Gran Bretania");
         Pais pais2 = juego.obtenerPais("Francia");
         juego.colocarEjercitosFaseInicial(pais1, 5);
         juego.pasarTurno();
@@ -392,12 +393,14 @@ public class JuegoTest {
         juego.pasarTurno();
         juego.colocarEjercitosFaseInicial(pais2, 3);
         juego.pasarTurno();
+
         //ataca jugador1
         juego.pasarTurno();
         //reagrupajugador1
         juego.pasarTurno();
         //ataca jugador2
         juego.pasarTurno();
+        EtapaR etapaR = juego.obtenerEtapaR();
         //reagrupar jugador2
         juego.pasarTurno();
         juego.pasarTurno();

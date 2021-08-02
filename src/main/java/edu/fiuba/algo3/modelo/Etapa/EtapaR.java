@@ -14,5 +14,8 @@ public interface EtapaR {
      void transferirEjercitos(Jugador jugadorActual, Pais aliado1, Pais aliado2, int cantidadEjercitos);
 
      boolean estaTerminada();
-     public void establecerCantidadEjercitos(int cantidadEjercitos);
+
+     void establecerCantidadEjercitos(int cantidadEjercitos);
+
+     int obtenerCantidadEjercitos();
 }

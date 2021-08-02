@@ -122,11 +122,17 @@ public class Juego {
 
     }
 
+<<<<<<< HEAD
     /**
      * Inicia el juego con condiciones normales para jugar
      */
     public void jugar() {
         this.repartirPaises();
+=======
+    public void jugar(){
+        this.repartirPaisesCondicionesConocidas();
+    //    this.repartirPaises();
+>>>>>>> a5d685ad422297d612cf3182d7bdf8dc70777109
         this.ocuparTablero();
         this.turnos = new ArrayList<>(listaJugadores);
         jugadorActual = turnos.get(0);
@@ -160,10 +166,16 @@ public class Juego {
     public void colocarEjercitosFaseInicial(Pais pais, int cantidad) {
         etapaR.colocarEjercitos(jugadorActual, pais, cantidad);
     }
+<<<<<<< HEAD
 
     public void pasarTurno() {
         if (etapaR.estaTerminada()) {
             if (etapaR.getClass() == EtapaRAtacar.class) {
+=======
+    public void pasarTurno(){
+        if(etapaR.estaTerminada()) {
+            if(etapaR.getClass() == EtapaRAtacar.class){
+>>>>>>> a5d685ad422297d612cf3182d7bdf8dc70777109
                 etapaR = etapaR.pasarEtapa();
             } else {
                 if (jugadorActual == ultimoJugador) {
@@ -172,24 +184,40 @@ public class Juego {
                 if (jugadorActual != ultimoJugador && etapaR.getClass() == EtapaRReagrupar.class) {
                     etapaR = new EtapaRAtacar(this);
                 }
-
                 turnos.add(turnos.remove(0));
                 jugadorActual = turnos.get(0);
-                cantidadPaisesJugadorActual = tablero.obtenerCantidadPaisesJugador(jugadorActual);
-                etapaR.establecerCantidadEjercitos(cantidadPaisesJugadorActual / 2);
+                etapaR.establecerCantidadEjercitos(this.obtenerEjercitos(jugadorActual));
             }
         }
+    }
+    public String obtenerJugadorActual(){
+        return turnos.get(0).obtenerNombre();
+    }
+
+    public String obtenerSiguienteJugador(){
+        return turnos.get(1).obtenerNombre();
     }
 
     public EtapaR obtenerEtapaR() {
         return etapaR;
     }
 
+    public int cantidadEjercitosDisponibles(){
+        return this.etapaR.obtenerCantidadEjercitos();
+    }
+
+    public void atacarDesdeA(String nombreAtacante, String nombreDefensor){
+        Pais atacante = this.obtenerPais(nombreAtacante);
+        Pais defensor = this.obtenerPais(nombreDefensor);
+        this.atacarACon(atacante, defensor);
+    }
     public void atacarACon(Pais atacante, Pais defensor) {
         etapaR.AtacarCon(jugadorActual, atacante, defensor);
 
     }
-
+    public void activarTarjetaPais(String nombrePais){
+        jugadorActual.activarTarjetaPais(jugadorActual.obtenerTarjeta(nombrePais));
+    }
     public void finalizar(String nombre) {
         throw new ExcepcionFinDeJuego("Fin del juego. Felicidades: " + nombre);
     }
@@ -218,7 +246,11 @@ public class Juego {
         String claveRandom = tarjetas.get(numeroRandom);
         jugador.agregarTarjeta(tarjetasDePais.remove(claveRandom));
     }
-
+    public void transferirEjercitosDeA(String nombrePaisOrigen, String nombrePaisDestino, int cantidadEjercitos){
+        Pais paisOrigen = this.obtenerPais(nombrePaisOrigen);
+        Pais paisDestino = this.obtenerPais(nombrePaisDestino);
+        this.transferirEjercitos(paisOrigen, paisDestino, cantidadEjercitos);
+    }
     public void transferirEjercitos(Pais aliado1, Pais aliado2, int cantidadEjercitos) {
         etapaR.transferirEjercitos(jugadorActual, aliado1, aliado2, cantidadEjercitos);
     }
@@ -259,7 +291,15 @@ public class Juego {
         return tablero.obtenerPaises();
     }
 
+<<<<<<< HEAD
     public void cargarColores() {
+=======
+    public Jugador obtenerJugadorJugando(){
+        return jugadorActual;
+    }
+
+    public void cargarColores(){
+>>>>>>> a5d685ad422297d612cf3182d7bdf8dc70777109
         this.coloresFichas = new ArrayList<>();
         this.nombreColoresFichas = new ArrayList<>();
 

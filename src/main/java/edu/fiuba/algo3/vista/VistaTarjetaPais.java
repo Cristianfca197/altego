@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.controlador.TarjetaElegidaEventHandler;
+import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.juego.TarjetaPais;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -8,10 +10,16 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class VistaTarjetaPais extends Pane {
 
-    public VistaTarjetaPais(ArrayList<TarjetaPais> tarjetasPais){
+    private final Juego juego;
+    private final HashMap<String, VistaPais> paises;
+
+    public VistaTarjetaPais(ArrayList<TarjetaPais> tarjetasPais, Juego juego, HashMap<String, VistaPais> paises){
+        this.juego = juego;
+        this.paises = paises;
         HBox tarjetas = new HBox();
         tarjetas.setSpacing(10);
         for(TarjetaPais tarjeta: tarjetasPais){
@@ -42,7 +50,8 @@ public class VistaTarjetaPais extends Pane {
         ImageView imagenTarjeta = new ImageView(tipoTarjeta);
         Pane pane = new Pane(imagenTarjeta , nombreTarjeta);
         pane.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-
+        TarjetaElegidaEventHandler tarjetaElegidaEventHandler = new TarjetaElegidaEventHandler(nombreTarjeta.getText(), juego, paises);
+        pane.setOnMouseClicked(tarjetaElegidaEventHandler);
         return pane;
     }
     public Pane crearTarjetaBarco(Label nombreTarjeta){
@@ -50,7 +59,8 @@ public class VistaTarjetaPais extends Pane {
         ImageView imagenTarjeta = new ImageView(tipoTarjeta);
         Pane pane = new Pane(imagenTarjeta , nombreTarjeta);
         pane.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-
+        TarjetaElegidaEventHandler tarjetaElegidaEventHandler = new TarjetaElegidaEventHandler(nombreTarjeta.getText(), juego, paises);
+        pane.setOnMouseClicked(tarjetaElegidaEventHandler);
         return pane;
     }
     public Pane crearTarjetaComodin(Label nombreTarjeta){
@@ -58,7 +68,8 @@ public class VistaTarjetaPais extends Pane {
         ImageView imagenTarjeta = new ImageView(tipoTarjeta);
         Pane pane = new Pane(imagenTarjeta , nombreTarjeta);
         pane.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-
+        TarjetaElegidaEventHandler tarjetaElegidaEventHandler = new TarjetaElegidaEventHandler(nombreTarjeta.getText(), juego, paises);
+        pane.setOnMouseClicked(tarjetaElegidaEventHandler);
         return pane;
     }
     public Pane crearTarjetaCanion(Label nombreTarjeta){
@@ -67,7 +78,8 @@ public class VistaTarjetaPais extends Pane {
         ImageView imagenTarjeta = new ImageView(tipoTarjeta);
         Pane pane = new Pane(imagenTarjeta , nombreTarjeta);
         pane.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-
+        TarjetaElegidaEventHandler tarjetaElegidaEventHandler = new TarjetaElegidaEventHandler(nombreTarjeta.getText(), juego, paises);
+        pane.setOnMouseClicked(tarjetaElegidaEventHandler);
         return pane;
     }
 }

@@ -32,12 +32,12 @@ public class PaisSeleccionadoEventHandler implements EventHandler<MouseEvent> {
         Label etiqeta = new Label("Ingrese la cantidad de ejercitos");
         TextField textField =  new TextField();
         Button botonEnviar = new Button("Colocar");
-        ColocarEjercitosEventHandler colocarEjercitosEventHandler = new ColocarEjercitosEventHandler(textField, etiqeta, stage, nombre, juego);
+        ColocarEjercitosEventHandler colocarEjercitosEventHandler = new ColocarEjercitosEventHandler(textField, etiqeta, stage, nombre, juego, this.pais, vista);
         botonEnviar.setOnAction(colocarEjercitosEventHandler);
         Scene scene = new Scene(new VBox(etiqeta, textField, botonEnviar));
         stage.setScene(scene);
         stage.show();
-     //   actualizarVista();
+
     }
 
 }

@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.controlador.FinalizarTurnoEventHandler;
+import edu.fiuba.algo3.controlador.MostrarTarjetasEventHandler;
 import edu.fiuba.algo3.controlador.PaisSeleccionadoEventHandler;
 import edu.fiuba.algo3.modelo.Juego;
 import javafx.collections.ObservableList;
@@ -18,10 +19,15 @@ import java.util.HashMap;
 public class VistaEtapaColocacion extends StackPane {
     private final BorderPane contenedor;
     private final SeleccionarVista vista;
+    private final Mapa mapa;
+    private Label jugadorActual;
+    private Label proximoJugador;
+    private Label ejercitos;
 
-    public VistaEtapaColocacion(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador, Juego juego, SeleccionarVista seleccionarVista){
+    public VistaEtapaColocacion(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador, Juego juego, SeleccionarVista seleccionarVista, int ejercitosDisponibles){
         this.vista = seleccionarVista;
-        HBox datosTurno = this.datosTurno(nombreJugadorActual, nombreSiguienteJugador);
+        this.mapa = mapa;
+        HBox datosTurno = this.datosTurno(nombreJugadorActual, nombreSiguienteJugador, ejercitosDisponibles);
         VBox contenedorBotones1 = this.botonesJugador();
         HBox contenedorBotones2 = this.botonesTurno(juego);
         BorderPane contenedor = new BorderPane();
@@ -51,12 +57,14 @@ public class VistaEtapaColocacion extends StackPane {
     private HBox botonesTurno(Juego juego) {
         Button botonFinTurno = new Button();
         botonFinTurno.setText("Finalizar Turno");
-        FinalizarTurnoEventHandler finalizarTurnoEventHandler = new FinalizarTurnoEventHandler(juego, vista);
+        FinalizarTurnoEventHandler finalizarTurnoEventHandler = new FinalizarTurnoEventHandler(juego, vista, this);
         botonFinTurno.setOnAction(finalizarTurnoEventHandler);
         Button botonObjetivo = new Button();
         botonObjetivo.setText("Ver Objetivo"); //hacer objetivos
         Button botonTarjetaPais = new Button();
         botonTarjetaPais.setText("Activar Tarjeta");
+        MostrarTarjetasEventHandler mostrarTarjetasEventHandler = new MostrarTarjetasEventHandler(vista, juego, mapa.obtenerPaises());
+        botonTarjetaPais.setOnAction(mostrarTarjetasEventHandler);
         HBox contenedor = new HBox(botonFinTurno, botonObjetivo, botonTarjetaPais);
         contenedor.setSpacing(20);
         return contenedor;
@@ -69,21 +77,26 @@ public class VistaEtapaColocacion extends StackPane {
         contenedor.setSpacing(20);
         return contenedor;
     }
-    public void mostrarAgregarEjercitos(){
-        Label etiqueta = new Label();
-        etiqueta.setText("Haga click sobre la ficha del pais en el que desea agregar ejercitos, luego introduzca la cantidad");
-        etiqueta.setTextFill(Color.WHITE);
-        contenedor.setTop(etiqueta);
-    }
-    private HBox datosTurno(String nombreJugadorActual, String nombreSiguienteJugador) {
+    private HBox datosTurno(String nombreJugadorActual, String nombreSiguienteJugador, int ejercitosDisponibles) {
+        Label fichasDisponibles = new Label();
+        fichasDisponibles.setText("Ejercitos restantes:"+ ejercitosDisponibles);
+        fichasDisponibles.setTextFill(Color.WHITE);
         Label datoJugador = new Label();
         datoJugador.setText("Jugador:"+ nombreJugadorActual);
         datoJugador.setTextFill(Color.WHITE);
         Label proximoJugador = new Label();
         proximoJugador.setText("Siguiente jugador:"+ nombreSiguienteJugador);
         proximoJugador.setTextFill(Color.WHITE);
-        HBox datosTurno = new HBox(datoJugador, proximoJugador);
+        this.jugadorActual = datoJugador;
+        this.proximoJugador = proximoJugador;
+        this.ejercitos = fichasDisponibles;
+        HBox datosTurno = new HBox(fichasDisponibles,datoJugador, proximoJugador);
         datosTurno.setSpacing(20);
         return datosTurno;
+    }
+    public void actualizarVista(String nombreJugadorActual, String nombreSiguienteJugador, int cantidadEjercitos){
+        this.jugadorActual.setText("Jugador:"+ nombreJugadorActual);
+        this.proximoJugador.setText("Siguiente jugador:" + nombreSiguienteJugador);
+        this.ejercitos.setText("Ejercitos restantes:" + cantidadEjercitos);
     }
 }
