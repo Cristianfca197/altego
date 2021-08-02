@@ -121,7 +121,6 @@ public class Juego {
                 if (jugadorActual != ultimoJugador && etapaR.getClass() == EtapaRReagrupar.class) {
                     etapaR = new EtapaRAtacar(this);
                 }
-
                 turnos.add(turnos.remove(0));
                 jugadorActual = turnos.get(0);
                 etapaR.establecerCantidadEjercitos(this.obtenerEjercitos(jugadorActual));

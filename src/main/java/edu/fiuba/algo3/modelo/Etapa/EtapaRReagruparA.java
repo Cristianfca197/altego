@@ -43,7 +43,9 @@ abstract class EtapaRReagruparA implements EtapaR{
 
         @Override
         public void establecerCantidadEjercitos(int cantidadEjercitosDisponibles) {
-            this.cantidadEjercitos = cantidadEjercitosDisponibles;
+            if(this.cantidadEjercitos == 0) {
+                this.cantidadEjercitos = cantidadEjercitosDisponibles;
+            }
         }
 
         @Override
