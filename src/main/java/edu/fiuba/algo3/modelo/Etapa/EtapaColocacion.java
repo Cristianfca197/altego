@@ -2,15 +2,15 @@ package edu.fiuba.algo3.modelo.Etapa;
 
 import edu.fiuba.algo3.modelo.Juego;
 
-public class EtapaRColocacion extends EtapaRReagruparA {
+public class EtapaColocacion extends EtapaColocacionAbs {
 
-    public EtapaRColocacion(Juego juego){
+    public EtapaColocacion(Juego juego){
         super(juego);
     }
 
-    public EtapaR pasarEtapa(){
+    public Etapa pasarEtapa(){
         this.cantidadEjercitos = 0;
-        return new EtapaRAtacar(this.juego);
+        return new EtapaAtacar(this.juego);
     }
 
     public void establecerCantidadEjercitos(int cantidadEjercitosDisponibles) {

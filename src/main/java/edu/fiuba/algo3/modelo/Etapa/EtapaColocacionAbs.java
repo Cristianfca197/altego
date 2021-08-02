@@ -5,12 +5,12 @@ import edu.fiuba.algo3.modelo.exception.ExcepcionCantidadInvalida;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 
-abstract class EtapaRReagruparA implements EtapaR{
+abstract class EtapaColocacionAbs implements Etapa {
     public final Juego juego;
     public int ejercitosColocados;
     public int cantidadEjercitos;
 
-    public EtapaRReagruparA(Juego juego){
+    public EtapaColocacionAbs(Juego juego){
             this.juego = juego;
         }
         @Override
@@ -50,7 +50,7 @@ abstract class EtapaRReagruparA implements EtapaR{
         }
 
         @Override
-        public abstract EtapaR pasarEtapa();
+        public abstract Etapa pasarEtapa();
 
     @Override
     public void agregarEjercitosCanje(int cantidadEjercitos) {

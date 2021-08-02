@@ -5,12 +5,12 @@ import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 
-public class EtapaRReagrupar implements EtapaR {
+public class EtapaReagrupar implements Etapa {
 
 
     private final Juego juego;
 
-    public EtapaRReagrupar(Juego juego) {
+    public EtapaReagrupar(Juego juego) {
         this.juego = juego;
     }
 
@@ -19,8 +19,8 @@ public class EtapaRReagrupar implements EtapaR {
 
     }
 
-    public EtapaR pasarEtapa(){
-        return new EtapaRColocacion(this.juego);
+    public Etapa pasarEtapa(){
+        return new EtapaColocacion(this.juego);
     }
 
     @Override

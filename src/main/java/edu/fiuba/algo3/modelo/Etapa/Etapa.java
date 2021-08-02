@@ -3,11 +3,11 @@ package edu.fiuba.algo3.modelo.Etapa;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 
-public interface EtapaR {
+public interface Etapa {
 
      void colocarEjercitos(Jugador jugadorActual, Pais pais, int cantidad);
 
-     EtapaR pasarEtapa();
+     Etapa pasarEtapa();
 
      void AtacarCon(Jugador jugadorActual, Pais atacante, Pais defensor);
 

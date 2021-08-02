@@ -1,6 +1,6 @@
 package edu.fiuba.algo3.controlador;
 
-import edu.fiuba.algo3.modelo.Etapa.EtapaRAtacar;
+import edu.fiuba.algo3.modelo.Etapa.EtapaAtacar;
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.vista.SeleccionarVista;
 import edu.fiuba.algo3.vista.VistaEtapaColocacion;
@@ -22,7 +22,7 @@ public class FinalizarTurnoEventHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         juego.pasarTurno();
         vistaColocacion.actualizarVista(juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.cantidadEjercitosDisponibles());
-        if (juego.obtenerEtapaR().getClass() == EtapaRAtacar.class) {
+        if (juego.obtenerEtapaR().getClass() == EtapaAtacar.class) {
             vista.mostrarInterfazAtaque(juego, juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador());
         }
     }

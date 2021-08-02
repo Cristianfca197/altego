@@ -199,8 +199,8 @@ public class JuegoTest {
         juego.iniciarJuegoPrueba();
         juego.pasarTurno();
         juego.pasarTurno();
-        EtapaR etapaActual = juego.obtenerEtapaR();
-        assertEquals( EtapaR1.class, etapaActual.getClass());
+        Etapa etapaActual = juego.obtenerEtapaR();
+        assertEquals( EtapaColocacionRondaUno.class, etapaActual.getClass());
     }
 
     @Test
@@ -213,8 +213,8 @@ public class JuegoTest {
         juego.pasarTurno();
         juego.colocarEjercitosFaseInicial(pais2, 5);
         juego.pasarTurno();
-        EtapaR etapaActual = juego.obtenerEtapaR();
-        assertEquals( EtapaR2.class, etapaActual.getClass());
+        Etapa etapaActual = juego.obtenerEtapaR();
+        assertEquals( EtapaColocacionRondaDos.class, etapaActual.getClass());
     }
 
     @Test
@@ -231,8 +231,8 @@ public class JuegoTest {
         juego.pasarTurno();
         juego.colocarEjercitosFaseInicial(pais2, 3);
         juego.pasarTurno();
-        EtapaR etapaActual = juego.obtenerEtapaR();
-        assertEquals( EtapaRAtacar.class, etapaActual.getClass());
+        Etapa etapaActual = juego.obtenerEtapaR();
+        assertEquals( EtapaAtacar.class, etapaActual.getClass());
     }
 
     @Test
@@ -278,7 +278,7 @@ public class JuegoTest {
         //ataca jugador1
         juego.pasarTurno();
 
-        assertEquals(EtapaRReagrupar.class, juego.obtenerEtapaR().getClass());
+        assertEquals(EtapaReagrupar.class, juego.obtenerEtapaR().getClass());
     }
     @Test
     public void test18JuegoFaseReagruparReagruparCorrectamente(){
@@ -328,7 +328,7 @@ public class JuegoTest {
         juego.pasarTurno();
         //reagrupar jugador2
         juego.pasarTurno();
-        assertEquals(EtapaRColocacion.class, juego.obtenerEtapaR().getClass());
+        assertEquals(EtapaColocacion.class, juego.obtenerEtapaR().getClass());
     }
     @Test
     public void test20TurnoColocacionColocarCorrectamente() {
@@ -401,7 +401,7 @@ public class JuegoTest {
         juego.pasarTurno();
         //ataca jugador2
         juego.pasarTurno();
-        EtapaR etapaR = juego.obtenerEtapaR();
+        Etapa etapa = juego.obtenerEtapaR();
         //reagrupar jugador2
         juego.pasarTurno();
         juego.pasarTurno();
