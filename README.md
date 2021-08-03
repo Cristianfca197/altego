@@ -25,6 +25,9 @@ $ java -jar <archivo.jar>
 
 Aquellos que deseen colaborar con el proyecto pueden consultar la [guía de desarrollo](./docs/Desarrollo.md).
 
+
+###Inorme
+El informe del trabajo se encuentra en el siguiente [link](https://es.overleaf.com/read/brfbrsdfvhds)
 ## Licencia
 
 Este repositorio se encuentra bajo la Licencia MIT.
