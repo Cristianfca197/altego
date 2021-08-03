@@ -2,6 +2,7 @@ package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.modelo.Juego;
 import edu.fiuba.algo3.modelo.juego.TarjetaPais;
+import edu.fiuba.algo3.modelo.objetivo.Objetivo;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -60,5 +61,14 @@ public class SeleccionarVista {
         Scene escenaTarjeta = new Scene(vistaTarjeta, 1000,800);
         otroStage.setScene(escenaTarjeta);
         otroStage.show();
+    }
+    public void mostrarInterfazObjetivos(Juego juego, Stage unStage, HashMap<String, VistaPais> paises, VistaEtapaColocacion vistaColocacion){
+        Objetivo objetivo = juego.obtenerJugadorJugando().objetivo();
+
+        VistaObjetivo vistaObjetivo = new VistaObjetivo(objetivo, juego, vistaColocacion);
+
+        Scene escenaTarjeta = new Scene(vistaObjetivo, 500, 300);
+        unStage.setScene(escenaTarjeta);
+        unStage.show();
     }
 }

@@ -134,13 +134,23 @@ public class Juego {
         this.objetivos.get(7).asignarJugador(this.listaJugadores.get(1));
 
         if (this.listaJugadores.size() > 2){
-        this.listaJugadores.get(2).establecerObjetivo(this.objetivos.get(9)); // destruir Rojo
-        this.objetivos.get(9).asignarJugador(this.listaJugadores.get(2));
+            this.listaJugadores.get(2).establecerObjetivo(this.objetivos.get(9)); // destruir Rojo
+            this.objetivos.get(9).asignarJugador(this.listaJugadores.get(2));
         }
         
         if (this.listaJugadores.size() > 3){
-        this.listaJugadores.get(3).establecerObjetivo(this.objetivos.get(13)); // destruir verde
-        this.objetivos.get(13).asignarJugador(this.listaJugadores.get(3));
+            this.listaJugadores.get(3).establecerObjetivo(this.objetivos.get(13)); // destruir violeta
+            this.objetivos.get(13).asignarJugador(this.listaJugadores.get(3));
+        }
+        
+        if (this.listaJugadores.size() > 4){
+            this.listaJugadores.get(3).establecerObjetivo(this.objetivos.get(10)); // destruir negro
+            this.objetivos.get(10).asignarJugador(this.listaJugadores.get(3));
+        }
+
+        if (this.listaJugadores.size() > 5){
+            this.listaJugadores.get(3).establecerObjetivo(this.objetivos.get(2)); // ocupar asia y 2 Asur
+            this.objetivos.get(2).asignarJugador(this.listaJugadores.get(3));
         }
 
     }
@@ -149,7 +159,8 @@ public class Juego {
         this.repartirPaisesCondicionesConocidas();
     //    this.repartirPaises();
         this.ocuparTablero();
-        this.repartirObjetivos();
+    //    this.repartirObjetivos();
+        this.repartirObjetivosCondicionesConocidas();
         this.turnos = new ArrayList<>(listaJugadores);
         jugadorActual = turnos.get(0);
         cantidadPaisesJugadorActual = tablero.obtenerCantidadPaisesJugador(jugadorActual);
@@ -158,11 +169,13 @@ public class Juego {
         this.configurarJugadoresDePrueba();
     }
 
+    /**
+     * Reparte los objetivos aleatoriamente.
+     */
     private void repartirObjetivos() {
-        int i = 0;
         for(Jugador jugador: listaJugadores){
-            jugador.establecerObjetivo(objetivos.get(i));
-            i++;
+            int num = (int) Math.floor(Math.random() * (objetivos.size()));
+            jugador.establecerObjetivo(objetivos.get(num));
         }
     }
 

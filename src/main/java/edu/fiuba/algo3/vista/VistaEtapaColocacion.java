@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.vista;
 
 import edu.fiuba.algo3.controlador.FinalizarTurnoEventHandler;
+import edu.fiuba.algo3.controlador.MostrarObjetivosEventHandler;
 import edu.fiuba.algo3.controlador.MostrarTarjetasEventHandler;
 import edu.fiuba.algo3.controlador.PaisSeleccionadoEventHandler;
 import edu.fiuba.algo3.modelo.Juego;
@@ -57,16 +58,22 @@ public class VistaEtapaColocacion extends StackPane {
     }
 
     private HBox botonesTurno(Juego juego) {
+
         Button botonFinTurno = new Button();
         botonFinTurno.setText("Finalizar Turno");
         FinalizarTurnoEventHandler finalizarTurnoEventHandler = new FinalizarTurnoEventHandler(juego, vista, this);
         botonFinTurno.setOnAction(finalizarTurnoEventHandler);
+
         Button botonObjetivo = new Button();
         botonObjetivo.setText("Ver Objetivo"); //hacer objetivos
+        MostrarObjetivosEventHandler MostrarObjetivosEventHandler = new MostrarObjetivosEventHandler(vista, juego, mapa.obtenerPaises(), this);
+        botonObjetivo.setOnAction(MostrarObjetivosEventHandler);
+
         Button botonTarjetaPais = new Button();
         botonTarjetaPais.setText("Activar Tarjeta");
         MostrarTarjetasEventHandler mostrarTarjetasEventHandler = new MostrarTarjetasEventHandler(vista, juego, mapa.obtenerPaises(), this, false);
         botonTarjetaPais.setOnAction(mostrarTarjetasEventHandler);
+
         HBox contenedor = new HBox(botonFinTurno, botonObjetivo, botonTarjetaPais);
         contenedor.setSpacing(20);
         return contenedor;

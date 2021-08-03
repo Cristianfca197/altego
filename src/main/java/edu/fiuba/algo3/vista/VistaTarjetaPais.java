@@ -28,9 +28,11 @@ public class VistaTarjetaPais extends Pane {
         this.juego = juego;
         this.paises = paises;
         this.tarjetasElegidas = new ArrayList<String>();
-        this.vistaColocacion =vistaColocacion;
+        this.vistaColocacion = vistaColocacion;
+
         HBox tarjetas = new HBox();
         tarjetas.setSpacing(10);
+
         for(TarjetaPais tarjeta: tarjetasPais){
             Label nombreTarjeta = new Label();
             nombreTarjeta.setText(tarjeta.obtenerPais().obtenerNombre());
@@ -50,19 +52,22 @@ public class VistaTarjetaPais extends Pane {
                 tarjetas.getChildren().add(crearTarjetaBarco(nombreTarjeta));
             }
         }
+
         Button botonCanje = new Button();
         botonCanje.setText("Realizar canje");
         botonCanje.setAlignment(Pos.BOTTOM_CENTER);
         CanjeEventHandler canjeEventHandler = new CanjeEventHandler(juego, tarjetasElegidas, vistaColocacion);
         botonCanje.setOnAction(canjeEventHandler);
+        
         this.getChildren().addAll(tarjetas);
         if(esCanje){
             this.getChildren().add(botonCanje);
         }
     }
+    
     public Pane crearTarjetaGlobo(Label nombreTarjeta){
 
-        Image tipoTarjeta = new Image("file:" + "multimedia/globo.jpg", 300 ,150, true, true);
+        Image tipoTarjeta = new Image("file:" + "multimedia/globo.jpg", 300, 150, true, true);
         ImageView imagenTarjeta = new ImageView(tipoTarjeta);
         Pane pane = new Pane(imagenTarjeta , nombreTarjeta);
         pane.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
@@ -71,7 +76,7 @@ public class VistaTarjetaPais extends Pane {
         return pane;
     }
     public Pane crearTarjetaBarco(Label nombreTarjeta){
-        Image tipoTarjeta = new Image("file:" + "multimedia/barco.jpg", 300 ,150, true, true);
+        Image tipoTarjeta = new Image("file:" + "multimedia/barco.jpg", 300, 150, true, true);
         ImageView imagenTarjeta = new ImageView(tipoTarjeta);
         Pane pane = new Pane(imagenTarjeta , nombreTarjeta);
         pane.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
