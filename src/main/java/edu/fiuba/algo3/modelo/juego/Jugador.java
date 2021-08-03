@@ -7,8 +7,6 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
-//import jdk.tools.jlink.resources.plugins;
-
 public class Jugador {
     private final Ficha ficha;
     private final MazoTarjetasPais listaTarjetas;

@@ -84,6 +84,7 @@ public class VistaEtapaAtaque extends StackPane {
     public VistaPais obtenerPaisAtacante(){
         return this.paisAtacante;
     }
+
     public void ataqueRealizado(){
         informacion.setText("Seleccione el pais con el que va a atacar");
         paisAtacante = null;

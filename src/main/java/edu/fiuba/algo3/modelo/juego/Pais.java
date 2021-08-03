@@ -64,7 +64,7 @@ public class Pais {
 
     public boolean esLimitrofeCon(Pais otroPais) { return otroPais.paisesLimitrofes.contains(this);}
 
-    public void atacarA(Pais paisEnemigo) throws ExcepcionAtaqueInvalido {
+    public void atacarA(Pais paisEnemigo){
 
         if (this.obtenerFicha().esIgualA(paisEnemigo.obtenerFicha())){
             throw new ExcepcionAtaqueInvalido("Ataque entre paises aliados no es posible");

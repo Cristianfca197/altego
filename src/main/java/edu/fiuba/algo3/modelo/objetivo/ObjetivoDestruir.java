@@ -3,15 +3,13 @@ package edu.fiuba.algo3.modelo.objetivo;
 import java.util.ArrayList;
 
 import edu.fiuba.algo3.modelo.Juego;
-import edu.fiuba.algo3.modelo.juego.Ficha;
 import edu.fiuba.algo3.modelo.juego.Jugador;
-import edu.fiuba.algo3.modelo.juego.Pais;
 import edu.fiuba.algo3.modelo.juego.Tablero;
 
 public class ObjetivoDestruir implements Objetivo {
 
-    private String titulo;
-    private String equipoADestruir;
+    private final String titulo;
+    private final String equipoADestruir;
     private int objetivoComunCantidad;
     private Boolean estaCumplido = false;
     private Jugador jugador;
@@ -31,8 +29,6 @@ public class ObjetivoDestruir implements Objetivo {
     public Boolean estaCumplido() {
         return estaCumplido;
     }
-
-    
 
     @Override
     public String obtenerTipo() {
@@ -57,7 +53,7 @@ public class ObjetivoDestruir implements Objetivo {
 
     @Override
     public String titulo() {
-        return this.titulo();
+        return this.titulo;
     }
 
     @Override
@@ -73,7 +69,7 @@ public class ObjetivoDestruir implements Objetivo {
 
     @Override
     public void equipoDestruido(String color, Juego unJuego){
-        this.estaCumplido = (color == this.equipoADestruir);
+        this.estaCumplido = (color.equals(this.equipoADestruir));
 
         if (!unJuego.existeColor(color)){
             this.estaCumplido = unJuego.siguienteJugador(this.jugador).color().equalsIgnoreCase(color);

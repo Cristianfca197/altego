@@ -1,7 +1,8 @@
 package edu.fiuba.algo3.modelo.tipoTarjeta;
 
 public class Canion implements TipoTarjeta {
-    private String nombre;
+
+    private final String nombre;
 
     @Override
     public String obtenerNombre(){return nombre;}

@@ -18,9 +18,7 @@ public abstract class Canje {
           if ((!primerTarjeta.esDelMismoTipo(segundaTarjeta) && !primerTarjeta.esDelMismoTipo(tercerTarjeta))
                   && !segundaTarjeta.esDelMismoTipo(tercerTarjeta)) {
                return this.ejercitosExtra();
-          }
-          else { throw new ExcepcionCanjeInvalido("El canje es inválido");}
-
+          } else { throw new ExcepcionCanjeInvalido("El canje es inválido");}
      }
 
      protected abstract int ejercitosExtra();

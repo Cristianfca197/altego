@@ -1,12 +1,11 @@
 package edu.fiuba.algo3.modelo.Etapa;
 
-import edu.fiuba.algo3.controlador.Alerta;
 import edu.fiuba.algo3.modelo.Juego;
+import edu.fiuba.algo3.modelo.exception.ExcepcionPaisInvalido;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 
 public class EtapaReagrupar implements Etapa {
-
 
     private final Juego juego;
 
@@ -29,16 +28,12 @@ public class EtapaReagrupar implements Etapa {
     }
 
     @Override
-    public void transferirEjercitos(Jugador jugadorActual, Pais aliado1, Pais aliado2, int cantidadEjercitos) {;
+    public void transferirEjercitos(Jugador jugadorActual, Pais aliado1, Pais aliado2, int cantidadEjercitos) {
         if(aliado1.perteneceA(jugadorActual) && aliado2.perteneceA(jugadorActual)) {
-            try{
-                aliado1.eliminarEjercitos(cantidadEjercitos);
-                aliado2.colocarEjercitos(cantidadEjercitos, jugadorActual.obtenerFicha());
-            }catch (Exception e){
-                new Alerta(e.getMessage(), "Error");
-            }
+            aliado1.eliminarEjercitos(cantidadEjercitos);
+            aliado2.colocarEjercitos(cantidadEjercitos, jugadorActual.obtenerFicha());
         }else{
-            new Alerta("No es posible tranferir ejercito a paises enemigos", "Error");
+            throw new ExcepcionPaisInvalido("Algún país no es propio");
         }
     }
 

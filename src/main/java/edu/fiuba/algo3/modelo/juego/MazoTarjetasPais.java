@@ -10,12 +10,15 @@ public class MazoTarjetasPais {
     public MazoTarjetasPais(){
         this.tarjetas = new HashMap<>();
     }
+
     public void agregarTarjeta(TarjetaPais unaTarjeta){
         this.tarjetas.put(unaTarjeta.obtenerPais().obtenerNombre(), unaTarjeta);
     }
+
     public void vaciar(){
         this.tarjetas.clear();
     }
+
     public TarjetaPais obtenerTarjeta(String nombreTarjeta){
         return tarjetas.get(nombreTarjeta);
     }

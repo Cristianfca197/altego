@@ -1,14 +1,16 @@
 package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.modelo.Juego;
+import edu.fiuba.algo3.modelo.exception.ExcepcionAtaqueInvalido;
 import edu.fiuba.algo3.modelo.exception.ExcepcionFinDeJuego;
+import edu.fiuba.algo3.modelo.exception.ExcepcionPaisInvalido;
 import edu.fiuba.algo3.vista.VistaEtapaAtaque;
 import edu.fiuba.algo3.vista.VistaPais;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
 public class PaisAtacanteEventHandler implements EventHandler<MouseEvent> {
-    private final VistaPais pais;
+    private VistaPais pais;
     private final VistaEtapaAtaque vista;
     private final Juego juego;
 
@@ -25,7 +27,11 @@ public class PaisAtacanteEventHandler implements EventHandler<MouseEvent> {
         else{
             try {
                 juego.atacarDesdeA(vista.obtenerPaisAtacante().obtenerNombre(), pais.obtenerNombre());
-            } catch (ExcepcionFinDeJuego e){
+            } catch (ExcepcionPaisInvalido e) {
+                new Alerta(e.getMessage(), "Pais atacante Inválido");
+            }catch (ExcepcionAtaqueInvalido e){
+                new Alerta(e.getMessage(), "Ataque inválido.");
+            } catch (ExcepcionFinDeJuego e) {
                 new Alerta(e.getMessage(), "Fin de Juego");
                 System.exit(0);
             }
@@ -33,6 +39,5 @@ public class PaisAtacanteEventHandler implements EventHandler<MouseEvent> {
             vista.obtenerPaisAtacante().actualizar(juego.obtenerPais(vista.obtenerPaisAtacante().obtenerNombre()).cantidadDeEjercitos(), juego.obtenerPais(vista.obtenerPaisAtacante().obtenerNombre()).obtenerFicha().color());
             vista.ataqueRealizado();
         }
-
     }
 }

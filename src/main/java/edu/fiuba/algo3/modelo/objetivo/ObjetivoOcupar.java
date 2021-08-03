@@ -5,16 +5,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.fiuba.algo3.modelo.Juego;
-import edu.fiuba.algo3.modelo.juego.Ficha;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 import edu.fiuba.algo3.modelo.juego.Tablero;
 
 public class ObjetivoOcupar implements Objetivo {
 
-    private String titulo;
-    private HashMap<String, Integer> continentesYCantidades;
-    private ArrayList<String> continentesAOcupar;
+    private final String titulo;
+    private final HashMap<String, Integer> continentesYCantidades;
+    private final ArrayList<String> continentesAOcupar;
     private int objetivoComunCantidad;
     private int objetivoComunCantidadActual;
     private Boolean estaCumplido;
@@ -107,7 +106,7 @@ public class ObjetivoOcupar implements Objetivo {
         if (this.limitrofes > 0){
             for (Pais unPais : juego.obtenerTablero().obtenerPaises()) {
                 if (unPais.perteneceA(this.jugador)){
-                    Integer cantidadLimitrofesOcupados = 0;
+                    int cantidadLimitrofesOcupados = 0;
                     for (Pais otroPais : unPais.obtenerLimitrofes() ) {
                         if (otroPais.perteneceA(this.jugador)) cantidadLimitrofesOcupados++;
                     }

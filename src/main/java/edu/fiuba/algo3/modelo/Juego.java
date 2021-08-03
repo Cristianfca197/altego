@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.modelo;
 
-import edu.fiuba.algo3.controlador.Alerta;
 import edu.fiuba.algo3.modelo.Etapa.*;
 import edu.fiuba.algo3.modelo.exception.ExcepcionFinDeJuego;
 import edu.fiuba.algo3.modelo.exception.ExcepcionPasarTurnoNoEsPosible;
@@ -32,7 +31,7 @@ public class Juego {
     private int cantidadPaisesJugadorActual;
     private ArrayList<Color> coloresFichas;
     private ArrayList<String> nombreColoresFichas;
-    private ArrayList<Objetivo> objetivos;
+    private final ArrayList<Objetivo> objetivos;
 
     /**
      * Constructor del juego.
@@ -128,11 +127,21 @@ public class Juego {
         this.repartirPaisesCondicionesConocidas();
     //    this.repartirPaises();
         this.ocuparTablero();
+        this.repartirObjetivos();
         this.turnos = new ArrayList<>(listaJugadores);
         jugadorActual = turnos.get(0);
+        cantidadPaisesJugadorActual = tablero.obtenerCantidadPaisesJugador(jugadorActual);
         this.faseInicial();
         ultimoJugador = turnos.get(turnos.size() - 1);
         this.configurarJugadoresDePrueba();
+    }
+
+    private void repartirObjetivos() {
+        int i = 0;
+        for(Jugador jugador: listaJugadores){
+            jugador.establecerObjetivo(objetivos.get(i));
+            i++;
+        }
     }
 
     /**
@@ -173,6 +182,7 @@ public class Juego {
                 }
                 turnos.add(turnos.remove(0));
                 jugadorActual = turnos.get(0);
+                cantidadPaisesJugadorActual = tablero.obtenerCantidadPaisesJugador(jugadorActual);
                 etapa.establecerCantidadEjercitos(obtenerEjercitos(jugadorActual));
             }
         }else{
@@ -202,9 +212,12 @@ public class Juego {
     }
     public void atacarACon(Pais atacante, Pais defensor) {
         etapa.AtacarCon(jugadorActual, atacante, defensor);
-        if(jugadorActual.objetivo().estaCumplido()){
+        /*
+        jugadorActual.objetivo().actualizar(this);
+        if(jugadorActual.objetivo().estaCumplido()) {
             throw new ExcepcionFinDeJuego(jugadorActual.obtenerNombre() + " Felicidades haz ganado el juego!");
         }
+        */
     }
     public void activarTarjetaPais(String nombrePais){
         jugadorActual.activarTarjetaPais(jugadorActual.obtenerTarjeta(nombrePais));
@@ -233,8 +246,8 @@ public class Juego {
     }
 
     public void realizarCanje(ArrayList<String> tarjetas){
-        int cantidadEjercitos = 0;
-        ArrayList<TarjetaPais> tarjetasCanje = new ArrayList<TarjetaPais>();
+        int cantidadEjercitos;
+        ArrayList<TarjetaPais> tarjetasCanje = new ArrayList<>();
         for(String tarjeta: tarjetas){
             TarjetaPais tarjetaPais = jugadorActual.obtenerTarjeta(tarjeta);
             tarjetasCanje.add(tarjetaPais);
@@ -294,7 +307,7 @@ public class Juego {
     }
 
     public ArrayList<TarjetaPais> obtenerTarjetas() {
-        return new ArrayList<TarjetaPais>(tarjetasDePais.values());
+        return new ArrayList<>(tarjetasDePais.values());
     }
 
     public ArrayList<Pais> obtenerPaises() {
@@ -356,7 +369,7 @@ public class Juego {
     }
 
     public boolean existeColor(String color) {
-        Boolean existeColor = false;
+        boolean existeColor = false;
         for (Jugador j : this.turnos) {
             if (j.color().equalsIgnoreCase(color))
                 existeColor = true;
@@ -394,9 +407,7 @@ public class Juego {
     }
 
     public Boolean tienePaises(Jugador unJugador) {
-        if(this.tablero.obtenerCantidadPaisesJugador(unJugador) == 0)
-            return false;
-        return true;
+        return this.tablero.obtenerCantidadPaisesJugador(unJugador) != 0;
     }
 
 }
