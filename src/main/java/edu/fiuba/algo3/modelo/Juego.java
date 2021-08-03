@@ -336,10 +336,11 @@ public class Juego {
     }
 
     public int obtenerEjercitos(Jugador jugador) {
-        int cantidadPaises = this.tablero.obtenerCantidadPaisesJugador(jugador);
+        int cantidadPaises = this.tablero.obtenerCantidadPaisesJugador(jugador)/2;
+        if(this.tablero.obtenerCantidadPaisesJugador(jugador) < 6)
+            cantidadPaises = 3;
 
-
-        return (this.tablero.fichasContinente(jugador) + (cantidadPaises/2));
+        return (this.tablero.fichasContinente(jugador) + (cantidadPaises));
 
     }
 
