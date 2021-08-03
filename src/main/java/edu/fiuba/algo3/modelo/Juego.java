@@ -111,7 +111,7 @@ public class Juego {
      Juani    | Rojo  | ocupar varios
      Cris     | Amar  | ocupar Asur y Africa
      Pedro    | Verde | destruir rojo
-     Roby     | Azul  | destruir verde
+     Roby     | Azul  | destruir violeta
      </pre>
      */
     public void iniciarJuegoPrueba() {
@@ -140,8 +140,8 @@ public class Juego {
         }
         
         if (this.listaJugadores.size() > 3){
-        this.listaJugadores.get(3).establecerObjetivo(this.objetivos.get(12)); // destruir verde
-        this.objetivos.get(12).asignarJugador(this.listaJugadores.get(3));
+        this.listaJugadores.get(3).establecerObjetivo(this.objetivos.get(13)); // destruir verde
+        this.objetivos.get(13).asignarJugador(this.listaJugadores.get(3));
         }
 
     }
@@ -354,7 +354,7 @@ public class Juego {
         this.nombreColoresFichas.add("azul");
         this.nombreColoresFichas.add("blanco");
         this.nombreColoresFichas.add("negro");
-        this.nombreColoresFichas.add("magenta");
+        this.nombreColoresFichas.add("violeta");
 
     }
 

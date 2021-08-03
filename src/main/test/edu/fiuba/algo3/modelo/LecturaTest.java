@@ -168,7 +168,7 @@ public class LecturaTest {
 
         objetivo = objetivos.get(13);
         assertEquals("Destruir", objetivo.obtenerTipo());
-        assertEquals("Magenta", objetivo.equipoADestruir());
+        assertEquals("Violeta", objetivo.equipoADestruir());
     }
 
     @Test

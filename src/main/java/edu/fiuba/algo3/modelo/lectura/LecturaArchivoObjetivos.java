@@ -125,7 +125,7 @@ public class LecturaArchivoObjetivos {
             case "V":
                 return "Verde";
             case "M":
-                return "Magenta";
+                return "Violeta";
             default:
                 return "Amarillo"; // y en caso de error
         }
