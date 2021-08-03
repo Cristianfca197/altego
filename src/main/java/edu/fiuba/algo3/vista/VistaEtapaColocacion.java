@@ -3,6 +3,7 @@ package edu.fiuba.algo3.vista;
 import edu.fiuba.algo3.controlador.FinalizarTurnoEventHandler;
 import edu.fiuba.algo3.controlador.MostrarTarjetasEventHandler;
 import edu.fiuba.algo3.controlador.PaisSeleccionadoEventHandler;
+import edu.fiuba.algo3.controlador.VerObjetivoEventHandler;
 import edu.fiuba.algo3.modelo.Juego;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -62,7 +63,9 @@ public class VistaEtapaColocacion extends StackPane {
         FinalizarTurnoEventHandler finalizarTurnoEventHandler = new FinalizarTurnoEventHandler(juego, vista, this);
         botonFinTurno.setOnAction(finalizarTurnoEventHandler);
         Button botonObjetivo = new Button();
-        botonObjetivo.setText("Ver Objetivo"); //hacer objetivos
+        botonObjetivo.setText("Ver Objetivo");
+        VerObjetivoEventHandler verObjetivoEventHandler = new VerObjetivoEventHandler(juego);
+        botonObjetivo.setOnAction(verObjetivoEventHandler);
         Button botonTarjetaPais = new Button();
         botonTarjetaPais.setText("Activar Tarjeta");
         MostrarTarjetasEventHandler mostrarTarjetasEventHandler = new MostrarTarjetasEventHandler(vista, juego, mapa.obtenerPaises(), this, false);

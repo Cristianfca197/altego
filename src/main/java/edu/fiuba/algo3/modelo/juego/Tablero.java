@@ -1,15 +1,10 @@
 package edu.fiuba.algo3.modelo.juego;
 
-import java.util.*;
-
-import edu.fiuba.algo3.modelo.continente.Africa;
-import edu.fiuba.algo3.modelo.continente.AmericaDelNorte;
-import edu.fiuba.algo3.modelo.continente.AmericaDelSur;
-import edu.fiuba.algo3.modelo.continente.Asia;
-import edu.fiuba.algo3.modelo.continente.Continente;
-import edu.fiuba.algo3.modelo.continente.Europa;
-import edu.fiuba.algo3.modelo.continente.Oceania;
+import edu.fiuba.algo3.modelo.continente.*;
 import edu.fiuba.algo3.modelo.exception.ExcepcionPaisInvalido;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Tablero {
 
@@ -81,7 +76,7 @@ public class Tablero {
         int cantidadEjercitos = 0;
         ArrayList<Continente> listaContinentes = this.obtenerContinentes();
         for (Continente continente : listaContinentes) {
-            cantidadEjercitos = continente.obtenerEjercitosExtra(unJugador);
+            cantidadEjercitos += continente.obtenerEjercitosExtra(unJugador);
         }
         return cantidadEjercitos;
     }
