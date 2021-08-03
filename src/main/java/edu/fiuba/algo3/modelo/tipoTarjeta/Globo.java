@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.tipoTarjeta;
 
 public class Globo implements TipoTarjeta {
-    private String nombre;
+    private final String nombre;
     public Globo(){
         this.nombre = "Globo";
     }

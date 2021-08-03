@@ -9,6 +9,7 @@ import edu.fiuba.algo3.modelo.continente.Asia;
 import edu.fiuba.algo3.modelo.continente.Continente;
 import edu.fiuba.algo3.modelo.continente.Europa;
 import edu.fiuba.algo3.modelo.continente.Oceania;
+import edu.fiuba.algo3.modelo.exception.ExcepcionPaisInvalido;
 
 public class Tablero {
 
@@ -47,6 +48,7 @@ public class Tablero {
             this.continentes.put(unContinente, new Europa(unContinente));
         }
     }
+
     public void agregarPais(Pais unPais){
         this.paises.add(unPais);
     }
@@ -90,8 +92,7 @@ public class Tablero {
                 return pais;
             }
         }
-        /// sino excepcion esto es para q deje compilar x ahora
-        return paises.get(0);
+        throw new ExcepcionPaisInvalido(nombrePais + "No se encuentra");
     }
 
     public ArrayList<Pais> obtenerPaises() {

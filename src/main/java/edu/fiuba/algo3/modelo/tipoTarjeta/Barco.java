@@ -1,9 +1,11 @@
 package edu.fiuba.algo3.modelo.tipoTarjeta;
 
 public class Barco implements TipoTarjeta {
+
     private final String nombre;
 
     public Barco(){ this.nombre = "Barco"; }
+
     public String obtenerNombre(){return nombre;}
 
     @Override

@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.modelo.Etapa;
 
-import edu.fiuba.algo3.controlador.Alerta;
 import edu.fiuba.algo3.modelo.Juego;
+import edu.fiuba.algo3.modelo.exception.ExcepcionPaisInvalido;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 
@@ -26,13 +26,9 @@ public class EtapaAtacar implements Etapa {
     @Override
     public void AtacarCon(Jugador jugadorActual, Pais atacante, Pais defensor) {
         if(jugadorActual.obtenerFicha() == atacante.obtenerFicha()) {
-            try {
-                atacante.atacarA(defensor);
-            } catch (Exception e){
-                new Alerta(e.getMessage(), "Ataque inválido");
-            }
+            atacante.atacarA(defensor);
         }else{
-            new Alerta("Pais Atacante no es un pais propio.", atacante.obtenerNombre());
+            throw new ExcepcionPaisInvalido(atacante.obtenerNombre() + " no es un pais propio.");
         }
     }
 

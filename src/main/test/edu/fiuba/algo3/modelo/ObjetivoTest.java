@@ -225,24 +225,30 @@ public class ObjetivoTest {
     }
 
     @Test
-    public void test08ObjetivoComunOcupar30PaisesEstaCumplido() {
+    public void test08ObjetivoComunOcupar30PaisesCumplido() {
 
-        Objetivo obj = objetivos.get(8);// Destruir equipo azul. Objetivo comun = 30 paises
+        Objetivo obj = objetivos.get(2);// Ocupar 30 paisees
 
-        Jugador unJug = unJuego.obtenerJugador(1);
+        Juego unJuego = new Juego(4);
+        unJuego.iniciarJuegoPrueba();
+        Jugador unJug = unJuego.obtenerJugador(3);
         unJug.establecerObjetivo(obj);
         obj.asignarJugador(unJug);
 
         Tablero tablero = unJuego.obtenerTablero();
 
-        for (Pais p : tablero.obtenerPaises()) {
-            if (!p.perteneceA(unJug) && tablero.obtenerCantidadPaisesJugador(unJug) < 30){
+        int i = 0;
+
+        for (Pais p : tablero.obtenerPaises() ) {
+            if(i==30) break;
+            if (!p.perteneceA(unJug)){
                 p.cambiarFicha(unJug.obtenerFicha());
             }
+            i++;
         }
-        
+
         obj.actualizar(unJuego);                 
-        assertTrue(obj.estaCumplido() && unJuego.objetivoCumplido(unJug));
+        assertTrue(obj.estaCumplido());
     }
 
     @Test
@@ -387,4 +393,6 @@ public class ObjetivoTest {
         assertTrue(unJuego.obtenerJugador(3).objetivo().estaCumplido() && unJuego.objetivoCumplido(unJuego.obtenerJugador(3)));
         assertTrue(unJuego.obtenerJugador(4).objetivo().estaCumplido() && unJuego.objetivoCumplido(unJuego.obtenerJugador(4)));
     }
+    
+
 }

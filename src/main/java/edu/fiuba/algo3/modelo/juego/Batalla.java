@@ -3,6 +3,7 @@ package edu.fiuba.algo3.modelo.juego;
 import java.util.ArrayList;
 
 public class Batalla {
+
     public Batalla(){
 
     }
@@ -21,7 +22,6 @@ public class Batalla {
             if(dadosAtacante.get(i) > dadosDefensor.get(i)) {
                 defensor.eliminarEjercito();
             }else{
-
                 atacante.eliminarEjercito();
             }
         }
