@@ -30,8 +30,8 @@ public class VistaEtapaAtaque extends StackPane {
         contenedor.setTop(datosTurno);
         contenedor.setBottom(contenedorBotones2);
         contenedor.setLayoutY(10);
-        BorderPane.setMargin(datosTurno, new Insets(0, 0, 0, 400));
-        BorderPane.setMargin(contenedorBotones2, new Insets(0, 0, 0, 300));
+        BorderPane.setMargin(datosTurno, new Insets(0, 0, 0, 300));
+        BorderPane.setMargin(contenedorBotones2, new Insets(0, 0, 0, 370));
 
         HashMap<String, VistaPais> paises = mapa.obtenerPaises();
         for(String nombre: paises.keySet()){
@@ -44,16 +44,18 @@ public class VistaEtapaAtaque extends StackPane {
         ObservableList lista = this.getChildren();
         lista.addAll(mapa, contenedor);
         this.setStyle("-fx-background-color: #504d4c");
-        setMargin(mapa, new Insets(15,50,0,50));
+        setMargin(mapa, new Insets(15,0,0,55));
     }
 
     private HBox botonesTurno(Juego juego) {
         Button botonReagrupar = new Button();
         botonReagrupar.setText("Reagrupar");
+        botonReagrupar.setStyle(new CargarEstiloBotones("#FFC300").ObtenerEstilo());
         ReagruparEventHandler reagruparEventHandler = new ReagruparEventHandler(juego, this.vista);
         botonReagrupar.setOnAction(reagruparEventHandler);
         Button botonObjetivo = new Button();
         botonObjetivo.setText("Ver Objetivo");
+        botonObjetivo.setStyle(new CargarEstiloBotones("#229954").ObtenerEstilo());
         MostrarObjetivosEventHandler mostrarObjetivosEventHandler = new MostrarObjetivosEventHandler(vista, juego);
         botonObjetivo.setOnAction(mostrarObjetivosEventHandler);
         HBox contenedor = new HBox(botonReagrupar, botonObjetivo);

@@ -12,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 import java.util.HashMap;
@@ -32,17 +31,14 @@ public class VistaEtapaColocacion extends StackPane {
         this.mapa = mapa;
         this.juego = juego;
         HBox datosTurno = this.datosTurno(nombreJugadorActual, nombreSiguienteJugador, ejercitosDisponibles, colorJugActual);
-        VBox contenedorBotones1 = this.botonesJugador();
         HBox contenedorBotones2 = this.botonesTurno(juego);
         BorderPane contenedor = new BorderPane();
         this.contenedor = contenedor;
         contenedor.setTop(datosTurno);
-        contenedor.setRight(contenedorBotones1);
         contenedor.setBottom(contenedorBotones2);
         contenedor.setLayoutY(10);
-        BorderPane.setMargin(datosTurno, new Insets(0, 0, 0, 400));
-        BorderPane.setMargin(contenedorBotones1, new Insets(200, 0, 0, 0));
-        BorderPane.setMargin(contenedorBotones2, new Insets(0, 0, 0, 300));
+        BorderPane.setMargin(datosTurno, new Insets(0, 0, 0, 300));
+        BorderPane.setMargin(contenedorBotones2, new Insets(0, 0, 0, 190));
 
 
         HashMap<String, VistaPais> paises = mapa.obtenerPaises();
@@ -55,39 +51,40 @@ public class VistaEtapaColocacion extends StackPane {
         ObservableList lista = this.getChildren();
         lista.addAll(mapa, contenedor);
         this.setStyle("-fx-background-color: #504d4c");
-        setMargin(mapa, new Insets(15,50,0,50));
+        setMargin(mapa, new Insets(15,0,0,55));
     }
 
     private HBox botonesTurno(Juego juego) {
 
         Button botonFinTurno = new Button();
+        botonFinTurno.setStyle(new CargarEstiloBotones("#FFC300").ObtenerEstilo());
         botonFinTurno.setText("Finalizar Turno");
         FinalizarTurnoEventHandler finalizarTurnoEventHandler = new FinalizarTurnoEventHandler(juego, vista, this);
         botonFinTurno.setOnAction(finalizarTurnoEventHandler);
 
         Button botonObjetivo = new Button();
+        botonObjetivo.setStyle(new CargarEstiloBotones("#229954").ObtenerEstilo());
         botonObjetivo.setText("Ver Objetivo");
         MostrarObjetivosEventHandler mostrarObjetivosEventHandler = new MostrarObjetivosEventHandler(vista, juego);
         botonObjetivo.setOnAction(mostrarObjetivosEventHandler);
+
         Button botonTarjetaPais = new Button();
+        botonTarjetaPais.setStyle(new CargarEstiloBotones("#DAF7A6").ObtenerEstilo());
         botonTarjetaPais.setText("Activar Tarjeta");
         MostrarTarjetasEventHandler mostrarTarjetasEventHandler = new MostrarTarjetasEventHandler(vista, juego, mapa.obtenerPaises(), this, false);
         botonTarjetaPais.setOnAction(mostrarTarjetasEventHandler);
 
-        HBox contenedor = new HBox(botonFinTurno, botonObjetivo, botonTarjetaPais);
+        Button botonCanje = new Button();
+        botonCanje.setText("Realizar Canje");
+        botonCanje.setStyle(new CargarEstiloBotones("#27AE60").ObtenerEstilo());
+        MostrarTarjetasEventHandler mostrarTarjetasCanjeEventHandler = new MostrarTarjetasEventHandler(vista, juego, mapa.obtenerPaises(),this, true);
+        botonCanje.setOnAction(mostrarTarjetasCanjeEventHandler);
+
+        HBox contenedor = new HBox(botonFinTurno, botonObjetivo, botonTarjetaPais, botonCanje);
         contenedor.setSpacing(20);
         return contenedor;
     }
 
-    private VBox botonesJugador() {
-        Button botonCanje = new Button();
-        botonCanje.setText("Realizar Canje");
-        MostrarTarjetasEventHandler mostrarTarjetasEventHandler = new MostrarTarjetasEventHandler(vista, juego, mapa.obtenerPaises(),this, true);
-        botonCanje.setOnAction(mostrarTarjetasEventHandler);
-        VBox contenedor = new VBox( botonCanje);
-        contenedor.setSpacing(20);
-        return contenedor;
-    }
     private HBox datosTurno(String nombreJugadorActual, String nombreSiguienteJugador, int ejercitosDisponibles, String colorJugadorActual) {
 
         Label fichasDisponibles = new Label();

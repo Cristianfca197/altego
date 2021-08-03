@@ -22,18 +22,12 @@ public class VistaIngresoJugadores extends VBox {
             this.getChildren().add(jugador);
         }
         Button botonEnviar = new Button();
-        botonEnviar.setText("A jugar!");
-        botonEnviar.setStyle("-fx-background-color:#27AE60;" +
-                "-fx-font-size: 18;" +
-                "-fx-font-famiy: sans-serif;"
-        );
-        
+        botonEnviar.setText("Confirmar");
+        botonEnviar.setStyle(new CargarEstiloBotones("#229954").ObtenerEstilo());
         InicioEventHandler inicioEventHandler = new InicioEventHandler(juego, seleccionarVista, nombres);
         botonEnviar.setOnAction(inicioEventHandler);
-        HBox contenedorHorizontal = new HBox(botonEnviar);
-        contenedorHorizontal.setAlignment(Pos.CENTER);
-
-        this.getChildren().addAll(contenedorHorizontal);
+        setMargin(botonEnviar, new Insets(0,0,0,60));
+        this.getChildren().addAll(botonEnviar);
     }
     public VBox informacionJugador(String color){
         Label colorJugador = new Label("Ingrese nombre jugador " + color);

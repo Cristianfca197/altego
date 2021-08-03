@@ -30,10 +30,7 @@ public class VistaInicial extends VBox{
 
         Button botonJugar = new Button();
         botonJugar.setText("Jugar");
-        botonJugar.setStyle("-fx-background-color:#27AE60;" +
-                "-fx-font-size: 18;" +
-                "-fx-font-famiy: sans-serif;"
-        );
+        botonJugar.setStyle(new CargarEstiloBotones("#27AE60").ObtenerEstilo());
         JugarEventHandler botonJugarEventHandler = new JugarEventHandler(texto, etiqueta, seleccionarVista);
         botonJugar.setOnAction(botonJugarEventHandler);
         CantidadDeJugadoresEventHandler cantidadDeJugadoresEventHandler = new CantidadDeJugadoresEventHandler(botonJugar);
