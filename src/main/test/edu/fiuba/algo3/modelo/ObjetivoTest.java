@@ -1,15 +1,10 @@
 package edu.fiuba.algo3.modelo;
  
-import edu.fiuba.algo3.modelo.Etapa.*;
-import edu.fiuba.algo3.modelo.exception.ExcepcionCanjeInvalido;
-import edu.fiuba.algo3.modelo.exception.ExcepcionFinDeJuego;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 import edu.fiuba.algo3.modelo.juego.Tablero;
-import edu.fiuba.algo3.modelo.juego.TarjetaPais;
 import edu.fiuba.algo3.modelo.lectura.LecturaArchivoObjetivos;
 import edu.fiuba.algo3.modelo.objetivo.Objetivo;
-import edu.fiuba.algo3.modelo.objetivo.ObjetivoDestruir;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,8 +24,9 @@ public class ObjetivoTest {
         Objetivo obj = objetivos.get(8); // Destruir el ejército azul de ser imposible al jugador de la derecha
         Juego unJuego = new Juego(4);
         unJuego.iniciarJuegoPrueba();
-        unJuego.obtenerJugador(3).establecerObjetivo(obj);
-        obj.asignarJugador(unJuego.obtenerJugador(3));
+        Jugador unJug = unJuego.obtenerJugador(3); 
+        unJug.establecerObjetivo(obj);
+        obj.asignarJugador(unJug);
 
         ArrayList<Pais> paises = unJuego.obtenerTablero().obtenerPaises();
 
@@ -42,7 +38,7 @@ public class ObjetivoTest {
 
         obj.actualizar(unJuego);
 
-        assertTrue(obj.estaCumplido());
+        assertTrue(obj.estaCumplido() && unJuego.objetivoCumplido(unJug));
     }
 
     @Test
@@ -56,8 +52,9 @@ public class ObjetivoTest {
                                           // al jugador de la derecha
         Juego unJuego = new Juego(4);
         unJuego.iniciarJuegoPrueba();
-        unJuego.obtenerJugador(3).establecerObjetivo(obj);
-        obj.asignarJugador(unJuego.obtenerJugador(3));
+        Jugador unJug = unJuego.obtenerJugador(3);
+        unJug.establecerObjetivo(obj);
+        obj.asignarJugador(unJug);
 
         ArrayList<Pais> paises = unJuego.obtenerTablero().obtenerPaises();
 
@@ -68,7 +65,7 @@ public class ObjetivoTest {
         }
         
         obj.actualizar(unJuego);                 
-        assertTrue(obj.estaCumplido());
+        assertTrue(obj.estaCumplido() && unJuego.objetivoCumplido(unJug));
     }
 
     @Test
@@ -82,8 +79,9 @@ public class ObjetivoTest {
                                           // al jugador de la derecha
         Juego unJuego = new Juego(4);
         unJuego.iniciarJuegoPrueba();
-        unJuego.obtenerJugador(4).establecerObjetivo(obj); // Se lo asigno al ultimo jugador.
-        obj.asignarJugador(unJuego.obtenerJugador(4));     // El siguiente "a la derecha" es el primero.
+        Jugador unJug = unJuego.obtenerJugador(4);
+        unJug.establecerObjetivo(obj); // Se lo asigno al ultimo jugador.
+        obj.asignarJugador(unJug);     // El siguiente "a la derecha" es el primero.
 
         ArrayList<Pais> paises = unJuego.obtenerTablero().obtenerPaises();
 
@@ -94,7 +92,7 @@ public class ObjetivoTest {
         }
         
         obj.actualizar(unJuego);                 
-        assertTrue(obj.estaCumplido());
+        assertTrue(obj.estaCumplido() && unJuego.objetivoCumplido(unJug));
     }
 
     @Test
@@ -108,19 +106,20 @@ public class ObjetivoTest {
                                         // al jugador de la derecha
         Juego unJuego = new Juego(4);
         unJuego.iniciarJuegoPrueba();
-        unJuego.obtenerJugador(3).establecerObjetivo(obj);
-        obj.asignarJugador(unJuego.obtenerJugador(3));
+        Jugador unJug = unJuego.obtenerJugador(3);
+        unJug.establecerObjetivo(obj);
+        obj.asignarJugador(unJug);
 
         ArrayList<Pais> paises = unJuego.obtenerTablero().obtenerPaises();
 
         for (Pais p : paises) {
             if (p.perteneceA(unJuego.obtenerJugador(2))){
-                p.cambiarFicha(unJuego.obtenerJugador(2).obtenerFicha());
+                p.cambiarFicha(unJuego.obtenerJugador(1).obtenerFicha());
             }
         }
         
         obj.actualizar(unJuego);                 
-        assertFalse(obj.estaCumplido());
+        assertFalse(obj.estaCumplido() || unJuego.objetivoCumplido(unJug));
     }
 
     @Test
@@ -157,7 +156,7 @@ public class ObjetivoTest {
         }
         
         obj.actualizar(unJuego);                 
-        assertTrue(obj.estaCumplido());
+        assertTrue(obj.estaCumplido() && unJuego.objetivoCumplido(unJug));
     }
 
     @Test
@@ -213,7 +212,7 @@ public class ObjetivoTest {
         }
         
         obj.actualizar(unJuego);                 
-        assertTrue(obj.estaCumplido());
+        assertTrue(obj.estaCumplido() && unJuego.objetivoCumplido(unJug));
     }
 
     @Test
@@ -248,9 +247,140 @@ public class ObjetivoTest {
         }
         
         obj.actualizar(unJuego);                 
-        assertTrue(obj.estaCumplido());
+        assertTrue(obj.estaCumplido() && unJuego.objetivoCumplido(unJug));
     }
 
-
+    @Test
+    public void test08ObjetivoComunOcupar30PaisesEstaCumplido() {
     
+        LecturaArchivoObjetivos leer = new LecturaArchivoObjetivos();
+        ArrayList<Objetivo> objetivos = new ArrayList<>();
+        leer.leerArchivo(objetivos);
+
+        Objetivo obj = objetivos.get(8);// Destruir equipo azul. Objetivo comun = 30 paises
+
+        Juego unJuego = new Juego(4);
+        unJuego.iniciarJuegoPrueba();
+        Jugador unJug = unJuego.obtenerJugador(1);
+        unJug.establecerObjetivo(obj);
+        obj.asignarJugador(unJug);
+
+        Tablero tablero = unJuego.obtenerTablero();
+
+        for (Pais p : tablero.obtenerPaises()) {
+            if (!p.perteneceA(unJug) && tablero.obtenerCantidadPaisesJugador(unJug) < 30){
+                p.cambiarFicha(unJug.obtenerFicha());
+            }
+        }
+        
+        obj.actualizar(unJuego);                 
+        assertTrue(obj.estaCumplido() && unJuego.objetivoCumplido(unJug));
+    }
+
+    @Test
+    public void test09ObjetivoOcuparPaisesNoEstaCumplido(){
+    
+        LecturaArchivoObjetivos leer = new LecturaArchivoObjetivos();
+        ArrayList<Objetivo> objetivos = new ArrayList<>();
+        leer.leerArchivo(objetivos);
+
+        Objetivo obj = objetivos.get(5);// Ocupar 2 países de Oceanía, 2 países de África, 
+                                        // 2 países de América del Sur, 3 países de Europa, 
+                                        // 4 de América del Norte y 3 de Asia
+
+        Juego unJuego = new Juego(4);
+        unJuego.iniciarJuegoPrueba();
+        Jugador unJug = unJuego.obtenerJugador(3);
+        unJug.establecerObjetivo(obj);
+        obj.asignarJugador(unJug);
+
+        Tablero tablero = unJuego.obtenerTablero();
+
+        for (Pais p : tablero.obtenerPaises()) {
+            if (p.continenteNombre().equalsIgnoreCase("Oceania") && 
+                !p.perteneceA(unJug) &&
+                tablero.obtenerCantidadPaisesJugadorEnContinente(unJug, "Oceania") < 1 ){
+                p.cambiarFicha(unJug.obtenerFicha());
+            }
+            if (p.continenteNombre().equalsIgnoreCase("Africa") && 
+                !p.perteneceA(unJug) &&
+                tablero.obtenerCantidadPaisesJugadorEnContinente(unJug, "Africa") < 1 ){
+                p.cambiarFicha(unJug.obtenerFicha());
+            }
+            if (p.continenteNombre().equalsIgnoreCase("America del Sur") && 
+                !p.perteneceA(unJug) &&
+                tablero.obtenerCantidadPaisesJugadorEnContinente(unJug, "America del Sur") < 1 ){
+                p.cambiarFicha(unJug.obtenerFicha());
+            }
+            if (p.continenteNombre().equalsIgnoreCase("Europa") && 
+                !p.perteneceA(unJug) &&
+                tablero.obtenerCantidadPaisesJugadorEnContinente(unJug, "Europa") < 5 ){
+                p.cambiarFicha(unJug.obtenerFicha());
+            }
+            if (p.continenteNombre().equalsIgnoreCase("America del Norte") && 
+                !p.perteneceA(unJug) &&
+                tablero.obtenerCantidadPaisesJugadorEnContinente(unJug, "America Del Norte") < 4 ){
+                p.cambiarFicha(unJug.obtenerFicha());
+            }
+            if (p.continenteNombre().equalsIgnoreCase("Asia") && 
+                !p.perteneceA(unJug) &&
+                tablero.obtenerCantidadPaisesJugadorEnContinente(unJug, "Asia") < 3 ){
+                p.cambiarFicha(unJug.obtenerFicha());
+            }
+        }
+        
+        obj.actualizar(unJuego);                 
+        assertFalse(obj.estaCumplido() || unJuego.objetivoCumplido(unJug));
+    }
+
+    @Test
+    public void test10ObjetivoOcuparPaisesNoEstaCumplido(){
+    
+        LecturaArchivoObjetivos leer = new LecturaArchivoObjetivos();
+        ArrayList<Objetivo> objetivos = new ArrayList<>();
+        leer.leerArchivo(objetivos);
+
+        Juego unJuego = new Juego(4);
+        unJuego.iniciarJuegoPrueba();
+        Jugador unJug = unJuego.obtenerJugador(3);
+        
+        Tablero tablero = unJuego.obtenerTablero();
+
+        for (Pais p : tablero.obtenerPaises()) {
+            if (p.continenteNombre().equalsIgnoreCase("Oceania") && 
+                !p.perteneceA(unJug) &&
+                tablero.obtenerCantidadPaisesJugadorEnContinente(unJug, "Oceania") < 1 ){
+                p.cambiarFicha(unJug.obtenerFicha());
+            }
+            if (p.continenteNombre().equalsIgnoreCase("Africa") && 
+                !p.perteneceA(unJug) &&
+                tablero.obtenerCantidadPaisesJugadorEnContinente(unJug, "Africa") < 1 ){
+                p.cambiarFicha(unJug.obtenerFicha());
+            }
+            if (p.continenteNombre().equalsIgnoreCase("America del Sur") && 
+                !p.perteneceA(unJug) &&
+                tablero.obtenerCantidadPaisesJugadorEnContinente(unJug, "America del Sur") < 1 ){
+                p.cambiarFicha(unJug.obtenerFicha());
+            }
+            if (p.continenteNombre().equalsIgnoreCase("Europa") && 
+                !p.perteneceA(unJug) &&
+                tablero.obtenerCantidadPaisesJugadorEnContinente(unJug, "Europa") < 5 ){
+                p.cambiarFicha(unJug.obtenerFicha());
+            }
+            if (p.continenteNombre().equalsIgnoreCase("America del Norte") && 
+                !p.perteneceA(unJug) &&
+                tablero.obtenerCantidadPaisesJugadorEnContinente(unJug, "America Del Norte") < 4 ){
+                p.cambiarFicha(unJug.obtenerFicha());
+            }
+            if (p.continenteNombre().equalsIgnoreCase("Asia") && 
+                !p.perteneceA(unJug) &&
+                tablero.obtenerCantidadPaisesJugadorEnContinente(unJug, "Asia") < 3 ){
+                p.cambiarFicha(unJug.obtenerFicha());
+            }
+        }
+        
+        obj.actualizar(unJuego);                 
+        assertFalse(obj.estaCumplido() || unJuego.objetivoCumplido(unJug));
+    }
+
 }

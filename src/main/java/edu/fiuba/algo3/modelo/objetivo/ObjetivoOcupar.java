@@ -114,7 +114,10 @@ public class ObjetivoOcupar implements Objetivo {
                 }
             }
         }
-        this.estaCumplido = obj1 && obj2 && obj3;
+
+        Boolean tieneTreintaOMasPaises = juego.obtenerTablero().obtenerCantidadPaisesJugador(this.jugador) >= 30;
+
+        this.estaCumplido = (obj1 && obj2 && obj3) || tieneTreintaOMasPaises ;
         
     }
     
