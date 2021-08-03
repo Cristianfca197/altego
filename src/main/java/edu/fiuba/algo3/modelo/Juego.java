@@ -474,4 +474,8 @@ public class Juego {
     public int cantidadJugadores(){
         return listaJugadores.size();
     }
+
+    public Boolean esPaisDelJugador(Jugador jugador, String pais) {
+        return jugador.obtenerFicha().esIgualA(obtenerPais(pais).obtenerFicha());
+    }
 }

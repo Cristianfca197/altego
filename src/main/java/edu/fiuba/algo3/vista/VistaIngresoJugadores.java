@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
@@ -21,9 +22,18 @@ public class VistaIngresoJugadores extends VBox {
             this.getChildren().add(jugador);
         }
         Button botonEnviar = new Button();
+        botonEnviar.setText("A jugar!");
+        botonEnviar.setStyle("-fx-background-color:#27AE60;" +
+                "-fx-font-size: 18;" +
+                "-fx-font-famiy: sans-serif;"
+        );
+        
         InicioEventHandler inicioEventHandler = new InicioEventHandler(juego, seleccionarVista, nombres);
         botonEnviar.setOnAction(inicioEventHandler);
-        this.getChildren().addAll(botonEnviar);
+        HBox contenedorHorizontal = new HBox(botonEnviar);
+        contenedorHorizontal.setAlignment(Pos.CENTER);
+
+        this.getChildren().addAll(contenedorHorizontal);
     }
     public VBox informacionJugador(String color){
         Label colorJugador = new Label("Ingrese nombre jugador " + color);
