@@ -14,20 +14,18 @@ public class MostrarObjetivosEventHandler implements EventHandler<ActionEvent> {
 
     private final SeleccionarVista vista;
     private final Juego juego;
-    private final HashMap<String, VistaPais> paises;
     private final VistaEtapaColocacion vistaColocacion;
 
-    public MostrarObjetivosEventHandler(SeleccionarVista vista, Juego juego, HashMap<String, VistaPais> stringVistaPaisHashMap, VistaEtapaColocacion vistaEtapaColocacion){
+    public MostrarObjetivosEventHandler(SeleccionarVista vista, Juego juego, VistaEtapaColocacion vistaEtapaColocacion){
         this.vista = vista;
         this.juego = juego;
-        this.paises = stringVistaPaisHashMap;
         this.vistaColocacion = vistaEtapaColocacion;
     }
     
     @Override
     public void handle(ActionEvent actionEvent) {
         Stage stage = new Stage();
-        vista.mostrarInterfazObjetivos(juego, stage, paises, vistaColocacion);
+        vista.mostrarInterfazObjetivos(juego, stage, vistaColocacion);
 
     }
 }

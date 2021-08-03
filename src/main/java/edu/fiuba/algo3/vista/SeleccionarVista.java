@@ -62,7 +62,7 @@ public class SeleccionarVista {
         otroStage.setScene(escenaTarjeta);
         otroStage.show();
     }
-    public void mostrarInterfazObjetivos(Juego juego, Stage unStage, HashMap<String, VistaPais> paises, VistaEtapaColocacion vistaColocacion){
+    public void mostrarInterfazObjetivos(Juego juego, Stage unStage, VistaEtapaColocacion vistaColocacion){
         Objetivo objetivo = juego.obtenerJugadorJugando().objetivo();
 
         VistaObjetivo vistaObjetivo = new VistaObjetivo(objetivo, juego, vistaColocacion);

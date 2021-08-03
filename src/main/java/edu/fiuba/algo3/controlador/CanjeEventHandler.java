@@ -19,7 +19,11 @@ public class CanjeEventHandler implements EventHandler<ActionEvent> {
     }
     @Override
     public void handle(ActionEvent actionEvent) {
-        juego.realizarCanje(tarjetas);
+        try {
+            juego.realizarCanje(tarjetas);
+        } catch (Exception e){
+            new Alerta(e.getMessage(), "Canje Invalido");
+        }
         this.vistaColocacion.actualizarVista(juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.cantidadEjercitosDisponibles());
 
     }

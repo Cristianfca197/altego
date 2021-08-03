@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.controlador;
 
 import edu.fiuba.algo3.modelo.Juego;
+import edu.fiuba.algo3.modelo.exception.ExcepcionActivacionTarjetaInvalido;
 import edu.fiuba.algo3.vista.VistaPais;
 import edu.fiuba.algo3.vista.VistaTarjetaPais;
 import javafx.event.EventHandler;
@@ -30,7 +31,11 @@ public class TarjetaElegidaEventHandler implements EventHandler<MouseEvent> {
             }
         }
         else {
-            juego.activarTarjetaPais(pais);
+            try {
+                juego.activarTarjetaPais(pais);
+            } catch (ExcepcionActivacionTarjetaInvalido e){
+                new Alerta(e.getMessage(), "Error Activación Tarjeta");
+            }
             paises.get(pais).actualizar(juego.obtenerPais(pais).cantidadDeEjercitos(), juego.obtenerPais(pais).obtenerFicha().color());
         }
     }

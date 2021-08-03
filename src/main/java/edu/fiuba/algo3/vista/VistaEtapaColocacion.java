@@ -65,10 +65,9 @@ public class VistaEtapaColocacion extends StackPane {
         botonFinTurno.setOnAction(finalizarTurnoEventHandler);
 
         Button botonObjetivo = new Button();
-        botonObjetivo.setText("Ver Objetivo"); //hacer objetivos
-        MostrarObjetivosEventHandler MostrarObjetivosEventHandler = new MostrarObjetivosEventHandler(vista, juego, mapa.obtenerPaises(), this);
-        botonObjetivo.setOnAction(MostrarObjetivosEventHandler);
-
+        botonObjetivo.setText("Ver Objetivo");
+        MostrarObjetivosEventHandler mostrarObjetivosEventHandler = new MostrarObjetivosEventHandler(vista, juego, this);
+        botonObjetivo.setOnAction(mostrarObjetivosEventHandler);
         Button botonTarjetaPais = new Button();
         botonTarjetaPais.setText("Activar Tarjeta");
         MostrarTarjetasEventHandler mostrarTarjetasEventHandler = new MostrarTarjetasEventHandler(vista, juego, mapa.obtenerPaises(), this, false);

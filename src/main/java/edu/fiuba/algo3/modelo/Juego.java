@@ -41,7 +41,7 @@ public class Juego {
         listaJugadores = new ArrayList<>();
         tablero = new Tablero();
         objetivos = new ArrayList<>();
-        cargarColores();
+        this.cargarColores();
         for (int i = 0; i < cantidadJugadores; i++) {
             this.listaJugadores.add(new Jugador());
         }
@@ -156,11 +156,9 @@ public class Juego {
     }
 
     public void jugar(){
-        this.repartirPaisesCondicionesConocidas();
-    //    this.repartirPaises();
+        this.repartirPaises();
         this.ocuparTablero();
-    //    this.repartirObjetivos();
-        this.repartirObjetivosCondicionesConocidas();
+        this.repartirObjetivosAleatorio();
         this.turnos = new ArrayList<>(listaJugadores);
         jugadorActual = turnos.get(0);
         cantidadPaisesJugadorActual = tablero.obtenerCantidadPaisesJugador(jugadorActual);
@@ -168,14 +166,19 @@ public class Juego {
         ultimoJugador = turnos.get(turnos.size() - 1);
         this.configurarJugadoresDePrueba();
     }
-
-    /**
-     * Reparte los objetivos aleatoriamente.
-     */
-    private void repartirObjetivos() {
-        for(Jugador jugador: listaJugadores){
+    public void repartirObjetivosAleatorio(){
+        for (Jugador jugador: listaJugadores){
             int num = (int) Math.floor(Math.random() * (objetivos.size()));
             jugador.establecerObjetivo(objetivos.get(num));
+            objetivos.get(num).asignarJugador(jugador);
+        }
+    }
+    private void repartirObjetivos() {
+        int i = 0;
+        for(Jugador jugador: listaJugadores){
+            jugador.establecerObjetivo(objetivos.get(i));
+            objetivos.get(i).asignarJugador(jugador);
+            i++;
         }
     }
 
@@ -247,12 +250,11 @@ public class Juego {
     }
     public void atacarACon(Pais atacante, Pais defensor) {
         etapa.AtacarCon(jugadorActual, atacante, defensor);
-        /*
+
         jugadorActual.objetivo().actualizar(this);
         if(jugadorActual.objetivo().estaCumplido()) {
             throw new ExcepcionFinDeJuego(jugadorActual.obtenerNombre() + " Felicidades haz ganado el juego!");
         }
-        */
     }
     public void activarTarjetaPais(String nombrePais){
         jugadorActual.activarTarjetaPais(jugadorActual.obtenerTarjeta(nombrePais));
