@@ -155,7 +155,7 @@ public class Juego {
 
     }
 
-    public void jugar(){
+    public void jugar(ArrayList<String> nombresJugadores){
         this.repartirPaises();
         this.ocuparTablero();
         this.repartirObjetivosAleatorio();
@@ -164,13 +164,22 @@ public class Juego {
         cantidadPaisesJugadorActual = tablero.obtenerCantidadPaisesJugador(jugadorActual);
         this.faseInicial();
         ultimoJugador = turnos.get(turnos.size() - 1);
-        this.configurarJugadoresDePrueba();
+        this.configurarJugadores(nombresJugadores);
+    }
+    public void configurarJugadores(ArrayList<String> nombres){
+        int i = 0;
+        for (Jugador unJugador : listaJugadores) {
+            this.establecerNombreJugador(unJugador, nombres.get(i));
+            this.establecerColorAJugador(unJugador, this.coloresFichas.get(i));
+            this.establecerNombreColorJugador(i+1, this.nombreColoresFichas.get(i));
+            i++;
+        }
     }
     public void repartirObjetivosAleatorio(){
         ArrayList<Objetivo> objDesechados = new ArrayList<>();
 
         for (Jugador jugador: listaJugadores){
-            int num = (int) Math.floor(Math.random() * (objetivos.size()));
+            int num = (int) Math.floor(Math.random() * (objetivos.size()+1));
             Objetivo actual = objetivos.remove(num);
             jugador.establecerObjetivo(actual);
             objDesechados.add(actual);
@@ -394,7 +403,9 @@ public class Juego {
         this.nombreColoresFichas.add("violeta");
 
     }
-
+    public ArrayList<String> obtenerColores(){
+        return nombreColoresFichas;
+    }
     public void establecerNombreJugador(Jugador unJugador, String unNombre) {
         unJugador.establecerNombre(unNombre);
     }
@@ -404,7 +415,7 @@ public class Juego {
     }
 
     public void configurarJugadoresDePrueba() {
-        String[] nombres = { "Juani", "Cris", "Pedro", "Roby" };
+        String[] nombres = { "Juani", "Cris", "Pedro", "Roby", "Tomas", "Edson" };
         int i = 0;
         for (Jugador unJugador : listaJugadores) {
             this.establecerNombreJugador(unJugador, nombres[i]);
@@ -460,4 +471,7 @@ public class Juego {
         return unJug.objetivoCumplido();
     }
 
+    public int cantidadJugadores(){
+        return listaJugadores.size();
+    }
 }

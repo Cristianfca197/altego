@@ -25,8 +25,9 @@ public class JugarEventHandler implements EventHandler<ActionEvent> {
 
            if ((cantidadIngresada > 1) && (cantidadIngresada < 7)) {
                Juego juego = new Juego(cantidadIngresada);
-               juego.jugar();
-               this.vista.mostrarInterfazColocacion(juego, juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.obtenerJugadorJugando().color(), juego.cantidadEjercitosDisponibles());
+               this.vista.ingresoDatosJugadores(juego, juego.cantidadJugadores(), juego.obtenerColores());
+              // juego.jugar();
+              // this.vista.mostrarInterfazColocacion(juego, juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.obtenerJugadorJugando().color(), juego.cantidadEjercitosDisponibles());
 
            } else {
                new Alerta("ingrese un número del 2 al 6.", texto.getText());

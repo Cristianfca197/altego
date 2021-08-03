@@ -71,4 +71,13 @@ public class SeleccionarVista {
         unStage.setScene(escenaTarjeta);
         unStage.show();
     }
+
+    public void ingresoDatosJugadores(Juego juego, int cantidadJugadores, ArrayList<String> colores){
+        System.out.println("furaghari");
+        stage.setTitle("Ingreso de los jugadores");
+        VistaIngresoJugadores vistaIngresoJugadores = new VistaIngresoJugadores(juego,this, cantidadJugadores, colores);
+        Scene escenaIngreso = new Scene (vistaIngresoJugadores);
+        stage.setScene(escenaIngreso);
+        stage.setResizable(false);
+    }
 }
