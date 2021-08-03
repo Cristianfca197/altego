@@ -41,7 +41,7 @@ public class Juego {
         listaJugadores = new ArrayList<>();
         tablero = new Tablero();
         objetivos = new ArrayList<>();
-        cargarColores();
+        this.cargarColores();
         for (int i = 0; i < cantidadJugadores; i++) {
             this.listaJugadores.add(new Jugador());
         }

@@ -28,7 +28,9 @@ public class Pais {
     public void colocarEjercitos(Integer unaCantidadDeEjercitos, Ficha unaFicha){
         if(this.ficha.esIgualA(unaFicha)) {
             this.ejercitos += unaCantidadDeEjercitos;
-        }else{ throw new ExcepcionPaisInvalido("El pais seleccionado no es un pais propio");}
+        }else{
+            throw new ExcepcionPaisInvalido("El pais seleccionado no es un pais propio");
+        }
     }
     public int cantidadDeEjercitos(){
         return ejercitos;
