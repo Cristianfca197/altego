@@ -26,11 +26,11 @@ public class VistaEtapaColocacion extends StackPane {
     private Label proximoJugador;
     private Label ejercitos;
 
-    public VistaEtapaColocacion(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador, Juego juego, SeleccionarVista seleccionarVista, int ejercitosDisponibles){
+    public VistaEtapaColocacion(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador, String colorJugActual, Juego juego, SeleccionarVista seleccionarVista, int ejercitosDisponibles){
         this.vista = seleccionarVista;
         this.mapa = mapa;
         this.juego = juego;
-        HBox datosTurno = this.datosTurno(nombreJugadorActual, nombreSiguienteJugador, ejercitosDisponibles);
+        HBox datosTurno = this.datosTurno(nombreJugadorActual, nombreSiguienteJugador, ejercitosDisponibles, colorJugActual);
         VBox contenedorBotones1 = this.botonesJugador();
         HBox contenedorBotones2 = this.botonesTurno(juego);
         BorderPane contenedor = new BorderPane();
@@ -87,20 +87,28 @@ public class VistaEtapaColocacion extends StackPane {
         contenedor.setSpacing(20);
         return contenedor;
     }
-    private HBox datosTurno(String nombreJugadorActual, String nombreSiguienteJugador, int ejercitosDisponibles) {
+    private HBox datosTurno(String nombreJugadorActual, String nombreSiguienteJugador, int ejercitosDisponibles, String colorJugadorActual) {
+
         Label fichasDisponibles = new Label();
         fichasDisponibles.setText("Ejercitos restantes:"+ ejercitosDisponibles);
         fichasDisponibles.setTextFill(Color.WHITE);
+
         Label datoJugador = new Label();
         datoJugador.setText("Jugador:"+ nombreJugadorActual);
         datoJugador.setTextFill(Color.WHITE);
+
+        Label datColor = new Label();
+        datColor.setText("Color:"+ colorJugadorActual);
+        datColor.setTextFill(Color.WHITE);
+
         Label proximoJugador = new Label();
         proximoJugador.setText("Siguiente jugador:"+ nombreSiguienteJugador);
         proximoJugador.setTextFill(Color.WHITE);
+
         this.jugadorActual = datoJugador;
         this.proximoJugador = proximoJugador;
         this.ejercitos = fichasDisponibles;
-        HBox datosTurno = new HBox(fichasDisponibles,datoJugador, proximoJugador);
+        HBox datosTurno = new HBox(fichasDisponibles, datoJugador, datColor, proximoJugador);
         datosTurno.setSpacing(20);
         return datosTurno;
     }

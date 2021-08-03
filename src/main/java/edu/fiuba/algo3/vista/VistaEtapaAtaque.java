@@ -21,9 +21,9 @@ public class VistaEtapaAtaque extends StackPane {
     private Label informacion;
     private VistaPais paisAtacante = null;
 
-    public VistaEtapaAtaque(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador, Juego juego, SeleccionarVista seleccionarVista){
+    public VistaEtapaAtaque(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador, String colorJugadorActual, Juego juego, SeleccionarVista seleccionarVista){
         this.vista = seleccionarVista;
-        HBox datosTurno = this.datosTurno(nombreJugadorActual, nombreSiguienteJugador);
+        HBox datosTurno = this.datosTurno(nombreJugadorActual, nombreSiguienteJugador, colorJugadorActual);
         HBox contenedorBotones2 = this.botonesTurno(juego);
         BorderPane contenedor = new BorderPane();
         contenedor.setTop(datosTurno);
@@ -59,20 +59,28 @@ public class VistaEtapaAtaque extends StackPane {
     }
 
 
-    private HBox datosTurno(String nombreJugadorActual, String nombreSiguienteJugador) {
+    private HBox datosTurno(String nombreJugadorActual, String nombreSiguienteJugador, String colorJugadorActual) {
+
         Label informacion = new Label();
         informacion.setText("Seleccione el pais con el que va a atacar");
         informacion.setTextFill(Color.WHITE);
+
         Label datoJugador = new Label();
         datoJugador.setText("Jugador:"+ nombreJugadorActual);
         datoJugador.setTextFill(Color.WHITE);
+
+        Label datColor = new Label();
+        datColor.setText("Color:"+ colorJugadorActual);
+        datColor.setTextFill(Color.WHITE);
+
         Label proximoJugador = new Label();
         proximoJugador.setText("Siguiente jugador:"+ nombreSiguienteJugador);
         proximoJugador.setTextFill(Color.WHITE);
+
         this.jugadorActual = datoJugador;
         this.proximoJugador = proximoJugador;
         this.informacion = informacion;
-        HBox datosTurno = new HBox(informacion,datoJugador, proximoJugador);
+        HBox datosTurno = new HBox(informacion, datoJugador, datColor, proximoJugador);
         datosTurno.setSpacing(20);
         return datosTurno;
     }

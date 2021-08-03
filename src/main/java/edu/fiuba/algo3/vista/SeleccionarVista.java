@@ -24,28 +24,28 @@ public class SeleccionarVista {
         stage.setScene(escenaBienvenidos);
         stage.setResizable(false);
     }
-    public void mostrarInterfazColocacion(Juego juego, String nombreJugadorActual, String nombreSiguienteJugador, int ejercitosDisponibles){
+    public void mostrarInterfazColocacion(Juego juego, String nombreJugadorActual, String nombreSiguienteJugador, String colorJugadorActual, int ejercitosDisponibles){
         stage.setTitle("Interfaz Colocacion");
         Mapa mapaJuego = new Mapa(juego.obtenerPaises());
-        VistaEtapaColocacion vistaColocacion = new VistaEtapaColocacion(mapaJuego, nombreJugadorActual, nombreSiguienteJugador, juego, this, ejercitosDisponibles);
+        VistaEtapaColocacion vistaColocacion = new VistaEtapaColocacion(mapaJuego, nombreJugadorActual, nombreSiguienteJugador, colorJugadorActual, juego, this, ejercitosDisponibles);
         Scene escenaColocacion = new Scene(vistaColocacion);
         stage.setScene(escenaColocacion);
         stage.setResizable(false);
 
     }
-    public void mostrarInterfazAtaque(Juego juego, String nombreJugadorActual, String nombreSiguienteJugador){
+    public void mostrarInterfazAtaque(Juego juego, String nombreJugadorActual, String nombreSiguienteJugador, String colorJugadorActual){
         Mapa mapaJuego =  new Mapa(juego.obtenerPaises());
         stage.setTitle("Interfaz ataque");
-        VistaEtapaAtaque vistaAtaque = new VistaEtapaAtaque(mapaJuego, nombreJugadorActual, nombreSiguienteJugador, juego, this);
+        VistaEtapaAtaque vistaAtaque = new VistaEtapaAtaque(mapaJuego, nombreJugadorActual, nombreSiguienteJugador, colorJugadorActual, juego, this);
         Scene escenaAtaque = new Scene(vistaAtaque);
         stage.setScene(escenaAtaque);
         stage.setResizable(false);
 
     }
-    public void mostrarInterfazReagrupar(Juego juego, String nombreJugadorActual, String nombreSiguienteJugador){
+    public void mostrarInterfazReagrupar(Juego juego, String nombreJugadorActual, String nombreSiguienteJugador, String colorJugadorActual){
         Mapa mapaJuego =  new Mapa(juego.obtenerPaises());
         stage.setTitle("Interfaz reagrupar");
-        VistaEtapaReagrupar vistaEtapaReagrupar = new VistaEtapaReagrupar(mapaJuego, nombreJugadorActual, nombreSiguienteJugador, juego, this);
+        VistaEtapaReagrupar vistaEtapaReagrupar = new VistaEtapaReagrupar(mapaJuego, nombreJugadorActual, nombreSiguienteJugador, colorJugadorActual, juego, this);
         Scene escenaAtaque = new Scene(vistaEtapaReagrupar);
         stage.setScene(escenaAtaque);
         stage.setResizable(false);

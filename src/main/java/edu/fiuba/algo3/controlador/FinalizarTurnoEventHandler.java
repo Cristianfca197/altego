@@ -27,7 +27,7 @@ public class FinalizarTurnoEventHandler implements EventHandler<ActionEvent> {
         }
         vistaColocacion.actualizarVista(juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.cantidadEjercitosDisponibles());
         if (juego.obtenerEtapaR().getClass() == EtapaAtacar.class) {
-            vista.mostrarInterfazAtaque(juego, juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador());
+            vista.mostrarInterfazAtaque(juego, juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.obtenerJugadorJugando().color());
         }
     }
 }

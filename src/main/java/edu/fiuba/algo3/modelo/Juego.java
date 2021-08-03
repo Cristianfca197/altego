@@ -167,12 +167,21 @@ public class Juego {
         this.configurarJugadoresDePrueba();
     }
     public void repartirObjetivosAleatorio(){
+        ArrayList<Objetivo> objDesechados = new ArrayList<>();
+
         for (Jugador jugador: listaJugadores){
             int num = (int) Math.floor(Math.random() * (objetivos.size()));
-            jugador.establecerObjetivo(objetivos.get(num));
+            Objetivo actual = objetivos.remove(num);
+            jugador.establecerObjetivo(actual);
+            objDesechados.add(actual);
             objetivos.get(num).asignarJugador(jugador);
         }
+
+        for (Objetivo o : objDesechados) {
+            objetivos.add(o);
+        }
     }
+
     private void repartirObjetivos() {
         int i = 0;
         for(Jugador jugador: listaJugadores){

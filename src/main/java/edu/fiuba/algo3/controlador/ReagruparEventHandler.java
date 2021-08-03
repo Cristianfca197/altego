@@ -16,6 +16,6 @@ public class ReagruparEventHandler  implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         juego.pasarTurno();
-        this.vista.mostrarInterfazReagrupar(juego, juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador());
+        this.vista.mostrarInterfazReagrupar(juego, juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.obtenerJugadorJugando().color());
     }
 }

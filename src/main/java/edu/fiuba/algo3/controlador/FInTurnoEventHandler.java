@@ -19,10 +19,10 @@ public class FInTurnoEventHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         juego.pasarTurno();
         if(juego.obtenerEtapaR().getClass() == EtapaAtacar.class){
-            seleccionarVista.mostrarInterfazAtaque(juego, juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador());
+            seleccionarVista.mostrarInterfazAtaque(juego, juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.obtenerJugadorJugando().color());
         }
         else {
-            seleccionarVista.mostrarInterfazColocacion(juego, juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.cantidadEjercitosDisponibles());
+            seleccionarVista.mostrarInterfazColocacion(juego, juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.obtenerJugadorJugando().color(), juego.cantidadEjercitosDisponibles());
         }
     }
 }
