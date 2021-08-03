@@ -96,4 +96,8 @@ public class Jugador {
     public Objetivo objetivo(){
         return this.objetivoJugador;
     }
+
+    public boolean objetivoCumplido() {
+        return this.objetivoJugador.estaCumplido();
+    }
 }

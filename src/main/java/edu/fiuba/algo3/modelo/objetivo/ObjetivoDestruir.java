@@ -93,7 +93,9 @@ public class ObjetivoDestruir implements Objetivo {
             unJugador = juego.siguienteJugador(this.jugador);
         }
 
-        this.estaCumplido = !juego.tienePaises(unJugador);
+        int tieneTreintaOMasPaises = juego.obtenerTablero().obtenerCantidadPaisesJugador(this.jugador);
+
+        this.estaCumplido = (!juego.tienePaises(unJugador)) || (tieneTreintaOMasPaises >= this.objetivoComunCantidad);
     }
 
 }
