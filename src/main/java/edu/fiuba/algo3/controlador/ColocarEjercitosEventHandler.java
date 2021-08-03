@@ -7,8 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class ColocarEjercitosEventHandler implements EventHandler<ActionEvent> {
@@ -41,7 +39,7 @@ public class ColocarEjercitosEventHandler implements EventHandler<ActionEvent> {
                 new Alerta(e.getMessage(), e.getMessage());
             }
             pais.actualizar(juego.obtenerPais(nombre).cantidadDeEjercitos(), juego.obtenerPais(nombre).obtenerFicha().color());
-            vista.actualizarVista(juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.cantidadEjercitosDisponibles());
+            vista.actualizarVista(juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.cantidadEjercitosDisponibles(), juego.obtenerJugadorJugando().color());
         }else{
             new Alerta("No es un número.",texto.getText());
         }

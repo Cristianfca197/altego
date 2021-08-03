@@ -25,6 +25,7 @@ public class VistaEtapaColocacion extends StackPane {
     private Label jugadorActual;
     private Label proximoJugador;
     private Label ejercitos;
+    private Label color;
 
     public VistaEtapaColocacion(Mapa mapa, String nombreJugadorActual, String nombreSiguienteJugador, String colorJugActual, Juego juego, SeleccionarVista seleccionarVista, int ejercitosDisponibles){
         this.vista = seleccionarVista;
@@ -66,7 +67,7 @@ public class VistaEtapaColocacion extends StackPane {
 
         Button botonObjetivo = new Button();
         botonObjetivo.setText("Ver Objetivo");
-        MostrarObjetivosEventHandler mostrarObjetivosEventHandler = new MostrarObjetivosEventHandler(vista, juego, this);
+        MostrarObjetivosEventHandler mostrarObjetivosEventHandler = new MostrarObjetivosEventHandler(vista, juego);
         botonObjetivo.setOnAction(mostrarObjetivosEventHandler);
         Button botonTarjetaPais = new Button();
         botonTarjetaPais.setText("Activar Tarjeta");
@@ -108,13 +109,15 @@ public class VistaEtapaColocacion extends StackPane {
         this.jugadorActual = datoJugador;
         this.proximoJugador = proximoJugador;
         this.ejercitos = fichasDisponibles;
+        this.color = datColor;
         HBox datosTurno = new HBox(fichasDisponibles, datoJugador, datColor, proximoJugador);
         datosTurno.setSpacing(20);
         return datosTurno;
     }
-    public void actualizarVista(String nombreJugadorActual, String nombreSiguienteJugador, int cantidadEjercitos){
+    public void actualizarVista(String nombreJugadorActual, String nombreSiguienteJugador, int cantidadEjercitos, String colorJugadorActual){
         this.jugadorActual.setText("Jugador:"+ nombreJugadorActual);
         this.proximoJugador.setText("Siguiente jugador:" + nombreSiguienteJugador);
         this.ejercitos.setText("Ejercitos restantes:" + cantidadEjercitos);
+        this.color.setText("Color:" + colorJugadorActual);
     }
 }

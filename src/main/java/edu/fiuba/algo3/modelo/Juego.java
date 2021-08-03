@@ -179,16 +179,25 @@ public class Juego {
         ArrayList<Objetivo> objDesechados = new ArrayList<>();
 
         for (Jugador jugador: listaJugadores){
-            int num = (int) Math.floor(Math.random() * (objetivos.size()+1));
+            int num = (int) Math.floor(Math.random() * (objetivos.size()));
             Objetivo actual = objetivos.remove(num);
+            actual.asignarJugador(jugador);
             jugador.establecerObjetivo(actual);
             objDesechados.add(actual);
-            objetivos.get(num).asignarJugador(jugador);
         }
 
         for (Objetivo o : objDesechados) {
             objetivos.add(o);
         }
+
+     /*
+        for (Jugador jugador: listaJugadores){
+            int num = (int) Math.floor(Math.random() * (objetivos.size()));
+            jugador.establecerObjetivo(objetivos.get(num));
+            objetivos.get(num).asignarJugador(jugador);
+        }
+        */
+
     }
 
     private void repartirObjetivos() {
@@ -271,6 +280,7 @@ public class Juego {
 
         jugadorActual.objetivo().actualizar(this);
         if(jugadorActual.objetivo().estaCumplido()) {
+            System.out.println("feabgragbk");
             throw new ExcepcionFinDeJuego(jugadorActual.obtenerNombre() + " Felicidades haz ganado el juego!");
         }
     }

@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.vista;
 
+import edu.fiuba.algo3.controlador.MostrarObjetivosEventHandler;
 import edu.fiuba.algo3.controlador.PaisAtacanteEventHandler;
 import edu.fiuba.algo3.controlador.ReagruparEventHandler;
 import edu.fiuba.algo3.modelo.Juego;
@@ -53,6 +54,8 @@ public class VistaEtapaAtaque extends StackPane {
         botonReagrupar.setOnAction(reagruparEventHandler);
         Button botonObjetivo = new Button();
         botonObjetivo.setText("Ver Objetivo");
+        MostrarObjetivosEventHandler mostrarObjetivosEventHandler = new MostrarObjetivosEventHandler(vista, juego);
+        botonObjetivo.setOnAction(mostrarObjetivosEventHandler);
         HBox contenedor = new HBox(botonReagrupar, botonObjetivo);
         contenedor.setSpacing(20);
         return contenedor;

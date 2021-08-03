@@ -14,7 +14,7 @@ import javafx.scene.text.Font;
 
 public class VistaObjetivo extends VBox{
 
-    public VistaObjetivo(Objetivo objetivo, Juego juego, VistaEtapaColocacion vistaColocacion) {
+    public VistaObjetivo(Objetivo objetivo, Juego juego) {
 
         super();
         Label labelArchivo = new Label("OBJETIVO:");

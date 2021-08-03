@@ -24,7 +24,7 @@ public class CanjeEventHandler implements EventHandler<ActionEvent> {
         } catch (Exception e){
             new Alerta(e.getMessage(), "Canje Invalido");
         }
-        this.vistaColocacion.actualizarVista(juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.cantidadEjercitosDisponibles());
+        this.vistaColocacion.actualizarVista(juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.cantidadEjercitosDisponibles(), juego.obtenerJugadorJugando().color());
 
     }
 }

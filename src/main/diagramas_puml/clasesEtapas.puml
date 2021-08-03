@@ -1,0 +1,42 @@
+@startuml
+
+
+class Juego{
+
+}
+class EtapaColocacionAbs{
+    + colocarEjercitos(unJugados:Jugador, unPais:Pais, cantidad:Integer):void
+    + estaTerminada():Boolean
+    + agregarEjercitosCanje(cantidadEjercitos:Integer):void
+}
+class EtapaColocacion{
+    + pasarEtapa(): Etapa
+    + estabelcerCantidadEjercitos(cantidadEjercitos:Integer):void
+}
+class EtapaColocacionRondaUno{
+    + pasarEtapa(): Etapa
+    + estabelcerCantidadEjercitos(cantidadEjercitos:Integer):void
+}
+class EtapaColocacionRondaDos{
+    + pasarEtapa(): Etapa
+    + estabelcerCantidadEjercitos(cantidadEjercitos:Integer):void
+}
+class EtapaAtacar{
+    + pasarEtapa(): Etapa
+    + atacarCon(unJugador:Jugador, atacante:Pais, defensor:Pais):void
+
+}
+class EtapaReagrupar{
+    + pasarEtapa(): Etapa
+    + transferirEjercitos(unJugador:Jugador, aliado1:Pais, aliado2:Pais, cantidadEjercitos:Integer): void
+}
+Interface Etapa
+Abstract class EtapaColocacionAbs
+Juego --> Etapa
+Etapa <|-- EtapaAtacar
+Etapa <|-- EtapaReagrupar
+Etapa <|-- EtapaColocacionAbs
+EtapaColocacionAbs <|-- EtapaColocacion
+EtapaColocacionAbs <|-- EtapaColocacionRondaUno
+EtapaColocacionAbs <|-- EtapaColocacionRondaDos
+@enduml

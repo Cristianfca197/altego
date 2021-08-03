@@ -25,7 +25,7 @@ public class FinalizarTurnoEventHandler implements EventHandler<ActionEvent> {
         } catch (Exception e){
             new Alerta(e.getMessage(), "Error Pasar Turno");
         }
-        vistaColocacion.actualizarVista(juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.cantidadEjercitosDisponibles());
+        vistaColocacion.actualizarVista(juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.cantidadEjercitosDisponibles(), juego.obtenerJugadorJugando().color());
         if (juego.obtenerEtapaR().getClass() == EtapaAtacar.class) {
             vista.mostrarInterfazAtaque(juego, juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.obtenerJugadorJugando().color());
         }

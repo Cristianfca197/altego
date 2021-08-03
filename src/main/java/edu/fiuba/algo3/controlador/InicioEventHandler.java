@@ -26,7 +26,6 @@ public class InicioEventHandler implements EventHandler<ActionEvent> {
             nombresJugadores.add(nombre.getText());
             if(nombre.getText().trim().equals("")){
                 new Alerta("Debe ingresar algun nombre", nombre.getText());
-                System.out.println("afjeujgiua");
                 return;
             }
         }
