@@ -1,0 +1,13 @@
+@startuml
+'https://plantuml.com/state-diagram
+
+[*] --> EtapaColocacionRondaUno
+EtapaColocacionRondaUno --> EtapaColocacionRondaDos : pasarEtapa
+EtapaColocacionRondaDos --> EtapaAtacar : pasarEtapa
+EtapaAtacar --> EtapaReagrupar: pasarEtapa
+EtapaReagrupar --> EtapaAtacar: pasarEtapa
+EtapaReagrupar --> EtapaColocacion : pasarEtapa
+EtapaColocacion --> EtapaAtacar
+
+EtapaAtacar --> [*]
+@enduml

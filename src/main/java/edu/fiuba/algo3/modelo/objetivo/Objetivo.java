@@ -2,21 +2,33 @@ package edu.fiuba.algo3.modelo.objetivo;
 
 import java.util.ArrayList;
 
+import edu.fiuba.algo3.modelo.Juego;
+import edu.fiuba.algo3.modelo.juego.Jugador;
+import edu.fiuba.algo3.modelo.juego.Tablero;
+
 public interface Objetivo {
 
-    abstract Boolean estaCumplido();
+     Boolean estaCumplido();
 
-    abstract void establecerObjetivoComun(int cantidad);
+     void establecerObjetivoComun(int cantidad);
 
-    abstract int cantidadObjetivoComun();
+     int cantidadObjetivoComun();
 
-    abstract String obtenerTipo();
+     void actualizar(Juego juego);
 
-    abstract Integer paisesAConquistar(String unContinente);
+     String obtenerTipo();
 
-    abstract ArrayList<String> continentesAOcupar();
+     Integer paisesAConquistar(String unContinente);
 
-    abstract String equipoADestruir();
+     ArrayList<String> continentesAOcupar();
 
-    abstract String titulo();
+     String equipoADestruir();
+
+     String titulo();
+
+     void equipoDestruido(String string, Juego juego);
+
+     void paisesConquistados(Tablero tablero, Jugador unJugador);
+
+     void asignarJugador(Jugador unJugador);
 }

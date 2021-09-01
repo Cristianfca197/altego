@@ -1,14 +1,15 @@
 package edu.fiuba.algo3.modelo.Etapa;
 
 import edu.fiuba.algo3.modelo.Juego;
+import edu.fiuba.algo3.modelo.exception.ExcepcionPaisInvalido;
 import edu.fiuba.algo3.modelo.juego.Jugador;
 import edu.fiuba.algo3.modelo.juego.Pais;
 
-public class EtapaRAtacar implements EtapaR {
+public class EtapaAtacar implements Etapa {
 
     private final Juego juego;
 
-    public EtapaRAtacar(Juego juego) {
+    public EtapaAtacar(Juego juego) {
         this.juego = juego;
     }
 
@@ -17,15 +18,17 @@ public class EtapaRAtacar implements EtapaR {
 
     }
 
-    public EtapaR pasarEtapa(){
+    public Etapa pasarEtapa(){
         this.juego.terminarAtaques();
-        return new EtapaRReagrupar(this.juego);
+        return new EtapaReagrupar(this.juego);
     }
 
     @Override
     public void AtacarCon(Jugador jugadorActual, Pais atacante, Pais defensor) {
         if(jugadorActual.obtenerFicha() == atacante.obtenerFicha()) {
             atacante.atacarA(defensor);
+        }else{
+            throw new ExcepcionPaisInvalido(atacante.obtenerNombre() + " no es un pais propio.");
         }
     }
 
@@ -41,6 +44,16 @@ public class EtapaRAtacar implements EtapaR {
 
     @Override
     public void establecerCantidadEjercitos(int cantidadEjercitos) {
+
+    }
+
+    @Override
+    public int obtenerCantidadEjercitos() {
+        return 0;
+    }
+
+    @Override
+    public void agregarEjercitosCanje(int cantidadEjercitos) {
 
     }
 }

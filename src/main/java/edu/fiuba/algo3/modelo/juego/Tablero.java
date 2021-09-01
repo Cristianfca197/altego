@@ -1,14 +1,10 @@
 package edu.fiuba.algo3.modelo.juego;
 
-import java.util.*;
+import edu.fiuba.algo3.modelo.continente.*;
+import edu.fiuba.algo3.modelo.exception.ExcepcionPaisInvalido;
 
-import edu.fiuba.algo3.modelo.continente.Africa;
-import edu.fiuba.algo3.modelo.continente.AmericaDelNorte;
-import edu.fiuba.algo3.modelo.continente.AmericaDelSur;
-import edu.fiuba.algo3.modelo.continente.Asia;
-import edu.fiuba.algo3.modelo.continente.Continente;
-import edu.fiuba.algo3.modelo.continente.Europa;
-import edu.fiuba.algo3.modelo.continente.Oceania;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Tablero {
 
@@ -47,6 +43,7 @@ public class Tablero {
             this.continentes.put(unContinente, new Europa(unContinente));
         }
     }
+
     public void agregarPais(Pais unPais){
         this.paises.add(unPais);
     }
@@ -60,6 +57,17 @@ public class Tablero {
         }
         return cantidadPaises;
     }
+
+    public int obtenerCantidadPaisesJugadorEnContinente(Jugador unJugador, String unContinente){
+        int cantidadPaises = 0;
+        for (Pais pais : paises) {
+            if (pais.continenteNombre().equalsIgnoreCase(unContinente) && pais.obtenerFicha().esIgualA(unJugador.obtenerFicha())) {
+                cantidadPaises++;
+            }
+        }
+        return cantidadPaises;
+    }
+
     public ArrayList<Continente> obtenerContinentes(){
         return  new ArrayList<>(this.continentes.values());
     }
@@ -67,8 +75,8 @@ public class Tablero {
     public int fichasContinente(Jugador unJugador){
         int cantidadEjercitos = 0;
         ArrayList<Continente> listaContinentes = this.obtenerContinentes();
-        for (Continente listaContinente : listaContinentes) {
-            cantidadEjercitos = listaContinente.obtenerEjercitosExtra(unJugador);
+        for (Continente continente : listaContinentes) {
+            cantidadEjercitos += continente.obtenerEjercitosExtra(unJugador);
         }
         return cantidadEjercitos;
     }
@@ -79,11 +87,19 @@ public class Tablero {
                 return pais;
             }
         }
-        /// sino excepcion esto es para q deje compilar x ahora
-        return paises.get(0);
+        throw new ExcepcionPaisInvalido(nombrePais + "No se encuentra");
     }
 
     public ArrayList<Pais> obtenerPaises() {
         return paises;
+    }
+
+    public int obtenerCantidadPaisesDeContinente(String continente) {
+        int cantidad = 0;
+        for (Pais pais : paises) {
+            if (pais.continenteNombre().equalsIgnoreCase(continente))
+                cantidad++;
+        }
+        return cantidad;
     }
 }

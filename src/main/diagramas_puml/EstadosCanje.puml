@@ -1,0 +1,8 @@
+@startuml
+
+[*] --> PrimerCanje
+PrimerCanje --> SegundoCanje : actualizarCanje
+SegundoCanje --> TresOMasCanjes : actualizarCanje
+TresOMasCanjes --> [*]
+
+@enduml

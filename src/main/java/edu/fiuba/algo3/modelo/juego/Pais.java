@@ -2,6 +2,8 @@ package edu.fiuba.algo3.modelo.juego;
 
 import edu.fiuba.algo3.modelo.continente.Continente;
 import edu.fiuba.algo3.modelo.exception.ExcepcionAtaqueInvalido;
+import edu.fiuba.algo3.modelo.exception.ExcepcionCantidadInvalida;
+import edu.fiuba.algo3.modelo.exception.ExcepcionPaisInvalido;
 
 import java.util.ArrayList;
 
@@ -26,7 +28,8 @@ public class Pais {
     public void colocarEjercitos(Integer unaCantidadDeEjercitos, Ficha unaFicha){
         if(this.ficha.esIgualA(unaFicha)) {
             this.ejercitos += unaCantidadDeEjercitos;
-            System.out.println(unaCantidadDeEjercitos);
+        }else{
+            throw new ExcepcionPaisInvalido("El pais seleccionado no es un pais propio");
         }
     }
     public int cantidadDeEjercitos(){
@@ -63,7 +66,7 @@ public class Pais {
 
     public boolean esLimitrofeCon(Pais otroPais) { return otroPais.paisesLimitrofes.contains(this);}
 
-    public void atacarA(Pais paisEnemigo) throws ExcepcionAtaqueInvalido {
+    public void atacarA(Pais paisEnemigo){
 
         if (this.obtenerFicha().esIgualA(paisEnemigo.obtenerFicha())){
             throw new ExcepcionAtaqueInvalido("Ataque entre paises aliados no es posible");
@@ -93,4 +96,17 @@ public class Pais {
         return unJugador.tieneFicha(this.ficha);
     }
 
+    public ArrayList<Pais> obtenerLimitrofes(){
+        return this.paisesLimitrofes;
+    }
+
+    public void eliminarEjercitos(int cantidadEjercitos) {
+        if (this.ejercitos == 1){
+            throw new ExcepcionCantidadInvalida("No es posible tranferir con 1 ejercito.");
+        }
+        if(cantidadEjercitos >= this.ejercitos){
+            throw new ExcepcionCantidadInvalida("Seleccione una cantidad entre " + (this.ejercitos - 1) + " y 0." );
+        }
+        this.ejercitos -= cantidadEjercitos;
+    }
 }

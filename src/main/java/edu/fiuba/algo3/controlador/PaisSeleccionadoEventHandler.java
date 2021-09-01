@@ -27,12 +27,16 @@ public class PaisSeleccionadoEventHandler implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent mouseEvent) {
+        if(!juego.esPaisDelJugador(juego.obtenerJugadorJugando(),pais.obtenerNombre())) {
+            new Alerta("El pais seleccionado no es un pais propio", "El pais seleccionado no es un pais propio");
+            return;
+        }
         String nombre = pais.obtenerNombre();
         Stage stage = new Stage();
         Label etiqeta = new Label("Ingrese la cantidad de ejercitos");
         TextField textField =  new TextField();
         Button botonEnviar = new Button("Colocar");
-        ColocarEjercitosEventHandler colocarEjercitosEventHandler = new ColocarEjercitosEventHandler(textField, etiqeta, stage, nombre, juego, this.pais);
+        ColocarEjercitosEventHandler colocarEjercitosEventHandler = new ColocarEjercitosEventHandler(textField, etiqeta, stage, nombre, juego, this.pais, vista);
         botonEnviar.setOnAction(colocarEjercitosEventHandler);
         Scene scene = new Scene(new VBox(etiqeta, textField, botonEnviar));
         stage.setScene(scene);

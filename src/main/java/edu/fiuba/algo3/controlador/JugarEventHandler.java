@@ -6,11 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-
 
 public class JugarEventHandler implements EventHandler<ActionEvent> {
+
     private final SeleccionarVista vista;
     private Label label;
     private TextField texto;
@@ -22,24 +20,24 @@ public class JugarEventHandler implements EventHandler<ActionEvent> {
     }
     @Override
     public void handle(ActionEvent actionEvent) {
-        if (this.texto.getText().trim().equals("")){
-            label.setText("Cantidad de jugadores invalida");
-            label.setFont(new Font("Arial", 12));
-            label.setTextFill(Color.web("#ffd700"));
-        }
-        int cantidadIngresada = Integer.parseInt(texto.getText());
-        if( (cantidadIngresada > 1) && (cantidadIngresada < 7)){
-            System.out.println(cantidadIngresada);
-            Juego juego = new Juego(cantidadIngresada);
-            juego.jugar();
-            this.vista.mostrarInterfazColocacion(juego, juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador());
+       if( new ValidarTextoEsNumero().validarTexto(texto.getText())) {
+           int cantidadIngresada = Integer.parseInt(texto.getText());
 
-        }
-        else {
-            label.setText("Cantidad de jugadores invalida");
-            label.setFont(new Font("Arial", 12));
-            label.setTextFill(Color.web("#ffd700"));
-        }
+           if ((cantidadIngresada > 1) && (cantidadIngresada < 7)) {
+               Juego juego = new Juego(cantidadIngresada);
+               this.vista.ingresoDatosJugadores(juego, juego.cantidadJugadores(), juego.obtenerColores());
+              // juego.jugar();
+              // this.vista.mostrarInterfazColocacion(juego, juego.obtenerJugadorActual(), juego.obtenerSiguienteJugador(), juego.obtenerJugadorJugando().color(), juego.cantidadEjercitosDisponibles());
 
+           } else {
+               new Alerta("ingrese un número del 2 al 6.", texto.getText());
+           }
+       }else {
+           new Alerta("No es un número.",texto.getText());
+       }
     }
+
+
+
+
 }

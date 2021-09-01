@@ -38,14 +38,14 @@ public class CoordenadasManager {
         coordenadas.put("Sahara", new Coordenadas(595,430));
 
         coordenadas.put("Islandia", new Coordenadas(440,240));
-        coordenadas.put("Gran Bretaña", new Coordenadas(535,260));
+        coordenadas.put("Gran Bretania", new Coordenadas(535,260));
         coordenadas.put("Suecia", new Coordenadas(585,190));
         coordenadas.put("Rusia", new Coordenadas(635,190));
         coordenadas.put("Polonia", new Coordenadas(655,310));
         coordenadas.put("Alemania", new Coordenadas(595,290));
         coordenadas.put("Italia", new Coordenadas(595,370));
         coordenadas.put("Francia", new Coordenadas(555,310));
-        coordenadas.put("España", new Coordenadas(480,350));
+        coordenadas.put("Espania", new Coordenadas(480,350));
 
         coordenadas.put("Turquia", new Coordenadas(715,310));
         coordenadas.put("Israel", new Coordenadas(715,350));

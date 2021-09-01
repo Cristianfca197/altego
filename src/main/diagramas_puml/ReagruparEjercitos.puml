@@ -1,0 +1,12 @@
+@startuml
+autonumber
+Actor TestCase
+TestCase -> Juego:transferirEjercitosDeA(nombreOrigen, nombreDestino, Cantidad)
+"Juego"-> "Juego":obtenerPais(nombreOrigen)
+"Juego"-> "Juego":obtenerPais(nombreDestino)
+"Juego"-> "Juego":tranferirEjercitos(paisOrigen, paisDestino, Cantidad)
+"Juego"-> "Etapa": tranferirEjercitos(JugadorActual, paisOrigen, paisDestino, Cantidad)
+"Etapa"-> "PaisOrigen": eliminarEjercitos(Cantidad)
+"Etapa"-> "PaisDestino": colocarEjercitos(Cantidad, FichaJugador))
+
+@enduml

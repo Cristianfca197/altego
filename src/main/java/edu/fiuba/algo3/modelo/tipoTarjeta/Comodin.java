@@ -1,11 +1,15 @@
 package edu.fiuba.algo3.modelo.tipoTarjeta;
 
 public class Comodin implements TipoTarjeta{
-    private String nombre;
+
+    private final String nombre;
+
     public Comodin(){
         this.nombre = "Comodin";
     }
+
     public String obtenerNombre(){return nombre;}
+
     @Override
     public boolean esBarco() {
         return true;

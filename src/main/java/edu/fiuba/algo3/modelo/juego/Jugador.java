@@ -1,16 +1,19 @@
 package edu.fiuba.algo3.modelo.juego;
 
-import java.util.*;
-import javafx.scene.paint.Color;
-//import jdk.tools.jlink.resources.plugins;
 import edu.fiuba.algo3.modelo.canje.Canje;
 import edu.fiuba.algo3.modelo.canje.PrimerCanje;
+import edu.fiuba.algo3.modelo.objetivo.Objetivo;
+import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
 
 public class Jugador {
     private final Ficha ficha;
     private final MazoTarjetasPais listaTarjetas;
     private Canje canje;
     private String nombre;
+    private String nombreColor;
+    private Objetivo objetivoJugador;
 
     public Jugador() {
 
@@ -25,6 +28,10 @@ public class Jugador {
 
     public void colocarEjercitosEn(Integer unaCantidadDeEjercitos, Pais unPais) {
         unPais.colocarEjercitos(unaCantidadDeEjercitos, this.ficha);
+    }
+
+    public void establecerObjetivo(Objetivo unObj){
+        this.objetivoJugador = unObj;
     }
 
     public Ficha obtenerFicha() {
@@ -44,12 +51,15 @@ public class Jugador {
 
     public ArrayList<TarjetaPais> ocuparPaises() {
         ArrayList<TarjetaPais> tarjetas = this.listaTarjetas.obtenerTarjetas();
+        this.listaTarjetas.vaciar();
         for (TarjetaPais tarjeta : tarjetas) {
             tarjeta.obtenerPais().asignarJugador(this);
         }
         return tarjetas;
     }
-
+    public TarjetaPais obtenerTarjeta(String nombreTarjeta){
+        return this.listaTarjetas.obtenerTarjeta(nombreTarjeta);
+    }
     public void activarTarjetaPais(TarjetaPais unaTarjetaPais) {
         unaTarjetaPais.activarTarjeta(this);
     }
@@ -73,5 +83,21 @@ public class Jugador {
 
     public String obtenerNombre() {
         return this.nombre;
+    }
+
+    public void nombreColor(String unColor) {
+        this.nombreColor = unColor;
+    }
+
+    public String color() {
+        return this.nombreColor;
+    }
+
+    public Objetivo objetivo(){
+        return this.objetivoJugador;
+    }
+
+    public boolean objetivoCumplido() {
+        return this.objetivoJugador.estaCumplido();
     }
 }

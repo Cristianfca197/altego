@@ -21,20 +21,20 @@ public class TarjetaPais {
     }
 
     public boolean esDelMismoTipo(TarjetaPais unaTarjeta){
-        return (this.tipo.esIgual(unaTarjeta.obtenerTipo())); /*== unaTarjeta.obtenerTipo());*/
+        return (this.tipo.esIgual(unaTarjeta.obtenerTipo()));
     }
 
     public boolean paisEsDe(Jugador unJugador){
         return (this.pais.obtenerFicha().esIgualA(unJugador.obtenerFicha()));
     }
 
-    public void activarTarjeta(Jugador jugador) throws ExcepcionActivacionTarjetaInvalido {
-        if (this.obtenerPais().obtenerFicha().esIgualA(jugador.obtenerFicha()) && !(this.estaActivada)){
+    public void activarTarjeta(Jugador jugador){
+        if (this.obtenerPais().obtenerFicha().esIgualA(jugador.obtenerFicha()) && (!this.estaActivada)){
             jugador.colocarEjercitosEn(2,this.obtenerPais());
             this.estaActivada = true;
         }
         else{
-            throw new ExcepcionActivacionTarjetaInvalido("El pais no esta en posesion del jugador");
+            throw new ExcepcionActivacionTarjetaInvalido("El pais no esta en posesion del jugador o la tarjeta ya fue activada");
         }
     }
 }

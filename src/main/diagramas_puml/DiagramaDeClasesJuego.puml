@@ -17,7 +17,7 @@ class Ficha{
 }
 Juego o-- Jugador
 Jugador *-- Ficha
-Jugador --> Objetivo
+Jugador -- Objetivo
 Jugador -->TarjetaPais
 
 Juego *-- TarjetaPais

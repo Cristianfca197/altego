@@ -11,10 +11,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import edu.fiuba.algo3.modelo.continente.*;
-import edu.fiuba.algo3.modelo.juego.Pais;
-import edu.fiuba.algo3.modelo.juego.Tablero;
-import edu.fiuba.algo3.modelo.juego.TarjetaPais;
 import edu.fiuba.algo3.modelo.objetivo.*;
 
 public class LecturaArchivoObjetivos {
@@ -68,28 +64,29 @@ public class LecturaArchivoObjetivos {
             // Obtener continente
             String nombresContinentes = (String) objetivo.get("Ocupar Continente");
             String[] continentesAOcuparJson = nombresContinentes.split(",");
-            ArrayList<String> continentesAOcupar = new ArrayList<String>();
+            ArrayList<String> continentesAOcupar = new ArrayList<>();
             
             if (!nombresContinentes.equals("")){
-                for(int i = 0; i < continentesAOcuparJson.length; i++ ){
-                    continentesAOcupar.add(continentesAOcuparJson[i]);
-                }    
+                Collections.addAll(continentesAOcupar, continentesAOcuparJson);
             }
 
             // Obtener Paises
             String cont = (String) objetivo.get("Ocupar Paises");
             String[] continentesCantidadesJson = cont.split(",");
 
-            HashMap<String, Integer> continentesYCantidades = new HashMap<String, Integer>();
-            
-            for (int i = 0; i < continentesCantidadesJson.length; i++) {
-                
-                String[] valores = continentesCantidadesJson[i].split("\\s");
+            HashMap<String, Integer> continentesYCantidades = new HashMap<>();
+
+            for (String s : continentesCantidadesJson) {
+
+                String[] valores = s.split("\\s");
                 int cantidad = Integer.parseInt(valores[0]);
                 continentesYCantidades.put(this.nombreContinente(valores[1]), cantidad);
             }
+
             obj = new ObjetivoOcupar(titulo, continentesAOcupar, continentesYCantidades);
+            
             objetivos.add(obj);
+
         } else if (tipo.equals("Destruir")){
 
             // Obtener equipo a destruir
@@ -100,8 +97,7 @@ public class LecturaArchivoObjetivos {
         } else {
             // Obtener cantidad paises
             String stringCantidad = (String) objetivo.get("Ocupar Paises");
-            Integer cantidad = Integer.parseInt(stringCantidad);
-            this.cantidadComun = cantidad;
+            this.cantidadComun = Integer.parseInt(stringCantidad);
         }
 
 
@@ -122,7 +118,7 @@ public class LecturaArchivoObjetivos {
             case "V":
                 return "Verde";
             case "M":
-                return "Magenta";
+                return "Violeta";
             default:
                 return "Amarillo"; // y en caso de error
         }
